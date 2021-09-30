@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.iLab.Bot_Jetsam_Camden.Robot.Arm_Bot;
 
+@Disabled
 @TeleOp(name = "ArmBotTeleOp")
 
 public class ArmBotTeleOp extends OpMode {

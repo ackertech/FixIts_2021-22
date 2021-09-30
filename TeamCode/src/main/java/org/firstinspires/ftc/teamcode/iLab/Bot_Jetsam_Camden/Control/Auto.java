@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Jetsam_Camden.Control;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.iLab.Bot_Jetsam_Camden.Robot.Jetsam_Bot_Camden;
 
-//@Autonomous (name = "AutonomousTestJetsam")
+@Disabled
+@Autonomous (name = "AutonomousTestJetsam")
 
 public class Auto extends LinearOpMode {
 

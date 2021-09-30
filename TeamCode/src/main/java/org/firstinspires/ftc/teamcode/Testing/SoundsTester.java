@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode.Testing;
 import android.content.Context;
 
 import com.qualcomm.ftccommon.SoundPlayer;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -46,7 +47,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * Operation:
  *      Use the DPAD to change the selected sound, and the Right Bumper to play it.
  */
-
+@Disabled
 @TeleOp(name="Test - Sounds", group="Lab")
 //@Disabled
 public class SoundsTester extends LinearOpMode {

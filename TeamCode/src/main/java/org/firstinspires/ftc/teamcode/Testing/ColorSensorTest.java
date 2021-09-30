@@ -33,6 +33,9 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 
+import androidx.appcompat.app.ActionBar;
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -51,6 +54,7 @@ import java.util.Locale;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list.
  */
+@Disabled
 @TeleOp(name = "Test - REVColorDistance", group = "Lab")
 //@Disabled                            // Comment this out to add to the opmode list
 public class ColorSensorTest extends LinearOpMode {

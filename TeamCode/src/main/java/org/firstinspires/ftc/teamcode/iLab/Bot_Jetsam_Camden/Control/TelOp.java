@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.iLab.Bot_Jetsam_Camden.Control;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.iLab.Bot_Jetsam_Camden.Robot.Jetsam_Bot_Camden;
 
-//@TeleOp(name = "Jetsam:Camden:FirstDrive")
+@Disabled
+@TeleOp(name = "Jetsam:Camden:FirstDrive")
 public class TelOp extends OpMode {
 
     public Jetsam_Bot_Camden Bot = new Jetsam_Bot_Camden();

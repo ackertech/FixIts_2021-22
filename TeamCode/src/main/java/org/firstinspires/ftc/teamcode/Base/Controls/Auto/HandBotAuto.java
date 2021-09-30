@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.Auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Base.Robot.HandBot;
 
+@Disabled
 @Autonomous (name = "Autonomous HandBot")
 
 public class HandBotAuto extends LinearOpMode {

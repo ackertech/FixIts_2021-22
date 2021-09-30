@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode.Testing;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -38,7 +39,7 @@ import org.firstinspires.ftc.robotcore.internal.system.Deadline;
 
 import java.util.concurrent.TimeUnit;
 
-
+@Disabled
 @TeleOp(name="Test - LED")
 //@Disabled
 public class LEDTester extends OpMode {
