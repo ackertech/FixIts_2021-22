@@ -1,13 +1,16 @@
-package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
+package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@Disabled
-@TeleOp(name = "TeleOp:HelloWorld", group ="Lessons")
 
-public class HelloWorld extends OpMode {
+@Disabled
+
+
+@TeleOp(name = "TeleOp:Hello World Noah")
+
+public class helloworld_noah extends OpMode {
     @Override
     public void init() {
 
@@ -16,12 +19,6 @@ public class HelloWorld extends OpMode {
     @Override
     public void loop() {
 
-        telemetry.addData("I love", " Robots");
+        telemetry.addData("I'll be", " back");
     }
 }
-// This is a single line comment
-
-/*
-This is a multi-line comment
-Comment Line 2
- */
