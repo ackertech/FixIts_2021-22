@@ -1,5 +1,4 @@
-## Fix-Its Johntavious Robot Module
-
+## Fix-Its Johntavious Robot Mod
 Welcome Fix-Its!
 
 This package is the place where you will write/paste the code for your team's
