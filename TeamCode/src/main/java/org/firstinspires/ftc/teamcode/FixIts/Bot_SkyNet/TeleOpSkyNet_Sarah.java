@@ -14,53 +14,46 @@ public class TeleOpSkyNet_Sarah extends OpMode {
 
         Bot.initRobot(hardwareMap);
     }
+
     @Override
-    public void loop () {
+    public void loop() {
 
         drive();
         speedControl();
 
     }
 
-    public void drive () {
+    public void drive() {
 
         if (gamepad1.left_stick_y > .1) {
-            Bot.driveForward(speedMultiply*gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_y < -0.1) {
+            Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+        } else if (gamepad1.left_stick_y < -0.1) {
 
-            Bot.driveBackward(speedMultiply*gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_x > 0.1) {
+            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+        } else if (gamepad1.left_stick_x > 0.1) {
             Bot.turnLeft(speedMultiply * gamepad1.left_stick_x);
-        }
-        else if (gamepad1.right_stick_x < -0.1) {
+        } else if (gamepad1.right_stick_x < -0.1) {
 
-            Bot.driveBackward(speedMultiply*gamepad1.right_stick_x);
+            Bot.driveBackward(speedMultiply * gamepad1.right_stick_x);
 
-        }
-        else{
+        } else {
             Bot.stopMotors();
         }
-
-
 
 
     }
 
     public void speedControl() {
 
-        if (gamepad1.dpad_right == true){
+        if (gamepad1.dpad_right == true) {
             speedMultiply = 0.25;
-        }
-        else if (gamepad1.dpad_down == true) {
+        } else if (gamepad1.dpad_down == true) {
             speedMultiply = 0.75;
 
-        }
-        else if (gamepad1.dpad_left == true) {
+        } else if (gamepad1.dpad_left == true) {
             speedMultiply = 0.75;
+        } else if (gamepad1.dpad_up == true) {
+            speedMultiply = 0.75;
+        }
     }
-        else if (gamepad1.dpad_up == true) {
-            speedMultiply = 0.75;
-
 }
