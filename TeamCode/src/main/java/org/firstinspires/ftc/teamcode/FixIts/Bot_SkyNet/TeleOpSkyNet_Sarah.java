@@ -31,6 +31,9 @@ public class TeleOpSkyNet_Sarah extends OpMode {
 
             Bot.driveBackward(speedMultiply*gamepad1.left_stick_y);
         }
+        else if (gamepad1.left_stick_x > 0.1) {
+            Bot.turnLeft(speedMultiply * gamepad1.left_stick_x);
+        }
         else if (gamepad1.right_stick_x < -0.1) {
 
             Bot.driveBackward(speedMultiply*gamepad1.right_stick_x);
@@ -50,18 +53,14 @@ public class TeleOpSkyNet_Sarah extends OpMode {
         if (gamepad1.dpad_right == true){
             speedMultiply = 0.25;
         }
-        else if (gamepad1.left_stick_x < -.1) {
-            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+        else if (gamepad1.dpad_down == true) {
+            speedMultiply = 0.75;
+
         }
-        else if (gamepad1.left_stick_x > .1) {
-            Bot.turnRight(speedMultiply * gamepad1.left_stick_x);
-        }
-        else if (gamepad1.left_stick_x < .1) {
-            Bot.turnLeft(speedMultiply * gamepad1.left_stick_x);
-        }
-        else {
-            Bot.stopMotors();
-        }
+        else if (gamepad1.dpad_left == true) {
+            speedMultiply = 0.75;
     }
+        else if (gamepad1.dpad_up == true) {
+            speedMultiply = 0.75;
 
 }
