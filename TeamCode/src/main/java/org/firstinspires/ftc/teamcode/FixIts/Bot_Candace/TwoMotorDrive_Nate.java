@@ -57,8 +57,8 @@ public class TwoMotorDrive_Nate {
 
     public void rotateRight(double power){
         double ABSPower=Math.abs(power);
-        frontLeftMotor.setPower(ABSPower);
-        frontRightMotor.setPower(-ABSPower);
+        frontLeftMotor.setPower(-ABSPower);
+        frontRightMotor.setPower(ABSPower);
     }
 
 }
