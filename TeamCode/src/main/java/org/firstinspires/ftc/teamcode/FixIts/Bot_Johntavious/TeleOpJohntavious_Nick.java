@@ -30,7 +30,7 @@ public class TeleOpJohntavious_Nick extends OpMode {
 
        if (gamepad1.left_stick_y > 0.1) {
 
-           Bot.driveForward(speedMultiply*gamepad1.left_stick_y);
+           Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
 
        }
 
@@ -41,13 +41,13 @@ public class TeleOpJohntavious_Nick extends OpMode {
 
        else if (gamepad1.left_stick_x > 0.1) {
 
-           Bot.rotateRight(speedMultiply * gamepad1.left_stick_y);
+           Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
 
        }
 
        else if (gamepad1.left_stick_x < -0.1) {
 
-           Bot.rotateLeft(speedMultiply * gamepad1.left_stick_y);
+           Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
 
        }
        else {
