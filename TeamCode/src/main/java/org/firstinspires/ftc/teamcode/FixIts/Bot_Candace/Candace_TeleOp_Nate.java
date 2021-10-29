@@ -10,6 +10,7 @@ public Candace_Nate Bot = new Candace_Nate();
 
     @Override
     public void init() {
+        Bot.initRobot(hardwareMap);
 
     }
 
@@ -37,22 +38,21 @@ public Candace_Nate Bot = new Candace_Nate();
         }
     }
     public void drive() {
-        if (gamepad1.left_stick_y > 0.1) {
-            Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_y < -0.1) {
-            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_x > 0.1) {
-            Bot.rotateRight(speedMultiply * gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_x < -0.1) {
-            Bot.rotateLeft(speedMultiply * gamepad1.left_stick_y);
-        }
-        else {
-            Bot.stopMotors();
+
+        if (gamepad1.left_stick_y > .1) {
+            Bot.driveForward(gamepad1.left_stick_y * speedMultiply);
+        } else if (gamepad1.left_stick_y < -.1) {
+            Bot.driveBackward(gamepad1.left_stick_y * speedMultiply);
+        } else if (gamepad1.left_stick_x > .1) {
+            Bot.rotateRight(gamepad1.left_stick_x * speedMultiply);
+        } else if (gamepad1.left_stick_x < -.1) {
+            Bot.rotateLeft(gamepad1.left_stick_x * speedMultiply);
+        } else {
+            Bot.stopMotor();
+
         }
     }
+
 
 
 
