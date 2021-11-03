@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_LabBot;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "TeleOp:LabBot_Acker")
+@Disabled
+@TeleOp(name = "TeleOp:LabBot_Acker",group = "Bot_LabBot")
 public class TeleOpLabBot_Acker extends OpMode {
 
     public double speedMultiply = 0.50;

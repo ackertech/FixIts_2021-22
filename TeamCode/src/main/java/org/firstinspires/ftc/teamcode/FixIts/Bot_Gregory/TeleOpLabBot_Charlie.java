@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Gregory;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "TeleOp:Gregory_Charlie")
+@TeleOp(name = "TeleOp:Gregory_Charlie", group = "Bot_Gregory")
 public class TeleOpLabBot_Charlie extends OpMode {
 
     public double speedMultiply = 0.50;
@@ -30,17 +30,21 @@ public class TeleOpLabBot_Charlie extends OpMode {
 
         if (gamepad1.left_stick_y > .1) {
             Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
-        } else if (gamepad1.left_stick_y < -.1) {
+        }
+        else if (gamepad1.left_stick_y < -.1) {
             Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
 
-
-        } else if (gamepad1.left_stick_x > .1) {
+// * JDA *  Issue with below (drive direction and gamepad controls)
+        }
+        else if (gamepad1.left_stick_x > .1) {
+            Bot.driveBackward(speedMultiply * gamepad1.left_stick_x);
+// * JDA *  Issue with below (drive direction and gamepad controls)
+        }
+        else if (gamepad1.left_stick_x > -.1) {
             Bot.driveBackward(speedMultiply * gamepad1.left_stick_x);
 
-        } else if (gamepad1.left_stick_x > -.1) {
-            Bot.driveBackward(speedMultiply * gamepad1.left_stick_x);
-
-        } else {
+        }
+        else {
             Bot.stopMotors();
 
         }

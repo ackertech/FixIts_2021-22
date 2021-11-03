@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Johntavious;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "TeleOpJohntavious_Nick", group = "Johntavious")
+@TeleOp(name = "TeleOp:Johntavious_Nick", group = "Bot_Johntavious")
 
 public class TeleOpJohntavious_Nick extends OpMode {
 

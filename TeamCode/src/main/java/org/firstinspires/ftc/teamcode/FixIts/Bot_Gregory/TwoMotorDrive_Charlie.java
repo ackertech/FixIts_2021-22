@@ -32,6 +32,8 @@ public class TwoMotorDrive_Charlie {
 
     }
 
+    // JDA - Check to ensure all motors below method
+
     public void driveForward (double power) {
 
         double ABSpower = Math.abs(power);
@@ -45,7 +47,11 @@ public class TwoMotorDrive_Charlie {
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(-ABSpower);
 // hi
+// JDA - hi back.  Who are you?
+
     }
+
+    // JDA - Check Motor Powers Below, especially how you turn left and right
 
     public void rotateLeft (double power) {
 
@@ -64,5 +70,3 @@ public class TwoMotorDrive_Charlie {
     }
 
 }
-
-// push jda4

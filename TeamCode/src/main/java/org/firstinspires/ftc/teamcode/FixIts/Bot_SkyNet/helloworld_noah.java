@@ -6,8 +6,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
 @Disabled
-
-
 @TeleOp(name = "TeleOp:Hello World Noah")
 
 public class helloworld_noah extends OpMode {

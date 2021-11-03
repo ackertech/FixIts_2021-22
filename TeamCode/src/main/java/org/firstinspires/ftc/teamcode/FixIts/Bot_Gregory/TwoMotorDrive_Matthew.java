@@ -45,6 +45,8 @@ public class TwoMotorDrive_Matthew {
 
     }
 
+    // JDA - Check Motor Powers Below, especially how you turn left and right
+
     public void rotateLeft (double power) {
 
         double ABSpower = Math.abs(power);

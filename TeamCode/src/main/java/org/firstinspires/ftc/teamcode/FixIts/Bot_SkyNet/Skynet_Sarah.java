@@ -12,13 +12,15 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
 
     }
 
+    //JDA -  Issue with Left and Right Motor Mapping label
+
     public void initRobot (HardwareMap HwMap) {
 
         hwBot = HwMap;
 
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
 
-        frontRightMotor = hwBot.dcMotor.get("front_left_motor");
+        frontRightMotor = hwBot.dcMotor.get("front_left_motor");   // JDA - Compare this Line to above
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
 

@@ -1,9 +1,10 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Johntavious;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-//@Disabled
+@Disabled
 @TeleOp(name= "HelloWorld_Nick")
 
 public class HelloWorld_Nick extends OpMode {
