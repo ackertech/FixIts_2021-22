@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @Disabled
-@TeleOp(name = "TeleOp:LabBot_Acker",group = "Bot_LabBot")
+@TeleOp(name = "LabBot_Acker",group = "Bot_LabBot")
 public class TeleOpLabBot_Acker extends OpMode {
 
     public double speedMultiply = 0.50;

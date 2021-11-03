@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_DentalHealth;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "TeleOp:DentalHealth_Allen3", group = "Bot_Dental")
+@TeleOp(name = "DentalHealth_Allen3", group = "Bot_Dental")
 public class TeleOpDentalHealth_Allen3 extends OpMode {
 
     public double speedMultiply = 0.50;

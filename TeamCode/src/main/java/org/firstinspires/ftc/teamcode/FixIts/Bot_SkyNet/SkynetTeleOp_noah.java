@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "TeleOP:SkyNet_Noah",group = "Bot_SkyNet")
+@TeleOp(name = "SkyNet_Noah",group = "Bot_SkyNet")
 
 public class SkynetTeleOp_noah extends OpMode {
 

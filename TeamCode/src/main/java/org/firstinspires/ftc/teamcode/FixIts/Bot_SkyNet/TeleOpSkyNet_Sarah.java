@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-@TeleOp(name = "TeleOP:SkyNet_Sarah", group = "Bot_SkyNet")
+@TeleOp(name = "SkyNet_Sarah", group = "Bot_SkyNet")
 public class TeleOpSkyNet_Sarah extends OpMode {
 
     public double speedMultiply = 0.50;

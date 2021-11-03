@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
-@TeleOp( name = "TeleOp:DentalHealth_Alen1" , group = "Bot_Dental")
+@TeleOp( name = "DentalHealth_Alen1" , group = "Bot_Dental")
 public class TeleOp_Alen1 extends OpMode {
 
     //TeleOp Variables
