@@ -27,5 +27,3 @@ public class Gregory_Charlie extends TwoMotorDrive_Charlie {
     }
 
 }
-
-// push jda2

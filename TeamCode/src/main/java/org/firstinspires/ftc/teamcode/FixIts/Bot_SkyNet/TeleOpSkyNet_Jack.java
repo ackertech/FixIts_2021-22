@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "TeleOP:SkyNet_Jack")
+@TeleOp(name = "SkyNet_Jack", group = "Bot_SkyNet")
 public class TeleOpSkyNet_Jack extends OpMode {
 
     public double speedMultiply = 0.50;
@@ -32,10 +32,10 @@ public class TeleOpSkyNet_Jack extends OpMode {
             Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
         }
         else if (gamepad1.left_stick_x > 0.1) {
-            Bot.rotateLeft(speedMultiply * gamepad1.left_stick_y);
+            Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
         }
         else if (gamepad1.left_stick_x < -0.1) {
-            Bot.rotateRight(speedMultiply * gamepad1.left_stick_y);
+            Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
         }
         else {
             Bot.stopMotors();

@@ -41,13 +41,15 @@ public class Twomotordrive_Sarah {
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(-ABSpower);
     }
+
+    // JDA - Check Motors Variables Below.  Do you have one of each?
     public void turnLeft (double power) {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
         frontLeftMotor.setPower(ABSpower);
     }
-
+    // JDA - Check Motors Variables Below.  Do you have one of each?
     public void turnRight (double power) {
         double ABSpower = Math.abs(power);
 

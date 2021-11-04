@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot;
 
-//@Disabled
+@Disabled
 @TeleOp(name = "TeleOp:LabBot", group = "FixIt")
 
 public class LabBotTeleOp extends OpMode {
