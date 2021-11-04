@@ -1,24 +1,25 @@
-package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
+package org.firstinspires.ftc.teamcode.FixIts.Bot_LabBot;
+
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class SkyNet_Jack extends TwoMotorDrive_Jacl {
+public class LabBot_Acker extends TwoMotorDrive_Acker {
 
     public HardwareMap hwBot = null;
 
-    public SkyNet_Jack () {
+    public LabBot_Acker () {
 
     }
 
-    public void startRobot (HardwareMap hwMap) {
+    public void initRobot (HardwareMap hwMap) {
 
         hwBot = hwMap;
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");
 
-        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
+        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
 
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -28,8 +29,9 @@ public class SkyNet_Jack extends TwoMotorDrive_Jacl {
 
 
 
-    }
 
+
+    }
 
 
 }

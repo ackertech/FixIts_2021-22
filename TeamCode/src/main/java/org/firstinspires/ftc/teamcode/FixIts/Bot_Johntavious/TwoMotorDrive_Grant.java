@@ -1,18 +1,19 @@
-package org.firstinspires.ftc.teamcode.FixIts.Bot_Gregory;
+package org.firstinspires.ftc.teamcode.FixIts.Bot_Johntavious;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class TwoMotorDrive_Matthew {
-
-
+public class TwoMotorDrive_Grant {
+    //Declaring variables for my motors
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
 
+    // Required to run our robot
     public LinearOpMode linearOp = null;
-    public void setLinearOp(LinearOpMode linearOp) { this.linearOp = linearOp; }
+    public void setLinearOp(LinearOpMode linearOp){this.linearOp = linearOp;}
 
-    public final DcMotor.RunMode currentMotorRunMode = DcMotor.RunMode.RUN_WITHOUT_ENCODER;
+    //Common Method for motor Run mode
+    public final DcMotor .RunMode currentMotorRunMode = DcMotor .RunMode .RUN_WITHOUT_ENCODER;
     public static final double TICKS_PER_ROTATION = 538;
 
     public void setMotorRunModes (DcMotor.RunMode mode) {
@@ -22,22 +23,23 @@ public class TwoMotorDrive_Matthew {
 
     }
 
-    public void stopMotors () {
-
+    // Stops the Motors
+    public void stopMotor () {
         frontLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
-
     }
 
-    public void driveForward (double power) {
+    // Drives Forward
+    public void driveForward(double power) {
 
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(ABSpower);
+       double ABSpower = Math.abs(power);
+       frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(ABSpower);
 
     }
 
-    public void driveBackward (double power) {
+    // Drives Backward
+    public void driveBackward(double power) {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
@@ -45,22 +47,39 @@ public class TwoMotorDrive_Matthew {
 
     }
 
-    // JDA - Check Motor Powers Below, especially how you turn left and right
 
-    public void rotateLeft (double power) {
+    // Rotates Left
+    public void rotateLeft(double power) {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
-        frontRightMotor.setPower(-ABSpower);
+        frontRightMotor.setPower(ABSpower);
 
     }
 
-    public void rotateRight (double power) {
+
+    // Rotates Right
+    public void rotateRight(double power) {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(-ABSpower);
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

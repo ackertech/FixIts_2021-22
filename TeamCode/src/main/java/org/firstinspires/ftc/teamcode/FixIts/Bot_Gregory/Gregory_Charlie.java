@@ -1,17 +1,16 @@
-package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
+package org.firstinspires.ftc.teamcode.FixIts.Bot_Gregory;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class SkyNet_Jack extends TwoMotorDrive_Jacl {
+public class Gregory_Charlie extends TwoMotorDrive_Charlie {
 
     public HardwareMap hwBot = null;
 
-    public SkyNet_Jack () {
-
+    public Gregory_Charlie() {
     }
 
-    public void startRobot (HardwareMap hwMap) {
+    public void initRobot(HardwareMap hwMap) {
 
         hwBot = hwMap;
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
@@ -25,11 +24,6 @@ public class SkyNet_Jack extends TwoMotorDrive_Jacl {
 
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-
-
     }
-
-
 
 }

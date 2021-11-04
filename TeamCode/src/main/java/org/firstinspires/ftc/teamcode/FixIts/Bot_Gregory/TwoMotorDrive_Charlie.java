@@ -3,16 +3,20 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Gregory;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class TwoMotorDrive_Matthew {
+import org.checkerframework.checker.units.qual.A;
 
+public class TwoMotorDrive_Charlie {
 
+    //Declaring variables for my motor
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
 
+    // Reguired to run robot
     public LinearOpMode linearOp = null;
     public void setLinearOp(LinearOpMode linearOp) { this.linearOp = linearOp; }
 
-    public final DcMotor.RunMode currentMotorRunMode = DcMotor.RunMode.RUN_WITHOUT_ENCODER;
+    //Common Method for Motor Run Mode
+    public final DcMotor.RunMode currentMotorRunMode = DcMotor.RunMode.RUN_USING_ENCODER;
     public static final double TICKS_PER_ROTATION = 538;
 
     public void setMotorRunModes (DcMotor.RunMode mode) {
@@ -23,17 +27,17 @@ public class TwoMotorDrive_Matthew {
     }
 
     public void stopMotors () {
-
         frontLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
 
     }
 
+    // JDA - Check to ensure all motors below method
+
     public void driveForward (double power) {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(ABSpower);
 
     }
 
@@ -42,6 +46,8 @@ public class TwoMotorDrive_Matthew {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(-ABSpower);
+// hi
+// JDA - hi back.  Who are you?
 
     }
 
@@ -56,11 +62,11 @@ public class TwoMotorDrive_Matthew {
     }
 
     public void rotateRight (double power) {
-
         double ABSpower = Math.abs(power);
+
         frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(-ABSpower);
-
+        
     }
 
 }

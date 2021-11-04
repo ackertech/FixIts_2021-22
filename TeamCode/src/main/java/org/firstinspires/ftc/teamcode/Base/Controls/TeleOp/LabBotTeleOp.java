@@ -1,15 +1,12 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 
-import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import org.firstinspires.ftc.teamcode.Base.Robot.FixItBot;
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot;
 
-//@Disabled
+@Disabled
 @TeleOp(name = "TeleOp:LabBot", group = "FixIt")
 
 public class LabBotTeleOp extends OpMode {
@@ -20,10 +17,8 @@ public class LabBotTeleOp extends OpMode {
     // Specific which robot class to construct (aka physically use and implement).
     public LabBot Bot = new LabBot();
 
-    // We are choosing to add our own code instead of the code in superclass.
-    @Override
-
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
+    @Override
     public void init()    {
 
         Bot.initRobot(hardwareMap);
@@ -34,7 +29,6 @@ public class LabBotTeleOp extends OpMode {
 
         drive();                //Drive Control Method continually looping.  See method definition below.
         speedControl();         //Speed Control Method continually looping.  See method definition below.
-
     }
 
 

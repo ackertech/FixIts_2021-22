@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Candace;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-@TeleOp(name = "TeleOp:Candace_TeleOp_Nate")
+@TeleOp(name = "Candace_Nate", group = "Bot_Candace")
 public class Candace_TeleOp_Nate extends OpMode {
 public double speedMultiply = 0.50;
 public Candace_Nate Bot = new Candace_Nate();
@@ -50,7 +50,7 @@ public Candace_Nate Bot = new Candace_Nate();
             Bot.rotateLeft(speedMultiply * gamepad1.left_stick_y);
         }
         else {
-            Bot.stopMotors();
+            Bot.stopMotor();
         }
     }
 

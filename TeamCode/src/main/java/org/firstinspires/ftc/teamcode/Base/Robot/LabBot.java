@@ -1,33 +1,22 @@
 package org.firstinspires.ftc.teamcode.Base.Robot;
 
-import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
-
 import org.firstinspires.ftc.teamcode.Base.Drivetrains.TwoMotorDrive;
-
-import java.util.concurrent.TimeUnit;
 
 public class LabBot extends TwoMotorDrive {
 
     // Hardware Variable
     public HardwareMap hwBot = null;
 
-
     // Robot Physical Constructor
     public LabBot() {
-
     }
 
-
     // Custom Robot Initiazition Method
-
     public void initRobot (HardwareMap hwMap) {
 
         hwBot = hwMap;
-
         frontLeftMotor =  hwBot.dcMotor.get("front_left_motor");
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");
 
@@ -42,10 +31,7 @@ public class LabBot extends TwoMotorDrive {
         // Define this robot's braking modes
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
     }
-
-
 
 }
 
