@@ -10,7 +10,7 @@ public Candace_Nate Bot = new Candace_Nate();
 
     @Override
     public void init() {
-
+        Bot.initRobot(hardwareMap);
     }
 
     @Override
@@ -50,7 +50,7 @@ public Candace_Nate Bot = new Candace_Nate();
             Bot.rotateLeft(speedMultiply * gamepad1.left_stick_y);
         }
         else {
-            Bot.stopMotors();
+            Bot.stopMotor();
         }
     }
 
