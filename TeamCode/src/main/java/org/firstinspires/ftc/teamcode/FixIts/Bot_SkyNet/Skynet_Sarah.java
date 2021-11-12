@@ -3,16 +3,18 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class Skynet_Sarah extends Twomotordrive_Sarah{
 
     public HardwareMap hwBot = null;
+    public Servo flag = null;
 
     public Skynet_Sarah () {
 
     }
 
-    //JDA -  Issue with Left and Right Motor Mapping label
+
 
     public void initRobot (HardwareMap HwMap) {
 
@@ -20,7 +22,7 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
 
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
 
-        frontRightMotor = hwBot.dcMotor.get("front_left_motor");   // JDA - Compare this Line to above
+        frontRightMotor = hwBot.dcMotor.get("front_right_motor");   // JDA - Compare this Line to above
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
 
@@ -34,6 +36,28 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
 
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        flag = hwBot.get(Servo.class, "flag");
 
+        flag.setDirection(Servo.Direction.FORWARD);
+
+
+
+
+    }
+
+    public void initFlag() {
+        flag.setPosition(0.1);
+    }
+    public void raiseFlag() {
+        flag.setPosition(0.9);
+    }
+    public void lowerFlag() {
+        flag.setPosition(0.1);
+    }
+    public void waveFlagRight() {
+        flag.setPosition(0.1);
+    }
+    public void waveFlagLeft() {
+        flag.setPosition(0.1);
     }
 }
