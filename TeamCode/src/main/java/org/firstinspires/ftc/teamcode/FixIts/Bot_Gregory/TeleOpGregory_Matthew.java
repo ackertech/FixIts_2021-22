@@ -15,12 +15,14 @@ public class TeleOpGregory_Matthew extends OpMode {
     public void init() {
 
         Bot.initRobot(hardwareMap);
+        Bot.lowerFlag();
     }
 
     public void loop () {
 
         drive();
         speedControl();
+        flagControl();
     }
 
     public void drive() {
@@ -57,5 +59,16 @@ public class TeleOpGregory_Matthew extends OpMode {
             speedMultiply = 1.0;
         }
     }
+
+    public void flagControl() {
+        if (gamepad1.a) {
+            Bot.raiseFlag();
+        }
+        else if (gamepad1.b) {
+            Bot.lowerFlag();
+        }
+    }
+
+
 }
 
