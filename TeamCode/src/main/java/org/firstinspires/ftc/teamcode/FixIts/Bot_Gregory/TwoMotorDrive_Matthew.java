@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Gregory;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class TwoMotorDrive_Matthew {
 
@@ -50,7 +52,7 @@ public class TwoMotorDrive_Matthew {
     public void rotateLeft (double power) {
 
         double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(-ABSpower);
+        frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(-ABSpower);
 
     }
@@ -58,9 +60,10 @@ public class TwoMotorDrive_Matthew {
     public void rotateRight (double power) {
 
         double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(-ABSpower);
+        frontLeftMotor.setPower(-ABSpower);
+        frontRightMotor.setPower(ABSpower);
 
     }
+
 
 }
