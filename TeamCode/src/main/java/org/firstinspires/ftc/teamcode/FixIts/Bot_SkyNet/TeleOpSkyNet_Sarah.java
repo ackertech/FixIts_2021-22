@@ -14,7 +14,7 @@ public class TeleOpSkyNet_Sarah extends OpMode {
     public void init() {
 
         Bot.initRobot(hardwareMap);
-        Bot.lowerFlag();
+        Bot.initFlag();
     }
 
     @Override
