@@ -15,6 +15,8 @@ public class TeleOpLabBot_Alen2 extends OpMode {
 
         Bot.initRobot(hardwareMap);
 
+        Bot.lowerFlag();
+
     }
 
     @Override
@@ -22,6 +24,8 @@ public class TeleOpLabBot_Alen2 extends OpMode {
 
         drive();
         speedControl();
+
+        flagControl();
 
     }
 
@@ -59,5 +63,28 @@ public class TeleOpLabBot_Alen2 extends OpMode {
             speedMultiply = 1.0;
         }
     }
+//Control methods for lowering and the raising the flag
 
+    public void flagControl () {
+
+        if (gamepad1.a) {
+            Bot.raiseFlag();
+        }
+
+        else if (gamepad1.y) {
+            Bot.lowerFlag();
+
+        }
+
+        else if (gamepad1.x) {
+            Bot.waveFlagLeft();
+
+        }
+
+        else if (gamepad1.b) {
+            Bot.waveFlagRight();
+
+        }
+
+    }
 }
