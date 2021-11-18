@@ -25,7 +25,7 @@ public class TeleOpJohntavious_Nick extends OpMode {
 
         drive();
         speedControl();
-        //call your flagcontrol method
+        flagControl();
 
     }
 
