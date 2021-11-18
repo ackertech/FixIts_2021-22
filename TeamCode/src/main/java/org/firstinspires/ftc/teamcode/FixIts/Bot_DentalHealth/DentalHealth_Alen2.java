@@ -51,7 +51,7 @@ public class DentalHealth_Alen2 extends TwoMotorDrive_Alen2 {
 
     public void initFlag() {
 
-        flag.setPosition(.3);
+        flag.setPosition(0.1);
 
     }
 
