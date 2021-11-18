@@ -63,6 +63,8 @@ public Candace_Nate Bot = new Candace_Nate();
         }
         else if (gamepad1.b) {
             Bot.waveFlagLeft();
+        }
+        else if (gamepad1.x) {
             Bot.waveFlagRight();
         }
     }
