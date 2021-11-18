@@ -86,6 +86,11 @@ public class TeleOpLabBot_Alen2 extends OpMode {
 
         }
 
+        else if (gamepad1.left_bumper) {
+            Bot.initFlag();
+
+        }
+
     }
 }
 //JDA
