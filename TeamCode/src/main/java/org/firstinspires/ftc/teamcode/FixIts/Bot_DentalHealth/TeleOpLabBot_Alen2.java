@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_DentalHealth;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "TeleOp:DentalHealth_Alen2")
+@TeleOp(name = "DentalHealth_Alen2", group = "Bot_Dental")
 public class TeleOpLabBot_Alen2 extends OpMode {
 
     public double speedMultiply = 0.50;
@@ -15,6 +15,8 @@ public class TeleOpLabBot_Alen2 extends OpMode {
 
         Bot.initRobot(hardwareMap);
 
+        Bot.lowerFlag();
+
     }
 
     @Override
@@ -22,6 +24,8 @@ public class TeleOpLabBot_Alen2 extends OpMode {
 
         drive();
         speedControl();
+
+        flagControl();
 
     }
 
@@ -59,5 +63,34 @@ public class TeleOpLabBot_Alen2 extends OpMode {
             speedMultiply = 1.0;
         }
     }
+//Control methods for lowering and the raising the flag
 
+    public void flagControl () {
+
+        if (gamepad1.a) {
+            Bot.raiseFlag();
+        }
+
+        else if (gamepad1.y) {
+            Bot.lowerFlag();
+
+        }
+
+        else if (gamepad1.x) {
+            Bot.waveFlagLeft();
+
+        }
+
+        else if (gamepad1.b) {
+            Bot.waveFlagRight();
+
+        }
+
+        else if (gamepad1.left_bumper) {
+            Bot.initFlag();
+
+        }
+
+    }
 }
+

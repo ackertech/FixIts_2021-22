@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "SkynetTeleOp_noah", group = "Bot_Skynet")
+@TeleOp(name = "SkyNet_Noah",group = "Bot_SkyNet")
 
 public class SkynetTeleOp_noah extends OpMode {
 
@@ -24,6 +24,8 @@ public class SkynetTeleOp_noah extends OpMode {
         speedControl();
 
     }
+
+    // JDA - Check Operators below... should be greater tha > 0.1 or less than < -0.1
 
     public void drive() {
 

@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Candace;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class TwoMotorDrive_Nate {
+public class TwoMotorDrive_Andrew {
 
     //Declaring variables for my motors
     public DcMotor frontLeftMotor;
@@ -57,8 +57,8 @@ public class TwoMotorDrive_Nate {
 
     public void rotateRight(double power){
         double ABSPower=Math.abs(power);
-        frontLeftMotor.setPower(-ABSPower);
-        frontRightMotor.setPower(ABSPower);
+        frontLeftMotor.setPower(ABSPower);
+        frontRightMotor.setPower(-ABSPower);
     }
 
 }

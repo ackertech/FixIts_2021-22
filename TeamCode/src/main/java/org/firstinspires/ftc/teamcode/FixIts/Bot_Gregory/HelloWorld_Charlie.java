@@ -24,5 +24,3 @@ public class HelloWorld_Charlie extends OpMode {
     }
 
 }
-
-// push jda

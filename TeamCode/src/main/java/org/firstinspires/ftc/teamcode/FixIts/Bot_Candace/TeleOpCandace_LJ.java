@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot;
 
-@TeleOp(name = "TeleOp:TeleOpCandace_LJ")
+@TeleOp(name = "Candace_LJ", group = "Bot_Candace")
 public class TeleOpCandace_LJ extends OpMode {
     public double speedMultiply = 0.50;
 

@@ -3,40 +3,38 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Gregory;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "Gregory_Matthew", group = "Bot_Gregory")
+@TeleOp(name = "TeleOp:Gregory", group = "Bot_Gregory")
 
-public class TeleOpGregory_Matthew extends OpMode {
+public class TeleOpGregory_Drew  extends OpMode {
 
     public double speedMultiply = 0.50;
 
-    public Gregory_Matthew Bot = new Gregory_Matthew();
+    public Gregory_Drew Bot = new Gregory_Drew();
 
     @Override
     public void init() {
 
         Bot.initRobot(hardwareMap);
-        Bot.lowerFlag();
     }
 
     public void loop () {
 
         drive();
         speedControl();
-        flagControl();
     }
 
     public void drive() {
 
-        if (gamepad1.left_stick_y > .1) {
+        if (gamepad1.left_stick_y < -.1) {
 
             Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
         } else if (gamepad1.left_stick_y < -.1) {
 
             Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
-        } else if (gamepad1.left_stick_x > .1) {
+        } else if (gamepad1.left_stick_x < .1) {
 
             Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
-        } else if (gamepad1.left_stick_x < -.1) {
+        } else if (gamepad1.left_stick_x > -.1) {
 
             Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
         } else {
@@ -59,22 +57,4 @@ public class TeleOpGregory_Matthew extends OpMode {
             speedMultiply = 1.0;
         }
     }
-
-    public void flagControl() {
-        if (gamepad1.y) {
-            Bot.raiseFlag();
-        }
-        else if (gamepad1.a) {
-            Bot.lowerFlag();
-        }
-        else if (gamepad1.b) {
-            Bot.waveFlagRight();
-        }
-        else if (gamepad1.x) {
-            Bot.waveFlagLeft();
-        }
-    }
-
-
 }
-

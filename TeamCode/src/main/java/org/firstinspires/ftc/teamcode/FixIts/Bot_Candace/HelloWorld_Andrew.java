@@ -1,17 +1,20 @@
-package org.firstinspires.ftc.teamcode.FixIts.Bot_Johntavious;
+package org.firstinspires.ftc.teamcode.FixIts.Bot_Candace;
+
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @Disabled
-@TeleOp(name= "HelloWorld_Nick")
+@TeleOp(name = "HelloWorld")
 
-public class HelloWorld_Nick extends OpMode {
+
+
+
+public class HelloWorld_Andrew extends OpMode {
 
     @Override
     public void init() {
-
         telemetry.addData("Hello","World");
 
     }
@@ -19,9 +22,8 @@ public class HelloWorld_Nick extends OpMode {
     @Override
     public void loop() {
 
-      telemetry.addData("Running","Robot");
+        telemetry.addData("Running", "Robots");
 
     }
-// force push
-}
 
+    }
