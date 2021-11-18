@@ -35,11 +35,14 @@ public class Candace_Nate extends TwoMotorDrive_Nate{
         flag.setPosition(0.1);
     }
     public void waveFlagRight() {
-        flag.setPosition(0.9);
+       // flag.setPosition(0.9);
         flag.setPosition(0.5);
     }
     public void waveFlagLeft() {
         flag.setPosition(0.9);
+       // flag.setPosition(0.5);
+    }
+    public void initFlag() {
         flag.setPosition(0.5);
     }
 }

@@ -11,6 +11,7 @@ public Candace_Nate Bot = new Candace_Nate();
     @Override
     public void init() {
         Bot.initRobot(hardwareMap);
+        Bot.initFlag();
     }
 
     @Override
@@ -18,7 +19,7 @@ public Candace_Nate Bot = new Candace_Nate();
 
         drive();
         speedControl();
-
+        flagControl();
     }
 
     public void speedControl() {
@@ -53,12 +54,16 @@ public Candace_Nate Bot = new Candace_Nate();
             Bot.stopMotor();
         }
     }
-    public void flagControl () {
-        if (gamepad1.a) {
+    public void flagControl() {
+        if (gamepad1.y) {
             Bot.raiseFlag();
         }
-        else if (gamepad1.b) {
+        else if (gamepad1.a) {
             Bot.lowerFlag();
+        }
+        else if (gamepad1.b) {
+            Bot.waveFlagLeft();
+            Bot.waveFlagRight();
         }
     }
 
