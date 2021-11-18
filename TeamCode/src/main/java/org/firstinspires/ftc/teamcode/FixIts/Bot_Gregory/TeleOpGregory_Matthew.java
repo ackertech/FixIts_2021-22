@@ -61,11 +61,17 @@ public class TeleOpGregory_Matthew extends OpMode {
     }
 
     public void flagControl() {
-        if (gamepad1.a) {
+        if (gamepad1.y) {
             Bot.raiseFlag();
         }
-        else if (gamepad1.b) {
+        else if (gamepad1.a) {
             Bot.lowerFlag();
+        }
+        else if (gamepad1.b) {
+            Bot.waveFlagRight();
+        }
+        else if (gamepad1.x) {
+            Bot.waveFlagLeft();
         }
     }
 
