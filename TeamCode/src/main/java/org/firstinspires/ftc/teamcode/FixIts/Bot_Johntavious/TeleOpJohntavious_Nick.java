@@ -16,6 +16,8 @@ public class TeleOpJohntavious_Nick extends OpMode {
 
         Bot.initRobot(hardwareMap);
 
+        Bot.lowerFlag();
+
     }
 
     @Override
@@ -23,6 +25,7 @@ public class TeleOpJohntavious_Nick extends OpMode {
 
         drive();
         speedControl();
+        //call your flagcontrol method
 
     }
 
@@ -76,6 +79,31 @@ public class TeleOpJohntavious_Nick extends OpMode {
 
        }
 
+
+    }
+
+    //flag control
+
+    public void flagControl () {
+
+        if (gamepad1.a) {
+            Bot.raiseFlag();
+        }
+
+        else if (gamepad1.b) {
+            Bot.lowerFlag();
+        }
+
+        else if (gamepad1.right_bumper) {
+            Bot.waveFlagRight();
+        }
+
+        else if (gamepad1.left_bumper) {
+            Bot.waveFlagLeft();
+        }
+
+        else if (gamepad1.y)
+            Bot.initFlag();
 
     }
 
