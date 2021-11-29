@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_DentalHealth;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -11,6 +12,10 @@ public class DentalHealth_Alen2 extends TwoMotorDrive_Alen2 {
 
     // Define variable here
     public Servo flag = null;
+
+    //LED variables and stuff
+    public RevBlinkinLedDriver ledLights;
+    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
 
     public DentalHealth_Alen2 () {
 
@@ -34,6 +39,12 @@ public class DentalHealth_Alen2 extends TwoMotorDrive_Alen2 {
         //initialize servo here
         flag = hwBot.get(Servo.class, "flag");
         flag.setDirection(Servo.Direction.FORWARD);
+
+        //initialize LED in here
+        ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
+        ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE;
+        ledLights.setPattern(ledPattern);
+
     }
 
 // define movement methods
@@ -66,7 +77,12 @@ public class DentalHealth_Alen2 extends TwoMotorDrive_Alen2 {
         flag.setPosition(0.55);
 
     }
+
+    public void setLedPattern(RevBlinkinLedDriver.BlinkinPattern patternName) {
+
+        ledLights.setPattern(patternName);
+
+    }
 }
 
-//JDA
 
