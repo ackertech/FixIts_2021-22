@@ -46,18 +46,18 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
     }
 
     public void initFlag() {
-        flag.setPosition(0.75);
+        flag.setPosition(0.95);
     }
     public void raiseFlag() {
-        flag.setPosition(0.55);
+        flag.setPosition(0.57);
     }
     public void lowerFlag() {
-        flag.setPosition(0.25);
+        flag.setPosition(0.95);
     }
     public void waveFlagRight() {
-        flag.setPosition(0.35);
+        flag.setPosition(0.75);
     }
     public void waveFlagLeft() {
-        flag.setPosition(0.65);
+        flag.setPosition(0.35);
     }
 }
