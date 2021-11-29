@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -23,7 +24,7 @@ public class TeleOpSkyNet_Sarah extends OpMode {
         drive();
         speedControl();
         flagControl();
-        //
+        ledControl();
 
     }
 
@@ -81,5 +82,15 @@ public class TeleOpSkyNet_Sarah extends OpMode {
         else if (gamepad1.b) {
             Bot.waveFlagRight();
         }
+
     }
+ public void ledControl () {
+
+        if (gamepad1.left_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
+        }
+        else if (gamepad1.right_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
+        }
+ }
 }
