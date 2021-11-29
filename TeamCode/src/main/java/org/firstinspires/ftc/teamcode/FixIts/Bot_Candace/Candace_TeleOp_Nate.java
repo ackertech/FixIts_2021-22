@@ -38,22 +38,22 @@ public Candace_Nate Bot = new Candace_Nate();
         }
     }
     public void drive() {
+
         if (gamepad1.left_stick_y > 0.1) {
+
             Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_y < -0.1) {
+        } else if (gamepad1.left_stick_y < -0.1) {
             Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_x > 0.1) {
-            Bot.rotateRight(speedMultiply * gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_x < -0.1) {
-            Bot.rotateLeft(speedMultiply * gamepad1.left_stick_y);
-        }
-        else {
+        } else if (gamepad1.left_stick_x > 0.1) {
+            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+        } else if (gamepad1.left_stick_x < -0.1) {
+            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+        } else {
             Bot.stopMotor();
         }
     }
+
+
     public void flagControl() {
         if (gamepad1.y) {
             Bot.raiseFlag();
@@ -72,3 +72,4 @@ public Candace_Nate Bot = new Candace_Nate();
 
 
 }
+//jda
