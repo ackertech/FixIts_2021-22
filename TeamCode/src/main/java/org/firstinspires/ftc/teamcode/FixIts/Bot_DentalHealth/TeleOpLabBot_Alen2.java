@@ -20,12 +20,11 @@ public class TeleOpLabBot_Alen2 extends OpMode {
 
     }
 
-    @Override
-    public void loop() {
+    public void loop () {
 
         drive();
         speedControl();
-
+        ledControl();
         flagControl();
 
     }
@@ -92,14 +91,15 @@ public class TeleOpLabBot_Alen2 extends OpMode {
 
         }
 
+
     }
 
     public void ledControl () {
 
         if (gamepad1.left_trigger > 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE);
-        } else if (gamepad1.right_trigger > 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE);
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.RED);
+        } else if (gamepad1.right_trigger < 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.WHITE);
         }
     }
 }

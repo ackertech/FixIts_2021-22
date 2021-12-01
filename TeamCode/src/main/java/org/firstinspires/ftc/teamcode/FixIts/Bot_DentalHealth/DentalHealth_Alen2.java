@@ -42,7 +42,7 @@ public class DentalHealth_Alen2 extends TwoMotorDrive_Alen2 {
 
         //initialize LED in here
         ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
-        ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE;
+        ledPattern = RevBlinkinLedDriver.BlinkinPattern.RED;
         ledLights.setPattern(ledPattern);
 
     }
