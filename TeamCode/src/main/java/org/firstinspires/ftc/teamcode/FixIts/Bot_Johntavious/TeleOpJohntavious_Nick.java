@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Johntavious;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -26,6 +27,7 @@ public class TeleOpJohntavious_Nick extends OpMode {
         drive();
         speedControl();
         flagControl();
+        ledControl();
 
     }
 
@@ -107,5 +109,22 @@ public class TeleOpJohntavious_Nick extends OpMode {
 
     }
 
-}
+    public void  ledControl () {
 
+        if (gamepad1.left_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE);
+
+        } else if (gamepad1.right_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE);
+
+        }
+
+
+
+
+
+    }
+
+
+
+}
