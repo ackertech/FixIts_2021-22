@@ -45,11 +45,12 @@ public class TeleOpSkyNet_Sarah extends OpMode {
         }
         else if (gamepad1.left_stick_x < -0.1) {
 
-            Bot.turnRight(speedMultiply * gamepad1.right_stick_x);
+            Bot.turnRight(speedMultiply * gamepad1.left_stick_x);
 
         } else {
 
             Bot.stopMotors();
+
         }
 
 
@@ -90,7 +91,7 @@ public class TeleOpSkyNet_Sarah extends OpMode {
             Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
         }
         else if (gamepad1.right_trigger > 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.WHITE);
         }
  }
 }
