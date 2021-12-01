@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Johntavious;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -10,6 +11,9 @@ public class Johntavious_Nick extends TwoMotorDrive_Nick {
    public HardwareMap hwBot = null;
    // define variable
    public Servo flag = null;
+
+   public RevBlinkinLedDriver ledLights;
+   public RevBlinkinLedDriver.BlinkinPattern ledPattern;
 
 
    public Johntavious_Nick () {
@@ -34,6 +38,10 @@ public class Johntavious_Nick extends TwoMotorDrive_Nick {
       //initialize
       flag = hwBot.get(Servo.class, "flag");
       flag.setDirection(Servo.Direction.FORWARD);
+
+      ledLights = hwBot.get(RevBlinkinLedDriver.class,"led_strip");
+      ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE;
+      ledLights.setPattern(ledPattern);
 
    }
 
@@ -66,5 +74,11 @@ public class Johntavious_Nick extends TwoMotorDrive_Nick {
       flag.setPosition(0.7);
 
    }
+   public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
+      ledLights.setPattern(patternName);
+   }
+
+
 
 }
+

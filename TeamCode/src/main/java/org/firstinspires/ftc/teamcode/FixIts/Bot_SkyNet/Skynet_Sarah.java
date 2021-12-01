@@ -7,12 +7,10 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Skynet_Sarah extends Twomotordrive_Sarah{
-
-    public HardwareMap hwBot = null;
-    public Servo flag = null;
     public RevBlinkinLedDriver ledLights;
     public RevBlinkinLedDriver.BlinkinPattern ledPattern;
-
+    public HardwareMap hwBot = null;
+    public Servo flag = null;
 
     public Skynet_Sarah () {
 
@@ -44,14 +42,9 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
 
         flag.setDirection(Servo.Direction.FORWARD);
 
-        ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
-
+        ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip" );
         ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE;
-
         ledLights.setPattern(ledPattern);
-
-
-
 
 
 
@@ -73,9 +66,9 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
     public void waveFlagLeft() {
         flag.setPosition(0.35);
     }
+
     public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
         ledLights.setPattern(patternName);
     }
 }
-
 //jda

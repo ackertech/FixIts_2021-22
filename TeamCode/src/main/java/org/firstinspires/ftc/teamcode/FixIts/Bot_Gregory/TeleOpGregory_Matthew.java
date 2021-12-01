@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FixIts.Bot_Gregory;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -23,6 +24,7 @@ public class TeleOpGregory_Matthew extends OpMode {
         drive();
         speedControl();
         flagControl();
+        ledControl();
     }
 
     public void drive() {
@@ -74,6 +76,18 @@ public class TeleOpGregory_Matthew extends OpMode {
             Bot.waveFlagLeft();
         }
     }
+
+    public void ledControl () {
+
+        if (gamepad1.left_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE);
+        } else if (gamepad1.right_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE);
+        }
+
+    }
+
+
 
 
 }
