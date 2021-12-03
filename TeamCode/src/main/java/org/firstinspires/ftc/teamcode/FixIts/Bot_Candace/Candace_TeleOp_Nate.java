@@ -22,6 +22,7 @@ public Candace_Nate Bot = new Candace_Nate();
         speedControl();
         flagControl();
         speedControl();
+        ledControl();
     }
 
     public void speedControl() {
@@ -47,9 +48,9 @@ public Candace_Nate Bot = new Candace_Nate();
         } else if (gamepad1.left_stick_y < -0.1) {
             Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
         } else if (gamepad1.left_stick_x > 0.1) {
-            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+            Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
         } else if (gamepad1.left_stick_x < -0.1) {
-            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+            Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
         } else {
             Bot.stopMotor();
         }
@@ -84,4 +85,3 @@ public Candace_Nate Bot = new Candace_Nate();
 
 
 }
-//jda
