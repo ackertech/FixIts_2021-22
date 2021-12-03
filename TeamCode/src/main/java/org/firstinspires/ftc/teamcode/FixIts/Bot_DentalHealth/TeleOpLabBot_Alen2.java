@@ -99,7 +99,7 @@ public class TeleOpLabBot_Alen2 extends OpMode {
         if (gamepad1.left_trigger > 0.1) {
             Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.RED);
         } else if (gamepad1.right_trigger < 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.WHITE);
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
         }
     }
 }
