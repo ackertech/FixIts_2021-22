@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class Candace_Nate extends TwoMotorDrive_Nate{
+public class Candace_Nate extends FourMotorDrive{
     // Servo Vars
     public Servo flag = null;
     public HardwareMap hwBot = null;
@@ -23,15 +23,21 @@ public class Candace_Nate extends TwoMotorDrive_Nate{
             hwBot = hwMap;
             frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
             frontRightMotor = hwBot.dcMotor.get("front_right_motor");
+            rearLeftMotor = hwBot.dcMotor.get("front_left_motor");
+            rearRightMotor = hwBot.dcMotor.get("front_right_motor");
 
             frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+            rearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
             frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
+            rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
 
             setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
             frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             flag = hwBot.get(Servo.class, "flag");
             flag.setDirection(Servo.Direction.FORWARD);
 
