@@ -16,6 +16,7 @@ public class TeleOpSkyNet_Sarah extends OpMode {
 
         Bot.initRobot(hardwareMap);
         Bot.initFlag();
+
     }
 
     @Override
@@ -28,7 +29,6 @@ public class TeleOpSkyNet_Sarah extends OpMode {
 
     }
 
-    // JDA - Missing rotateRight and you aso have right stick instead of left stick
 
     public void drive() {
 
@@ -45,12 +45,11 @@ public class TeleOpSkyNet_Sarah extends OpMode {
         }
         else if (gamepad1.left_stick_x < -0.1) {
 
-            Bot.turnRight(speedMultiply * gamepad1.left_stick_x);
+            Bot.turnRight(speedMultiply * gamepad1.right_stick_x);
 
         } else {
 
             Bot.stopMotors();
-
         }
 
 
@@ -85,13 +84,16 @@ public class TeleOpSkyNet_Sarah extends OpMode {
         }
 
     }
+
+
  public void ledControl () {
 
         if (gamepad1.left_trigger > 0.1) {
             Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
         }
-        else if (gamepad1.right_trigger > 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.WHITE);
+        else if (gamepad1.right_trigger < 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
         }
  }
+
 }
