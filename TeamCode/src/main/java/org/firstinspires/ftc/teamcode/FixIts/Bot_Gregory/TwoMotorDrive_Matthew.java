@@ -7,9 +7,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class TwoMotorDrive_Matthew {
 
-
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
+    public DcMotor rearLeftMotor;
+    public DcMotor rearRightMotor;
 
     public LinearOpMode linearOp = null;
     public void setLinearOp(LinearOpMode linearOp) { this.linearOp = linearOp; }
@@ -21,6 +22,8 @@ public class TwoMotorDrive_Matthew {
 
         frontLeftMotor.setMode(mode);
         frontRightMotor.setMode(mode);
+        rearLeftMotor.setMode(mode);
+        rearRightMotor.setMode(mode);
 
     }
 
@@ -28,7 +31,8 @@ public class TwoMotorDrive_Matthew {
 
         frontLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
-
+        rearLeftMotor.setPower(0);
+        rearRightMotor.setPower(0);
     }
 
     public void driveForward (double power) {
@@ -36,6 +40,8 @@ public class TwoMotorDrive_Matthew {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(ABSpower);
+        rearLeftMotor.setPower(ABSpower);
+        rearRightMotor.setPower(ABSpower);
 
     }
 
@@ -44,6 +50,8 @@ public class TwoMotorDrive_Matthew {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(-ABSpower);
+        rearLeftMotor.setPower(-ABSpower);
+        rearRightMotor.setPower(-ABSpower);
 
     }
 
@@ -54,6 +62,8 @@ public class TwoMotorDrive_Matthew {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(-ABSpower);
+        rearLeftMotor.setPower(ABSpower);
+        rearRightMotor.setPower(-ABSpower);
 
     }
 
@@ -62,6 +72,8 @@ public class TwoMotorDrive_Matthew {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(ABSpower);
+        rearLeftMotor.setPower(-ABSpower);
+        rearRightMotor.setPower(ABSpower);
 
     }
 
