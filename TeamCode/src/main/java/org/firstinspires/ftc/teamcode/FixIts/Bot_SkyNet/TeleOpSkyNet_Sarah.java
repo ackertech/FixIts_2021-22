@@ -25,7 +25,7 @@ public class TeleOpSkyNet_Sarah extends OpMode {
         drive();
         speedControl();
         flagControl();
-        ledControl();
+       // ledControl();
 
     }
 
@@ -85,7 +85,7 @@ public class TeleOpSkyNet_Sarah extends OpMode {
 
     }
 
-
+/**
  public void ledControl () {
 
         if (gamepad1.left_trigger > 0.1) {
@@ -95,5 +95,6 @@ public class TeleOpSkyNet_Sarah extends OpMode {
             Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
         }
  }
+**/
 
 }
