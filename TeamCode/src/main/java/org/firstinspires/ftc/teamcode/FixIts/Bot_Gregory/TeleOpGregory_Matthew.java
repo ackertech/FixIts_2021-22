@@ -80,8 +80,15 @@ public class TeleOpGregory_Matthew extends OpMode {
     public void ledControl () {
 
         if (gamepad1.left_trigger > 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE);
-        } else if (gamepad1.right_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
+        }
+        else if (gamepad1.right_trigger > 0.1) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.RED);
+        }
+        else if (gamepad1.left_bumper == true) {
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_FOREST_PALETTE);
+        }
+        else if (gamepad1.right_bumper == true) {
             Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE);
         }
 
