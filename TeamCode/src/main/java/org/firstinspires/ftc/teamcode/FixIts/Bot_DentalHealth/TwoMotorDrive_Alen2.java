@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class TwoMotorDrive_Alen2 {
 
-    //Declaring variables for the motors
+    //Declaring variables for the motors (if error, define varible here)
 
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
