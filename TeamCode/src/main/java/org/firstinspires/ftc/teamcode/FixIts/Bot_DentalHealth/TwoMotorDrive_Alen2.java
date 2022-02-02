@@ -5,10 +5,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class TwoMotorDrive_Alen2 {
 
-    //Declaring variables for the motors
+    //Declaring variables for the motors (if error, define varible here)
 
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
+    public DcMotor rearLeftMotor;
+    public DcMotor rearRightMotor;
+
 
     // Required to run our robot
     public LinearOpMode linearOp = null;
@@ -25,12 +28,16 @@ public class TwoMotorDrive_Alen2 {
 
         frontLeftMotor.setMode(mode);
         frontRightMotor.setMode(mode);
+        rearLeftMotor.setMode(mode);
+        rearRightMotor.setMode(mode);
 
     }
 
     public void stopMotor() {
         frontLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
+        rearRightMotor.setPower(0);
+        rearLeftMotor.setPower(0);
     }
 
     public void driveForward(double power) {
@@ -42,6 +49,8 @@ public class TwoMotorDrive_Alen2 {
 
         frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(ABSpower);
+        rearLeftMotor.setPower(ABSpower);
+        rearRightMotor.setPower(ABSpower);
     }
 
     public void driveBackword(double power) {
@@ -52,6 +61,8 @@ public class TwoMotorDrive_Alen2 {
 
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(-ABSpower);
+        rearLeftMotor.setPower(-ABSpower);
+        rearRightMotor.setPower(-ABSpower);
 
 
     }
@@ -61,8 +72,10 @@ public class TwoMotorDrive_Alen2 {
 
         double ABSpower = Math.abs(power);
 
-        frontLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(-ABSpower);
+        frontLeftMotor.setPower(-ABSpower);
+        frontRightMotor.setPower(ABSpower);
+        rearLeftMotor.setPower(-ABSpower);
+        rearRightMotor.setPower(ABSpower);
     }
 
     public void rotateLeft(double power) {
@@ -70,7 +83,10 @@ public class TwoMotorDrive_Alen2 {
 
         double ABSpower = Math.abs(power);
 
-        frontLeftMotor.setPower(-ABSpower);
-        frontRightMotor.setPower(ABSpower);
+        frontLeftMotor.setPower(ABSpower);
+        frontRightMotor.setPower(-ABSpower);
+        rearLeftMotor.setPower(ABSpower);
+        rearRightMotor.setPower(-ABSpower);
+
     }
 }

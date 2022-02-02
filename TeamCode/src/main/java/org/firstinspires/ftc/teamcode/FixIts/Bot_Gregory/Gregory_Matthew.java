@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.Base.Drivetrains.TwoMotorDrive;
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot;
 
-public class Gregory_Matthew extends TwoMotorDrive {
+public class Gregory_Matthew extends TwoMotorDrive_Matthew {
 
     public HardwareMap hwBot = null;
 
@@ -29,15 +29,21 @@ public class Gregory_Matthew extends TwoMotorDrive {
         hwBot = hwMap;
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");
+        rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");
+        rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rearRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         flag = hwBot.get(Servo.class,"flag");
         flag.setDirection(Servo.Direction.FORWARD);

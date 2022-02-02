@@ -20,6 +20,7 @@ public class TeleOpLabBot_Alen2 extends OpMode {
 
     }
 
+    // This is another good place to define varibles
     public void loop () {
 
         drive();
