@@ -8,6 +8,8 @@ public class TwoMotorDrive_Nick {
     //Declaring variables for my motors
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
+    public DcMotor backLeftMotor;
+    public DcMotor backRightMotor;
 
     //Required to run our robot
     public LinearOpMode linearOp = null;
@@ -21,11 +23,16 @@ public class TwoMotorDrive_Nick {
 
         frontLeftMotor.setMode(mode);
         frontRightMotor.setMode(mode);
+        backLeftMotor.setMode(mode);
+        backRightMotor.setMode(mode);
+
     }
 
     public void stopMotor() {
         frontLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
+        backLeftMotor.setPower(0);
+        backRightMotor.setPower(0);
 
     }
 
@@ -35,6 +42,8 @@ public class TwoMotorDrive_Nick {
 
         frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(ABSpower);
+        backLeftMotor.setPower(ABSpower);
+        backRightMotor.setPower(ABSpower);
 
     }
 
@@ -43,6 +52,8 @@ public class TwoMotorDrive_Nick {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(-ABSpower);
+        backLeftMotor.setPower(-ABSpower);
+        backRightMotor.setPower(-ABSpower);
 
     }
 
@@ -51,6 +62,8 @@ public class TwoMotorDrive_Nick {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(ABSpower);
+        backLeftMotor.setPower(-ABSpower);
+        backRightMotor.setPower(ABSpower);
 
     }
 
@@ -59,6 +72,8 @@ public class TwoMotorDrive_Nick {
 
         frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(-ABSpower);
+        backLeftMotor.setPower(ABSpower);
+        backRightMotor.setPower(-ABSpower);
     }
 }
 
