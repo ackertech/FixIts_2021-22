@@ -14,30 +14,30 @@ public class Candace_Nate extends FourMotorDrive{
     public RevBlinkinLedDriver.BlinkinPattern ledpattern;
 
 
-    public Candace_Nate() {}
+    //public Candace_Nate() {}
 
 
 
 
         public void initRobot (HardwareMap hwMap){
             hwBot = hwMap;
-            frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
-            frontRightMotor = hwBot.dcMotor.get("front_right_motor");
-            rearLeftMotor = hwBot.dcMotor.get("front_left_motor");
-            rearRightMotor = hwBot.dcMotor.get("front_right_motor");
+            leftMotor1 = hwBot.dcMotor.get("left_motor1");
+            rightMotor1 = hwBot.dcMotor.get("right_motor1");
+            leftMotor2 = hwBot.dcMotor.get("left_motor2");
+            rightMotor2 = hwBot.dcMotor.get("right_motor2");
 
-            frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-            rearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-            frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
-            rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
+            leftMotor1.setDirection(DcMotor.Direction.REVERSE);
+            leftMotor2.setDirection(DcMotor.Direction.REVERSE);
+            rightMotor1.setDirection(DcMotor.Direction.FORWARD);
+            rightMotor2.setDirection(DcMotor.Direction.REVERSE);
 
             setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-            frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            leftMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            leftMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            rightMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            rightMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             flag = hwBot.get(Servo.class, "flag");
             flag.setDirection(Servo.Direction.FORWARD);
 

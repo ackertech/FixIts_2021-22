@@ -6,8 +6,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class TwoMotorDrive_Nate {
 
     //Declaring variables for my motors
-    public DcMotor frontLeftMotor;
-    public DcMotor frontRightMotor;
+    public DcMotor leftMotor1;
+    public DcMotor rightMotor1;
+    public DcMotor leftMotor2;
+    public DcMotor rightMotor2;
 
     //Required to run our robot
     public LinearOpMode linearOp = null;
@@ -22,12 +24,16 @@ public class TwoMotorDrive_Nate {
 
     public void setMotorRunModes (DcMotor.RunMode mode){
 
-        frontLeftMotor.setMode(mode);
-        frontRightMotor.setMode(mode);
+        leftMotor1.setMode(mode);
+        rightMotor1.setMode(mode);
+        leftMotor2.setMode(mode);
+        rightMotor2.setMode(mode);
     }
     public void stopMotor() {
-        frontLeftMotor.setPower(0);
-        frontRightMotor.setPower(0);
+        leftMotor1.setPower(0);
+        rightMotor1.setPower(0);
+        leftMotor2.setPower(0);
+        rightMotor2.setPower(0);
 
     }
 
@@ -35,30 +41,38 @@ public class TwoMotorDrive_Nate {
     public void driveForward(double power) {
 
         double ABSPower = Math.abs(power);
-        frontLeftMotor.setPower(ABSPower);
-        frontRightMotor.setPower(ABSPower);
+        leftMotor1.setPower(ABSPower);
+        leftMotor2.setPower(ABSPower);
+        rightMotor1.setPower(ABSPower);
+        rightMotor2.setPower(ABSPower);
 
     }
     public void driveBackward(double power){
 
         double ABSPower=Math.abs(power);
 
-        frontLeftMotor.setPower(-ABSPower);
-        frontRightMotor.setPower(-ABSPower);
+        leftMotor1.setPower(-ABSPower);
+        leftMotor2.setPower(-ABSPower);
+        rightMotor1.setPower(-ABSPower);
+        rightMotor2.setPower(-ABSPower);
     }
 
     public void rotateLeft(double power){
 
         double ABSPower=Math.abs(power);
-        frontLeftMotor.setPower(ABSPower);
-        frontRightMotor.setPower(-ABSPower);
+        leftMotor1.setPower(ABSPower);
+        leftMotor2.setPower(ABSPower);
+        rightMotor1.setPower(-ABSPower);
+        rightMotor2.setPower(-ABSPower);
 
     }
 
     public void rotateRight(double power){
         double ABSPower=Math.abs(power);
-        frontLeftMotor.setPower(-ABSPower);
-        frontRightMotor.setPower(ABSPower);
+        leftMotor1.setPower(-ABSPower);
+        leftMotor2.setPower(-ABSPower);
+        rightMotor1.setPower(ABSPower);
+        rightMotor2.setPower(ABSPower);
     }
 
 }
