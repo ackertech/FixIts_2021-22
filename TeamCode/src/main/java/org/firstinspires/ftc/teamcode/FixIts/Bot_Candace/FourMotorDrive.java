@@ -3,13 +3,13 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Candace;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class TwoMotorDrive_Nate {
+public class FourMotorDrive {
 
     //Declaring variables for my motors
     public DcMotor leftMotor1;
     public DcMotor rightMotor1;
-    public DcMotor leftMotor2;
     public DcMotor rightMotor2;
+    public DcMotor leftMotor2;
 
     //Required to run our robot
     public LinearOpMode linearOp = null;
@@ -42,8 +42,8 @@ public class TwoMotorDrive_Nate {
 
         double ABSPower = Math.abs(power);
         leftMotor1.setPower(ABSPower);
-        leftMotor2.setPower(ABSPower);
         rightMotor1.setPower(ABSPower);
+        leftMotor2.setPower(ABSPower);
         rightMotor2.setPower(ABSPower);
 
     }
@@ -52,8 +52,8 @@ public class TwoMotorDrive_Nate {
         double ABSPower=Math.abs(power);
 
         leftMotor1.setPower(-ABSPower);
-        leftMotor2.setPower(-ABSPower);
         rightMotor1.setPower(-ABSPower);
+        leftMotor2.setPower(-ABSPower);
         rightMotor2.setPower(-ABSPower);
     }
 
@@ -62,8 +62,8 @@ public class TwoMotorDrive_Nate {
         double ABSPower=Math.abs(power);
         leftMotor1.setPower(ABSPower);
         leftMotor2.setPower(ABSPower);
-        rightMotor1.setPower(-ABSPower);
         rightMotor2.setPower(-ABSPower);
+        rightMotor1.setPower(-ABSPower);
 
     }
 
@@ -71,8 +71,8 @@ public class TwoMotorDrive_Nate {
         double ABSPower=Math.abs(power);
         leftMotor1.setPower(-ABSPower);
         leftMotor2.setPower(-ABSPower);
-        rightMotor1.setPower(ABSPower);
         rightMotor2.setPower(ABSPower);
+        rightMotor1.setPower(ABSPower);
     }
 
 }
