@@ -2,8 +2,6 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_DentalHealth;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-//@Disable
-
 @Autonomous (name = "LabBot_Alen2")
 
 public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
