@@ -33,9 +33,17 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
 
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.rotateRight(1);
+        Bot.driveForward(1);
         sleep(2000);
         Bot.stopMotor();
+
+        telemetry.addLine("Driving Forward");
+        telemetry.update();
+        Bot.driveForward(1);
+        sleep(2000);
+        Bot.stopMotor();
+
+        //We are now at the top left corner of the square
 
         telemetry.addLine("Turning Right");
         telemetry.update();
@@ -45,9 +53,11 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
 
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.rotateRight(1);
+        Bot.driveForward(1);
         sleep(2000);
         Bot.stopMotor();
+
+        //We are at the top right corner of the square
 
         telemetry.addLine("Turning Right");
         telemetry.update();
@@ -57,9 +67,11 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
 
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.rotateRight(1);
+        Bot.driveForward(1);
         sleep(2000);
         Bot.stopMotor();
+
+        //We are at the bottom right corner of the square
 
         telemetry.addLine("Turning Right");
         telemetry.update();
@@ -69,17 +81,25 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
 
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.rotateRight(1);
+        Bot.driveForward(1);
         sleep(2000);
         Bot.stopMotor();
 
-        telemetry.addLine("Turning Right");
+        //We are at the bottom left corner of the square
+
+        telemetry.addLine("Turning Left");
         telemetry.update();
-        Bot.rotateRight(0.5);
+        Bot.rotateLeft(-0.5);
         sleep(1000);
         Bot.stopMotor();
 
-        // Stay in the loop until drive presses stop
+        telemetry.addLine("Driving Forward");
+        telemetry.update();
+        Bot.driveForward(1);
+        sleep(2000);
+        Bot.stopMotor();
+
+        // Stay in the loop until drive says stop
         requestOpModeStop();
 
     }
