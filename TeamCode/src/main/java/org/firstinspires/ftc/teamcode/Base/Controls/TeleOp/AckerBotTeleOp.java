@@ -2,23 +2,22 @@ package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.Base.Robot.AckerBot;
 
 
 //@Disabled
-@TeleOp(name = "TeleOp:AckerBot", group="Bot_AckerBot")
+@TeleOp(name = "AckerBot", group="Bot_AckerBot")
 
 public class AckerBotTeleOp extends OpMode {
 
-//
 
     // Variables & Constants specific to TeleLabBot
     double leftStickYVal;
     double leftStickXVal;
     double rightStickXVal;
+    double rightStickYVal;
 
     double frontLeftSpeed;
     double frontRightSpeed;
@@ -40,23 +39,19 @@ public class AckerBotTeleOp extends OpMode {
 
         //Hardware Initialization from Robot Class
         Bot.initRobot(hardwareMap);
+      //  Bot.initHand(hardwareMap);
+      //   Bot.closeHand();
 
     }
 
 
     // Runs Repeatedly when driver presses INIT but before pressing PLAY
     @Override
-    public void init_loop() {
-
-    }
-
+    public void init_loop() { }
 
     // Runs ONCE when driver presses PLAY
     @Override
-    public void start() {
-
-
-    }
+    public void start() { }
 
 
     // RUNS Repeatedly after driver presses PLAY
@@ -65,24 +60,23 @@ public class AckerBotTeleOp extends OpMode {
 
         drive();
         driveMode();
-     //   christmas();
         controlLauncher();
         controlCamLift();
         controlCamPivot();
+       // controlHand();
         telemetryOutput();
-
-
     }
 
     // Code to run ONCE after the driver presses STOP
     @Override
     public void stop() {
 
+     //   Bot.openHand();
 
     }
 
+    // TeleOp Functions
 
-        
     public void telemetryOutput() {
         telemetry.addData("LED", "TeleOp Time: " + Bot.currentTime);
         telemetry.addData("LED", "LED Timer: " + Bot.ledTimer);
@@ -204,8 +198,6 @@ public class AckerBotTeleOp extends OpMode {
 
     }
 
-
-
     public void driveMode () {
         if (gamepad1.dpad_up) {
             speedMultiply = 1.0;
@@ -213,7 +205,6 @@ public class AckerBotTeleOp extends OpMode {
         else if (gamepad1.dpad_down) {
             speedMultiply = 0.5;
         }
-
 
         if (gamepad1.dpad_right) {
             reverseModeToggle = true;
@@ -225,10 +216,12 @@ public class AckerBotTeleOp extends OpMode {
     }
 
     public void christmas () {
-        if (gamepad1.left_trigger > 0.1)
+        if (gamepad1.left_trigger > 0.1) {
             Bot.ledLights.setPattern(Bot.patternArray[0]);
-        else if (gamepad1.right_trigger > 0.1)
+        }
+        else if (gamepad1.right_trigger > 0.1) {
             Bot.ledLights.setPattern(Bot.patternArray[1]);
+        }
         else {
             Bot.ledLights.setPattern(Bot.patternArray[7]);
         }
@@ -252,13 +245,15 @@ public class AckerBotTeleOp extends OpMode {
 
 
     public void controlCamLift() {
-        if (gamepad1.left_trigger > 0.1)
+        if (gamepad1.left_trigger > 0.1) {
             Bot.camLiftUp();
-        else if (gamepad1.right_trigger > 0.1)
+        }
+        else if (gamepad1.right_trigger > 0.1) {
             Bot.camLiftDown();
+        }
         else {
-            Bot.camLiftStop()
-;        }
+            Bot.camLiftStop();
+        }
     }
 
     public void controlCamPivot() {
@@ -274,6 +269,21 @@ public class AckerBotTeleOp extends OpMode {
         }
     }
 
+    public void controlHand() {
+
+        if (gamepad2.a) {
+            Bot.openHand();
+        } else if (gamepad2.b) {
+            Bot.closeHand();
+        } else if (gamepad2.x) {
+            Bot.makePeaceHand();
+        } else if (gamepad2.y) {
+            Bot.makeHangHand();
+        }  else {
+            Bot.closeHand();
+        }
+
+    }
 
 
 }
