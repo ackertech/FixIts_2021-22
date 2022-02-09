@@ -12,17 +12,12 @@ public class FourMotorDrive {
     public DcMotor rearLeftMotor;
     public DcMotor rearRightMotor;
 
-    public LinearOpMode linearOp = null;                // this is done to make the TestMecanumDrive class aware of the linearOp
-    //class which is used by Mecanum Drvie parents class
-
-
+    public LinearOpMode linearOp = null;
     public void setLinearOp(LinearOpMode linearOp) {
         this.linearOp = linearOp;
     }
-
     public final DcMotor.RunMode currentMotorRunMode = DcMotor.RunMode.RUN_WITHOUT_ENCODER;
     public static final double TICKS_PER_ROTATION = 538;
-
 
 
     public FourMotorDrive(DcMotor FL, DcMotor FR, DcMotor RL, DcMotor RR) {
@@ -44,14 +39,11 @@ public class FourMotorDrive {
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-
     }
 
 
 
     public void setMotorRunModes (DcMotor.RunMode mode) {               //sets the mode/behavior for the motor
-
-//        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         frontLeftMotor.setMode(mode);
         frontRightMotor.setMode(mode);
@@ -92,7 +84,6 @@ public class FourMotorDrive {
 
         frontLeftMotor.setPower(-ABSpower);
         rearLeftMotor.setPower(-ABSpower);
-
         frontRightMotor.setPower(ABSpower);
         rearRightMotor.setPower(ABSpower);
     }
@@ -102,12 +93,10 @@ public class FourMotorDrive {
 
         frontLeftMotor.setPower(ABSpower);
         rearLeftMotor.setPower(ABSpower);
-
         frontRightMotor.setPower(-ABSpower);
         rearRightMotor.setPower(-ABSpower);
 
     }
-
 
     //******Drive with Encoder Methods********
     public void driveForward( double speed, double rotations) {
@@ -143,7 +132,6 @@ public class FourMotorDrive {
         }
         stopMotors();
     }
-
 
 
 
