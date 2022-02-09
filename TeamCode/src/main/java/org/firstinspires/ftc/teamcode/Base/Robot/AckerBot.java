@@ -2,16 +2,12 @@ package org.firstinspires.ftc.teamcode.Base.Robot;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
 import org.firstinspires.ftc.teamcode.Base.Drivetrains.MecanumDrive;
 
-import java.util.concurrent.TimeUnit;
 
 
 public class AckerBot extends MecanumDrive {
@@ -53,6 +49,14 @@ public class AckerBot extends MecanumDrive {
     public Servo camPivot;
     public Servo trapDoor;
 
+    //Hand Variables
+
+    public Servo pinkyFinger = null;
+    public Servo ringFinger = null;
+    public Servo middleFinger = null;
+    public Servo indexFinger = null;
+    public Servo thumbFinger = null;
+
     //FTC SDK Requirement
     public LinearOpMode linearOp = null;
     public void setLinearOp (LinearOpMode Op) {
@@ -60,7 +64,7 @@ public class AckerBot extends MecanumDrive {
     }
 
 
-    //LabBot Constructor
+    //AckerBot Constructor
 
     public AckerBot() {
 
@@ -131,6 +135,28 @@ public class AckerBot extends MecanumDrive {
 
     }
 
+    public void initHand(HardwareMap hwMap) {
+
+        hwBot = hwMap;
+
+        pinkyFinger = hwBot.get(Servo.class, "pinky");      // port 1
+        pinkyFinger.setDirection(Servo.Direction.FORWARD);
+
+        ringFinger = hwBot.get(Servo.class, "ring");        // port 2
+        ringFinger.setDirection(Servo.Direction.FORWARD);
+
+        middleFinger = hwBot.get(Servo.class, "middle");    // port 3
+        middleFinger.setDirection(Servo.Direction.FORWARD);
+
+        indexFinger = hwBot.get(Servo.class, "index");      // port 4
+        indexFinger.setDirection(Servo.Direction.FORWARD);
+
+        thumbFinger = hwBot.get(Servo.class, "thumb");      // port 5
+        thumbFinger.setDirection(Servo.Direction.FORWARD);
+
+
+    }
+
 
     // LED Control Methods
 
@@ -150,7 +176,6 @@ public class AckerBot extends MecanumDrive {
     public void runLauncher (double power) {
         double ABSpower = Math.abs(power);
         launcher.setPower(ABSpower);
-        launcher.setPower(ABSpower);
 
     }
 
@@ -160,6 +185,7 @@ public class AckerBot extends MecanumDrive {
     }
 
     public void closeTrapDoor () {
+
         trapDoor.setPosition(.7);
     }
 
@@ -172,18 +198,22 @@ public class AckerBot extends MecanumDrive {
     }
 
     public void camRight () {
+
         camPivot.setPosition(.9);
     }
 
     public void camCenter () {
+
         camPivot.setPosition(.5);
     }
 
-    public void camLiftDown () {
+    public void camLiftDown ()
+    {
         camLift.setPower(-1.0);
     }
 
     public void camLiftUp () {
+
         camLift.setPower(1.0);
     }
 
@@ -192,128 +222,48 @@ public class AckerBot extends MecanumDrive {
         camLift.setPower(0.0);
     }
 
-    /**
-    Hand Control Methods
+    // Hand Control Methods
 
-    public void handWaveHand(){
-        handOpenHand();
-        timer.reset();
-        if (timer.time() < waitTime-1) {}
-        handCloseHand();
-        timer.reset();
-        if (timer.time() < waitTime-1) {}
-        handOpenHand();
-        timer.reset();
-        if (timer.time() < waitTime-1) {}
-        handCloseHand();
-        timer.reset();
-        if (timer.time() < waitTime-1) {}
-        handOpenHand();
-        timer.reset();
-        if (timer.time() < waitTime-1) {}
-        handCloseHand();
+    public void closeHand() {
+        pinkyFinger.setPosition(0.05);
+        ringFinger.setPosition(0.05);
+        middleFinger.setPosition(0.05);
+        indexFinger.setPosition(0.05);
+        thumbFinger.setPosition(0.05);
     }
 
-    public void handCount(){
-        handNumberOne();
-        timer.reset();
-        if (timer.time() < waitTime) {}
-        handNumberTwo();
-        timer.reset();
-        if (timer.time() < waitTime) {}
-        handNumberThree();
-        timer.reset();
-        if (timer.time() < waitTime) {}
-        handNumberFour();
-        timer.reset();
-        if (timer.time() < waitTime) {}
-        handNumberFive();
-        timer.reset();
-        if (timer.time() < waitTime+2) {}
-        handCloseHand();
+    public void openHand() {
+        pinkyFinger.setPosition(0.95);
+        ringFinger.setPosition(0.95);
+        middleFinger.setPosition(0.95);
+        indexFinger.setPosition(0.95);
+        thumbFinger.setPosition(0.95);
+    }
+
+    public void makePeaceHand() {
+        pinkyFinger.setPosition(0.05);
+        ringFinger.setPosition(0.05);
+        middleFinger.setPosition(0.95);
+        indexFinger.setPosition(0.95);
+        thumbFinger.setPosition(0.05);
+    }
+
+    public void makeHangHand() {
+        pinkyFinger.setPosition(0.95);
+        ringFinger.setPosition(0.05);
+        middleFinger.setPosition(0.05);
+        indexFinger.setPosition(0.95);
+        thumbFinger.setPosition(0.95);
+    }
+
+    public void makeScissors() {
+        pinkyFinger.setPosition(0.05);
+        ringFinger.setPosition(0.05);
+        middleFinger.setPosition(0.05);
+        indexFinger.setPosition(0.95);
+        thumbFinger.setPosition(0.95);
     }
 
 
-    public void handMakeFist(){
-        pinkyF.setPosition(0.2);
-        indexF.setPosition(0.2);
-        middleF.setPosition(0.2);
-        ringF.setPosition(0.2);
-        thumbF.setPosition(0.2);
-    }
-
-    public void handOpenHand(){
-        pinkyF.setPosition(1);
-        indexF.setPosition(1);
-        middleF.setPosition(1);
-        ringF.setPosition(1);
-        thumbF.setPosition(1);
-    }
-
-    public void handCloseHand(){
-        pinkyF.setPosition(0);
-        indexF.setPosition(0);
-        middleF.setPosition(0);
-        ringF.setPosition(0);
-        thumbF.setPosition(0);
-    }
-
-    public void handHangOut(){
-        pinkyF.setPosition(0.1);
-        indexF.setPosition(1);
-        middleF.setPosition(0.1);
-        ringF.setPosition(1);
-        thumbF.setPosition(0.1);
-    }
-
-    public void handThumbsUp(){
-        pinkyF.setPosition(0.1);
-        indexF.setPosition(0.1);
-        middleF.setPosition(0.1);
-        ringF.setPosition(0.1);
-        thumbF.setPosition(1);
-    }
-
-    public void handNumberOne(){
-        pinkyF.setPosition(0.0);
-        indexF.setPosition(1);
-        middleF.setPosition(0.0);
-        ringF.setPosition(0.0);
-        thumbF.setPosition(0);
-    }
-
-    public void handNumberTwo(){
-        pinkyF.setPosition(0.0);
-        indexF.setPosition(1);
-        middleF.setPosition(1);
-        ringF.setPosition(0.0);
-        thumbF.setPosition(0);
-    }
-
-    public void handNumberThree(){
-        pinkyF.setPosition(0.0);
-        indexF.setPosition(1);
-        middleF.setPosition(1);
-        ringF.setPosition(1);
-        thumbF.setPosition(0);
-    }
-
-    public void handNumberFour(){
-        pinkyF.setPosition(1);
-        indexF.setPosition(1);
-        middleF.setPosition(1);
-        ringF.setPosition(1);
-        thumbF.setPosition(0);
-    }
-
-    public void handNumberFive(){
-        pinkyF.setPosition(1);
-        indexF.setPosition(1);
-        middleF.setPosition(1);
-        ringF.setPosition(1);
-        thumbF.setPosition(1);
-    }
-
-**/
 
 }
