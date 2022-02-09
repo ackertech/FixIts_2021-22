@@ -25,6 +25,11 @@ public class Johntavious_Nick extends TwoMotorDrive_Nick {
       hwBot = hwMap;
       frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
       frontRightMotor = hwBot.dcMotor.get("front_right_motor");
+      backLeftMotor = hwBot.dcMotor.get("back_left_motor");
+      backRightMotor = hwBot.dcMotor.get("back_right_motor");
+
+
+
 
       frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
       frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -36,6 +41,8 @@ public class Johntavious_Nick extends TwoMotorDrive_Nick {
 
       frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
       frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+      backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+      backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
       //initialize
       flag = hwBot.get(Servo.class, "flag");
