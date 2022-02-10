@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_2Motor;
 
-//@Disabled
+@Disabled
 @TeleOp(name = "LabBot 2Motor",group = "Bot_LabBot")
 public class TeleOpLabBot_2Motor extends OpMode {
 
