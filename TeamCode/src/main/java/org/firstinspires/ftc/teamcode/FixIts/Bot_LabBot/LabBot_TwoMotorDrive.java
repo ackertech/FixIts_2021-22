@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_LabBot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class TwoMotorDrive_Acker {
+public class LabBot_TwoMotorDrive {
 
     // Declared Variables for our Motors
     public DcMotor frontLeftMotor;

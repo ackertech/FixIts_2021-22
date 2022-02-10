@@ -4,13 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@Disabled
-@TeleOp(name = "LabBot_Acker",group = "Bot_LabBot")
-public class TeleOpLabBot_Acker extends OpMode {
+//@Disabled
+@TeleOp(name = "LabBot 4Motor",group = "Bot_LabBot")
+public class TeleOpLabBot_4Motor extends OpMode {
 
     public double speedMultiply = 0.50;
 
-    public LabBot_Acker Bot = new LabBot_Acker();
+    public LabBot_4Motor Bot = new LabBot_4Motor();
 
     @Override
     public void init() {
