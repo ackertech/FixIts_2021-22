@@ -7,9 +7,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
 
 @Disabled
-@Autonomous(name = "LabBot:4M:Square:Power")
+@Autonomous(name = "LabBot:4M:Square:Encoder")
 
-public class AutoLabot_4Motor extends LinearOpMode {
+public class AutoLabot_4Motor_Enc extends LinearOpMode {
 
     LabBot_4Motor Bot = new LabBot_4Motor();
 
@@ -18,7 +18,6 @@ public class AutoLabot_4Motor extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         Bot.initRobot(hardwareMap);
-
 
         telemetry.addLine("Awaiting Start");
         telemetry.update();
@@ -29,71 +28,51 @@ public class AutoLabot_4Motor extends LinearOpMode {
 
             telemetry.addLine("Driving Forward from Start");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(2000);
-            Bot.stopMotors();
+            Bot.driveForward(1,1);
 
             telemetry.addLine("Driving Forward in Square");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(2000);
-            Bot.stopMotors();
+            Bot.driveForward(1,1);
 
             //We are now at the top left corner of the square
 
             telemetry.addLine("Turning Right at First Corner");
             telemetry.update();
-            Bot.rotateRight(0.5);
-            sleep(1000);
-            Bot.stopMotors();
+            Bot.rotateRight(1,1);
 
             telemetry.addLine("Driving Forward to Second Corner");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(2000);
-            Bot.stopMotors();
+            Bot.driveForward(1,1);
 
             //We are at the top right corner of the square
 
             telemetry.addLine("Turning Right at Second Corner");
             telemetry.update();
-            Bot.rotateRight(0.5);
-            sleep(1000);
-            Bot.stopMotors();
+            Bot.rotateRight(1,1);
 
             telemetry.addLine("Driving Forward to Third Corner");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(2000);
-            Bot.stopMotors();
+            Bot.driveForward(1,1);
 
             //We are at the bottom right corner of the square
 
             telemetry.addLine("Turning Right at Third Corner");
             telemetry.update();
-            Bot.rotateRight(0.5);
-            sleep(1000);
-            Bot.stopMotors();
+            Bot.rotateRight(1,1);
 
             telemetry.addLine("Driving Forward to Fourth Corner ");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(2000);
-            Bot.stopMotors();
+            Bot.driveForward(1,1);
 
             //We are at the bottom left corner of the square
 
             telemetry.addLine("Turning Left at Fourth Corner");
             telemetry.update();
-            Bot.rotateLeft(-0.5);
-            sleep(1000);
-            Bot.stopMotors();
+            Bot.rotateLeft(1,1);
 
             telemetry.addLine("Driving Forward to Finish");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(2000);
-            Bot.stopMotors();
+            Bot.driveForward(1,1);
 
             requestOpModeStop();
 
