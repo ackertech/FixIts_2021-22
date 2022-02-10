@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Base.Robot.HandBot;
 
 @Disabled
-@Autonomous (name = "Autonomous HandBot")
+@Autonomous (name = "HandBot")
 
 public class HandBotAuto extends LinearOpMode {
 

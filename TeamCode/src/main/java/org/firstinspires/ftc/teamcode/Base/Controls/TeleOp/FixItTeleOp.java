@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Base.Robot.FixItBot;
 
 @Disabled
-@TeleOp(name = "TeleOp:FixIts", group = "FixIt")
+@TeleOp(name = "FixIts", group = "FixIt")
 
 public class FixItTeleOp extends OpMode {
 
