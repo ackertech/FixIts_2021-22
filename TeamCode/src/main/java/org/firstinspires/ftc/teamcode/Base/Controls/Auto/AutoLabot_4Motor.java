@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.teamcode.FixIts.Bot_LabBot;
+package org.firstinspires.ftc.teamcode.Base.Controls.Auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Disabled
+import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
+
+//@Disabled
 @Autonomous(name = "LabBot:Auto 4Motor")
 
 public class AutoLabot_4Motor extends LinearOpMode {

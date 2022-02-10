@@ -1,8 +1,9 @@
-package org.firstinspires.ftc.teamcode.FixIts.Bot_LabBot;
+package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_2Motor;
 
 //@Disabled
 @TeleOp(name = "LabBot 2Motor",group = "Bot_LabBot")
