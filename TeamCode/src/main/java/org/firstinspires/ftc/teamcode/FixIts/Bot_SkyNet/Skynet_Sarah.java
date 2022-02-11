@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Skynet_Sarah extends Twomotordrive_Sarah{
+
     public RevBlinkinLedDriver ledLights;
-    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
     public HardwareMap hwBot = null;
     public Servo flag = null;
 
@@ -24,11 +24,19 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
 
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
 
-        frontRightMotor = hwBot.dcMotor.get("front_right_motor");   // JDA - Compare this Line to above
+        frontRightMotor = hwBot.dcMotor.get("front_right_motor");
+
+        backLeftMotor = hwBot.dcMotor.get("back_left_motor");
+
+        backRightMotor = hwBot.dcMotor.get("back_right_motor");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
+
+        backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        backRightMotor.setDirection(DcMotor.Direction.FORWARD);
 
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -38,13 +46,13 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
 
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         flag = hwBot.get(Servo.class, "flag");
 
         flag.setDirection(Servo.Direction.FORWARD);
-
-        ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip" );
-        ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE;
-        ledLights.setPattern(ledPattern);
 
 
 
@@ -67,8 +75,10 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
         flag.setPosition(0.35);
     }
 
-    public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
-        ledLights.setPattern(patternName);
-    }
+//    public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
+
+ //       ledLights.setPattern(patternName);
+ //   }
+
+
 }
-//jda

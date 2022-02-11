@@ -1,16 +1,18 @@
-package org.firstinspires.ftc.teamcode.FixIts.Bot_LabBot;
+package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_2Motor;
+
 @Disabled
-@TeleOp(name = "LabBot_Acker",group = "Bot_LabBot")
-public class TeleOpLabBot_Acker extends OpMode {
+@TeleOp(name = "LabBot 2Motor",group = "Bot_LabBot")
+public class TeleOpLabBot_2Motor extends OpMode {
 
     public double speedMultiply = 0.50;
 
-    public LabBot_Acker Bot = new LabBot_Acker();
+    public LabBot_2Motor Bot = new LabBot_2Motor();
 
     @Override
     public void init() {

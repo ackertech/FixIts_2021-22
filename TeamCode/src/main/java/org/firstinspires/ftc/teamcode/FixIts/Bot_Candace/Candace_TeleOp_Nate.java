@@ -56,7 +56,6 @@ public Candace_Nate Bot = new Candace_Nate();
         }
     }
 
-
     public void flagControl() {
         if (gamepad1.y) {
             Bot.raiseFlag();

@@ -1,13 +1,15 @@
-package org.firstinspires.ftc.teamcode.FixIts.Bot_DentalHealth;
+package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous (name = "LabBot_Alen2")
+import org.firstinspires.ftc.teamcode.FixIts.Bot_DentalHealth.DentalHealth_Alen2;
 
-public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
+@Autonomous (name = "Skynet Auto")
+
+public class AutonomousSkyNet extends LinearOpMode {
 
     //Specify the robot class to construct
-    DentalHealth_Alen2 Bot = new DentalHealth_Alen2();
+    Skynet_Sarah Bot = new Skynet_Sarah();
 
     //We are adding in the code that is personal to the robot here
     @Override
@@ -33,71 +35,71 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
 
         telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveBackword(-1);
-        sleep(850);
-        Bot.stopMotor();
+        Bot.driveBackward(1);
+        sleep(1000);
+        Bot.stopMotors();
 
         telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveBackword(-1);
-        sleep(850);
-        Bot.stopMotor();
+        Bot.driveBackward(1);
+        sleep(1000);
+        Bot.stopMotors();
 
         //We are now at the top left corner of the square
 
         telemetry.addLine("Turning Right");
         telemetry.update();
-        Bot.rotateRight(0.5);
-        sleep(650);
-        Bot.stopMotor();
+        Bot.turnRight(1);
+        sleep(1000);
+        Bot.stopMotors();
 
         telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveBackword(-1);
-        sleep(850);
-        Bot.stopMotor();
+        Bot.driveBackward(1);
+        sleep(1000);
+        Bot.stopMotors();
 
         //We are at the top right corner of the square
 
         telemetry.addLine("Turning Right");
         telemetry.update();
-        Bot.rotateRight(0.5);
-        sleep(650);
-        Bot.stopMotor();
+        Bot.turnRight(0.5);
+        sleep(1000);
+        Bot.stopMotors();
 
         telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveBackword(-1);
-        sleep(850);
-        Bot.stopMotor();
+        Bot.driveBackward(1);
+        sleep(1000);
+        Bot.stopMotors();
 
         //We are at the bottom right corner of the square
 
         telemetry.addLine("Turning Right");
         telemetry.update();
-        Bot.rotateRight(0.5);
-        sleep(750);
-        Bot.stopMotor();
+        Bot.turnRight(1);
+        sleep(1000);
+        Bot.stopMotors();
 
         telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveBackword(-1);
-        sleep(950);
-        Bot.stopMotor();
+        Bot.driveBackward(1);
+        sleep(1000);
+        Bot.stopMotors();
 
         //We are at the bottom left corner of the square
 
         telemetry.addLine("Turning Left");
         telemetry.update();
-        Bot.rotateLeft(-0.5);
-        sleep(640);
-        Bot.stopMotor();
+        Bot.turnLeft(1);
+        sleep(1000);
+        Bot.stopMotors();
 
         telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveBackword(-1);
-        sleep(850);
-        Bot.stopMotor();
+        Bot.driveBackward(1);
+        sleep(1000);
+        Bot.stopMotors();
 
         // Stay in the loop until drive says stop
         requestOpModeStop();
