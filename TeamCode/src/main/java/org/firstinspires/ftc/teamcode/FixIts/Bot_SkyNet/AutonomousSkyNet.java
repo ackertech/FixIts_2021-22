@@ -26,23 +26,19 @@ public class AutonomousSkyNet extends LinearOpMode {
 
 
 
-    while(
-
-    opModeIsActive())
-
-    {
+    while(opModeIsActive()) {
 
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
-        sleep(1000);
+        Bot.driveForward(1);
+        sleep(850);
         Bot.stopMotors();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
-        sleep(1000);
+        Bot.driveForward(1);
+        sleep(650);
         Bot.stopMotors();
 
         telemetry.addLine("Turning Right");
@@ -51,10 +47,10 @@ public class AutonomousSkyNet extends LinearOpMode {
         sleep(1000);
         Bot.stopMotors();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
-        sleep(1000);
+        Bot.driveForward(1);
+        sleep(650);
         Bot.stopMotors();
 
         telemetry.addLine("Turning Right");
@@ -63,10 +59,10 @@ public class AutonomousSkyNet extends LinearOpMode {
         sleep(1000);
         Bot.stopMotors();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
-        sleep(1000);
+        Bot.driveForward(1);
+        sleep(650);
         Bot.stopMotors();
 
         telemetry.addLine("Turning Right");
@@ -75,9 +71,9 @@ public class AutonomousSkyNet extends LinearOpMode {
         sleep(1000);
         Bot.stopMotors();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
+        Bot.driveForward(1);
         sleep(1000);
         Bot.stopMotors();
 
@@ -87,10 +83,10 @@ public class AutonomousSkyNet extends LinearOpMode {
         sleep(1000);
         Bot.stopMotors();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
         Bot.driveBackward(1);
-        sleep(1000);
+        sleep(850);
         Bot.stopMotors();
 
         // Stay in the loop until drive says stop
