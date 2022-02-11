@@ -31,16 +31,16 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
     {
 
 
-        telemetry.addLine("Driving Forward");
+        telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveForward(1);
-        sleep(2000);
+        Bot.driveBackword(-1);
+        sleep(850);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Forward");
+        telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveForward(1);
-        sleep(2000);
+        Bot.driveBackword(-1);
+        sleep(850);
         Bot.stopMotor();
 
         //We are now at the top left corner of the square
@@ -48,13 +48,13 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
         telemetry.addLine("Turning Right");
         telemetry.update();
         Bot.rotateRight(0.5);
-        sleep(1000);
+        sleep(650);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Forward");
+        telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveForward(1);
-        sleep(2000);
+        Bot.driveBackword(-1);
+        sleep(850);
         Bot.stopMotor();
 
         //We are at the top right corner of the square
@@ -62,13 +62,13 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
         telemetry.addLine("Turning Right");
         telemetry.update();
         Bot.rotateRight(0.5);
-        sleep(1000);
+        sleep(650);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Forward");
+        telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveForward(1);
-        sleep(2000);
+        Bot.driveBackword(-1);
+        sleep(850);
         Bot.stopMotor();
 
         //We are at the bottom right corner of the square
@@ -76,13 +76,13 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
         telemetry.addLine("Turning Right");
         telemetry.update();
         Bot.rotateRight(0.5);
-        sleep(1000);
+        sleep(750);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Forward");
+        telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveForward(1);
-        sleep(2000);
+        Bot.driveBackword(-1);
+        sleep(950);
         Bot.stopMotor();
 
         //We are at the bottom left corner of the square
@@ -90,13 +90,13 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
         telemetry.addLine("Turning Left");
         telemetry.update();
         Bot.rotateLeft(-0.5);
-        sleep(1000);
+        sleep(640);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Forward");
+        telemetry.addLine("Driving Backward");
         telemetry.update();
-        Bot.driveForward(1);
-        sleep(2000);
+        Bot.driveBackword(-1);
+        sleep(850);
         Bot.stopMotor();
 
         // Stay in the loop until drive says stop
