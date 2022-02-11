@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Base.Robot.FixItBot;
 
 @Disabled
-@TeleOp(name = "TeleOp:FixIts", group = "FixIt")
+@TeleOp(name = "FixIts", group = "FixIt")
 
 public class FixItTeleOp extends OpMode {
 
@@ -26,6 +26,7 @@ public class FixItTeleOp extends OpMode {
 
         Bot.initRobot(hardwareMap);
         Bot.lowerFlag();
+
     }
 
     // TeleOp Loop Method.  This start AFTER clicking the Play Button on the Driver Station Phone
@@ -36,7 +37,6 @@ public class FixItTeleOp extends OpMode {
         flagControl();
         ledControl();
         speedControl();
-        Bot.christmasPattern();
 
     }
 
@@ -83,7 +83,8 @@ public class FixItTeleOp extends OpMode {
     }
 
     // Control methods for changing the LED Lights
-    //SHORT_RED, SHORT_BLUE, SHORT_WHITE, COLOR_WAVES_LAVA_PALETTE, COLOR_WAVES_OCEAN_PALETTE, STROBE_RED, STROBE_BLUE, STROBE_WHITE
+    // SHORT_RED, SHORT_BLUE, SHORT_WHITE, COLOR_WAVES_LAVA_PALETTE,
+    // COLOR_WAVES_OCEAN_PALETTE, STROBE_RED, STROBE_BLUE, STROBE_WHITE
 
     public void ledControl () {
 
@@ -97,11 +98,18 @@ public class FixItTeleOp extends OpMode {
     // Control methods for changing speed
     public void speedControl() {
 
-        if (gamepad1.dpad_down) {
-            speedMultiply = 0.5;
+        if (gamepad1.dpad_right) {
+            speedMultiply = 0.25;
+
+        }
+        else if (gamepad1.dpad_down) {
+            speedMultiply = 0.50;
+        }
+        else if (gamepad1.dpad_left) {
+            speedMultiply = 0.75;
         }
         else if (gamepad1.dpad_up) {
-            speedMultiply = 1;
+            speedMultiply = 1.00;
         }
     }
 
