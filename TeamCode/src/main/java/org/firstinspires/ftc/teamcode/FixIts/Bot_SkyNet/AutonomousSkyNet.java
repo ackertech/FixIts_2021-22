@@ -45,8 +45,6 @@ public class AutonomousSkyNet extends LinearOpMode {
         sleep(1000);
         Bot.stopMotors();
 
-        //We are now at the top left corner of the square
-
         telemetry.addLine("Turning Right");
         telemetry.update();
         Bot.turnRight(1);
@@ -58,8 +56,6 @@ public class AutonomousSkyNet extends LinearOpMode {
         Bot.driveBackward(1);
         sleep(1000);
         Bot.stopMotors();
-
-        //We are at the top right corner of the square
 
         telemetry.addLine("Turning Right");
         telemetry.update();
@@ -73,8 +69,6 @@ public class AutonomousSkyNet extends LinearOpMode {
         sleep(1000);
         Bot.stopMotors();
 
-        //We are at the bottom right corner of the square
-
         telemetry.addLine("Turning Right");
         telemetry.update();
         Bot.turnRight(1);
@@ -86,8 +80,6 @@ public class AutonomousSkyNet extends LinearOpMode {
         Bot.driveBackward(1);
         sleep(1000);
         Bot.stopMotors();
-
-        //We are at the bottom left corner of the square
 
         telemetry.addLine("Turning Left");
         telemetry.update();
