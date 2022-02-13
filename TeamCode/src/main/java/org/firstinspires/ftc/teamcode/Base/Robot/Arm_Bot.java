@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_Jetsam_Camden.Robot;
+package org.firstinspires.ftc.teamcode.Base.Robot;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -31,7 +31,7 @@ public class Arm_Bot {
 
     public Arm_Bot() {
     }
-//
+
     public void initArmBot(HardwareMap hwMap) {
 
         hwBot = hwMap;
@@ -50,7 +50,6 @@ public class Arm_Bot {
 
         ringF = hwBot.get(Servo.class, "ringF");        // port 2
         ringF.setDirection(Servo.Direction.FORWARD);
-
 
         shoulderJ = hwBot.get(Servo.class, "shoulderJ");          //port 1
         shoulderJ.setDirection(Servo.Direction.FORWARD);
