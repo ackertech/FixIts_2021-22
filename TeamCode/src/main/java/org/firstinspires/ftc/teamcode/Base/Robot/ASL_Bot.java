@@ -1,7 +1,8 @@
-package org.firstinspires.ftc.teamcode.iLab.Bot_ASL_Emma;
+package org.firstinspires.ftc.teamcode.Base.Robot;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class ASL_Bot {
     public Servo pinkyF = null;
@@ -14,11 +15,14 @@ public class ASL_Bot {
 
     public HardwareMap hwBot = null;
 
-    public ASL_Bot () {
+    public ElapsedTime timer = new ElapsedTime();
+    public double waitTime = 2.0;
+
+    public ASL_Bot() {
 
     }
 
-    public void initArmBot(HardwareMap hwMap) {
+    public void initHandBot(HardwareMap hwMap) {
 
         hwBot = hwMap;
 
@@ -37,11 +41,13 @@ public class ASL_Bot {
         ringF = hwBot.get(Servo.class, "ringF");
         ringF.setDirection(Servo.Direction.FORWARD);
 
+        /**
         wrist = hwBot.get(Servo.class, "wrist");
         wrist.setDirection(Servo.Direction.FORWARD);
 
         elbow = hwBot.get(Servo.class, "elbow");
         elbow.setDirection(Servo.Direction.FORWARD);
+        **/
 
     }
 
@@ -71,6 +77,94 @@ public class ASL_Bot {
         pinkyF.setPosition(1);
 
     }
+
+    // ASL Logic
+
+    public void createWords(String letter) {
+
+        if (letter.toUpperCase() == "A") {
+            letterA();
+        }
+        else if (letter.toUpperCase() == "B") {
+            letterB();
+        }
+        else if (letter.toUpperCase() == "C") {
+            letterC();
+        }
+        else if (letter.toUpperCase() == "D") {
+            letterD();
+        }
+        else if (letter.toUpperCase() == "E") {
+            letterE();
+        }
+        else if (letter.toUpperCase() == "F") {
+            letterF();
+        }
+        else if (letter.toUpperCase() == "G") {
+            letterG();
+        }
+        else if (letter.toUpperCase() == "H") {
+            letterH();
+        }
+        else if (letter.toUpperCase() == "I") {
+            letterI();
+        }
+        else if (letter.toUpperCase() == "J") {
+            letterJ();
+        }
+        else if (letter.toUpperCase() == "K") {
+            letterK();
+        }
+        else if (letter.toUpperCase() == "L") {
+            letterL();
+        }
+        else if (letter.toUpperCase() == "M") {
+            letterM();
+        }
+        else if (letter.toUpperCase() == "N") {
+            letterN();
+        }
+        else if (letter.toUpperCase() == "O") {
+            letterO();
+        }
+        else if (letter.toUpperCase() == "P") {
+            letterP();
+        }
+        else if (letter.toUpperCase() == "Q") {
+            letterQ();
+        }
+        else if (letter.toUpperCase() == "R") {
+            letterR();
+        }
+        else if (letter.toUpperCase() == "S") {
+            letterS();
+        }
+        else if (letter.toUpperCase() == "T") {
+            letterT();
+        }
+        else if (letter.toUpperCase() == "U") {
+            letterU();
+        }
+        else if (letter.toUpperCase() == "V") {
+            letterV();
+        }
+        else if (letter.toUpperCase() == "W") {
+            letterW();
+        }
+        else if (letter.toUpperCase() == "X") {
+            letterX();
+        }
+        else if (letter.toUpperCase() == "Y") {
+            letterY();
+        }
+        else {
+            closeHand();
+        }
+
+
+    }
+
+    // ALS Letter
 
     public void letterA () {
         thumbF.setPosition(.5);

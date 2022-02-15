@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.iLab.Bot_Jetsam_Camden.Robot.Arm_Bot;
+import org.firstinspires.ftc.teamcode.Base.Robot.Arm_Bot;
 
 @Disabled
 @TeleOp(name = "ArmBot")
@@ -41,15 +41,14 @@ public class ArmBotTeleOp extends OpMode {
             Bot.openHand();
         } else if (gamepad1.y) {
             Bot.peace();
-        } else if (gamepad1.left_bumper) {
-            Bot.solute();
+        } else if (gamepad1.right_bumper) {
+            Bot.surferWave();
         } else if (gamepad1.x) {
             Bot.thumbsUp();
         } else {
             Bot.closeHand();
         }
     }
-
 
 
     public void elbowControl() {

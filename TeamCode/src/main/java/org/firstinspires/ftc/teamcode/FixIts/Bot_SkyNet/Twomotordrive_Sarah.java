@@ -10,6 +10,8 @@ public class Twomotordrive_Sarah {
     //Declare Variables for the Motors
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
+    public DcMotor backLeftMotor;
+    public DcMotor backRightMotor;
 
 
 
@@ -24,10 +26,15 @@ public class Twomotordrive_Sarah {
 
         frontLeftMotor.setMode(mode);
         frontRightMotor.setMode(mode);
+        backLeftMotor.setMode(mode);
+        backRightMotor.setMode(mode);
+
     }
     public void stopMotors () {
         frontLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
+        backLeftMotor.setPower(0);
+        backRightMotor.setPower(0);
 
     }
 
@@ -36,6 +43,8 @@ public class Twomotordrive_Sarah {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(ABSpower);
+        backLeftMotor.setPower(ABSpower);
+        backRightMotor.setPower(ABSpower);
 
     }
 
@@ -43,6 +52,8 @@ public class Twomotordrive_Sarah {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(-ABSpower);
+        backRightMotor.setPower(-ABSpower);
+        backLeftMotor.setPower(-ABSpower);
     }
 
     // JDA - Check Motors Variables Below.  Do you have one of each?
@@ -51,6 +62,8 @@ public class Twomotordrive_Sarah {
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
         frontRightMotor.setPower(ABSpower);
+        backLeftMotor.setPower(-ABSpower);
+        backRightMotor.setPower(ABSpower);
     }
     // JDA - Check Motors Variables Below.  Do you have one of each?
     public void turnRight (double power) {
@@ -58,6 +71,8 @@ public class Twomotordrive_Sarah {
 
         frontLeftMotor.setPower(ABSpower);
         frontRightMotor.setPower(-ABSpower);
+        backLeftMotor.setPower(ABSpower);
+        backRightMotor.setPower(-ABSpower);
     }
 
 }

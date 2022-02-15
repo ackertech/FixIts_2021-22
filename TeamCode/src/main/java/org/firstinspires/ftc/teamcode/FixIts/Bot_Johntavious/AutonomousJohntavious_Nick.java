@@ -27,25 +27,55 @@ public class AutonomousJohntavious_Nick extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            telemetry.addLine("Driving Forward");
+            telemetry.addLine("Driving Backward");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(2000);
+            Bot.driveBackward(1);
+            sleep(1000);
+
+            telemetry.addLine("Driving Backward");
+            telemetry.update();
+            Bot.driveBackward(0.5);
+            sleep(1000);
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateRight(0.5);
-            sleep(1000);
+            Bot.rotateLeft(0.5);
+            sleep(500);
 
-            telemetry.addLine("Driving Forward");
+            telemetry.addLine("Driving Backward");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(2000);
+            Bot.driveBackward(1);
+            sleep(800);
 
             telemetry.addLine("Turning Right");
             telemetry.update();
+            Bot.rotateLeft(0.5);
+            sleep(500);
+
+            telemetry.addLine("Driving Backward");
+            telemetry.update();
+            Bot.driveBackward(1);
+            sleep(800);
+
+            telemetry.addLine("Turning Right");
+            telemetry.update();
+            Bot.rotateLeft(0.5);
+            sleep(500);
+
+            telemetry.addLine("Driving Backward");
+            telemetry.update();
+            Bot.driveBackward(1);
+            sleep(800);
+
+            telemetry.addLine("Turning Left");
+            telemetry.update();
             Bot.rotateRight(0.5);
-            sleep(1000);
+            sleep(500);
+
+            telemetry.addLine("Driving Backward");
+            telemetry.update();
+            Bot.driveBackward(1);
+            sleep(800);
 
             requestOpModeStop();
         }

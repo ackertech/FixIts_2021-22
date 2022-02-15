@@ -3,14 +3,14 @@ package org.firstinspires.ftc.teamcode.Base.Controls.Auto;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import org.firstinspires.ftc.teamcode.Base.Robot.HandBot;
+import org.firstinspires.ftc.teamcode.Base.Robot.ASL_Bot;
 
 @Disabled
-@Autonomous (name = "HandBot")
+@Autonomous (name = "ASL Bot")
 
-public class HandBotAuto extends LinearOpMode {
+public class AutoASL_Bot extends LinearOpMode {
 
-    HandBot Bot = new HandBot();
+    ASL_Bot Bot = new ASL_Bot();
     String sentence = "Hello! I am learning sign language";
     String letter = " ";
 
