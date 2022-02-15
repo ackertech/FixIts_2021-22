@@ -30,13 +30,13 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
 
         backRightMotor = hwBot.dcMotor.get("back_right_motor");
 
-        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
 
-        frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
 
-        backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        backRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        backRightMotor.setDirection(DcMotor.Direction.REVERSE);
 
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -74,11 +74,10 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
     public void waveFlagLeft() {
         flag.setPosition(0.35);
     }
+        public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
 
-//    public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
-
- //       ledLights.setPattern(patternName);
- //   }
+       ledLights.setPattern(patternName);
+    }
 
 
 }
