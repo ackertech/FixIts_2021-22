@@ -6,18 +6,18 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Base.Robot.FixItBot;
+import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 @Disabled
-@TeleOp(name = "FixIts", group = "FixIt")
+@TeleOp(name = "Tank")
 
-public class FixItTeleOp extends OpMode {
+public class TankTeleOp extends OpMode {
 
     //TeleOp Variables
     public double speedMultiply = 1;
 
     // Construct the Physical Bot based on the Robot Class
-    public FixItBot Bot = new FixItBot();
+    public TankBot Bot = new TankBot();
 
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
@@ -25,7 +25,7 @@ public class FixItTeleOp extends OpMode {
     public void init()    {
 
         Bot.initRobot(hardwareMap);
-        Bot.lowerFlag();
+
 
     }
 
@@ -34,7 +34,7 @@ public class FixItTeleOp extends OpMode {
     public void loop () {
 
         drive();
-        flagControl();
+        armControl();
         ledControl();
         speedControl();
 
@@ -71,27 +71,24 @@ public class FixItTeleOp extends OpMode {
 
     //Control Methods for lowering and rasing the flag
 
-    public void flagControl () {
+    public void armControl () {
 
         if (gamepad1.a) {
-            Bot.raiseFlag();
+            Bot.raiseArm();
         }
         else if (gamepad1.b)  {
-            Bot.lowerFlag();
+            Bot.lowerArm();
         }
 
     }
 
     // Control methods for changing the LED Lights
-    // SHORT_RED, SHORT_BLUE, SHORT_WHITE, COLOR_WAVES_LAVA_PALETTE,
-    // COLOR_WAVES_OCEAN_PALETTE, STROBE_RED, STROBE_BLUE, STROBE_WHITE
-
     public void ledControl () {
 
         if (gamepad1.left_trigger > 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE);
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_RAINBOW_PALETTE);
         } else if (gamepad1.right_trigger > 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE);
+            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
         }
     }
 

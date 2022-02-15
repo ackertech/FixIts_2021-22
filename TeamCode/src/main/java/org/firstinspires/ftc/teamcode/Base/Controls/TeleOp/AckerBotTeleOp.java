@@ -38,9 +38,10 @@ public class AckerBotTeleOp extends OpMode {
     public void init() {
 
         //Hardware Initialization from Robot Class
+
         Bot.initRobot(hardwareMap);
-      //  Bot.initHand(hardwareMap);
-      //   Bot.closeHand();
+        //  Bot.initHand(hardwareMap);
+        //  Bot.closeHand();
 
     }
 

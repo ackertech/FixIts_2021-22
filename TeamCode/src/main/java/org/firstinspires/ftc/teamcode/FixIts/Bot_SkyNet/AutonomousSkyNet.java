@@ -27,7 +27,6 @@ public class AutonomousSkyNet extends LinearOpMode {
 
     while(opModeIsActive()) {
 
-
         telemetry.addLine("Driving Forward");
         telemetry.update();
         Bot.driveForward(1);
