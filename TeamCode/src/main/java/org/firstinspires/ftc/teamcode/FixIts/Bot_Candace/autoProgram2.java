@@ -1,21 +1,19 @@
-package org.firstinspires.ftc.teamcode.FixIts.Bot_Johntavious;
+package org.firstinspires.ftc.teamcode.FixIts.Bot_Candace;
+
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-
 //@Disabled
-@Autonomous (name = "Johntavious:Nick")
+@Autonomous (name = "Candace AutonomousProgram2")
 
-public class AutonomousJohntavious_Nick extends LinearOpMode {
+public class autoProgram2 extends LinearOpMode {
 
-    Johntavious_Nick Bot = new Johntavious_Nick();
+    Candace_Nate Bot = new Candace_Nate();
 
     @Override
 
-
     public void runOpMode() throws InterruptedException {
-
         Bot.initRobot(hardwareMap);
 
         telemetry.addLine("Awaiting Start");
@@ -25,64 +23,52 @@ public class AutonomousJohntavious_Nick extends LinearOpMode {
 
 
         while (opModeIsActive()) {
-
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(1000);
-
-            telemetry.addLine("Driving Forward");
-            telemetry.update();
-            Bot.driveForward(0.5);
-            sleep(1000);
+            Bot.driveForward(2.2, 1);
+            Bot.stopMotor();
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateLeft(0.5);
-            sleep(500);
+            Bot.rotateRight(1, 0.5);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(800);
+            Bot.driveForward(1, 1);
+            Bot.stopMotor();
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateLeft(0.5);
-            sleep(500);
+            Bot.rotateRight(1, 0.5);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(800);
+            Bot.driveForward(1, 1);
+            Bot.stopMotor();
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateLeft(0.5);
-            sleep(500);
+            Bot.rotateRight(1, 0.5);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(800);
+            Bot.driveForward(1, 1);
+            Bot.stopMotor();
 
             telemetry.addLine("Turning Left");
             telemetry.update();
-            Bot.rotateRight(0.5);
-            sleep(500);
+            Bot.rotateLeft(1, 0.5);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1);
-            sleep(800);
+            Bot.driveForward(1, 1);
+            Bot.stopMotor();
 
-            requestOpModeStop();
+
         }
 
-        idle();
+//..
+
     }
 
-
 }
-
-

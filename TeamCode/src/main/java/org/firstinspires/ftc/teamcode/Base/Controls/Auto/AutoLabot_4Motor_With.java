@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
 
+// *****  Autonomous with Internal Encoders *********
+
 @Disabled
 @Autonomous(name = "LabBot:4M:Square:With Enc")
 
