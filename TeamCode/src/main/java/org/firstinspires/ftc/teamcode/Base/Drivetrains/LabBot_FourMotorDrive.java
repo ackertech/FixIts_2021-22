@@ -76,7 +76,7 @@ public class LabBot_FourMotorDrive {
 
     }
 
-    //Roates Right
+    //Rotates Right
     public void rotateRight (double power) {
 
         double ABSpower = Math.abs(power);

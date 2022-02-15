@@ -24,7 +24,7 @@ public class autoProgram1 extends LinearOpMode {
     while (opModeIsActive()) {
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
+        Bot.driveForward(1);
         sleep(1500);
         Bot.stopMotor();
 
@@ -36,7 +36,7 @@ public class autoProgram1 extends LinearOpMode {
 
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
+        Bot.driveForward(1);
         sleep(800);
         Bot.stopMotor();
 
@@ -48,7 +48,7 @@ public class autoProgram1 extends LinearOpMode {
 
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
+        Bot.driveForward(1);
         sleep(800);
         Bot.stopMotor();
 
@@ -60,7 +60,7 @@ public class autoProgram1 extends LinearOpMode {
 
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
+        Bot.driveForward(1);
         sleep(800);
         Bot.stopMotor();
 
@@ -72,7 +72,7 @@ public class autoProgram1 extends LinearOpMode {
 
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
+        Bot.driveForward(1);
         sleep(800);
         Bot.stopMotor();
 

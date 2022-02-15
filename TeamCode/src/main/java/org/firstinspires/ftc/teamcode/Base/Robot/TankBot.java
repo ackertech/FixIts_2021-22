@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Base.Robot;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -47,10 +48,10 @@ public class TankBot extends Tank_FourMotorDrive {
         rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
 
         //Sets the direction of the robot's motors based on physical placement
-        frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
-        rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
-        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-        rearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
+        rearRightMotor.setDirection(DcMotor.Direction.REVERSE);
+        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+        rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);
 
         //Define this robot run modes
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -69,15 +70,6 @@ public class TankBot extends Tank_FourMotorDrive {
 
         elbow = hwBot.get(Servo.class, "elbow");
         elbow.setDirection(Servo.Direction.FORWARD);
-
-
-        //Define & Initialize LEDTester Lights
-        ledLights = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
-        ledPattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE;   //https://www.revrobotics.com/content/docs/REV-11-1105-UM.pdf
-        ledLights.setPattern(ledPattern);
-
-        //Timer Reset
-        currentTime.reset();
 
     }
 

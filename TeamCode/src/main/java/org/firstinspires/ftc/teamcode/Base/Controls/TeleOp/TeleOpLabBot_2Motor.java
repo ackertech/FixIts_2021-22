@@ -31,11 +31,11 @@ public class TeleOpLabBot_2Motor extends OpMode {
 
     public void drive () {
 
-        if (gamepad1.left_stick_y > 0.1) {
+        if (gamepad1.left_stick_y < -0.1) {
             Bot.driveForward(speedMultiply*gamepad1.left_stick_y);
 
         }
-        else if (gamepad1.left_stick_y < -0.1) {
+        else if (gamepad1.left_stick_y > 0.1) {
             Bot.driveBackward(speedMultiply*gamepad1.left_stick_y);
 
         }

@@ -30,10 +30,10 @@ public class Candace_Nate extends FourMotorDrive{
             rightMotor2 = hwBot.dcMotor.get("right_motor2");
             //2
 
-            leftMotor1.setDirection(DcMotor.Direction.REVERSE);
-            leftMotor2.setDirection(DcMotor.Direction.REVERSE);
-            rightMotor1.setDirection(DcMotor.Direction.FORWARD);
-            rightMotor2.setDirection(DcMotor.Direction.FORWARD);
+            leftMotor1.setDirection(DcMotor.Direction.FORWARD);
+            leftMotor2.setDirection(DcMotor.Direction.FORWARD);
+            rightMotor1.setDirection(DcMotor.Direction.REVERSE);
+            rightMotor2.setDirection(DcMotor.Direction.REVERSE);
 
             setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
