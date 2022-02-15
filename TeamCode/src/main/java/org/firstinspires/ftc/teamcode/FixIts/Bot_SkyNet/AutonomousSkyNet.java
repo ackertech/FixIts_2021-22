@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_SkyNet;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.FixIts.Bot_DentalHealth.DentalHealth_Alen2;
 
 @Autonomous (name = "Skynet Auto")
 
@@ -43,8 +42,8 @@ public class AutonomousSkyNet extends LinearOpMode {
 
         telemetry.addLine("Turning Right");
         telemetry.update();
-        Bot.turnRight(1);
-        sleep(1000);
+        Bot.turnRight(0.5);
+        sleep(550);
         Bot.stopMotors();
 
         telemetry.addLine("Driving Forward");
@@ -56,7 +55,7 @@ public class AutonomousSkyNet extends LinearOpMode {
         telemetry.addLine("Turning Right");
         telemetry.update();
         Bot.turnRight(0.5);
-        sleep(1000);
+        sleep(550);
         Bot.stopMotors();
 
         telemetry.addLine("Driving Forward");
@@ -67,8 +66,8 @@ public class AutonomousSkyNet extends LinearOpMode {
 
         telemetry.addLine("Turning Right");
         telemetry.update();
-        Bot.turnRight(1);
-        sleep(1000);
+        Bot.turnRight(0.5);
+        sleep(550);
         Bot.stopMotors();
 
         telemetry.addLine("Driving Forward");
@@ -79,13 +78,13 @@ public class AutonomousSkyNet extends LinearOpMode {
 
         telemetry.addLine("Turning Left");
         telemetry.update();
-        Bot.turnLeft(1);
-        sleep(1000);
+        Bot.turnLeft(0.5);
+        sleep(550);
         Bot.stopMotors();
 
         telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackward(1);
+        Bot.driveForward(1);
         sleep(850);
         Bot.stopMotors();
 
