@@ -2,8 +2,6 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_DentalHealth;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
 @Autonomous(name = "Dental Auto Encoders")
 
 public class Autonomous2DentalHealth_Alen2 extends AutonomousDentalHealth_Alen2{
