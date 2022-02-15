@@ -31,15 +31,15 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
     {
 
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackword(-1);
+        Bot.driveForward(-1);
         sleep(850);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackword(-1);
+        Bot.driveForward(-1);
         sleep(850);
         Bot.stopMotor();
 
@@ -51,9 +51,9 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
         sleep(650);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackword(-1);
+        Bot.driveForward(-1);
         sleep(850);
         Bot.stopMotor();
 
@@ -65,9 +65,9 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
         sleep(650);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackword(-1);
+        Bot.driveForward(-1);
         sleep(850);
         Bot.stopMotor();
 
@@ -79,9 +79,9 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
         sleep(750);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackword(-1);
+        Bot.driveForward(-1);
         sleep(950);
         Bot.stopMotor();
 
@@ -93,9 +93,9 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
         sleep(640);
         Bot.stopMotor();
 
-        telemetry.addLine("Driving Backward");
+        telemetry.addLine("Driving Forward");
         telemetry.update();
-        Bot.driveBackword(-1);
+        Bot.driveForward(-1);
         sleep(850);
         Bot.stopMotor();
 
