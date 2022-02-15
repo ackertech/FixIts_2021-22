@@ -35,7 +35,6 @@ public class TankTeleOp extends OpMode {
 
         drive();
         armControl();
-        ledControl();
         speedControl();
 
     }
@@ -46,19 +45,19 @@ public class TankTeleOp extends OpMode {
 
     public void drive(){
 
-        if (gamepad1.left_stick_y < -.1) {
+        if (gamepad1.left_stick_y < -0.1) {
 
             Bot.driveForward( speedMultiply * gamepad1.left_stick_y);
         }
-        else if (gamepad1.left_stick_y > .1) {
+        else if (gamepad1.left_stick_y > 0.1) {
 
             Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
         }
-        else if (gamepad1.left_stick_x > .1) {
+        else if (gamepad1.left_stick_x > 0.1) {
 
             Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
         }
-        else if (gamepad1.left_stick_x < -.1) {
+        else if (gamepad1.left_stick_x < -0.1) {
 
             Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
         }
@@ -69,28 +68,6 @@ public class TankTeleOp extends OpMode {
     }
 
 
-    //Control Methods for lowering and rasing the flag
-
-    public void armControl () {
-
-        if (gamepad1.a) {
-            Bot.raiseArm();
-        }
-        else if (gamepad1.b)  {
-            Bot.lowerArm();
-        }
-
-    }
-
-    // Control methods for changing the LED Lights
-    public void ledControl () {
-
-        if (gamepad1.left_trigger > 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_RAINBOW_PALETTE);
-        } else if (gamepad1.right_trigger > 0.1) {
-            Bot.setLedPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
-        }
-    }
 
     // Control methods for changing speed
     public void speedControl() {
@@ -110,7 +87,18 @@ public class TankTeleOp extends OpMode {
         }
     }
 
+    //Control Methods for lowering and rasing the flag
 
+    public void armControl () {
+
+        if (gamepad1.a) {
+            Bot.raiseArm();
+        }
+        else if (gamepad1.b)  {
+            Bot.lowerArm();
+        }
+
+    }
 
 
 
