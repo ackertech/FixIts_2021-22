@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Johntavious;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Base.Robot.LabBot;
 
 //@Disabled
 @Autonomous (name = "Johntavious:Nick")
@@ -27,14 +26,14 @@ public class AutonomousJohntavious_Nick extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            telemetry.addLine("Driving Backward");
+            telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveBackward(1);
+            Bot.driveForward(1);
             sleep(1000);
 
-            telemetry.addLine("Driving Backward");
+            telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveBackward(0.5);
+            Bot.driveForward(0.5);
             sleep(1000);
 
             telemetry.addLine("Turning Right");
@@ -42,9 +41,9 @@ public class AutonomousJohntavious_Nick extends LinearOpMode {
             Bot.rotateLeft(0.5);
             sleep(500);
 
-            telemetry.addLine("Driving Backward");
+            telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveBackward(1);
+            Bot.driveForward(1);
             sleep(800);
 
             telemetry.addLine("Turning Right");
@@ -52,9 +51,9 @@ public class AutonomousJohntavious_Nick extends LinearOpMode {
             Bot.rotateLeft(0.5);
             sleep(500);
 
-            telemetry.addLine("Driving Backward");
+            telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveBackward(1);
+            Bot.driveForward(1);
             sleep(800);
 
             telemetry.addLine("Turning Right");
@@ -62,9 +61,9 @@ public class AutonomousJohntavious_Nick extends LinearOpMode {
             Bot.rotateLeft(0.5);
             sleep(500);
 
-            telemetry.addLine("Driving Backward");
+            telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveBackward(1);
+            Bot.driveForward(1);
             sleep(800);
 
             telemetry.addLine("Turning Left");
@@ -72,9 +71,9 @@ public class AutonomousJohntavious_Nick extends LinearOpMode {
             Bot.rotateRight(0.5);
             sleep(500);
 
-            telemetry.addLine("Driving Backward");
+            telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveBackward(1);
+            Bot.driveForward(1);
             sleep(800);
 
             requestOpModeStop();
