@@ -74,11 +74,10 @@ public class Skynet_Sarah extends Twomotordrive_Sarah{
     public void waveFlagLeft() {
         flag.setPosition(0.35);
     }
+        public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
 
-//    public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
-
- //       ledLights.setPattern(patternName);
- //   }
+       ledLights.setPattern(patternName);
+    }
 
 
 }
