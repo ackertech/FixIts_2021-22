@@ -43,8 +43,6 @@ public class TwoMotorDrive_Alen2 {
     public void driveForward(double power) {
 
 
-
-
         double ABSpower = Math.abs(power);
 
         frontLeftMotor.setPower(ABSpower);
@@ -89,4 +87,57 @@ public class TwoMotorDrive_Alen2 {
         rearRightMotor.setPower(-ABSpower);
 
     }
+
+    public void driveForward ( double speed, double rotations) {
+
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+            driveForward(speed);
+        }
+        stopMotor();
+
+
+    }
+
+    public void driveBackward ( double speed, double rotations) {
+
+        double ticks = rotations * (-1) * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+            driveBackword(-speed);
+        }
+        stopMotor();
+
+
+    }
+
+    public void rotateRight ( double speed, double rotations) {
+
+        double ticks = rotations * (0.5) * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+            rotateRight(speed);
+        }
+        stopMotor();
+
+
+    }
+
+    public void rotateLeft ( double speed, double rotations) {
+
+        double ticks = rotations * (-0.5) * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+            rotateLeft(-speed);
+        }
+        stopMotor();
+
+
+    }
+
 }

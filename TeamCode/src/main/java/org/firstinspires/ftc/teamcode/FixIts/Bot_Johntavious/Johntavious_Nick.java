@@ -31,10 +31,10 @@ public class Johntavious_Nick extends TwoMotorDrive_Nick {
 
 
 
-      frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
-      frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-      backRightMotor.setDirection(DcMotor.Direction.FORWARD);
-      backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+      frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
+      frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+      backRightMotor.setDirection(DcMotor.Direction.REVERSE);
+      backLeftMotor.setDirection(DcMotor.Direction.FORWARD);
 
       setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
       setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
