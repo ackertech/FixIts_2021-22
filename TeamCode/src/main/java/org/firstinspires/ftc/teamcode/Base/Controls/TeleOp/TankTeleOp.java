@@ -44,7 +44,7 @@ public class TankTeleOp extends OpMode {
 
     public void drive() {
 
-        if (tankDrive == false) {
+        if (!tankDrive) {
 
             if (gamepad1.left_stick_y < -0.1) {
                 Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
