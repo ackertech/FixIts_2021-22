@@ -15,7 +15,8 @@ public class HammerHeadTeleOp extends OpMode {
 
     //TeleOp Variables
     public double speedMultiply = 1;
-    public boolean tankDrive = true;
+    public boolean tankDrive = false;
+    public boolean arcadeDrive = true;
 
     // Construct the Physical Bot based on the Robot Class
     public HammerHead Bot = new HammerHead();
@@ -44,7 +45,7 @@ public class HammerHeadTeleOp extends OpMode {
 
     public void drive() {
 
-        if (!tankDrive) {
+        if (arcadeDrive) {
 
             if (gamepad1.left_stick_y < -0.1) {
                 Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
@@ -58,20 +59,25 @@ public class HammerHeadTeleOp extends OpMode {
                 Bot.stopMotors();
             }
         }
-        else {
+        else if (tankDrive) {
 
             if (gamepad1.left_stick_y < -0.1) {
                 Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
             } else if (gamepad1.left_stick_y > 0.1) {
                 Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
-            } else if (gamepad1.right_stick_x > 0.1) {
-                Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
-            } else if (gamepad1.right_stick_x < -0.1) {
-                Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
-            } else {
+            }
+            else {
                 Bot.stopMotors();
             }
 
+            if (gamepad1.right_stick_x > 0.1) {
+                Bot.rotateRight(speedMultiply * gamepad1.right_stick_x);
+            } else if (gamepad1.right_stick_x < -0.1) {
+                Bot.rotateLeft(speedMultiply * gamepad1.right_stick_x);
+            }
+            else {
+                Bot.stopMotors();
+            }
 
         }
     }
@@ -80,12 +86,14 @@ public class HammerHeadTeleOp extends OpMode {
 
     public void driveControl () {
 
-            if (gamepad1.left_bumper) {
-                tankDrive = true;
-            }
-            if (gamepad1.right_bumper) {
-                tankDrive = false;
-            }
+        if (gamepad1.left_bumper) {
+            tankDrive = true;
+            arcadeDrive = false;
+        }
+        if (gamepad1.right_bumper) {
+            tankDrive = false;
+            arcadeDrive = true;
+        }
     }
 
      // Control methods for changing speed

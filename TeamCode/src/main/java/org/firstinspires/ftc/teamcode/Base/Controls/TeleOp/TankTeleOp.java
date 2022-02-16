@@ -66,12 +66,17 @@ public class TankTeleOp extends OpMode {
             } else if (gamepad1.left_stick_y > 0.1) {
                 Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
             }
-            if (gamepad1.right_stick_x > 0.1) {
-                Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
-            } else if (gamepad1.right_stick_x < -0.1) {
-                Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
+            else {
+                Bot.stopMotors();
             }
-
+            if (gamepad1.right_stick_x > 0.1) {
+                Bot.rotateRight(speedMultiply * gamepad1.right_stick_x);
+            } else if (gamepad1.right_stick_x < -0.1) {
+                Bot.rotateLeft(speedMultiply * gamepad1.right_stick_x);
+            }
+            else {
+                Bot.stopMotors();
+            }
 
         }
     }
