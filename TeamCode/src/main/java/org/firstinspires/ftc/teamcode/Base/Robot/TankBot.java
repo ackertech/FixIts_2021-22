@@ -34,16 +34,16 @@ public class TankBot extends Tank_FourMotorDrive {
         hwBot = hwMap;
 
         //Define the name of the motors used in the control hub configuration
-        frontLeftMotor =  hwBot.dcMotor.get("front_left_motor");
-        rearLeftMotor =  hwBot.dcMotor.get("rear_left_motor");
-        frontRightMotor = hwBot.dcMotor.get("front_right_motor");
-        rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
+        frontLeftMotor =  hwBot.dcMotor.get("front_left_motor"); // Port 0
+        rearLeftMotor =  hwBot.dcMotor.get("rear_left_motor");  // Port 1
+        frontRightMotor = hwBot.dcMotor.get("front_right_motor"); //Port 2
+        rearRightMotor = hwBot.dcMotor.get("rear_right_motor"); // Port 3
 
         //Sets the direction of the robot's motors based on physical placement
-        frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
-        rearRightMotor.setDirection(DcMotor.Direction.REVERSE);
-        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+        frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        rearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //Define this robot run modes
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

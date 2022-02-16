@@ -44,7 +44,7 @@ public class AutoASL_Bot extends LinearOpMode {
                 telemetry.update();
 
                 Bot.createWords(letter);
-                sleep(2000);
+                sleep(1000);
                 Bot.closeHand();
 
             }
