@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 @Disabled
-@TeleOp(name = "Tank")
+@TeleOp(name = "Tank Drive")
 
 public class TankTeleOp extends OpMode {
 
@@ -25,7 +25,6 @@ public class TankTeleOp extends OpMode {
     public void init()    {
 
         Bot.initRobot(hardwareMap);
-
 
     }
 

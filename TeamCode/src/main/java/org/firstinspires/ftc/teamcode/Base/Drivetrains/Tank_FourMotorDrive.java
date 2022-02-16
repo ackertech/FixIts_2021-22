@@ -18,9 +18,6 @@ public class Tank_FourMotorDrive {
     }
 
 
-    public Tank_FourMotorDrive() {}
-
-
     public void setMotorRunModes (DcMotor.RunMode mode) {               //sets the mode/behavior for the motor
 
         frontLeftMotor.setMode(mode);

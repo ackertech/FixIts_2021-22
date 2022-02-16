@@ -21,19 +21,11 @@ public class TankBot extends Tank_FourMotorDrive {
     public Servo lazySusan = null;
     public Servo elbow = null;
 
-    // Variables used for LED lights
-    public RevBlinkinLedDriver ledLights;
-    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
-
-    // Variable used for Timers
-    public ElapsedTime currentTime = new ElapsedTime();
-
 
     // Robot Physical Constructor used in TeleOp and Autonomous classes
     public TankBot() {
 
     }
-
 
     // Custom Method that will initialize the robot hardware in TeleOp and Autonomous
 
@@ -103,10 +95,6 @@ public class TankBot extends Tank_FourMotorDrive {
 
     }
 
-       public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
-                ledLights.setPattern(patternName);
-
-    }
 
 
 
