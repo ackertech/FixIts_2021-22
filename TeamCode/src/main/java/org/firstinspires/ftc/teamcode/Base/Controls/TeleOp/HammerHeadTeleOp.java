@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.HammerHead;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
@@ -17,6 +18,17 @@ public class HammerHeadTeleOp extends OpMode {
     public double speedMultiply = 1;
     public boolean tankDrive = false;
     public boolean arcadeDrive = true;
+
+    //Motor Drive and Power Variables
+    double leftStickYVal;
+    double leftStickXVal;
+    double rightStickXVal;
+    double rightStickYVal;
+
+    double frontLeftSpeed;
+    double frontRightSpeed;
+    double rearLeftSpeed;
+    double rearRightSpeed;
 
     // Construct the Physical Bot based on the Robot Class
     public HammerHead Bot = new HammerHead();
@@ -45,16 +57,27 @@ public class HammerHeadTeleOp extends OpMode {
 
     public void drive() {
 
+        leftStickYVal = gamepad1.left_stick_y;
+        leftStickXVal = gamepad1.left_stick_x;
+        rightStickYVal = gamepad1.right_stick_y;
+        rightStickXVal = gamepad1.right_stick_x;
+
+        frontLeftSpeed = leftStickYVal + leftStickXVal + rightStickXVal;
+        frontRightSpeed = leftStickYVal - leftStickXVal - rightStickXVal;
+        rearLeftSpeed = leftStickYVal - leftStickXVal + rightStickXVal;
+        rearRightSpeed = leftStickYVal + leftStickXVal - rightStickXVal;
+
+
         if (arcadeDrive) {
 
             if (gamepad1.left_stick_y < -0.1) {
-                Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+                Bot.driveForward(frontLeftSpeed,frontRightSpeed,rearLeftSpeed,rearRightSpeed);
             } else if (gamepad1.left_stick_y > 0.1) {
-                Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+                Bot.driveBackward(frontLeftSpeed,frontRightSpeed,rearLeftSpeed,rearRightSpeed);
             } else if (gamepad1.left_stick_x > 0.1) {
-                Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
+                Bot.turnRight(frontLeftSpeed,frontRightSpeed,rearLeftSpeed,rearRightSpeed);
             } else if (gamepad1.left_stick_x < -0.1) {
-                Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
+                Bot.turnLeft(frontLeftSpeed,frontRightSpeed,rearLeftSpeed,rearRightSpeed);
             } else {
                 Bot.stopMotors();
             }
@@ -62,18 +85,18 @@ public class HammerHeadTeleOp extends OpMode {
         else if (tankDrive) {
 
             if (gamepad1.left_stick_y < -0.1) {
-                Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+                Bot.driveForward(frontLeftSpeed,frontRightSpeed,rearLeftSpeed,rearRightSpeed);
             } else if (gamepad1.left_stick_y > 0.1) {
-                Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+                Bot.driveBackward(frontLeftSpeed,frontRightSpeed,rearLeftSpeed,rearRightSpeed);
             }
             else {
                 Bot.stopMotors();
             }
 
             if (gamepad1.right_stick_x > 0.1) {
-                Bot.rotateRight(speedMultiply * gamepad1.right_stick_x);
+                Bot.turnRight(frontLeftSpeed,frontRightSpeed,rearLeftSpeed,rearRightSpeed);
             } else if (gamepad1.right_stick_x < -0.1) {
-                Bot.rotateLeft(speedMultiply * gamepad1.right_stick_x);
+                Bot.turnLeft(frontLeftSpeed,frontRightSpeed,rearLeftSpeed,rearRightSpeed);
             }
             else {
                 Bot.stopMotors();

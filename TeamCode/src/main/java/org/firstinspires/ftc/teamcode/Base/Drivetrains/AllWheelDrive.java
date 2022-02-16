@@ -34,41 +34,39 @@ public class AllWheelDrive {
     }
 
 
-    public void driveForward (double power) {
+    public void driveForward (double FL,double FR,double RL,double RR) {
 
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(ABSpower);
-        rearLeftMotor.setPower(ABSpower);
-        rearRightMotor.setPower(ABSpower);
+        frontLeftMotor.setPower(Math.abs(FL));
+        frontRightMotor.setPower(Math.abs(FR));
+        rearLeftMotor.setPower(Math.abs(RL));
+        rearRightMotor.setPower(Math.abs(RR));
 
     }
 
-    public void driveBackward (double power) {
+    public void driveBackward (double FL,double FR,double RL,double RR) {
 
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(-ABSpower);
-        frontRightMotor.setPower(-ABSpower);
-        rearLeftMotor.setPower(-ABSpower);
-        rearRightMotor.setPower(-ABSpower);
+        frontLeftMotor.setPower(-Math.abs(FL));
+        frontRightMotor.setPower(-Math.abs(FR));
+        rearLeftMotor.setPower(-Math.abs(RL));
+        rearRightMotor.setPower(-Math.abs(RR));
+
     }
 
-    public void rotateLeft (double power) {
+    public void turnLeft (double FL,double FR,double RL,double RR) {
 
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(-ABSpower);
-        rearLeftMotor.setPower(-ABSpower);
-        frontRightMotor.setPower(ABSpower);
-        rearRightMotor.setPower(ABSpower);
+        frontLeftMotor.setPower(-Math.abs(FL));
+        frontRightMotor.setPower(Math.abs(FR));
+        rearLeftMotor.setPower(-Math.abs(RL));
+        rearRightMotor.setPower(Math.abs(RR));
+
     }
 
-    public void rotateRight (double power) {
+    public void turnRight (double FL,double FR,double RL,double RR) {
 
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(ABSpower);
-        rearLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(-ABSpower);
-        rearRightMotor.setPower(-ABSpower);
+        frontLeftMotor.setPower(Math.abs(FL));
+        frontRightMotor.setPower(-Math.abs(FR));
+        rearLeftMotor.setPower(Math.abs(RL));
+        rearRightMotor.setPower(-Math.abs(RR));
 
     }
 

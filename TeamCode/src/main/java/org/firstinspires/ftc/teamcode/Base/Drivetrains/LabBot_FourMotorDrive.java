@@ -87,101 +87,119 @@ public class LabBot_FourMotorDrive {
     }
 
     //******Drive without Encoder Methods********
-    public void driveForward( double speed, double rotations) {
+    public void driveForward( double power, double rotations) {
 
         double ticks = rotations * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
         setMotorRunModes(currentMotorRunMode);
         while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
-            driveForward(speed);
+            driveForward(power);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotors();
     }
 
-    public void driveBackward ( double speed, double rotations){
+    public void driveBackward ( double power, double rotations){
 
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(currentMotorRunMode);
 
         while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
-            driveBackward(-speed);
+            driveBackward(power);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotors();
     }
 
-    public void rotateLeft (double speed, double rotations) {
+    public void rotateLeft (double power, double rotations) {
         double ticks = Math.abs(rotations) * (-1) * TICKS_PER_ROTATION; //strafing left moves encoder towards positive infinity
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(currentMotorRunMode);
 
         while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
-            rotateLeft(speed);
+            rotateLeft(power);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotors();
     }
 
 
 
-    public void rotateRight (double speed, double rotations) {
+    public void rotateRight (double power, double rotations) {
         double ticks = Math.abs(rotations) * TICKS_PER_ROTATION; //strafing right moves encoder towards -infinity
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(currentMotorRunMode);
 
         while(frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
-            rotateRight(speed);
+            rotateRight(power);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotors();
     }
 
     //******Drive with Encoder Methods********
 
-    public void driveForward( double speed, double rotations, double timeout) {
+    public void driveForward( double power, double rotations, double timeout) {
 
         double ticks = Math.abs(rotations) * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_USING_ENCODER);
-
         runtime.reset();
 
         while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive() && runtime.seconds() < timeout) {
-            driveForward(speed);
+            driveForward(power);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.addData("RunTime: ", runtime);
+            linearOp.telemetry.update();
         }
         stopMotors();
     }
 
-    public void driveBackward ( double speed, double rotations,double timeout){
+    public void driveBackward ( double power, double rotations,double timeout){
 
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_USING_ENCODER);
 
         while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive() && runtime.seconds() < timeout) {
-            driveBackward(-speed);
+            driveBackward(power);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.addData("RunTime: ", runtime);
+            linearOp.telemetry.update();
         }
         stopMotors();
     }
 
-    public void rotateLeft (double speed, double rotations,double timeout) {
+    public void rotateLeft (double power, double rotations,double timeout) {
         double ticks = Math.abs(rotations) * (-1) * TICKS_PER_ROTATION; //strafing left moves encoder towards positive infinity
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_USING_ENCODER);
 
         while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive() && runtime.seconds() < timeout) {
-            rotateLeft(speed);
+            rotateLeft(power);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.addData("RunTime: ", runtime);
+            linearOp.telemetry.update();
         }
         stopMotors();
     }
 
 
-    public void rotateRight (double speed, double rotations,double timeout) {
+    public void rotateRight (double power, double rotations,double timeout) {
         double ticks = Math.abs(rotations) * TICKS_PER_ROTATION; //strafing right moves encoder towards -infinity
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_USING_ENCODER);
 
         while(frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive() && runtime.seconds() < timeout) {
-            rotateRight(speed);
+            rotateRight(power);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.addData("RunTime: ", runtime);
+            linearOp.telemetry.update();
         }
         stopMotors();
     }
