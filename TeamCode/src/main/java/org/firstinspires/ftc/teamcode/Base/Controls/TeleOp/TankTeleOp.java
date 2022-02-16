@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
-@Disabled
-@TeleOp(name = "Tank Drive")
+//@Disabled
+@TeleOp(name = "TankBot Drive")
 
 public class TankTeleOp extends OpMode {
 
@@ -83,8 +83,7 @@ public class TankTeleOp extends OpMode {
             if (gamepad1.left_bumper) {
                 tankDrive = true;
             }
-
-            if (gamepad1.right_bumper) {
+            else if (gamepad1.right_bumper) {
                 tankDrive = false;
             }
     }
@@ -94,7 +93,6 @@ public class TankTeleOp extends OpMode {
 
             if (gamepad1.dpad_right) {
                 speedMultiply = 0.25;
-
             } else if (gamepad1.dpad_down) {
                 speedMultiply = 0.50;
             } else if (gamepad1.dpad_left) {

@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.HammerHead;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "Hammer Head")
+@TeleOp(name = "HammerHead Drive")
 
 public class HammerHeadTeleOp extends OpMode {
 
@@ -83,8 +83,7 @@ public class HammerHeadTeleOp extends OpMode {
             if (gamepad1.left_bumper) {
                 tankDrive = true;
             }
-
-            if (gamepad1.right_bumper) {
+            else if (gamepad1.right_bumper) {
                 tankDrive = false;
             }
     }
