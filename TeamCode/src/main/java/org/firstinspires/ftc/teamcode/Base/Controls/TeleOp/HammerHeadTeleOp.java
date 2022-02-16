@@ -83,7 +83,7 @@ public class HammerHeadTeleOp extends OpMode {
             if (gamepad1.left_bumper) {
                 tankDrive = true;
             }
-            else if (gamepad1.right_bumper) {
+            if (gamepad1.right_bumper) {
                 tankDrive = false;
             }
     }
