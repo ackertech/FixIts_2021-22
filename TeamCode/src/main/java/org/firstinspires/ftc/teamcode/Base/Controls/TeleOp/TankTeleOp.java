@@ -15,6 +15,7 @@ public class TankTeleOp extends OpMode {
 
     //TeleOp Variables
     public double speedMultiply = 1;
+    public boolean tankDrive = true;
 
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bot = new TankBot();
@@ -22,7 +23,7 @@ public class TankTeleOp extends OpMode {
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
     @Override
-    public void init()    {
+    public void init() {
 
         Bot.initRobot(hardwareMap);
 
@@ -30,78 +31,77 @@ public class TankTeleOp extends OpMode {
 
     // TeleOp Loop Method.  This start AFTER clicking the Play Button on the Driver Station Phone
 
-    public void loop () {
+    public void loop() {
 
-        drive();
-        armControl();
         speedControl();
+        driveControl();
+        drive();
 
     }
-
 
 
     // The control methods for driving the  Robot during TeleOp
 
-    public void drive(){
+    public void drive() {
 
-        if (gamepad1.left_stick_y < -0.1) {
+        if (tankDrive == false) {
 
-            Bot.driveForward( speedMultiply * gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_y > 0.1) {
-
-            Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
-        }
-        else if (gamepad1.left_stick_x > 0.1) {
-
-            Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
-        }
-        else if (gamepad1.left_stick_x < -0.1) {
-
-            Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
+            if (gamepad1.left_stick_y < -0.1) {
+                Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+            } else if (gamepad1.left_stick_y > 0.1) {
+                Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+            } else if (gamepad1.left_stick_x > 0.1) {
+                Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
+            } else if (gamepad1.left_stick_x < -0.1) {
+                Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
+            } else {
+                Bot.stopMotors();
+            }
         }
         else {
 
-            Bot.stopMotors();
+            if (gamepad1.left_stick_y < -0.1) {
+                Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+            } else if (gamepad1.left_stick_y > 0.1) {
+                Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+            } else if (gamepad1.right_stick_x > 0.1) {
+                Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
+            } else if (gamepad1.right_stick_x < -0.1) {
+                Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
+            } else {
+                Bot.stopMotors();
+            }
+
+
         }
     }
 
+    // Set Drive Mode
 
+    public void driveControl () {
 
-    // Control methods for changing speed
-    public void speedControl() {
+            if (gamepad1.left_bumper) {
+                tankDrive = true;
+            }
 
-        if (gamepad1.dpad_right) {
-            speedMultiply = 0.25;
-
-        }
-        else if (gamepad1.dpad_down) {
-            speedMultiply = 0.50;
-        }
-        else if (gamepad1.dpad_left) {
-            speedMultiply = 0.75;
-        }
-        else if (gamepad1.dpad_up) {
-            speedMultiply = 1.00;
-        }
+            if (gamepad1.right_bumper) {
+                tankDrive = false;
+            }
     }
 
-    //Control Methods for lowering and rasing the flag
+     // Control methods for changing speed
+     public void speedControl () {
 
-    public void armControl () {
+            if (gamepad1.dpad_right) {
+                speedMultiply = 0.25;
 
-        if (gamepad1.a) {
-            Bot.raiseArm();
-        }
-        else if (gamepad1.b)  {
-            Bot.lowerArm();
-        }
-
+            } else if (gamepad1.dpad_down) {
+                speedMultiply = 0.50;
+            } else if (gamepad1.dpad_left) {
+                speedMultiply = 0.75;
+            } else if (gamepad1.dpad_up) {
+                speedMultiply = 1.00;
+            }
     }
-
-
-
-
-
 
 }
