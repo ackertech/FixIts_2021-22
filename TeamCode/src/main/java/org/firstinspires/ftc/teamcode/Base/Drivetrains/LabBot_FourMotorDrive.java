@@ -108,7 +108,7 @@ public class LabBot_FourMotorDrive {
 
         while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
             driveBackward(power);
-            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.addData("Backward Ticks: ", frontLeftMotor.getCurrentPosition());
             linearOp.telemetry.update();
         }
         stopMotors();
@@ -121,7 +121,7 @@ public class LabBot_FourMotorDrive {
 
         while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
             rotateLeft(power);
-            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.addData("Turning Left Ticks: ", frontLeftMotor.getCurrentPosition());
             linearOp.telemetry.update();
         }
         stopMotors();
@@ -136,7 +136,7 @@ public class LabBot_FourMotorDrive {
 
         while(frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
             rotateRight(power);
-            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.addData("Turning Right Ticks: ", frontLeftMotor.getCurrentPosition());
             linearOp.telemetry.update();
         }
         stopMotors();
