@@ -47,6 +47,15 @@ public class FourMotorDrive {
         rightMotor2.setPower(ABSPower);
 
     }
+    public void driveForward( double speed, double rotations) {
+        double ticks = rotations * Ticks_Per_Rotation;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (leftMotor2.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+            driveForward(speed);
+        }
+        stopMotor();
+    }
     public void driveBackward(double power){
 
         double ABSPower=Math.abs(power);
@@ -55,6 +64,15 @@ public class FourMotorDrive {
         rightMotor1.setPower(-ABSPower);
         leftMotor2.setPower(-ABSPower);
         rightMotor2.setPower(-ABSPower);
+    }
+    public void driveBackward( double speed, double rotations) {
+        double ticks = rotations * (-1) * Ticks_Per_Rotation;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (leftMotor2.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+            driveBackward(-speed);
+        }
+        stopMotor();
     }
 
     public void rotateLeft(double power){
@@ -66,6 +84,15 @@ public class FourMotorDrive {
         rightMotor1.setPower(-ABSPower);
 
     }
+    public void rotateLeft( double speed, double rotations) {
+        double ticks = rotations * (-1) * Ticks_Per_Rotation;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (leftMotor2.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+            rotateLeft(-speed);
+        }
+        stopMotor();
+    }
 
     public void rotateRight(double power){
         double ABSPower=Math.abs(power);
@@ -73,6 +100,15 @@ public class FourMotorDrive {
         leftMotor2.setPower(-ABSPower);
         rightMotor2.setPower(ABSPower);
         rightMotor1.setPower(ABSPower);
+    }
+    public void rotateRight( double speed, double rotations) {
+        double ticks = rotations * Ticks_Per_Rotation;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (leftMotor2.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+            rotateRight(speed);
+        }
+        stopMotor();
     }
 
 }

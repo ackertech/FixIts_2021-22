@@ -1,17 +1,16 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 
-import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Base.Robot.HammerHead;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot Drive")
+@TeleOp(name = "Hammer Drive")
 
-public class TankTeleOp extends OpMode {
+public class HammerTeleOp extends OpMode {
 
     //TeleOp Driving Behavior Variables
     public double speedMultiply = .50;
@@ -21,7 +20,7 @@ public class TankTeleOp extends OpMode {
     public double rightSidePower;
 
     // Construct the Physical Bot based on the Robot Class
-    public TankBot Bot = new TankBot();
+    public HammerHead Bot = new HammerHead();
 
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
@@ -57,9 +56,9 @@ public class TankTeleOp extends OpMode {
                 } else if (gamepad1.left_stick_y > 0.1) {
                     Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
                 } else if (gamepad1.left_stick_x > 0.1) {
-                    Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
+                    Bot.turnRight(speedMultiply * gamepad1.left_stick_x);
                 } else if (gamepad1.left_stick_x < -0.1) {
-                    Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
+                    Bot.turnLeft(speedMultiply * gamepad1.left_stick_x);
                 } else {
                     Bot.stopMotors();
                 }
@@ -76,17 +75,13 @@ public class TankTeleOp extends OpMode {
                     Bot.stopMotors();
                 }
                 if (gamepad1.right_stick_x > 0.1) {
-                    Bot.rotateRight(speedMultiply * gamepad1.right_stick_x);
+                    Bot.turnRight(speedMultiply * gamepad1.right_stick_x);
                 } else if (gamepad1.right_stick_x < -0.1) {
-                    Bot.rotateLeft(speedMultiply * gamepad1.right_stick_x);
+                    Bot.turnLeft(speedMultiply * gamepad1.right_stick_x);
                 } else {
                     Bot.stopMotors();
                 }
 
-            case "tankDrive":
-                leftSidePower = speedMultiply * gamepad1.left_stick_y * (-1);
-                rightSidePower = speedMultiply * gamepad1.right_stick_y * (-1);
-                Bot.tankDrive(leftSidePower,rightSidePower);
 
         }
     }
@@ -95,9 +90,9 @@ public class TankTeleOp extends OpMode {
 
     public void driveControl () {
 
-            if (gamepad1.a) { driveStyle = "arcade1Stick"; }
-            if (gamepad1.b) { driveStyle = "arcade2Stick"; }
-            if (gamepad1.x) { driveStyle = "tankDrive"; }
+            if (gamepad1.left_bumper) { driveStyle = "arcade1Stick"; }
+            if (gamepad1.right_bumper) { driveStyle = "arcade2Stick"; }
+
     }
 
      // Control methods for changing speed
