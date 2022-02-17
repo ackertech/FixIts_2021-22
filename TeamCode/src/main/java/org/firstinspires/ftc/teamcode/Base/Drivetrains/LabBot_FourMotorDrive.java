@@ -94,7 +94,7 @@ public class LabBot_FourMotorDrive {
         setMotorRunModes(currentMotorRunMode);
         while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
             driveForward(power);
-            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.addData("Forward Ticks: ", frontLeftMotor.getCurrentPosition());
             linearOp.telemetry.update();
         }
         stopMotors();

@@ -26,44 +26,42 @@ public class autoProgram2 extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1, 1);
-            Bot.stopMotor();
+            Bot.driveForward(.5, 7);
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateRight(1, 1);
+            Bot.rotateRight(.5, 4);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1, 1);
-            Bot.stopMotor();
+            Bot.driveForward(.5, 7);
+
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateRight(1, 1);
+            Bot.rotateRight(.5, 4);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1, 1);
-            Bot.stopMotor();
+            Bot.driveForward(.5, 7);
+
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateRight(1, 1);
+            Bot.rotateRight(.5, 4);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1, 1);
+            Bot.driveForward(.5, 7);
             Bot.stopMotor();
 
             telemetry.addLine("Turning Left");
-            telemetry.addLine("Ticks" + Bot.leftMotor2.getCurrentPosition());
             telemetry.update();
-            Bot.rotateLeft(1, 1);
+            Bot.rotateLeft(.5, 4);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(1, 1);
+            Bot.driveForward(.5, 7);
             Bot.stopMotor();
 
 

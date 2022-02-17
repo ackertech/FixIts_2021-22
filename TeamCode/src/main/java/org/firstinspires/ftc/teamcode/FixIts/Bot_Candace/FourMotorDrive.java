@@ -53,6 +53,8 @@ public class FourMotorDrive {
         setMotorRunModes(currentMotorRunMode);
         while (leftMotor2.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
             driveForward(speed);
+            linearOp.telemetry.addData("Forward Ticks: ", leftMotor2.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotor();
     }
@@ -71,6 +73,8 @@ public class FourMotorDrive {
         setMotorRunModes(currentMotorRunMode);
         while (leftMotor2.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
             driveBackward(speed);
+            linearOp.telemetry.addData("Backward Ticks: ", leftMotor2.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotor();
     }
@@ -90,6 +94,8 @@ public class FourMotorDrive {
         setMotorRunModes(currentMotorRunMode);
         while (leftMotor2.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
             rotateLeft(speed);
+            linearOp.telemetry.addData("Left Ticks: ", leftMotor2.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotor();
     }
@@ -107,6 +113,8 @@ public class FourMotorDrive {
         setMotorRunModes(currentMotorRunMode);
         while (leftMotor2.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
             rotateRight(speed);
+            linearOp.telemetry.addData("Right Ticks: ", leftMotor2.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotor();
     }
