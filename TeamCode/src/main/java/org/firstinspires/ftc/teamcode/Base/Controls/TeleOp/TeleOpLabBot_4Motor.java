@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
 public class TeleOpLabBot_4Motor extends OpMode {
 
     public double speedMultiply = 0.50;
-    public boolean tankDrive = false;
-    public boolean arcadeDrive = true;
+    public boolean arcade2StickDrive = false;
+    public boolean arcade1StickDrive = true;
 
 
     public LabBot_4Motor Bot = new LabBot_4Motor();
@@ -34,7 +34,7 @@ public class TeleOpLabBot_4Motor extends OpMode {
 
     public void drive() {
 
-        if (arcadeDrive) {
+        if (arcade1StickDrive) {
 
             if (gamepad1.left_stick_y < -0.1) {
                 Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
@@ -48,7 +48,7 @@ public class TeleOpLabBot_4Motor extends OpMode {
                 Bot.stopMotors();
             }
         }
-        else if (tankDrive) {
+        else if (arcade2StickDrive) {
 
             if (gamepad1.left_stick_y < -0.1) {
                 Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
@@ -91,12 +91,12 @@ public class TeleOpLabBot_4Motor extends OpMode {
     public void driveControl () {
 
         if (gamepad1.left_bumper) {
-            tankDrive = true;
-            arcadeDrive = false;
+            arcade1StickDrive = true;
+            arcade2StickDrive = false;
         }
         if (gamepad1.right_bumper) {
-            tankDrive = false;
-            arcadeDrive = true;
+            arcade1StickDrive = false;
+            arcade2StickDrive = true;
         }
     }
 

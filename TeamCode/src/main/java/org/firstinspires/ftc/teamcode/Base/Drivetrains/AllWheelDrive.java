@@ -33,6 +33,38 @@ public class AllWheelDrive {
         rearRightMotor.setPower(0);
     }
 
+    public void driveForward (double power) {
+
+        frontLeftMotor.setPower(power);
+        frontRightMotor.setPower(power);
+        rearLeftMotor.setPower(power);
+        rearRightMotor.setPower(power);
+
+    }
+
+    public void driveBackward (double power) {
+
+        frontLeftMotor.setPower(-power);
+        frontRightMotor.setPower(-power);
+        rearLeftMotor.setPower(-power);
+        rearRightMotor.setPower(-power);
+    }
+
+    public void turnLeft (double power) {
+
+        frontLeftMotor.setPower(-power);
+        rearLeftMotor.setPower(-power);
+        frontRightMotor.setPower(power);
+        rearRightMotor.setPower(power);
+    }
+
+    public void turnRight (double power) {
+
+        frontLeftMotor.setPower(power);
+        rearLeftMotor.setPower(power);
+        frontRightMotor.setPower(-power);
+        rearRightMotor.setPower(-power);
+    }
 
     public void driveForward (double FL,double FR,double RL,double RR) {
 
@@ -40,7 +72,6 @@ public class AllWheelDrive {
         frontRightMotor.setPower(Math.abs(FR));
         rearLeftMotor.setPower(Math.abs(RL));
         rearRightMotor.setPower(Math.abs(RR));
-
     }
 
     public void driveBackward (double FL,double FR,double RL,double RR) {
