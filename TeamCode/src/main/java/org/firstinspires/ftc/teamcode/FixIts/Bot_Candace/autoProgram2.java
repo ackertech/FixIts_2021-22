@@ -15,6 +15,7 @@ public class autoProgram2 extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException {
         Bot.initRobot(hardwareMap);
+        Bot.setLinearOp(this);
 
         telemetry.addLine("Awaiting Start");
         telemetry.update();
@@ -25,12 +26,12 @@ public class autoProgram2 extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addLine("Driving Forward");
             telemetry.update();
-            Bot.driveForward(2.2, 1);
+            Bot.driveForward(1, 1);
             Bot.stopMotor();
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateRight(1, 0.5);
+            Bot.rotateRight(1, 1);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
@@ -39,7 +40,7 @@ public class autoProgram2 extends LinearOpMode {
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateRight(1, 0.5);
+            Bot.rotateRight(1, 1);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
@@ -48,7 +49,7 @@ public class autoProgram2 extends LinearOpMode {
 
             telemetry.addLine("Turning Right");
             telemetry.update();
-            Bot.rotateRight(1, 0.5);
+            Bot.rotateRight(1, 1);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();
@@ -56,8 +57,9 @@ public class autoProgram2 extends LinearOpMode {
             Bot.stopMotor();
 
             telemetry.addLine("Turning Left");
+            telemetry.addLine("Ticks" + Bot.leftMotor2.getCurrentPosition());
             telemetry.update();
-            Bot.rotateLeft(1, 0.5);
+            Bot.rotateLeft(1, 1);
 
             telemetry.addLine("Driving Forward");
             telemetry.update();

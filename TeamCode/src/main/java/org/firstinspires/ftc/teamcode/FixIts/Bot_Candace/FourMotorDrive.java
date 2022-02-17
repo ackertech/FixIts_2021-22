@@ -19,7 +19,7 @@ public class FourMotorDrive {
     }
 
     //Common Method for Motor Run mode
-    public final DcMotor.RunMode currentMotorRunMode = DcMotor.RunMode.RUN_USING_ENCODER;
+    public final DcMotor.RunMode currentMotorRunMode = DcMotor.RunMode.RUN_WITHOUT_ENCODER;
     public static final double Ticks_Per_Rotation = 538;
 
     public void setMotorRunModes (DcMotor.RunMode mode){
@@ -70,7 +70,7 @@ public class FourMotorDrive {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(currentMotorRunMode);
         while (leftMotor2.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
-            driveBackward(-speed);
+            driveBackward(speed);
         }
         stopMotor();
     }
@@ -78,10 +78,10 @@ public class FourMotorDrive {
     public void rotateLeft(double power){
 
         double ABSPower=Math.abs(power);
-        leftMotor1.setPower(ABSPower);
-        leftMotor2.setPower(ABSPower);
-        rightMotor2.setPower(-ABSPower);
-        rightMotor1.setPower(-ABSPower);
+        leftMotor1.setPower(-ABSPower);
+        leftMotor2.setPower(-ABSPower);
+        rightMotor2.setPower(ABSPower);
+        rightMotor1.setPower(ABSPower);
 
     }
     public void rotateLeft( double speed, double rotations) {
@@ -89,17 +89,17 @@ public class FourMotorDrive {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(currentMotorRunMode);
         while (leftMotor2.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
-            rotateLeft(-speed);
+            rotateLeft(speed);
         }
         stopMotor();
     }
 
     public void rotateRight(double power){
         double ABSPower=Math.abs(power);
-        leftMotor1.setPower(-ABSPower);
-        leftMotor2.setPower(-ABSPower);
-        rightMotor2.setPower(ABSPower);
-        rightMotor1.setPower(ABSPower);
+        leftMotor1.setPower(ABSPower);
+        leftMotor2.setPower(ABSPower);
+        rightMotor2.setPower(-ABSPower);
+        rightMotor1.setPower(-ABSPower);
     }
     public void rotateRight( double speed, double rotations) {
         double ticks = rotations * Ticks_Per_Rotation;
