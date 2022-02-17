@@ -15,8 +15,10 @@ public class TankTeleOp extends OpMode {
 
     //TeleOp Driving Behavior Variables
     public double speedMultiply = .50;
-    public boolean tankDrive = false;
-    public boolean arcadeDrive = true;
+    public String driveStyle = "arcade1Stick";
+
+    public double leftSidePower;
+    public double rightSidePower;
 
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bot = new TankBot();
@@ -40,43 +42,51 @@ public class TankTeleOp extends OpMode {
 
     }
 
-
     // The control methods for driving the  Robot during TeleOp
 
     public void drive() {
 
-        if (arcadeDrive) {
+        switch (driveStyle) {
 
-            if (gamepad1.left_stick_y < -0.1) {
-                Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
-            } else if (gamepad1.left_stick_y > 0.1) {
-                Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
-            } else if (gamepad1.left_stick_x > 0.1) {
-                Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
-            } else if (gamepad1.left_stick_x < -0.1) {
-                Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
-            } else {
-                Bot.stopMotors();
-            }
-        }
-        else if (tankDrive) {
+            case "arcade1Stick":
+                telemetry.addData("Drive Mode: ", driveStyle);
+                telemetry.update();
 
-            if (gamepad1.left_stick_y < -0.1) {
-                Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
-            } else if (gamepad1.left_stick_y > 0.1) {
-                Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
-            }
-            else {
-                Bot.stopMotors();
-            }
-            if (gamepad1.right_stick_x > 0.1) {
-                Bot.rotateRight(speedMultiply * gamepad1.right_stick_x);
-            } else if (gamepad1.right_stick_x < -0.1) {
-                Bot.rotateLeft(speedMultiply * gamepad1.right_stick_x);
-            }
-            else {
-                Bot.stopMotors();
-            }
+                if (gamepad1.left_stick_y < -0.1) {
+                    Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+                } else if (gamepad1.left_stick_y > 0.1) {
+                    Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+                } else if (gamepad1.left_stick_x > 0.1) {
+                    Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
+                } else if (gamepad1.left_stick_x < -0.1) {
+                    Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
+                } else {
+                    Bot.stopMotors();
+                }
+
+            case "arcade2Stick":
+                telemetry.addData("Drive Mode: ", driveStyle);
+                telemetry.update();
+
+                if (gamepad1.left_stick_y < -0.1) {
+                    Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+                } else if (gamepad1.left_stick_y > 0.1) {
+                    Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+                } else {
+                    Bot.stopMotors();
+                }
+                if (gamepad1.right_stick_x > 0.1) {
+                    Bot.rotateRight(speedMultiply * gamepad1.right_stick_x);
+                } else if (gamepad1.right_stick_x < -0.1) {
+                    Bot.rotateLeft(speedMultiply * gamepad1.right_stick_x);
+                } else {
+                    Bot.stopMotors();
+                }
+
+            case "tankDrive":
+                leftSidePower = speedMultiply * gamepad1.left_stick_y * (-1);
+                rightSidePower = speedMultiply * gamepad1.right_stick_y * (-1);
+                Bot.tankDrive(leftSidePower,rightSidePower);
 
         }
     }
@@ -85,14 +95,9 @@ public class TankTeleOp extends OpMode {
 
     public void driveControl () {
 
-            if (gamepad1.left_bumper) {
-                tankDrive = true;
-                arcadeDrive = false;
-            }
-            if (gamepad1.right_bumper) {
-                tankDrive = false;
-                arcadeDrive = true;
-            }
+            if (gamepad1.a) { driveStyle = "arcade1Stick"; }
+            if (gamepad1.b) { driveStyle = "arcade2Stick"; }
+            if (gamepad1.x) { driveStyle = "tankDrive"; }
     }
 
      // Control methods for changing speed

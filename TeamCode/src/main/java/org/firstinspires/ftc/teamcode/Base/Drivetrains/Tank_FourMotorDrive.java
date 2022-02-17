@@ -12,6 +12,7 @@ public class Tank_FourMotorDrive {
     public DcMotor rearLeftMotor;
     public DcMotor rearRightMotor;
 
+
     public LinearOpMode linearOp = null;
     public void setLinearOp(LinearOpMode linearOp) {
         this.linearOp = linearOp;
@@ -72,6 +73,20 @@ public class Tank_FourMotorDrive {
         rearRightMotor.setPower(-ABSpower);
 
     }
+
+    public void tankDrive (double leftPower, double rightPower) {
+
+        frontLeftMotor.setPower(leftPower);
+        rearLeftMotor.setPower(leftPower);
+
+        frontRightMotor.setPower(rightPower);
+        rearRightMotor.setPower(rightPower);
+    }
+
+
+
+
+
 
 
 
