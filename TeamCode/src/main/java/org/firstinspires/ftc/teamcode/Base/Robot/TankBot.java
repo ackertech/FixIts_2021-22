@@ -65,17 +65,7 @@ public class TankBot extends Tank_FourMotorDrive {
         lazySusan = hwBot.get(Servo.class, "lazy_susan");
         lazySusan.setDirection(Servo.Direction.FORWARD);
 
-
     }
-
-    // **********************   Robot Mechanisms ***************************//
-
-
-
-
-
-
-
 
 
 }

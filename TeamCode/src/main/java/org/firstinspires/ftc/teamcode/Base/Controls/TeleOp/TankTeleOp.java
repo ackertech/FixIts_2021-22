@@ -61,13 +61,13 @@ public class TankTeleOp extends OpMode {
 
     public void telemetryOutput() {
         telemetry.addData("Drive Mode: ", driverStyle);
+        telemetry.addData("Speed: ", speedMultiply);
         telemetry.addData("Elbow Position: ", Handy.elbowCurrPos );
         telemetry.addData("LazySusan Position: ", Bot.lazySusanCurrPos );
         telemetry.addData("Hand Gesture: ", handGesture);
         telemetry.addData("Wrist Status: ", wristStatus);
         telemetry.addData("ASL Sentence: ", ASLWord);
         telemetry.update();
-
 
     }
 
