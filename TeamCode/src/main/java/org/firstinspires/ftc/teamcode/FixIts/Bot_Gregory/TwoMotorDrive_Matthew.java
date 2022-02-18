@@ -77,7 +77,7 @@ public class TwoMotorDrive_Matthew {
 
     }
 
-\    public void driveForward(double speed, double rotations) {
+    public void driveForward(double speed, double rotations) {
 
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
