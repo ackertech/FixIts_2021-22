@@ -15,7 +15,13 @@ public class TankTeleOp extends OpMode {
 
     //TeleOp Driving Behavior Variables
     public double speedMultiply = .50;
-    public String driveStyle = "arcade1Stick";
+    public enum Style {
+        ARCADE1, ARCADE2, TANK
+    }
+    Style driverStyle;
+
+
+   // public String driveStyle = "arcade1Stick";
 
     public double leftSidePower;
     public double rightSidePower;
@@ -46,10 +52,10 @@ public class TankTeleOp extends OpMode {
 
     public void drive() {
 
-        switch (driveStyle) {
+        switch (driverStyle) {
 
-            case "arcade1Stick":
-                telemetry.addData("Drive Mode: ", driveStyle);
+            case ARCADE1:
+                telemetry.addData("Drive Mode: ", driverStyle);
                 telemetry.update();
 
                 if (gamepad1.left_stick_y < -0.1) {
@@ -64,8 +70,8 @@ public class TankTeleOp extends OpMode {
                     Bot.stopMotors();
                 }
 
-            case "arcade2Stick":
-                telemetry.addData("Drive Mode: ", driveStyle);
+            case ARCADE2:
+                telemetry.addData("Drive Mode: ", driverStyle);
                 telemetry.update();
 
                 if (gamepad1.left_stick_y < -0.1) {
@@ -83,7 +89,9 @@ public class TankTeleOp extends OpMode {
                     Bot.stopMotors();
                 }
 
-            case "tankDrive":
+            case TANK:
+                telemetry.addData("Drive Mode: ", driverStyle);
+                telemetry.update();
                 leftSidePower = speedMultiply * gamepad1.left_stick_y * (-1);
                 rightSidePower = speedMultiply * gamepad1.right_stick_y * (-1);
                 Bot.tankDrive(leftSidePower,rightSidePower);
@@ -95,9 +103,9 @@ public class TankTeleOp extends OpMode {
 
     public void driveControl () {
 
-            if (gamepad1.a) { driveStyle = "arcade1Stick"; }
-            if (gamepad1.b) { driveStyle = "arcade2Stick"; }
-            if (gamepad1.x) { driveStyle = "tankDrive"; }
+            if (gamepad1.a) { driverStyle = Style.ARCADE1; }
+            if (gamepad1.b) { driverStyle = Style.ARCADE2; }
+            if (gamepad1.x) { driverStyle = Style.TANK; }
     }
 
      // Control methods for changing speed
