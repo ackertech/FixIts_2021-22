@@ -71,20 +71,12 @@ public class ArmHand {
 
     /**  ********  WRIST MOVEMENT METHODS *************      **/
 
-    public void closeWrist() {
+    public void closeWrist() { wrist.setPosition(0); }
 
-        wrist.setPosition(0);
-    }
+    public void openWrist() { wrist.setPosition(1); }
 
-    public void openWrist() {
+    public void halfWrist() { wrist.setPosition(.5); }
 
-        wrist.setPosition(1);
-    }
-
-    public void halfWrist() {
-
-        wrist.setPosition(.5);
-    }
 
     /**  ********  HAND GESTURES *************      **/
 
@@ -94,7 +86,6 @@ public class ArmHand {
         middleF.setPosition(0);
         ringF.setPosition(0);
         pinkyF.setPosition(0);
-
     }
 
     public void peace() {
@@ -103,7 +94,6 @@ public class ArmHand {
         middleF.setPosition(1);
         ringF.setPosition(0);
         pinkyF.setPosition(0);
-
     }
 
     public void closeHand() {
@@ -112,7 +102,6 @@ public class ArmHand {
         middleF.setPosition(0);
         ringF.setPosition(0);
         pinkyF.setPosition(0);
-
     }
 
     public void openHand() {
@@ -121,7 +110,6 @@ public class ArmHand {
         middleF.setPosition(1);
         ringF.setPosition(1);
         pinkyF.setPosition(1);
-
     }
 
     public void thumbsUp() {
@@ -130,7 +118,6 @@ public class ArmHand {
         middleF.setPosition(0);
         ringF.setPosition(0);
         pinkyF.setPosition(0);
-
     }
 
     public void solute() {
@@ -139,7 +126,6 @@ public class ArmHand {
         middleF.setPosition(1);
         ringF.setPosition(0);
         pinkyF.setPosition(0);
-
     }
 
     public void surferWave() {
