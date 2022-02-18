@@ -39,33 +39,34 @@ public class ArmHand {
 
         hwBot = hwMap;
 
-        //Port
+        //Expansion Hub Port 0
         pinkyF = hwBot.get(Servo.class, "pinky");
         pinkyF.setDirection(Servo.Direction.FORWARD);
 
-        //Port
-        middleF = hwBot.get(Servo.class, "middle");
-        middleF.setDirection(Servo.Direction.FORWARD);
-
-        //Port
-        indexF = hwBot.get(Servo.class, "index");
-        indexF.setDirection(Servo.Direction.FORWARD);
-
-        //Port
-        thumbF = hwBot.get(Servo.class, "thumb");
-        thumbF.setDirection(Servo.Direction.REVERSE);
-
-        //Port
+        //Expansion Hub Port 1
         ringF = hwBot.get(Servo.class, "ring");
         ringF.setDirection(Servo.Direction.FORWARD);
 
-        //Port
+        //Expansion Hub Port 2
+        middleF = hwBot.get(Servo.class, "middle");
+        middleF.setDirection(Servo.Direction.FORWARD);
+
+        //Expansion Hub Port 4
+        indexF = hwBot.get(Servo.class, "index");
+        indexF.setDirection(Servo.Direction.FORWARD);
+
+        //Expansion Hub Port 5
+        thumbF = hwBot.get(Servo.class, "thumb");
+        thumbF.setDirection(Servo.Direction.REVERSE);
+
+        //Expansion Hub Port 6
+        wrist = hwBot.get(Servo.class, "wrist");
+        wrist.setDirection(Servo.Direction.FORWARD);
+
+        //Control Hub Port 1
         elbow = hwBot.get(Servo.class, "elbow");
         elbow.setDirection(Servo.Direction.FORWARD);
 
-        //Port
-        wrist = hwBot.get(Servo.class, "wrist");
-        wrist.setDirection(Servo.Direction.FORWARD);
 
     }
 

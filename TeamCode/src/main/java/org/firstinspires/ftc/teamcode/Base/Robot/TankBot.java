@@ -61,7 +61,9 @@ public class TankBot extends Tank_FourMotorDrive {
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-        //Define & Initialize Servos
+        /**  ********  TankBot Mechanisms *************      **/
+
+        //Control Hub Port 0
         lazySusan = hwBot.get(Servo.class, "lazy_susan");
         lazySusan.setDirection(Servo.Direction.FORWARD);
 
