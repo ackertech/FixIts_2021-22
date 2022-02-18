@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 
-import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -21,12 +19,14 @@ public class TankTeleOp extends OpMode {
         ARCADE1, ARCADE2, TANK
     }
     Style driverStyle;
-
-
-   // public String driveStyle = "arcade1Stick";
-
     public double leftSidePower;
     public double rightSidePower;
+
+    // Hand Variables
+    String handGesture;
+    String wristStatus;
+    String ASLWord;
+
 
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bot = new TankBot();
@@ -55,18 +55,30 @@ public class TankTeleOp extends OpMode {
         elbowControl();
         lazySusanControl();
         signASL();
+        telemetryOutput();
 
     }
 
-    /**  ********  DRIVING METHODS *************      **/
+    public void telemetryOutput() {
+        telemetry.addData("Drive Mode: ", driverStyle);
+        telemetry.addData("Elbow Position: ", Handy.elbowCurrPos );
+        telemetry.addData("LazySusan Position: ", Bot.lazySusanCurrPos );
+        telemetry.addData("Hand Gesture: ", handGesture);
+        telemetry.addData("Wrist Status: ", wristStatus);
+        telemetry.addData("ASL Sentence: ", ASLWord);
+        telemetry.update();
+
+
+    }
+
+
+    /**  ********  DRIVING METHODS USING GAMEPAD 1 *************      **/
 
     public void drive() {
 
         switch (driverStyle) {
 
             case ARCADE1:
-                telemetry.addData("Drive Mode: ", driverStyle);
-                telemetry.update();
 
                 if (gamepad1.left_stick_y < -0.1) {
                     Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
@@ -81,8 +93,6 @@ public class TankTeleOp extends OpMode {
                 }
 
             case ARCADE2:
-                telemetry.addData("Drive Mode: ", driverStyle);
-                telemetry.update();
 
                 if (gamepad1.left_stick_y < -0.1) {
                     Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
@@ -100,8 +110,7 @@ public class TankTeleOp extends OpMode {
                 }
 
             case TANK:
-                telemetry.addData("Drive Mode: ", driverStyle);
-                telemetry.update();
+
                 leftSidePower = speedMultiply * gamepad1.left_stick_y * (-1);
                 rightSidePower = speedMultiply * gamepad1.right_stick_y * (-1);
                 Bot.tankDrive(leftSidePower,rightSidePower);
@@ -129,7 +138,7 @@ public class TankTeleOp extends OpMode {
             }
     }
 
-    /**  ********  ARM METHODS *************      **/
+    /**  ********  ARM METHODS USING GAMEPAD2 *************      **/
 
     public void elbowControl() {
 
@@ -137,6 +146,7 @@ public class TankTeleOp extends OpMode {
         {
             Handy.elbowCurrPos += Handy.elbowIncrements;
             Handy.elbow.setPosition(Handy.elbowCurrPos);
+
         }
         else {
             Handy.elbow.setPosition(Handy.elbowCurrPos);
@@ -146,6 +156,7 @@ public class TankTeleOp extends OpMode {
         {
             Handy.elbowCurrPos -= Handy.elbowIncrements;
             Handy.elbow.setPosition(Handy.elbowCurrPos);
+
         }
         else {
             Handy.elbow.setPosition(Handy.elbowCurrPos);
@@ -158,6 +169,7 @@ public class TankTeleOp extends OpMode {
         {
             Bot.lazySusanCurrPos += Bot.lazySusanIncrements;
             Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
+
         }
         else {
             Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
@@ -167,6 +179,7 @@ public class TankTeleOp extends OpMode {
         {
             Bot.lazySusanCurrPos -= Bot.lazySusanIncrements;
             Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
+
         }
         else {
             Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
@@ -174,48 +187,61 @@ public class TankTeleOp extends OpMode {
     }
 
 
-    /**  ********  HAND METHODS *************      **/
+    /**  ********  HAND METHODS USING GAMEPAD2 *************      **/
 
     public void handControl() {
 
         if (gamepad2.a) {
             Handy.point();
+            handGesture = "Pointing";
         } else if (gamepad2.b) {
             Handy.surferWave();
+            handGesture = "Surfer Wave";
         } else if (gamepad2.y) {
             Handy.peace();
+            handGesture = "Peace Sign";
         } else if (gamepad2.x) {
             Handy.thumbsUp();
+            handGesture = "Thumbs Up";
         } else if (gamepad2.left_bumper) {
             Handy.openHand();
+            handGesture = "Open Hand";
         } else if (gamepad2.right_bumper) {
             Handy.closeHand();
+            handGesture = "Close Hand";
         } else {
             Handy.closeHand();
+            handGesture = "Close Hand";
         }
     }
 
     public void wristControl() {
         if (gamepad2.left_trigger > 0.1) {
             Handy.openWrist();
+            wristStatus = "Open Wrist";
         }
         else if (gamepad2.right_trigger > 0.1) {
             Handy.halfWrist();
+            wristStatus = "Half Wrist";
         }
         else {
             Handy.closeWrist();
+            wristStatus = "Close Wrist";
+
         }
 
     }
 
-    /**  ********  ASL METHODS *************      **/
+    /**  ********  ASL METHODS USING GAMEPAD 2 *************      **/
 
     public void signASL() {
         if (gamepad2.dpad_up) {
-            ASL.signSentence("Love MBCA");
+            ASLWord = "I Love MBCA";
+            ASL.signSentence(ASLWord);
         }
         if (gamepad2.dpad_down) {
-           ASL.signSentence("Love robots");
+            ASLWord = "I Love Robots";
+            ASL.signSentence(ASLWord);
         }
 
     }
