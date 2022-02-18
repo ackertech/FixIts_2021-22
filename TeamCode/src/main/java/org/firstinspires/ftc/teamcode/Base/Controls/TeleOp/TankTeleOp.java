@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Base.Mechanisms.ASLHand;
+import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
@@ -28,6 +30,8 @@ public class TankTeleOp extends OpMode {
 
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bot = new TankBot();
+    public ArmHand Handy = new ArmHand();
+    public ASLHand ASL = new ASLHand();
 
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
@@ -35,6 +39,7 @@ public class TankTeleOp extends OpMode {
     public void init() {
 
         Bot.initRobot(hardwareMap);
+        Handy.initArmHand(hardwareMap);
 
     }
 
@@ -45,10 +50,15 @@ public class TankTeleOp extends OpMode {
         speedControl();
         driveControl();
         drive();
+        handControl();
+        wristControl();
+        elbowControl();
+        lazySusanControl();
+        signASL();
 
     }
 
-    // The control methods for driving the  Robot during TeleOp
+    /**  ********  DRIVING METHODS *************      **/
 
     public void drive() {
 
@@ -99,18 +109,15 @@ public class TankTeleOp extends OpMode {
         }
     }
 
-    // Set Drive Mode
 
     public void driveControl () {
-
             if (gamepad1.a) { driverStyle = Style.ARCADE1; }
             if (gamepad1.b) { driverStyle = Style.ARCADE2; }
             if (gamepad1.x) { driverStyle = Style.TANK; }
     }
 
-     // Control methods for changing speed
-     public void speedControl () {
 
+     public void speedControl () {
             if (gamepad1.dpad_right) {
                 speedMultiply = 0.25;
             } else if (gamepad1.dpad_down) {
@@ -120,6 +127,97 @@ public class TankTeleOp extends OpMode {
             } else if (gamepad1.dpad_up) {
                 speedMultiply = 1.00;
             }
+    }
+
+    /**  ********  ARM METHODS *************      **/
+
+    public void elbowControl() {
+
+        if (gamepad2.dpad_up  && Handy.elbowCurrPos < Handy.elbowMaxPos)
+        {
+            Handy.elbowCurrPos += Handy.elbowIncrements;
+            Handy.elbow.setPosition(Handy.elbowCurrPos);
+        }
+        else {
+            Handy.elbow.setPosition(Handy.elbowCurrPos);
+        }
+
+        if (gamepad2.dpad_down  && Handy.elbowCurrPos > Handy.elbowMinPOs)
+        {
+            Handy.elbowCurrPos -= Handy.elbowIncrements;
+            Handy.elbow.setPosition(Handy.elbowCurrPos);
+        }
+        else {
+            Handy.elbow.setPosition(Handy.elbowCurrPos);
+        }
+    }
+
+    public void lazySusanControl() {
+
+        if (gamepad2.dpad_left  && Bot.lazySusanCurrPos < Bot.lazySusanMaxPos)
+        {
+            Bot.lazySusanCurrPos += Bot.lazySusanIncrements;
+            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
+        }
+        else {
+            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
+        }
+
+        if (gamepad2.dpad_right  && Bot.lazySusanCurrPos > Bot.lazySusanMinPos)
+        {
+            Bot.lazySusanCurrPos -= Bot.lazySusanIncrements;
+            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
+        }
+        else {
+            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
+        }
+    }
+
+
+    /**  ********  HAND METHODS *************      **/
+
+    public void handControl() {
+
+        if (gamepad2.a) {
+            Handy.point();
+        } else if (gamepad2.b) {
+            Handy.surferWave();
+        } else if (gamepad2.y) {
+            Handy.peace();
+        } else if (gamepad2.x) {
+            Handy.thumbsUp();
+        } else if (gamepad2.left_bumper) {
+            Handy.openHand();
+        } else if (gamepad2.right_bumper) {
+            Handy.closeHand();
+        } else {
+            Handy.closeHand();
+        }
+    }
+
+    public void wristControl() {
+        if (gamepad2.left_trigger > 0.1) {
+            Handy.openWrist();
+        }
+        else if (gamepad2.right_trigger > 0.1) {
+            Handy.halfWrist();
+        }
+        else {
+            Handy.closeWrist();
+        }
+
+    }
+
+    /**  ********  ASL METHODS *************      **/
+
+    public void signASL() {
+        if (gamepad2.dpad_up) {
+            ASL.signSentence("Love MBCA");
+        }
+        if (gamepad2.dpad_down) {
+           ASL.signSentence("Love robots");
+        }
+
     }
 
 }

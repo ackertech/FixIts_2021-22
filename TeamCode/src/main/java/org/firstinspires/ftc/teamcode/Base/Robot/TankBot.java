@@ -14,13 +14,18 @@ import java.util.concurrent.TimeUnit;
 
 public class TankBot extends Tank_FourMotorDrive {
 
+    //Define Mechanism Variables
+    public Servo lazySusan;
+
+    //Set Lazy Susan movement values
+    public double lazySusanMaxPos = 0.5;
+    public double lazySusanMinPos = 0.25;
+    public double lazySusanCurrPos = .5;
+    public double lazySusanIncrements = 0.0005;
+
+
     // Hardware Mapping Variable used by robot controller
     public HardwareMap hwBot = null;
-
-    // Variables used by servos for mechanisms
-    public Servo lazySusan = null;
-    public Servo elbow = null;
-
 
     // Robot Physical Constructor used in TeleOp and Autonomous classes
     public TankBot() {
@@ -60,40 +65,15 @@ public class TankBot extends Tank_FourMotorDrive {
         lazySusan = hwBot.get(Servo.class, "lazy_susan");
         lazySusan.setDirection(Servo.Direction.FORWARD);
 
-        elbow = hwBot.get(Servo.class, "elbow");
-        elbow.setDirection(Servo.Direction.FORWARD);
 
     }
-
 
     // **********************   Robot Mechanisms ***************************//
 
-    //Lazy Susan Mechanisms which rotates arm
-
-    public void rotateArmClockwise() {
-
-        lazySusan.setPosition(0.9);
-    }
-
-    public void rotateArmCounterClockwise() {
-
-        lazySusan.setPosition(0.1);
-
-    }
 
 
-    //Arm Mechanisms using elbow servo
 
-    public void raiseArm() {
 
-        elbow.setPosition(0.9);
-    }
-
-    public void lowerArm() {
-
-        elbow.setPosition(0.1);
-
-    }
 
 
 

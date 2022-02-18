@@ -1,81 +1,92 @@
-package org.firstinspires.ftc.teamcode.Base.Robot;
+package org.firstinspires.ftc.teamcode.Base.Mechanisms;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class Arm_Bot {
+public class ArmHand {
 
+    // Define Hand Variables
     public Servo pinkyF = null;
     public Servo middleF = null;
     public Servo indexF = null;
     public Servo thumbF = null;
     public Servo ringF = null;
 
-    public Servo shoulderJ = null;
-    public Servo elbowJ = null;
-    public Servo wristJ = null;
+    //Define Arm Variables
+    public Servo elbow = null;
+    public Servo wrist = null;
 
-    public HardwareMap hwBot = null;
-
+    //Set Positioning for Arm or Hand
     public double elbowMaxPos = 0.5;
     public double elbowMinPOs = 0.18;
     public double elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
 
-    public double shoulderMaxPos = 0.5;
-    public double shoulderMinPos = 0.25;
-    public double shoulderCurrPos = .5;
-    public double shoulderIncrements = 0.0005;
+    //Hardware Constructors
+    public HardwareMap hwBot = null;
+    public ArmHand() {}
 
+    //Allows us to leverage telemetry and sleep
+    public LinearOpMode linearOp = null;
+    public void setLinearOp (LinearOpMode linearOpModeOp) {
 
-
-    public Arm_Bot() {
+        this.linearOp = linearOp;
     }
 
-    public void initArmBot(HardwareMap hwMap) {
+    //Hardware Initialization
+    public void initArmHand(HardwareMap hwMap) {
 
         hwBot = hwMap;
 
-        pinkyF = hwBot.get(Servo.class, "pinkyF");      // port 1
+        //Port
+        pinkyF = hwBot.get(Servo.class, "pinky");
         pinkyF.setDirection(Servo.Direction.FORWARD);
 
-        middleF = hwBot.get(Servo.class, "middleF");    // port 3
+        //Port
+        middleF = hwBot.get(Servo.class, "middle");
         middleF.setDirection(Servo.Direction.FORWARD);
 
-        indexF = hwBot.get(Servo.class, "indexF");      // port 4
-        indexF.setDirection(Servo.Direction.FORWARD);                          // all extension hub
+        //Port
+        indexF = hwBot.get(Servo.class, "index");
+        indexF.setDirection(Servo.Direction.FORWARD);
 
-        thumbF = hwBot.get(Servo.class, "thumbF");      // port 5
+        //Port
+        thumbF = hwBot.get(Servo.class, "thumb");
         thumbF.setDirection(Servo.Direction.REVERSE);
 
-        ringF = hwBot.get(Servo.class, "ringF");        // port 2
+        //Port
+        ringF = hwBot.get(Servo.class, "ring");
         ringF.setDirection(Servo.Direction.FORWARD);
 
-        shoulderJ = hwBot.get(Servo.class, "shoulderJ");          //port 1
-        shoulderJ.setDirection(Servo.Direction.FORWARD);
+        //Port
+        elbow = hwBot.get(Servo.class, "elbow");
+        elbow.setDirection(Servo.Direction.FORWARD);
 
-        elbowJ = hwBot.get(Servo.class, "elbowJ");                //port 2 control hub
-        elbowJ.setDirection(Servo.Direction.FORWARD);
-
-        wristJ = hwBot.get(Servo.class, "wristJ");                //port 3
-        wristJ.setDirection(Servo.Direction.FORWARD);
+        //Port
+        wrist = hwBot.get(Servo.class, "wrist");
+        wrist.setDirection(Servo.Direction.FORWARD);
 
     }
 
+    /**  ********  WRIST MOVEMENT METHODS *************      **/
+
     public void closeWrist() {
 
-        wristJ.setPosition(0);
+        wrist.setPosition(0);
     }
 
     public void openWrist() {
 
-        wristJ.setPosition(1);
+        wrist.setPosition(1);
     }
 
     public void halfWrist() {
 
-        wristJ.setPosition(.5);
+        wrist.setPosition(.5);
     }
+
+    /**  ********  HAND GESTURES *************      **/
 
     public void point() {
         thumbF.setPosition(0);
@@ -138,5 +149,6 @@ public class Arm_Bot {
         ringF.setPosition(0);
         pinkyF.setPosition(1);
     }
+
 
 }
