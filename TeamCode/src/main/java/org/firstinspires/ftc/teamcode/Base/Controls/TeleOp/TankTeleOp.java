@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Base.Mechanisms.ASLHand;
 import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
@@ -14,13 +15,19 @@ import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 public class TankTeleOp extends OpMode {
 
     //TeleOp Driving Behavior Variables
-    public double speedMultiply = .50;
+    public double speedMultiply = .75;
     public enum Style {
         ARCADE1, ARCADE2, TANK
     }
     public Style driverStyle = Style.ARCADE1;
     public double leftSidePower;
     public double rightSidePower;
+
+    // GamePad Variables
+    double leftStickYVal;
+    double leftStickXVal;
+    double rightStickXVal;
+    double rightStickYVal;
 
     // Hand Variables
     String handGesture;
@@ -84,41 +91,62 @@ public class TankTeleOp extends OpMode {
 
             case ARCADE1:
 
-                if (gamepad1.left_stick_y < -0.1) {
-                    Bot.tankDrive(speedMultiply*-gamepad1.left_stick_y,speedMultiply*-gamepad1.left_stick_y);
-                } else if (gamepad1.left_stick_y > 0.1) {
-                    Bot.tankDrive(speedMultiply*-gamepad1.left_stick_y,speedMultiply*-gamepad1.left_stick_y);
-                } else if (gamepad1.left_stick_x > 0.1) {
-                    Bot.tankDrive(speedMultiply*gamepad1.left_stick_x,speedMultiply*gamepad1.left_stick_x);
-                } else if (gamepad1.left_stick_x < -0.1) {
-                    Bot.tankDrive(speedMultiply*gamepad1.left_stick_x,speedMultiply*gamepad1.left_stick_x);
+                leftStickYVal = gamepad1.left_stick_y;
+                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+                leftStickXVal = gamepad1.left_stick_x;
+                leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+
+                if (leftStickYVal < -0.1) {
+                    Bot.tankDriveForward(speedMultiply*leftStickYVal);
+                } else if (leftStickYVal > 0.1) {
+                    Bot.tankDriveBackward(speedMultiply*leftStickYVal);
+                } else if (leftStickXVal > 0.1) {
+                    Bot.tankTurnRight(speedMultiply*leftStickXVal);
+                } else if (leftStickXVal < -0.1) {
+                    Bot.tankTurnLeft(speedMultiply*leftStickXVal);
                 } else {
                     Bot.stopMotors();
                 }
+                break;
 
             case ARCADE2:
 
-                if (gamepad1.left_stick_y < -0.1) {
-                    Bot.tankDrive(speedMultiply*-gamepad1.left_stick_y,speedMultiply*-gamepad1.left_stick_y);
-                } else if (gamepad1.left_stick_y > 0.1) {
-                    Bot.tankDrive(speedMultiply*-gamepad1.left_stick_y,speedMultiply*-gamepad1.left_stick_y);
+                leftStickYVal = gamepad1.left_stick_y;
+                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+                leftStickXVal = gamepad1.left_stick_x;
+                leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+                rightStickYVal = gamepad1.right_stick_y;
+                rightStickYVal = Range.clip(rightStickYVal, -1, 1);
+                rightStickXVal = gamepad1.right_stick_x;
+                rightStickXVal = Range.clip(rightStickXVal, -1, 1);
+
+                if (leftStickYVal < -0.1) {
+                    Bot.tankDriveForward(speedMultiply*leftStickYVal);
+                } else if (leftStickYVal > 0.1) {
+                    Bot.tankDriveBackward(speedMultiply*leftStickYVal);
                 } else {
                     Bot.stopMotors();
                 }
-                if (gamepad1.right_stick_x > 0.1) {
-                    Bot.tankDrive(speedMultiply*gamepad1.right_stick_x,speedMultiply*gamepad1.right_stick_x);
-                } else if (gamepad1.right_stick_x < -0.1) {
-                    Bot.tankDrive(speedMultiply*gamepad1.right_stick_x,speedMultiply*gamepad1.right_stick_x);
+                if (rightStickXVal > 0.1) {
+                    Bot.tankTurnRight(speedMultiply*rightStickXVal);
+                } else if (rightStickXVal < -0.1) {
+                    Bot.tankTurnLeft(speedMultiply*rightStickXVal);
                 } else {
                     Bot.stopMotors();
                 }
+                break;
 
             case TANK:
 
-                leftSidePower = speedMultiply * gamepad1.left_stick_y * (-1);
-                rightSidePower = speedMultiply * gamepad1.right_stick_y * (-1);
-                Bot.tankDrive(leftSidePower,rightSidePower);
+                leftStickYVal = gamepad1.left_stick_y;
+                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+                rightStickYVal = gamepad1.right_stick_y;
+                rightStickYVal = Range.clip(rightStickYVal, -1, 1);
 
+                leftSidePower = speedMultiply * leftStickYVal * (-1);
+                rightSidePower = speedMultiply * rightStickYVal * (-1);
+                Bot.tankDrive(leftSidePower,rightSidePower);
+                break;
         }
     }
 
