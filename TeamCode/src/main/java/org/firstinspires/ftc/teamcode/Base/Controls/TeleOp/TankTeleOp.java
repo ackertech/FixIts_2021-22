@@ -18,14 +18,14 @@ public class TankTeleOp extends OpMode {
     public enum Style {
         ARCADE1, ARCADE2, TANK
     }
-    Style driverStyle;
+    public Style driverStyle = Style.ARCADE1;
     public double leftSidePower;
     public double rightSidePower;
 
     // Hand Variables
     String handGesture;
     String wristStatus;
-    String ASLWord;
+    String ASLWord = "";
 
 
     // Construct the Physical Bot based on the Robot Class
@@ -62,6 +62,10 @@ public class TankTeleOp extends OpMode {
     public void telemetryOutput() {
         telemetry.addData("Drive Mode: ", driverStyle);
         telemetry.addData("Speed: ", speedMultiply);
+        telemetry.addData("Front Left Motor Power: ", Bot.frontLeftMotor.getPower());
+        telemetry.addData("Rear Left Motor Power: ", Bot.rearLeftMotor.getPower());
+        telemetry.addData("Front Right Motor Power: ", Bot.frontRightMotor.getPower());
+        telemetry.addData("Rear Right Motor Power: ", Bot.rearRightMotor.getPower());
         telemetry.addData("Elbow Position: ", Handy.elbowCurrPos );
         telemetry.addData("LazySusan Position: ", Bot.lazySusanCurrPos );
         telemetry.addData("Hand Gesture: ", handGesture);
@@ -81,13 +85,13 @@ public class TankTeleOp extends OpMode {
             case ARCADE1:
 
                 if (gamepad1.left_stick_y < -0.1) {
-                    Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+                    Bot.tankDrive(speedMultiply*-gamepad1.left_stick_y,speedMultiply*-gamepad1.left_stick_y);
                 } else if (gamepad1.left_stick_y > 0.1) {
-                    Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+                    Bot.tankDrive(speedMultiply*-gamepad1.left_stick_y,speedMultiply*-gamepad1.left_stick_y);
                 } else if (gamepad1.left_stick_x > 0.1) {
-                    Bot.rotateRight(speedMultiply * gamepad1.left_stick_x);
+                    Bot.tankDrive(speedMultiply*gamepad1.left_stick_x,speedMultiply*gamepad1.left_stick_x);
                 } else if (gamepad1.left_stick_x < -0.1) {
-                    Bot.rotateLeft(speedMultiply * gamepad1.left_stick_x);
+                    Bot.tankDrive(speedMultiply*gamepad1.left_stick_x,speedMultiply*gamepad1.left_stick_x);
                 } else {
                     Bot.stopMotors();
                 }
@@ -95,16 +99,16 @@ public class TankTeleOp extends OpMode {
             case ARCADE2:
 
                 if (gamepad1.left_stick_y < -0.1) {
-                    Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
+                    Bot.tankDrive(speedMultiply*-gamepad1.left_stick_y,speedMultiply*-gamepad1.left_stick_y);
                 } else if (gamepad1.left_stick_y > 0.1) {
-                    Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
+                    Bot.tankDrive(speedMultiply*-gamepad1.left_stick_y,speedMultiply*-gamepad1.left_stick_y);
                 } else {
                     Bot.stopMotors();
                 }
                 if (gamepad1.right_stick_x > 0.1) {
-                    Bot.rotateRight(speedMultiply * gamepad1.right_stick_x);
+                    Bot.tankDrive(speedMultiply*gamepad1.right_stick_x,speedMultiply*gamepad1.right_stick_x);
                 } else if (gamepad1.right_stick_x < -0.1) {
-                    Bot.rotateLeft(speedMultiply * gamepad1.right_stick_x);
+                    Bot.tankDrive(speedMultiply*gamepad1.right_stick_x,speedMultiply*gamepad1.right_stick_x);
                 } else {
                     Bot.stopMotors();
                 }

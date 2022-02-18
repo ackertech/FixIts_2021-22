@@ -51,15 +51,15 @@ public class ArmHand {
         middleF = hwBot.get(Servo.class, "middle");
         middleF.setDirection(Servo.Direction.FORWARD);
 
-        //Expansion Hub Port 4
+        //Expansion Hub Port 3
         indexF = hwBot.get(Servo.class, "index");
         indexF.setDirection(Servo.Direction.FORWARD);
 
-        //Expansion Hub Port 5
+        //Expansion Hub Port 4
         thumbF = hwBot.get(Servo.class, "thumb");
         thumbF.setDirection(Servo.Direction.REVERSE);
 
-        //Expansion Hub Port 6
+        //Expansion Hub Port 5
         wrist = hwBot.get(Servo.class, "wrist");
         wrist.setDirection(Servo.Direction.FORWARD);
 

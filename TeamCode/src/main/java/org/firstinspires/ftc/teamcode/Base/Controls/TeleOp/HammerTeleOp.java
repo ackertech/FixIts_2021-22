@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Base.Robot.HammerHead;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
-//@Disabled
+@Disabled
 @TeleOp(name = "Hammer Drive")
 
 public class HammerTeleOp extends OpMode {
