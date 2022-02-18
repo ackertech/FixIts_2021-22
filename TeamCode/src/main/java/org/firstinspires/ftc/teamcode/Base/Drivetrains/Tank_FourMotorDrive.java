@@ -36,43 +36,6 @@ public class Tank_FourMotorDrive {
     }
 
 
-    public void driveForward (double power) {
-
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(ABSpower);
-        rearLeftMotor.setPower(ABSpower);
-        rearRightMotor.setPower(ABSpower);
-
-    }
-
-    public void driveBackward (double power) {
-
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(-ABSpower);
-        frontRightMotor.setPower(-ABSpower);
-        rearLeftMotor.setPower(-ABSpower);
-        rearRightMotor.setPower(-ABSpower);
-    }
-
-    public void rotateLeft (double power) {
-
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(-ABSpower);
-        rearLeftMotor.setPower(-ABSpower);
-        frontRightMotor.setPower(ABSpower);
-        rearRightMotor.setPower(ABSpower);
-    }
-
-    public void rotateRight (double power) {
-
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(ABSpower);
-        rearLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(-ABSpower);
-        rearRightMotor.setPower(-ABSpower);
-
-    }
 
     public void tankDrive (double leftPower, double rightPower) {
 

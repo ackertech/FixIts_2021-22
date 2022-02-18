@@ -28,9 +28,7 @@ public class TankBot extends Tank_FourMotorDrive {
     public HardwareMap hwBot = null;
 
     // Robot Physical Constructor used in TeleOp and Autonomous classes
-    public TankBot() {
-
-    }
+    public TankBot() { }
 
     // Custom Method that will initialize the robot hardware in TeleOp and Autonomous
 
