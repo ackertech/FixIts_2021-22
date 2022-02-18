@@ -18,7 +18,7 @@ public class AutoLabot_4Motor extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         Bot.initRobot(hardwareMap);
-
+        Bot.setLinearOp(this);
 
         telemetry.addLine("Awaiting Start");
         telemetry.update();

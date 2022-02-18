@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class Gregory_Matthew extends TwoMotorDrive_Matthew {
+public class Gregory_Matthew2 extends FourMotorDrive_Matthew {
 
     public HardwareMap hwBot = null;
 
@@ -15,7 +15,7 @@ public class Gregory_Matthew extends TwoMotorDrive_Matthew {
     public RevBlinkinLedDriver ledLights;
     public RevBlinkinLedDriver.BlinkinPattern ledPattern;
 
-    public Gregory_Matthew () {
+    public Gregory_Matthew2() {
 
     }
 
@@ -27,10 +27,10 @@ public class Gregory_Matthew extends TwoMotorDrive_Matthew {
         rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");
         rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
 
-        frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        rearRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        rearLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rearRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rearLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
