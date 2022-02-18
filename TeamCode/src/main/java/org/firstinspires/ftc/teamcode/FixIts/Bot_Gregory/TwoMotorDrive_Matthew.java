@@ -77,5 +77,55 @@ public class TwoMotorDrive_Matthew {
 
     }
 
+    public void driveForward(double speed, double rotations) {
+
+        double ticks = rotations * (-1) * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+
+        while(frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+            driveForward(speed);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
+        }
+        stopMotors();
+    }
+
+    public void driveBackward(double speed, double rotations) {
+
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+            driveForward(speed);
+            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
+        }
+        stopMotors();
+    }
+
+    public void rotateLeft(double speed, double rotations) {
+
+        double ticks = rotations * (-1) * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+        while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+            driveForward(-speed);
+        }
+        stopMotors();
+    }
+
+    public void rotateRight(double speed, double rotations) {
+
+        double ticks = rotations * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+
+        while(frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+                driveForward(speed);
+        }
+        stopMotors();
+    }
+
 
 }
