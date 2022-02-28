@@ -66,8 +66,8 @@ public class Tank_4Motor_Olivia {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
-        frontRightMotor.setPower(ABSpower);
         rearLeftMotor.setPower(-ABSpower);
+        frontRightMotor.setPower(ABSpower);
         rearRightMotor.setPower(ABSpower);
 
     }
@@ -76,8 +76,8 @@ public class Tank_4Motor_Olivia {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(-ABSpower);
         rearLeftMotor.setPower(ABSpower);
+        frontRightMotor.setPower(-ABSpower);
         rearRightMotor.setPower(-ABSpower);
 
     }
