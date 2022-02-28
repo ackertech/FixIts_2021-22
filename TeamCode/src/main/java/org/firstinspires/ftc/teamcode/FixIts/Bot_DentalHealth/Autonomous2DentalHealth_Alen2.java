@@ -15,6 +15,7 @@ public class Autonomous2DentalHealth_Alen2 extends AutonomousDentalHealth_Alen2{
     public void runOpMode() throws InterruptedException {
 
         Bot.initRobot(hardwareMap);
+        Bot.setLinearOp(this);
 
         telemetry.addLine("Awaiting start");
         telemetry.update();

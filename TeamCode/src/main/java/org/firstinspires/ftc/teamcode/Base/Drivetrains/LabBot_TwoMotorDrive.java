@@ -18,7 +18,6 @@ public class LabBot_TwoMotorDrive {
 
     // Declared two constants for our motor run modes
     public final DcMotor.RunMode currentMotorRunMode = DcMotor.RunMode.RUN_WITHOUT_ENCODER;
-    public static final double TICKS_PER_ROTATION = 538;
 
     //Common method that can be used in our TeleOp and Autonomous programs
     public void setMotorRunModes (DcMotor.RunMode mode) {

@@ -70,10 +70,10 @@ public class TwoMotorDrive_Alen2 {
 
         double ABSpower = Math.abs(power);
 
-        frontLeftMotor.setPower(-ABSpower);
-        frontRightMotor.setPower(ABSpower);
-        rearLeftMotor.setPower(-ABSpower);
-        rearRightMotor.setPower(ABSpower);
+        frontLeftMotor.setPower(ABSpower);
+        frontRightMotor.setPower(-ABSpower);
+        rearLeftMotor.setPower(ABSpower);
+        rearRightMotor.setPower(-ABSpower);
     }
 
     public void rotateLeft(double power) {
@@ -81,10 +81,10 @@ public class TwoMotorDrive_Alen2 {
 
         double ABSpower = Math.abs(power);
 
-        frontLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(-ABSpower);
-        rearLeftMotor.setPower(ABSpower);
-        rearRightMotor.setPower(-ABSpower);
+        frontLeftMotor.setPower(-ABSpower);
+        frontRightMotor.setPower(ABSpower);
+        rearLeftMotor.setPower(-ABSpower);
+        rearRightMotor.setPower(ABSpower);
 
     }
 
@@ -101,7 +101,7 @@ public class TwoMotorDrive_Alen2 {
 
     }
 
-    public void driveBackward ( double speed, double rotations) {
+    public void driveBackword ( double speed, double rotations) {
 
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
