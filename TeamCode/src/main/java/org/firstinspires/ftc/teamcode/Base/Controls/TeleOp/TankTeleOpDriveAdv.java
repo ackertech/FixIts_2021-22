@@ -10,9 +10,9 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot Drive")
+@TeleOp(name = "TankBot Drive Advanced")
 
-public class TankTeleOp extends OpMode {
+public class TankTeleOpDriveAdv extends OpMode {
 
     //TeleOp Driving Behavior Variables
     public double speedMultiply = .75;
@@ -29,16 +29,9 @@ public class TankTeleOp extends OpMode {
     double rightStickXVal;
     double rightStickYVal;
 
-    // Hand Variables
-    String handGesture;
-    String wristStatus;
-    String ASLWord = "";
-
 
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bot = new TankBot();
-    public ArmHand Handy = new ArmHand();
-    public ASLHand ASL = new ASLHand();
 
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
@@ -46,7 +39,6 @@ public class TankTeleOp extends OpMode {
     public void init() {
 
         Bot.initRobot(hardwareMap);
-        Handy.initArmHand(hardwareMap);
 
     }
 
@@ -57,11 +49,6 @@ public class TankTeleOp extends OpMode {
         speedControl();
         driveControl();
         drive();
-        handControl();
-        wristControl();
-        elbowControl();
-        lazySusanControl();
-        signASL();
         telemetryOutput();
 
     }
@@ -73,15 +60,9 @@ public class TankTeleOp extends OpMode {
         telemetry.addData("Rear Left Motor Power: ", Bot.rearLeftMotor.getPower());
         telemetry.addData("Front Right Motor Power: ", Bot.frontRightMotor.getPower());
         telemetry.addData("Rear Right Motor Power: ", Bot.rearRightMotor.getPower());
-        telemetry.addData("Elbow Position: ", Handy.elbowCurrPos );
-        telemetry.addData("LazySusan Position: ", Bot.lazySusanCurrPos );
-        telemetry.addData("Hand Gesture: ", handGesture);
-        telemetry.addData("Wrist Status: ", wristStatus);
-        telemetry.addData("ASL Sentence: ", ASLWord);
         telemetry.update();
 
     }
-
 
     /**  ********  DRIVING METHODS USING GAMEPAD 1 *************      **/
 
@@ -170,112 +151,5 @@ public class TankTeleOp extends OpMode {
             }
     }
 
-    /**  ********  ARM METHODS USING GAMEPAD2 *************      **/
-
-    public void elbowControl() {
-
-        if (gamepad2.dpad_up  && Handy.elbowCurrPos < Handy.elbowMaxPos)
-        {
-            Handy.elbowCurrPos += Handy.elbowIncrements;
-            Handy.elbow.setPosition(Handy.elbowCurrPos);
-
-        }
-        else {
-            Handy.elbow.setPosition(Handy.elbowCurrPos);
-        }
-
-        if (gamepad2.dpad_down  && Handy.elbowCurrPos > Handy.elbowMinPOs)
-        {
-            Handy.elbowCurrPos -= Handy.elbowIncrements;
-            Handy.elbow.setPosition(Handy.elbowCurrPos);
-
-        }
-        else {
-            Handy.elbow.setPosition(Handy.elbowCurrPos);
-        }
-    }
-
-    public void lazySusanControl() {
-
-        if (gamepad2.dpad_left  && Bot.lazySusanCurrPos < Bot.lazySusanMaxPos)
-        {
-            Bot.lazySusanCurrPos += Bot.lazySusanIncrements;
-            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
-
-        }
-        else {
-            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
-        }
-
-        if (gamepad2.dpad_right  && Bot.lazySusanCurrPos > Bot.lazySusanMinPos)
-        {
-            Bot.lazySusanCurrPos -= Bot.lazySusanIncrements;
-            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
-
-        }
-        else {
-            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
-        }
-    }
-
-
-    /**  ********  HAND METHODS USING GAMEPAD2 *************      **/
-
-    public void handControl() {
-
-        if (gamepad2.a) {
-            Handy.point();
-            handGesture = "Pointing";
-        } else if (gamepad2.b) {
-            Handy.surferWave();
-            handGesture = "Surfer Wave";
-        } else if (gamepad2.y) {
-            Handy.peace();
-            handGesture = "Peace Sign";
-        } else if (gamepad2.x) {
-            Handy.thumbsUp();
-            handGesture = "Thumbs Up";
-        } else if (gamepad2.left_bumper) {
-            Handy.openHand();
-            handGesture = "Open Hand";
-        } else if (gamepad2.right_bumper) {
-            Handy.closeHand();
-            handGesture = "Close Hand";
-        } else {
-            Handy.closeHand();
-            handGesture = "Close Hand";
-        }
-    }
-
-    public void wristControl() {
-        if (gamepad2.left_trigger > 0.1) {
-            Handy.openWrist();
-            wristStatus = "Open Wrist";
-        }
-        else if (gamepad2.right_trigger > 0.1) {
-            Handy.halfWrist();
-            wristStatus = "Half Wrist";
-        }
-        else {
-            Handy.closeWrist();
-            wristStatus = "Close Wrist";
-
-        }
-
-    }
-
-    /**  ********  ASL METHODS USING GAMEPAD 2 *************      **/
-
-    public void signASL() {
-        if (gamepad2.dpad_up) {
-            ASLWord = "I Love MBCA";
-            ASL.signSentence(ASLWord);
-        }
-        if (gamepad2.dpad_down) {
-            ASLWord = "I Love Robots";
-            ASL.signSentence(ASLWord);
-        }
-
-    }
 
 }
