@@ -14,26 +14,21 @@ import java.util.concurrent.TimeUnit;
 
 public class TankBot extends Tank_FourMotorDrive {
 
+    //Define Mechanism Variables
+    public Servo lazySusan;
+
+    //Set Lazy Susan movement values
+    public double lazySusanMaxPos = 0.5;
+    public double lazySusanMinPos = 0.25;
+    public double lazySusanCurrPos = .5;
+    public double lazySusanIncrements = 0.0005;
+
+
     // Hardware Mapping Variable used by robot controller
     public HardwareMap hwBot = null;
 
-    // Variables used by servos for mechanisms
-    public Servo lazySusan = null;
-    public Servo elbow = null;
-
-    // Variables used for LED lights
-    public RevBlinkinLedDriver ledLights;
-    public RevBlinkinLedDriver.BlinkinPattern ledPattern;
-
-    // Variable used for Timers
-    public ElapsedTime currentTime = new ElapsedTime();
-
-
     // Robot Physical Constructor used in TeleOp and Autonomous classes
-    public TankBot() {
-
-    }
-
+    public TankBot() { }
 
     // Custom Method that will initialize the robot hardware in TeleOp and Autonomous
 
@@ -42,16 +37,16 @@ public class TankBot extends Tank_FourMotorDrive {
         hwBot = hwMap;
 
         //Define the name of the motors used in the control hub configuration
-        frontLeftMotor =  hwBot.dcMotor.get("front_left_motor");
-        rearLeftMotor =  hwBot.dcMotor.get("rear_left_motor");
-        frontRightMotor = hwBot.dcMotor.get("front_right_motor");
-        rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
+        frontLeftMotor =  hwBot.dcMotor.get("front_left_motor"); // Port 0
+        rearLeftMotor =  hwBot.dcMotor.get("rear_left_motor");  // Port 1
+        frontRightMotor = hwBot.dcMotor.get("front_right_motor"); //Port 2
+        rearRightMotor = hwBot.dcMotor.get("rear_right_motor"); // Port 3
 
         //Sets the direction of the robot's motors based on physical placement
-        frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
-        rearRightMotor.setDirection(DcMotor.Direction.REVERSE);
-        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+        frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        rearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //Define this robot run modes
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -64,50 +59,13 @@ public class TankBot extends Tank_FourMotorDrive {
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-        //Define & Initialize Servos
+        /**  ********  TankBot Mechanisms *************      **/
+
+        //Control Hub Port 0
         lazySusan = hwBot.get(Servo.class, "lazy_susan");
         lazySusan.setDirection(Servo.Direction.FORWARD);
 
-        elbow = hwBot.get(Servo.class, "elbow");
-        elbow.setDirection(Servo.Direction.FORWARD);
-
     }
-
-
-    // **********************   Robot Mechanisms ***************************//
-
-    //Lazy Susan Mechanisms which rotates arm
-
-    public void rotateArmClockwise() {
-
-        lazySusan.setPosition(0.9);
-    }
-
-    public void rotateArmCounterClockwise() {
-
-        lazySusan.setPosition(0.1);
-
-    }
-
-
-    //Arm Mechanisms using elbow servo
-
-    public void raiseArm() {
-
-        elbow.setPosition(0.9);
-    }
-
-    public void lowerArm() {
-
-        elbow.setPosition(0.1);
-
-    }
-
-       public void setLedPattern (RevBlinkinLedDriver.BlinkinPattern patternName) {
-                ledLights.setPattern(patternName);
-
-    }
-
 
 
 }

@@ -2,10 +2,8 @@ package org.firstinspires.ftc.teamcode.FixIts.Bot_Gregory;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
-public class TwoMotorDrive_Matthew {
+public class FourMotorDrive_Matthew {
 
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
@@ -55,19 +53,8 @@ public class TwoMotorDrive_Matthew {
 
     }
 
-    // JDA - Check Motor Powers Below, especially how you turn left and right
 
     public void rotateLeft (double power) {
-
-        double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(-ABSpower);
-        rearLeftMotor.setPower(ABSpower);
-        rearRightMotor.setPower(-ABSpower);
-
-    }
-
-    public void rotateRight (double power) {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
@@ -77,52 +64,68 @@ public class TwoMotorDrive_Matthew {
 
     }
 
-    public void driveForward(double speed, double rotations) {
+    public void rotateRight (double power) {
 
-        double ticks = rotations * (-1) * TICKS_PER_ROTATION;
-        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        setMotorRunModes(currentMotorRunMode);
+        double ABSpower = Math.abs(power);
+        frontLeftMotor.setPower(ABSpower);
+        frontRightMotor.setPower(-ABSpower);
+        rearLeftMotor.setPower(ABSpower);
+        rearRightMotor.setPower(-ABSpower);
 
-        while(frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
-            driveForward(speed);
-            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
-            linearOp.telemetry.update();
-        }
-        stopMotors();
     }
 
-    public void driveBackward(double speed, double rotations) {
+    //******Drive without Encoder Methods********
+    public void driveForward( double power, double rotations) {
 
         double ticks = rotations * TICKS_PER_ROTATION;
-        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        setMotorRunModes(currentMotorRunMode);
-        while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
-            driveForward(speed);
-            linearOp.telemetry.addData("Ticks: ", frontLeftMotor.getCurrentPosition());
-            linearOp.telemetry.update();
-        }
-        stopMotors();
-    }
-
-    public void rotateLeft(double speed, double rotations) {
-
-        double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(currentMotorRunMode);
         while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
-            driveForward(-speed);
+            driveForward(power);
+            linearOp.telemetry.addData("Forward Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotors();
     }
 
-    public void rotateRight(double speed, double rotations) {
+    public void driveBackward ( double power, double rotations){
 
-        double ticks = rotations * TICKS_PER_ROTATION;
+        double ticks = rotations * (-1) * TICKS_PER_ROTATION;
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+
+        while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+            driveBackward(power);
+            linearOp.telemetry.addData("Backward Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
+        }
+        stopMotors();
+    }
+
+    public void rotateLeft (double power, double rotations) {
+        double ticks = Math.abs(rotations) * (-1) * TICKS_PER_ROTATION; //strafing left moves encoder towards positive infinity
+        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(currentMotorRunMode);
+
+        while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+            rotateLeft(power);
+            linearOp.telemetry.addData("Turning Left Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
+        }
+        stopMotors();
+    }
+
+
+
+    public void rotateRight (double power, double rotations) {
+        double ticks = Math.abs(rotations) * TICKS_PER_ROTATION; //strafing right moves encoder towards -infinity
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(currentMotorRunMode);
 
         while(frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
-                driveForward(speed);
+            rotateRight(power);
+            linearOp.telemetry.addData("Turning Right Ticks: ", frontLeftMotor.getCurrentPosition());
+            linearOp.telemetry.update();
         }
         stopMotors();
     }

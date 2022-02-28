@@ -3,15 +3,13 @@ package org.firstinspires.ftc.teamcode.Base.Drivetrains;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-
-public class Tank_FourMotorDrive {
+public class AllWheelDrive {
 
 
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
     public DcMotor rearLeftMotor;
     public DcMotor rearRightMotor;
-
 
     public LinearOpMode linearOp = null;
     public void setLinearOp(LinearOpMode linearOp) {
@@ -35,7 +33,7 @@ public class Tank_FourMotorDrive {
         rearRightMotor.setPower(0);
     }
 
-    public void tankDriveForward (double power) {
+    public void driveForward (double power) {
 
         frontLeftMotor.setPower(Math.abs(power));
         frontRightMotor.setPower(Math.abs(power));
@@ -44,7 +42,7 @@ public class Tank_FourMotorDrive {
 
     }
 
-    public void tankDriveBackward (double power) {
+    public void driveBackward (double power) {
 
         frontLeftMotor.setPower(-Math.abs(power));
         frontRightMotor.setPower(-Math.abs(power));
@@ -52,7 +50,7 @@ public class Tank_FourMotorDrive {
         rearRightMotor.setPower(-Math.abs(power));
     }
 
-    public void tankTurnLeft (double power) {
+    public void turnLeft (double power) {
 
         frontLeftMotor.setPower(-Math.abs(power));
         rearLeftMotor.setPower(-Math.abs(power));
@@ -60,7 +58,7 @@ public class Tank_FourMotorDrive {
         rearRightMotor.setPower(Math.abs(power));
     }
 
-    public void tankTurnRight (double power) {
+    public void turnRight (double power) {
 
         frontLeftMotor.setPower(Math.abs(power));
         rearLeftMotor.setPower(Math.abs(power));
@@ -68,14 +66,41 @@ public class Tank_FourMotorDrive {
         rearRightMotor.setPower(-Math.abs(power));
     }
 
-    public void tankDrive (double leftPower, double rightPower) {
+    public void driveForward (double FL,double FR,double RL,double RR) {
 
-        frontLeftMotor.setPower(leftPower);
-        rearLeftMotor.setPower(leftPower);
-
-        frontRightMotor.setPower(rightPower);
-        rearRightMotor.setPower(rightPower);
+        frontLeftMotor.setPower(Math.abs(FL));
+        frontRightMotor.setPower(Math.abs(FR));
+        rearLeftMotor.setPower(Math.abs(RL));
+        rearRightMotor.setPower(Math.abs(RR));
     }
+
+    public void driveBackward (double FL,double FR,double RL,double RR) {
+
+        frontLeftMotor.setPower(-Math.abs(FL));
+        frontRightMotor.setPower(-Math.abs(FR));
+        rearLeftMotor.setPower(-Math.abs(RL));
+        rearRightMotor.setPower(-Math.abs(RR));
+
+    }
+
+    public void turnLeft (double FL,double FR,double RL,double RR) {
+
+        frontLeftMotor.setPower(-Math.abs(FL));
+        frontRightMotor.setPower(Math.abs(FR));
+        rearLeftMotor.setPower(-Math.abs(RL));
+        rearRightMotor.setPower(Math.abs(RR));
+
+    }
+
+    public void turnRight (double FL,double FR,double RL,double RR) {
+
+        frontLeftMotor.setPower(Math.abs(FL));
+        frontRightMotor.setPower(-Math.abs(FR));
+        rearLeftMotor.setPower(Math.abs(RL));
+        rearRightMotor.setPower(-Math.abs(RR));
+
+    }
+
 
 
 }

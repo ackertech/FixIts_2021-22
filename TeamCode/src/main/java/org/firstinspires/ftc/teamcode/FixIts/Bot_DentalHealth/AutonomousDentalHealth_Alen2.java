@@ -15,6 +15,7 @@ public class AutonomousDentalHealth_Alen2 extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         Bot.initRobot(hardwareMap);
+        Bot.setLinearOp(this);
 
         telemetry.addLine("Awaiting start");
         telemetry.update();

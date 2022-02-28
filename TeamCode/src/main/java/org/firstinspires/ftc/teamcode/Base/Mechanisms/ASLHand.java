@@ -1,84 +1,47 @@
-package org.firstinspires.ftc.teamcode.Base.Robot;
+package org.firstinspires.ftc.teamcode.Base.Mechanisms;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-public class ASL_Bot {
-    public Servo pinkyF = null;
-    public Servo middleF = null;
-    public Servo indexF = null;
-    public Servo thumbF = null;
-    public Servo ringF = null;
-    public Servo wrist = null;
-    public Servo elbow = null;
-
-    public HardwareMap hwBot = null;
+public class ASLHand extends ArmHand {
 
     public ElapsedTime timer = new ElapsedTime();
     public double waitTime = 2.0;
+    String letter = " ";
 
-    public ASL_Bot() {
+    //Allows us to leverage telemetry and sleep
+    public LinearOpMode linearOp = null;
+    public void setLinearOp (LinearOpMode linearOpModeOp) {
+
+        this.linearOp = linearOp;
+    }
+
+    public ASLHand() { }
+
+    /**  ********  ASL LOGIC *************      **/
+
+    public void signSentence(String word) {
+
+        linearOp.telemetry.addData("Word: ", word);
+        linearOp.telemetry.update();
+        linearOp.sleep(1000);
+
+        for (int i=0; i < word.length(); i++) {
+
+            linearOp.telemetry.addData("Letter: ", letter);
+            linearOp.telemetry.update();
+            letter = word.valueOf(i);
+            createWords(letter);
+            linearOp.sleep(1000);
+            closeHand();
+            linearOp.sleep(1000);
+
+        }
 
     }
 
-    public void initHandBot(HardwareMap hwMap) {
-
-        hwBot = hwMap;
-
-        pinkyF = hwBot.get(Servo.class, "pinkyF");
-        pinkyF.setDirection(Servo.Direction.FORWARD);
-
-        middleF = hwBot.get(Servo.class, "middleF");
-        middleF.setDirection(Servo.Direction.FORWARD);
-
-        indexF = hwBot.get(Servo.class, "indexF");
-        indexF.setDirection(Servo.Direction.FORWARD);
-
-        thumbF = hwBot.get(Servo.class, "thumbF");
-        thumbF.setDirection(Servo.Direction.FORWARD);
-
-        ringF = hwBot.get(Servo.class, "ringF");
-        ringF.setDirection(Servo.Direction.FORWARD);
-
-        /**
-        wrist = hwBot.get(Servo.class, "wrist");
-        wrist.setDirection(Servo.Direction.FORWARD);
-
-        elbow = hwBot.get(Servo.class, "elbow");
-        elbow.setDirection(Servo.Direction.FORWARD);
-        **/
-
-    }
-
-    public void indexPoint() {
-        thumbF.setPosition(0);
-        indexF.setPosition(1);
-        middleF.setPosition(0);
-        ringF.setPosition(0);
-        pinkyF.setPosition(0);
-
-    }
-
-    public void closeHand() {
-        thumbF.setPosition(0);
-        indexF.setPosition(0);
-        middleF.setPosition(0);
-        ringF.setPosition(0);
-        pinkyF.setPosition(0);
-
-    }
-
-    public void openHand() {
-        thumbF.setPosition(1);
-        indexF.setPosition(1);
-        middleF.setPosition(1);
-        ringF.setPosition(1);
-        pinkyF.setPosition(1);
-
-    }
-
-    // ASL Logic
 
     public void createWords(String letter) {
 
@@ -164,7 +127,7 @@ public class ASL_Bot {
 
     }
 
-    // ALS Letter
+    /**  ********  ASL LETTERS *************      **/
 
     public void letterA () {
         thumbF.setPosition(.5);

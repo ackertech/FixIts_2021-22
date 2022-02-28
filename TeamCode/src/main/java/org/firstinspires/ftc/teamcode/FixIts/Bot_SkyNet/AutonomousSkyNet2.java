@@ -19,6 +19,7 @@ public class AutonomousSkyNet2 extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         Bot.initRobot(hardwareMap);
+        Bot.setLinearOp(this);
 
 
         //waiting for drive to press start on drive control system
