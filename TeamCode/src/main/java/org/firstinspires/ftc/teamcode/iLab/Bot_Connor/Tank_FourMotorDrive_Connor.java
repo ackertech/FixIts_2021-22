@@ -33,7 +33,7 @@ public class Tank_FourMotorDrive_Connor {
 
     // Common Method To Move Forward
 
-    public void driveForwardIntoACat (double power) {
+    public void driveForward (double power) {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(ABSpower);
@@ -42,7 +42,7 @@ public class Tank_FourMotorDrive_Connor {
         rearRightMotor.setPower(ABSpower);
     }
 
-    public void driveBackwardsAndCrashIntoAFlowerShop (double power) {
+    public void driveBackwards (double power) {
 
         double ABSpower = Math.abs(power);
         frontLeftMotor.setPower(-ABSpower);
