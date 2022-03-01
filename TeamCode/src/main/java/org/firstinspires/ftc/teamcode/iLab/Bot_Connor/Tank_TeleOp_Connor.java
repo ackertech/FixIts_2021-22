@@ -43,7 +43,7 @@ public class Tank_TeleOp_Connor extends OpMode{
             else if (gamepad1.dpad_left == true) {
                 speedMultiply = 0.75;}
             else if (gamepad1.dpad_up == true){
-                speedMultiply = 0.10;}
+                speedMultiply = 0.20;}
             else if (gamepad1.a == true){
                 speedMultiply = 1.00;}
         }
