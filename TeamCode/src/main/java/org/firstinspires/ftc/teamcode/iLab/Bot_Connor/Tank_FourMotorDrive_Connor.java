@@ -55,19 +55,19 @@ public class Tank_FourMotorDrive_Connor {
     public void rotateLeft (double power) {
 
         double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(ABSpower);
-        frontRightMotor.setPower(-ABSpower);
-        rearLeftMotor.setPower(ABSpower);
-        rearRightMotor.setPower(-ABSpower);
+        frontLeftMotor.setPower(-ABSpower);
+        frontRightMotor.setPower(ABSpower);
+        rearLeftMotor.setPower(-ABSpower);
+        rearRightMotor.setPower(ABSpower);
     }
 
     public void rotateRight (double power) {
 
         double ABSpower = Math.abs(power);
-        frontLeftMotor.setPower(-ABSpower);
-        frontRightMotor.setPower(ABSpower);
-        rearLeftMotor.setPower(-ABSpower);
-        rearRightMotor.setPower(ABSpower);
+        frontLeftMotor.setPower(ABSpower);
+        frontRightMotor.setPower(-ABSpower);
+        rearLeftMotor.setPower(ABSpower);
+        rearRightMotor.setPower(-ABSpower);
 
     }
 
