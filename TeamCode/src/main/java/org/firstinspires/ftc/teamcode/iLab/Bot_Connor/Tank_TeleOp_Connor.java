@@ -31,8 +31,9 @@ public class Tank_TeleOp_Connor extends OpMode{
 
         public void loop() {
 
-
-        }
+        speedControl();
+        drive();
+        telemetryOutput(); }
 
      public void speedControl () {
         if (gamepad1.dpad_right == true) {
