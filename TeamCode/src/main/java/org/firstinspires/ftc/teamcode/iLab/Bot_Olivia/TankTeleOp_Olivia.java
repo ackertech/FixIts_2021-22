@@ -81,7 +81,7 @@ public class TankTeleOp_Olivia extends OpMode {
 
         //bob = telemetry output
         public void scooter() {
-           telemetry.addLine("I See Everything");
+           telemetry.addLine("I See Everything -Connor");
             telemetry.addData("Moxxi: ", speedSlowerDowner);
             telemetry.addData("Mordecai: ", Kenny_Yamamoto.frontLeftMotor.getPower());
             telemetry.addData("Lilith: ", Kenny_Yamamoto.rearLeftMotor.getPower());
