@@ -26,8 +26,8 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
 
         //Define the name of the motors used in the control hub configuation
         frontLeftMotor = hwBot.dcMotor.get("frontLeftMotor"); //Port 0
-        frontRightMotor = hwBot.dcMotor.get("frontRightMotor");// Port 1
-        rearLeftMotor = hwBot.dcMotor.get("rearLeftMotor");// Port 2
+        frontRightMotor = hwBot.dcMotor.get("frontRightMotor");// Port 2
+        rearLeftMotor = hwBot.dcMotor.get("rearLeftMotor");// Port 1
         rearRightMotor = hwBot.dcMotor.get("rearRightMotor");// Port 3
 
         //Sets the direction of the robot's motors based on physical placement
