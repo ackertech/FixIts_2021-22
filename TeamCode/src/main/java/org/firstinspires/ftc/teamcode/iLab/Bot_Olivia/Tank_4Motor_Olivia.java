@@ -81,6 +81,4 @@ public class Tank_4Motor_Olivia {
         rearRightMotor.setPower(-ABSpower);
 
     }
-
-//Connor Is THe Best!!!
 }
