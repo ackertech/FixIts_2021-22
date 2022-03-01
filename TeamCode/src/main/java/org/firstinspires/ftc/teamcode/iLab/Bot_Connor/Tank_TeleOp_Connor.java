@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
 //@Disabled
 @TeleOp(name = "Thomas_The_TankBot_Drive_Basic_Connor_Beethoven's_Wig")
@@ -45,7 +46,40 @@ public class Tank_TeleOp_Connor extends OpMode{
             else if (gamepad1.a == true){
                 speedMultiply = 1.00;}
         }
-//Hello
+
+        public void drive() {
+
+        leftStickYVal = gamepad1.left_stick_y;
+        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+
+        leftStickXVal = gamepad1.left_stick_x;
+        leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+
+        if (leftStickYVal < -0.1) {
+            Thomas_The_Tank.driveForward(speedMultiply*leftStickYVal); }
+        else if (leftStickYVal > -0.1) {
+            Thomas_The_Tank.driveForward(speedMultiply*leftStickYVal); }
+        else if (leftStickXVal > 0.1) {
+            Thomas_The_Tank.driveForward(speedMultiply*leftStickXVal); }
+        else if (leftStickXVal < -0.1) {
+            Thomas_The_Tank.driveForward(speedMultiply*leftStickXVal); }
+        else {
+            Thomas_The_Tank.stopMotors(); }
+        }
+
+
+        public void telemetryOutput() {
+        telemetry.addLine("Thomas The Tank Control Panel");
+        telemetry.addLine("May The Force Be With You");
+        telemetry.addLine("Semper Paratus");
+        telemetry.addData("Speed: ", speedMultiply);
+        telemetry.addData("Front Left Motor Power: ", Thomas_The_Tank.frontLeftMotor.getPower());
+        telemetry.addData("Rear Left Motor Power: ", Thomas_The_Tank.rearLeftMotor.getPower());
+        telemetry.addData("Front Right Motor The Power of The Dark Side: ", Thomas_The_Tank.frontRightMotor.getPower());
+        telemetry.addData("Rear Right Motor Power Of Pop Tarts: ", Thomas_The_Tank.frontRightMotor.getPower());
+        telemetry.update();
+    }
+
         }
 
 
