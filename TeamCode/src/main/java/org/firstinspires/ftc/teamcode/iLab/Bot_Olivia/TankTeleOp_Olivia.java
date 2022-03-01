@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.iLab.Bot_Olivia;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
 //@Disabled
 @TeleOp(name = "TankBot_Olivia")
@@ -33,14 +34,20 @@ public class TankTeleOp_Olivia extends OpMode {
     //TeleOp loop Method/ This starts AFTER clicking the Play Button on the Driver Station Phone
 
     public void loop() {
+        ellie();
+        drive();
+        scooter();
+
+
 
     }
 
 
+    /**
+     * ************* DRIVING METHODS USING GAMEPAD1 ********************
+     **/
 
-    /** ************** DRIVING METHODS USING GAMEPAD1 ******************** **/
-
-    public void speedControl () {
+    public void ellie() {
         if (gamepad1.dpad_right == true) {
             speedSlowerDowner = 0.25;
         } else if (gamepad1.dpad_down == true) {
@@ -50,9 +57,42 @@ public class TankTeleOp_Olivia extends OpMode {
         } else if (gamepad1.dpad_up == true) {
             speedSlowerDowner = 1.00;
         }
+    }
 
+        public void drive () {
+            leftStickYVal = gamepad1.left_stick_y;
+            leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+            leftStickXVal = gamepad1.left_stick_x;
+            leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+
+            if (leftStickYVal < -0.1) {
+                Kenny_Yamamoto.driveForward(speedSlowerDowner * leftStickYVal);
+            } else if (leftStickYVal > 0.1) {
+                Kenny_Yamamoto.driveBackwards(speedSlowerDowner * leftStickYVal);
+            } else if (leftStickXVal > 0.1) {
+                Kenny_Yamamoto.turnRight(speedSlowerDowner * leftStickXVal);
+            } else if (leftStickXVal < -0.1) {
+                Kenny_Yamamoto.turnLeft(speedSlowerDowner * leftStickXVal);
+            } else {
+                Kenny_Yamamoto.stopMotors();
+            }
+
+        }
+
+        //bob = telemetry output
+        public void scooter() {
+            telemetry.addData("Moxxi: ", speedSlowerDowner);
+            telemetry.addData("Mordecai: ", Kenny_Yamamoto.frontLeftMotor.getPower());
+            telemetry.addData("Lilith: ", Kenny_Yamamoto.rearLeftMotor.getPower());
+            telemetry.addData("Brick: ", Kenny_Yamamoto.frontRightMotor.getPower());
+            telemetry.addData("Roland: ", Kenny_Yamamoto.rearRightMotor.getPower());
+            telemetry.update();
+
+        }
     }
-    }
+
+
+
 
 
 
