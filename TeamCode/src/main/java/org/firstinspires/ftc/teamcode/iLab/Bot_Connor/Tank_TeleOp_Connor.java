@@ -58,12 +58,12 @@ public class Tank_TeleOp_Connor extends OpMode{
 
         if (leftStickYVal < -0.1) {
             Thomas_The_Tank.driveForward(speedMultiply*leftStickYVal); }
-        else if (leftStickYVal > -0.1) {
-            Thomas_The_Tank.driveForward(speedMultiply*leftStickYVal); }
+        else if (leftStickYVal > 0.1) {
+            Thomas_The_Tank.driveBackwards(speedMultiply*leftStickYVal); }
         else if (leftStickXVal > 0.1) {
-            Thomas_The_Tank.driveForward(speedMultiply*leftStickXVal); }
+            Thomas_The_Tank.rotateRight(speedMultiply*leftStickXVal); }
         else if (leftStickXVal < -0.1) {
-            Thomas_The_Tank.driveForward(speedMultiply*leftStickXVal); }
+            Thomas_The_Tank.rotateLeft(speedMultiply*leftStickXVal); }
         else {
             Thomas_The_Tank.stopMotors(); }
         }
