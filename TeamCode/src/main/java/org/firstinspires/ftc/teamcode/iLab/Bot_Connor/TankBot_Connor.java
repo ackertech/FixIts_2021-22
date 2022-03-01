@@ -31,9 +31,9 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
         rearRightMotor = hwBot.dcMotor.get("rearRightMotor");// Port 3
 
         //Sets the direction of the robot's motors based on physical placement
-        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
-        rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+        rearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
 
 
