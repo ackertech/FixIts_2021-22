@@ -24,58 +24,51 @@ public class Autonomous2DentalHealth_Alen2 extends AutonomousDentalHealth_Alen2{
         waitForStart();
 
 
-        while (
-
-        opModeIsActive())
-
-        {
-            telemetry.addLine("Driving Forward in Square");
-            telemetry.update();
-            Bot.driveForward(1,1);
+        while (opModeIsActive()) {
 
             telemetry.addLine("Driving Forward in Square");
             telemetry.update();
-            Bot.driveForward(1,1);
+            Bot.driveForward(.5,2.5);
 
             //This puts us in the top left corner of the square
 
             telemetry.addLine("Turning Right at the first corner");
             telemetry.update();
-            Bot.rotateRight(1,1);
+            Bot.rotateRight(.5,1);
 
             telemetry.addLine("Driving Forward in Square");
             telemetry.update();
-            Bot.driveForward(1,1);
+            Bot.driveForward(.5,2);
 
             //This puts us in the top right corner of the square
 
             telemetry.addLine("Turning Right at the first corner");
             telemetry.update();
-            Bot.rotateRight(1,1);
+            Bot.rotateRight(.5,1);
 
             telemetry.addLine("Driving Forward in Square");
             telemetry.update();
-            Bot.driveForward(1,1);
+            Bot.driveForward(.5,2);
 
             //This puts us in the bottom left corner of the square
 
             telemetry.addLine("Turning Right at the first corner");
             telemetry.update();
-            Bot.rotateRight(1,1);
+            Bot.rotateRight(.5,1);
 
             telemetry.addLine("Driving Forward in Square");
             telemetry.update();
-            Bot.driveForward(1,1);
+            Bot.driveForward(.5,2);
 
             //This puts us in the bottom left corner of the square
 
             telemetry.addLine("Turning Left at the first corner");
             telemetry.update();
-            Bot.rotateLeft(1,1);
+            Bot.rotateLeft(.5,1);
 
             telemetry.addLine("Driving Forward in Square");
             telemetry.update();
-            Bot.driveForward(1,1);
+            Bot.driveForward(.5,3);
 
         }
 

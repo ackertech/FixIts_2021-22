@@ -78,6 +78,12 @@ public class ArmHand {
 
     public void halfWrist() { wrist.setPosition(.5); }
 
+    /**  ********  WRIST MOVEMENT METHODS *************      **/
+
+    public void raiseArm() { elbow.setPosition(elbowMaxPos); }
+
+    public void lowerArm() { elbow.setPosition(elbowMinPOs); }
+
 
     /**  ********  HAND GESTURES *************      **/
 

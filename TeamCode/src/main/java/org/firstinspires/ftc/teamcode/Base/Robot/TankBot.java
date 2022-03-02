@@ -20,7 +20,7 @@ public class TankBot extends Tank_FourMotorDrive {
     //Set Lazy Susan movement values
     public double lazySusanMaxPos = 0.5;
     public double lazySusanMinPos = 0.25;
-    public double lazySusanCurrPos = .5;
+    public double lazySusanCurrPos = 0.5;
     public double lazySusanIncrements = 0.0005;
 
 
