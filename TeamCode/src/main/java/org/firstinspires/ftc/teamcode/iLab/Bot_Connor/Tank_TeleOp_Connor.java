@@ -10,10 +10,22 @@ public class Tank_TeleOp_Connor extends OpMode{
 
     //TeleOp Driving Behavior Variables
     public double speedMultiply = 0.50;
+    public enum Style {
+        ONESTICK, TANK
+    }
+
+    public Style driverStyle = Style.ONESTICK;
+
+    public double leftSidePower;
+    public double rightSidePower;
+
 
     //GamePad Variables
     double leftStickYVal;
     double leftStickXVal;
+    double rightStickYVal;
+    double rightStickXVal;
+
 
     // Construct the Physical Bot based on the Robot Class
     public TankBot_Connor Thomas_The_Tank = new TankBot_Connor();
@@ -32,6 +44,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         public void loop() {
 
         speedControl();
+        drivingStyle();
         drive();
         telemetryOutput(); }
 
@@ -50,22 +63,39 @@ public class Tank_TeleOp_Connor extends OpMode{
 
         public void drive() {
 
-        leftStickYVal = gamepad1.left_stick_y;
-        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+        switch (driverStyle) {
+            case ONESTICK:
 
-        leftStickXVal = gamepad1.left_stick_x;
-        leftStickXVal = Range.clip(leftStickXVal, -1, 1);
 
-        if (leftStickYVal < -0.1) {
-            Thomas_The_Tank.driveForward(speedMultiply*leftStickYVal); }
-        else if (leftStickYVal > 0.1) {
-            Thomas_The_Tank.driveBackwards(speedMultiply*leftStickYVal); }
-        else if (leftStickXVal > 0.1) {
-            Thomas_The_Tank.rotateRight(speedMultiply*leftStickXVal); }
-        else if (leftStickXVal < -0.1) {
-            Thomas_The_Tank.rotateLeft(speedMultiply*leftStickXVal); }
-        else {
-            Thomas_The_Tank.stopMotors(); }
+                leftStickYVal = gamepad1.left_stick_y;
+                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+
+                leftStickXVal = gamepad1.left_stick_x;
+                leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+
+                if (leftStickYVal < -0.1) {
+                    Thomas_The_Tank.driveForward(speedMultiply * leftStickYVal);
+                } else if (leftStickYVal > 0.1) {
+                    Thomas_The_Tank.driveBackwards(speedMultiply * leftStickYVal);
+                } else if (leftStickXVal > 0.1) {
+                    Thomas_The_Tank.rotateRight(speedMultiply * leftStickXVal);
+                } else if (leftStickXVal < -0.1) {
+                    Thomas_The_Tank.rotateLeft(speedMultiply * leftStickXVal);
+                } else {
+                    Thomas_The_Tank.stopMotors();
+                }
+                break;
+
+            case TANK:
+                leftStickYVal = gamepad1.left_stick_y;
+                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+
+                rightStickYVal = gamepad1.right_stick_y;
+                rightStickYVal = Range.clip(rightStickYVal, -1, 1);
+
+
+
+        }
         }
 
 
@@ -79,6 +109,11 @@ public class Tank_TeleOp_Connor extends OpMode{
         telemetry.addData("Front Right Motor The Power of The Dark Side: ", Thomas_The_Tank.frontRightMotor.getPower());
         telemetry.addData("Rear Right Motor Power Of Pop Tarts: ", Thomas_The_Tank.frontRightMotor.getPower());
         telemetry.update();
+    }
+    public void drivingStyle () {
+
+        if (gamepad1.x) { driverStyle = Style.ONESTICK; }
+        else if (gamepad1.b) { driverStyle = Style.TANK;}
     }
 
         }
