@@ -29,6 +29,7 @@ public class TankBot extends Tank_FourMotorDrive {
 
     // Robot Physical Constructor used in TeleOp and Autonomous classes
     public TankBot() { }
+    public ElapsedTime timer = new ElapsedTime();
 
     // Custom Method that will initialize the robot hardware in TeleOp and Autonomous
 
@@ -65,6 +66,15 @@ public class TankBot extends Tank_FourMotorDrive {
         lazySusan = hwBot.get(Servo.class, "lazy_susan");
         lazySusan.setDirection(Servo.Direction.FORWARD);
 
+    }
+
+    public void pause (double pauseTime) {
+        timer.reset();
+        while (timer.milliseconds() < pauseTime) {
+            linearOp.telemetry.addData("Timer (ms): ", timer.milliseconds());
+            linearOp.telemetry.update();
+        }
+        timer.reset();
     }
 
 

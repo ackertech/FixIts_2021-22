@@ -35,14 +35,11 @@ public class TankTeleOpWithArm extends OpMode {
     String wristStatus;
     String ASLWord = "";
 
-    //Timer Variables
-    double waitTime = 2.5;
-
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bruno = new TankBot();
     public ArmHand Handy = new ArmHand();
     public ASLHand ASL = new ASLHand();
-    public ElapsedTime timer = new ElapsedTime();
+
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
     @Override
@@ -177,18 +174,15 @@ public class TankTeleOpWithArm extends OpMode {
 
     public void elbowControl() {
 
-        if (gamepad2.dpad_up  && Handy.elbowCurrPos < Handy.elbowMaxPos)
-        {
+        if (gamepad2.dpad_up  && Handy.elbowCurrPos < Handy.elbowMaxPos) {
             Handy.elbowCurrPos += Handy.elbowIncrements;
             Handy.elbow.setPosition(Handy.elbowCurrPos);
-
         }
         else {
             Handy.elbow.setPosition(Handy.elbowCurrPos);
         }
 
-        if (gamepad2.dpad_down  && Handy.elbowCurrPos > Handy.elbowMinPOs)
-        {
+        if (gamepad2.dpad_down  && Handy.elbowCurrPos > Handy.elbowMinPOs) {
             Handy.elbowCurrPos -= Handy.elbowIncrements;
             Handy.elbow.setPosition(Handy.elbowCurrPos);
 
@@ -200,21 +194,17 @@ public class TankTeleOpWithArm extends OpMode {
 
     public void lazySusanControl() {
 
-        if (gamepad2.dpad_left  && Bruno.lazySusanCurrPos < Bruno.lazySusanMaxPos)
-        {
+        if (gamepad2.dpad_left  && Bruno.lazySusanCurrPos < Bruno.lazySusanMaxPos) {
             Bruno.lazySusanCurrPos += Bruno.lazySusanIncrements;
             Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
-
         }
         else {
             Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
         }
 
-        if (gamepad2.dpad_right  && Bruno.lazySusanCurrPos > Bruno.lazySusanMinPos)
-        {
+        if (gamepad2.dpad_right  && Bruno.lazySusanCurrPos > Bruno.lazySusanMinPos) {
             Bruno.lazySusanCurrPos -= Bruno.lazySusanIncrements;
             Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
-
         }
         else {
             Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
@@ -271,41 +261,44 @@ public class TankTeleOpWithArm extends OpMode {
     public void signASL() {
         if (gamepad2.dpad_up) {
             Handy.raiseArm();
+            Handy.openWrist();
             ASLWord = "I Love MBCA";
             ASL.signSentence(ASLWord);
-            timer.reset();
-            if (timer.seconds() > waitTime) {
-                Handy.lowerArm();
-            }
+            Handy.closeWrist();
+            Bruno.pause(3000);
+            Handy.lowerArm();
         }
         else if (gamepad2.dpad_down) {
             Handy.raiseArm();
+            Handy.openWrist();
             ASLWord = "I Love Robots";
             ASL.signSentence(ASLWord);
-            timer.reset();
-            if (timer.seconds() > waitTime) {
-                Handy.lowerArm();
-            }
+            Handy.closeWrist();
+            Bruno.pause(3000);
+            Handy.lowerArm();
         }
         else if (gamepad2.dpad_right) {
             Handy.raiseArm();
+            Handy.openWrist();
             ASLWord = "Hello";
             ASL.signSentence(ASLWord);
-            timer.reset();
-            if (timer.seconds() > waitTime) {
-                Handy.lowerArm();
-            }
+            Handy.closeWrist();
+            Bruno.pause(3000);
+            Handy.lowerArm();
         }
         else if (gamepad2.dpad_left) {
             Handy.raiseArm();
+            Handy.openWrist();
             ASLWord = "Goodbye";
             ASL.signSentence(ASLWord);
-            timer.reset();
-            if (timer.seconds() > waitTime) {
-                Handy.lowerArm();
-            }
+            Handy.closeWrist();
+            Bruno.pause(3000);
+            Handy.lowerArm();
+
         }
 
     }
+
+
 
 }
