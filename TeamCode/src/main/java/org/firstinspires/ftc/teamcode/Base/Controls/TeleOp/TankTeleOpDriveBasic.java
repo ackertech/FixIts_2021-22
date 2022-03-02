@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot Drive Basic")
+@TeleOp(name = "TankBot Basic")
 
 public class TankTeleOpDriveBasic extends OpMode {
 

@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot Drive Advanced")
+@TeleOp(name = "TankBot Advanced")
 
 public class TankTeleOpDriveAdv extends OpMode {
 

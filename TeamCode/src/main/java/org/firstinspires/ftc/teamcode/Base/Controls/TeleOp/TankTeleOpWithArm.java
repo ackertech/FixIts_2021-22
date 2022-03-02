@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot Drive Arm")
+@TeleOp(name = "TankBot Arm")
 
 public class TankTeleOpWithArm extends OpMode {
 
