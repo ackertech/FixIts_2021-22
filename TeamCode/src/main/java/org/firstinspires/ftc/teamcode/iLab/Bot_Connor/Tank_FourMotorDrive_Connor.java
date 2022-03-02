@@ -71,6 +71,13 @@ public class Tank_FourMotorDrive_Connor {
 
     }
 
+    public void  tankDrive (double leftPower, double rightPower) {
+        frontLeftMotor.setPower(leftPower);
+        rearLeftMotor.setPower(leftPower);
+
+        frontRightMotor.setPower(rightPower);
+       rearRightMotor.setPower(rightPower);
+    }
 
 }
 
