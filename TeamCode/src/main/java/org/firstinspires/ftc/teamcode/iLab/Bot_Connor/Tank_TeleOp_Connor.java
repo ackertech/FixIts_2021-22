@@ -93,6 +93,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                 rightStickYVal = gamepad1.right_stick_y;
                 rightStickYVal = Range.clip(rightStickYVal, -1, 1);
 
+                leftSidePower = speedMultiply * leftStickYVal * (-1);
+                rightSidePower = speedMultiply * rightStickYVal * (-1);
+                Thomas_The_Tank.tankDrive(leftSidePower, rightSidePower);
+                break;
+
 
 
         }
@@ -112,8 +117,8 @@ public class Tank_TeleOp_Connor extends OpMode{
     }
     public void drivingStyle () {
 
-        if (gamepad1.x) { driverStyle = Style.ONESTICK; }
-        else if (gamepad1.b) { driverStyle = Style.TANK;}
+        if (gamepad1.x) telemetry.addLine("OneStick Drive");{ driverStyle = Style.ONESTICK; }
+        if (gamepad1.b) telemetry.addLine("Tank Drive");{ driverStyle = Style.TANK;}
     }
 
         }
