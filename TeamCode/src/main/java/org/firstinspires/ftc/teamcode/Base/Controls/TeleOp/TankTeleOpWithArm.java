@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Base.Mechanisms.ASLHand;
@@ -10,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot Drive Arm")
+@TeleOp(name = "TankBot Arm")
 
 public class TankTeleOpWithArm extends OpMode {
 
@@ -34,9 +35,8 @@ public class TankTeleOpWithArm extends OpMode {
     String wristStatus;
     String ASLWord = "";
 
-
     // Construct the Physical Bot based on the Robot Class
-    public TankBot Bot = new TankBot();
+    public TankBot Bruno = new TankBot();
     public ArmHand Handy = new ArmHand();
     public ASLHand ASL = new ASLHand();
 
@@ -45,7 +45,7 @@ public class TankTeleOpWithArm extends OpMode {
     @Override
     public void init() {
 
-        Bot.initRobot(hardwareMap);
+        Bruno.initRobot(hardwareMap);
         Handy.initArmHand(hardwareMap);
 
     }
@@ -69,12 +69,12 @@ public class TankTeleOpWithArm extends OpMode {
     public void telemetryOutput() {
         telemetry.addData("Drive Mode: ", driverStyle);
         telemetry.addData("Speed: ", speedMultiply);
-        telemetry.addData("Front Left Motor Power: ", Bot.frontLeftMotor.getPower());
-        telemetry.addData("Rear Left Motor Power: ", Bot.rearLeftMotor.getPower());
-        telemetry.addData("Front Right Motor Power: ", Bot.frontRightMotor.getPower());
-        telemetry.addData("Rear Right Motor Power: ", Bot.rearRightMotor.getPower());
+        telemetry.addData("Front Left Motor Power: ", Bruno.frontLeftMotor.getPower());
+        telemetry.addData("Rear Left Motor Power: ", Bruno.rearLeftMotor.getPower());
+        telemetry.addData("Front Right Motor Power: ", Bruno.frontRightMotor.getPower());
+        telemetry.addData("Rear Right Motor Power: ", Bruno.rearRightMotor.getPower());
         telemetry.addData("Elbow Position: ", Handy.elbowCurrPos );
-        telemetry.addData("LazySusan Position: ", Bot.lazySusanCurrPos );
+        telemetry.addData("LazySusan Position: ", Bruno.lazySusanCurrPos );
         telemetry.addData("Hand Gesture: ", handGesture);
         telemetry.addData("Wrist Status: ", wristStatus);
         telemetry.addData("ASL Sentence: ", ASLWord);
@@ -97,15 +97,15 @@ public class TankTeleOpWithArm extends OpMode {
                 leftStickXVal = Range.clip(leftStickXVal, -1, 1);
 
                 if (leftStickYVal < -0.1) {
-                    Bot.tankDriveForward(speedMultiply*leftStickYVal);
+                    Bruno.tankDriveForward(speedMultiply*leftStickYVal);
                 } else if (leftStickYVal > 0.1) {
-                    Bot.tankDriveBackward(speedMultiply*leftStickYVal);
+                    Bruno.tankDriveBackward(speedMultiply*leftStickYVal);
                 } else if (leftStickXVal > 0.1) {
-                    Bot.tankTurnRight(speedMultiply*leftStickXVal);
+                    Bruno.tankTurnRight(speedMultiply*leftStickXVal);
                 } else if (leftStickXVal < -0.1) {
-                    Bot.tankTurnLeft(speedMultiply*leftStickXVal);
+                    Bruno.tankTurnLeft(speedMultiply*leftStickXVal);
                 } else {
-                    Bot.stopMotors();
+                    Bruno.stopMotors();
                 }
                 break;
 
@@ -121,18 +121,18 @@ public class TankTeleOpWithArm extends OpMode {
                 rightStickXVal = Range.clip(rightStickXVal, -1, 1);
 
                 if (leftStickYVal < -0.1) {
-                    Bot.tankDriveForward(speedMultiply*leftStickYVal);
+                    Bruno.tankDriveForward(speedMultiply*leftStickYVal);
                 } else if (leftStickYVal > 0.1) {
-                    Bot.tankDriveBackward(speedMultiply*leftStickYVal);
+                    Bruno.tankDriveBackward(speedMultiply*leftStickYVal);
                 } else {
-                    Bot.stopMotors();
+                    Bruno.stopMotors();
                 }
                 if (rightStickXVal > 0.1) {
-                    Bot.tankTurnRight(speedMultiply*rightStickXVal);
+                    Bruno.tankTurnRight(speedMultiply*rightStickXVal);
                 } else if (rightStickXVal < -0.1) {
-                    Bot.tankTurnLeft(speedMultiply*rightStickXVal);
+                    Bruno.tankTurnLeft(speedMultiply*rightStickXVal);
                 } else {
-                    Bot.stopMotors();
+                    Bruno.stopMotors();
                 }
                 break;
 
@@ -145,7 +145,7 @@ public class TankTeleOpWithArm extends OpMode {
 
                 leftSidePower = speedMultiply * leftStickYVal * (-1);
                 rightSidePower = speedMultiply * rightStickYVal * (-1);
-                Bot.tankDrive(leftSidePower,rightSidePower);
+                Bruno.tankDrive(leftSidePower,rightSidePower);
                 break;
         }
     }
@@ -174,18 +174,15 @@ public class TankTeleOpWithArm extends OpMode {
 
     public void elbowControl() {
 
-        if (gamepad2.dpad_up  && Handy.elbowCurrPos < Handy.elbowMaxPos)
-        {
+        if (gamepad2.dpad_up  && Handy.elbowCurrPos < Handy.elbowMaxPos) {
             Handy.elbowCurrPos += Handy.elbowIncrements;
             Handy.elbow.setPosition(Handy.elbowCurrPos);
-
         }
         else {
             Handy.elbow.setPosition(Handy.elbowCurrPos);
         }
 
-        if (gamepad2.dpad_down  && Handy.elbowCurrPos > Handy.elbowMinPOs)
-        {
+        if (gamepad2.dpad_down  && Handy.elbowCurrPos > Handy.elbowMinPOs) {
             Handy.elbowCurrPos -= Handy.elbowIncrements;
             Handy.elbow.setPosition(Handy.elbowCurrPos);
 
@@ -197,24 +194,20 @@ public class TankTeleOpWithArm extends OpMode {
 
     public void lazySusanControl() {
 
-        if (gamepad2.dpad_left  && Bot.lazySusanCurrPos < Bot.lazySusanMaxPos)
-        {
-            Bot.lazySusanCurrPos += Bot.lazySusanIncrements;
-            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
-
+        if (gamepad2.dpad_left  && Bruno.lazySusanCurrPos < Bruno.lazySusanMaxPos) {
+            Bruno.lazySusanCurrPos += Bruno.lazySusanIncrements;
+            Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
         }
         else {
-            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
+            Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
         }
 
-        if (gamepad2.dpad_right  && Bot.lazySusanCurrPos > Bot.lazySusanMinPos)
-        {
-            Bot.lazySusanCurrPos -= Bot.lazySusanIncrements;
-            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
-
+        if (gamepad2.dpad_right  && Bruno.lazySusanCurrPos > Bruno.lazySusanMinPos) {
+            Bruno.lazySusanCurrPos -= Bruno.lazySusanIncrements;
+            Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
         }
         else {
-            Bot.lazySusan.setPosition(Bot.lazySusanCurrPos);
+            Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
         }
     }
 
@@ -259,7 +252,6 @@ public class TankTeleOpWithArm extends OpMode {
         else {
             Handy.closeWrist();
             wristStatus = "Close Wrist";
-
         }
 
     }
@@ -268,14 +260,45 @@ public class TankTeleOpWithArm extends OpMode {
 
     public void signASL() {
         if (gamepad2.dpad_up) {
+            Handy.raiseArm();
+            Handy.openWrist();
             ASLWord = "I Love MBCA";
             ASL.signSentence(ASLWord);
+            Handy.closeWrist();
+            Bruno.pause(3000);
+            Handy.lowerArm();
         }
-        if (gamepad2.dpad_down) {
+        else if (gamepad2.dpad_down) {
+            Handy.raiseArm();
+            Handy.openWrist();
             ASLWord = "I Love Robots";
             ASL.signSentence(ASLWord);
+            Handy.closeWrist();
+            Bruno.pause(3000);
+            Handy.lowerArm();
+        }
+        else if (gamepad2.dpad_right) {
+            Handy.raiseArm();
+            Handy.openWrist();
+            ASLWord = "Hello";
+            ASL.signSentence(ASLWord);
+            Handy.closeWrist();
+            Bruno.pause(3000);
+            Handy.lowerArm();
+        }
+        else if (gamepad2.dpad_left) {
+            Handy.raiseArm();
+            Handy.openWrist();
+            ASLWord = "Goodbye";
+            ASL.signSentence(ASLWord);
+            Handy.closeWrist();
+            Bruno.pause(3000);
+            Handy.lowerArm();
+
         }
 
     }
+
+
 
 }
