@@ -117,8 +117,18 @@ public class Tank_TeleOp_Connor extends OpMode{
     }
     public void drivingStyle () {
 
-        if (gamepad1.x) telemetry.addLine("OneStick Drive");{ driverStyle = Style.ONESTICK; }
-        if (gamepad1.b) telemetry.addLine("Tank Drive");{ driverStyle = Style.TANK;}
+        if (gamepad1.x) {
+            driverStyle = Style.ONESTICK;
+            telemetry.addLine("OneStick Drive");
+            telemetry.update();
+        }
+        if (gamepad1.b)
+        { driverStyle = Style.TANK;
+            telemetry.addLine("Tank Drive");
+            telemetry.update();
+        }
+
+
     }
 
         }
