@@ -113,19 +113,23 @@ public class Tank_TeleOp_Connor extends OpMode{
         telemetry.addData("Rear Left Motor Power: ", Thomas_The_Tank.rearLeftMotor.getPower());
         telemetry.addData("Front Right Motor The Power of The Dark Side: ", Thomas_The_Tank.frontRightMotor.getPower());
         telemetry.addData("Rear Right Motor Power Of Pop Tarts: ", Thomas_The_Tank.frontRightMotor.getPower());
+        if (driverStyle == Style.ONESTICK) {
+            telemetry.addLine("OneStick Drive");
+        }
+        else if (driverStyle == Style.TANK) {
+            telemetry.addLine("Tank");
+        }
         telemetry.update();
     }
     public void drivingStyle () {
 
         if (gamepad1.x) {
             driverStyle = Style.ONESTICK;
-            telemetry.addLine("OneStick Drive");
-            telemetry.update();
+
         }
         if (gamepad1.b)
         { driverStyle = Style.TANK;
-            telemetry.addLine("Tank Drive");
-            telemetry.update();
+
         }
 
 
