@@ -89,9 +89,20 @@ public class Tank_TeleOp_Connor extends OpMode{
             case TWOSTICK:
                 leftStickYVal = gamepad1.left_stick_y;
                 leftStickYVal = Range.clip(leftStickYVal, -1, 1);
-                leftStickXVal = gamepad1.left_stick_y;
-                leftStickXVal = Range.clip(leftStickYVal, -1, 1);
+                leftStickXVal = gamepad1.left_stick_x;
+                leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+                rightStickYVal = gamepad1.right_stick_y;
+                rightStickYVal = Range.clip(leftStickYVal, -1, 1);
+                rightStickXVal = gamepad1.right_stick_x;
+                rightStickXVal = Range.clip(rightStickXVal, -1, 1);
 
+                if (leftStickYVal < -0.1) {
+                    Thomas_The_Tank.driveForward(speedMultiply*leftStickYVal);
+                }
+                else if (leftStickYVal > -0.1){
+                    Thomas_The_Tank.driveBackwards(speedMultiply*leftStickYVal);
+
+                }
 
 
             case TANK:
