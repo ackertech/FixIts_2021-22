@@ -11,7 +11,7 @@ public class Tank_TeleOp_Connor extends OpMode{
     //TeleOp Driving Behavior Variables
     public double speedMultiply = 0.50;
     public enum Style {
-        ONESTICK, TANK
+        ONESTICK, TWOSTICK, TANK
     }
 
     public Style driverStyle = Style.ONESTICK;
@@ -85,6 +85,14 @@ public class Tank_TeleOp_Connor extends OpMode{
                     Thomas_The_Tank.stopMotors();
                 }
                 break;
+
+            case TWOSTICK:
+                leftStickYVal = gamepad1.left_stick_y;
+                leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+                leftStickXVal = gamepad1.left_stick_y;
+                leftStickXVal = Range.clip(leftStickYVal, -1, 1);
+
+
 
             case TANK:
                 leftStickYVal = gamepad1.left_stick_y;
