@@ -148,8 +148,11 @@ public class Tank_TeleOp_Connor extends OpMode{
             telemetry.addLine("OneStick Drive");
         }
         else if (driverStyle == Style.TANK) {
-            telemetry.addLine("Tank");
+            telemetry.addLine("Tank Drive");
         }
+        else if (driverStyle == Style.TWOSTICK) {
+            telemetry.addLine(" TwoStick Drive");
+            }
         telemetry.update();
     }
     public void drivingStyle () {
