@@ -163,10 +163,13 @@ public class Tank_TeleOp_Connor extends OpMode{
 
         }
 
+        if (gamepad1.y)
+        { driverStyle = Style.TWOSTICK;}
+
 
     }
 
         }
 
 
-
+//Hello
