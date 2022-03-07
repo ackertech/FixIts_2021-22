@@ -258,6 +258,7 @@ public class TankTeleOpWithArm extends OpMode {
 
     /**  ********  ASL METHODS USING GAMEPAD 2 *************      **/
 
+    /**
     public void signASL() {
         if (gamepad2.dpad_up) {
             Handy.raiseArm();
@@ -298,6 +299,7 @@ public class TankTeleOpWithArm extends OpMode {
         }
 
     }
+     **/
 
 
 
