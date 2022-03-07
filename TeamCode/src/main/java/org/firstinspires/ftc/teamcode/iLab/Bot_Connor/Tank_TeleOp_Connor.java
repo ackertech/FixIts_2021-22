@@ -92,7 +92,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                 leftStickXVal = gamepad1.left_stick_x;
                 leftStickXVal = Range.clip(leftStickXVal, -1, 1);
                 rightStickYVal = gamepad1.right_stick_y;
-                rightStickYVal = Range.clip(leftStickYVal, -1, 1);
+                rightStickYVal = Range.clip(rightStickYVal, -1, 1);
                 rightStickXVal = gamepad1.right_stick_x;
                 rightStickXVal = Range.clip(rightStickXVal, -1, 1);
 
