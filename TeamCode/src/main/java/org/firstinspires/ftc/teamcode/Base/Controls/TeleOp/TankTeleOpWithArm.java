@@ -33,12 +33,10 @@ public class TankTeleOpWithArm extends OpMode {
     // Hand Variables
     String handGesture;
     String wristStatus;
-    String ASLWord = "";
 
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bruno = new TankBot();
     public ArmHand Handy = new ArmHand();
-    //public ASLHand ASL = new ASLHand();
 
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
@@ -61,7 +59,6 @@ public class TankTeleOpWithArm extends OpMode {
         wristControl();
         elbowControl();
         lazySusanControl();
-        //signASL();
         telemetryOutput();
 
     }
@@ -76,8 +73,7 @@ public class TankTeleOpWithArm extends OpMode {
         telemetry.addData("Elbow Position: ", Handy.elbowCurrPos );
         telemetry.addData("LazySusan Position: ", Bruno.lazySusanCurrPos );
         telemetry.addData("Hand Gesture: ", handGesture);
-        //telemetry.addData("Wrist Status: ", wristStatus);
-        //telemetry.addData("ASL Sentence: ", ASLWord);
+        telemetry.addData("Wrist Status: ", wristStatus);
         telemetry.update();
 
     }
@@ -255,52 +251,6 @@ public class TankTeleOpWithArm extends OpMode {
         }
 
     }
-
-    /**  ********  ASL METHODS USING GAMEPAD 2 *************      **/
-
-    /**
-    public void signASL() {
-        if (gamepad2.dpad_up) {
-            Handy.raiseArm();
-            Handy.openWrist();
-            ASLWord = "I Love MBCA";
-            ASL.signSentence(ASLWord);
-            Handy.closeWrist();
-            Bruno.pause(3000);
-            Handy.lowerArm();
-        }
-        else if (gamepad2.dpad_down) {
-            Handy.raiseArm();
-            Handy.openWrist();
-            ASLWord = "I Love Robots";
-            ASL.signSentence(ASLWord);
-            Handy.closeWrist();
-            Bruno.pause(3000);
-            Handy.lowerArm();
-        }
-        else if (gamepad2.dpad_right) {
-            Handy.raiseArm();
-            Handy.openWrist();
-            ASLWord = "Hello";
-            ASL.signSentence(ASLWord);
-            Handy.closeWrist();
-            Bruno.pause(3000);
-            Handy.lowerArm();
-        }
-        else if (gamepad2.dpad_left) {
-            Handy.raiseArm();
-            Handy.openWrist();
-            ASLWord = "Goodbye";
-            ASL.signSentence(ASLWord);
-            Handy.closeWrist();
-            Bruno.pause(3000);
-            Handy.lowerArm();
-
-        }
-
-    }
-     **/
-
 
 
 }
