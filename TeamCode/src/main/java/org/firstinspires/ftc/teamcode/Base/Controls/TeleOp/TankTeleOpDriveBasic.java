@@ -21,7 +21,6 @@ public class TankTeleOpDriveBasic extends OpMode {
     double leftStickXVal;
 
 
-
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bot = new TankBot();
 
@@ -29,9 +28,7 @@ public class TankTeleOpDriveBasic extends OpMode {
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
     @Override
     public void init() {
-
         Bot.initRobot(hardwareMap);
-
     }
 
     // TeleOp Loop Method.  This start AFTER clicking the Play Button on the Driver Station Phone
