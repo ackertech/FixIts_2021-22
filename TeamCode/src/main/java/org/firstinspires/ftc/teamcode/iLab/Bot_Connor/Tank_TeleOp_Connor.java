@@ -29,12 +29,14 @@ public class Tank_TeleOp_Connor extends OpMode{
 
     // Construct the Physical Bot based on the Robot Class
     public TankBot_Connor Thomas_The_Tank = new TankBot_Connor();
+    public The_Mighty_and_All_Powerful_Hand Hand = new The_Mighty_and_All_Powerful_Hand();
 
     //TeleOp Initilize method. This is the Init Button on the Driver Station Phone.
     @Override
     public void init () {
 
         Thomas_The_Tank.initRobot(hardwareMap);
+        Hand.initThe_Mighty_and_All_Powerful_Hand(hardwareMap);
 
 
     }
@@ -46,7 +48,8 @@ public class Tank_TeleOp_Connor extends OpMode{
         speedControl();
         drivingStyle();
         drive();
-        telemetryOutput(); }
+        telemetryOutput();
+    handGestures();}
 
      public void speedControl () {
         if (gamepad1.dpad_right == true) {
@@ -61,6 +64,30 @@ public class Tank_TeleOp_Connor extends OpMode{
                 speedMultiply = 1.00;}
         }
 
+        public void handGestures () {
+            if (gamepad2.left_trigger > 0.1) {
+                Hand.raiseArm(); }
+            if (gamepad2.right_trigger > 0.1) {
+                Hand.lowerArm(); }
+            if (gamepad2.dpad_up) {
+                Hand.openHand(); }
+            if (gamepad2.dpad_down) {
+                Hand.closeHand(); }
+            if (gamepad2.dpad_left) {
+                Hand.point(); }
+            if (gamepad2.dpad_right) {
+                Hand.peaceSign(); }
+            if (gamepad2.left_bumper) {
+                Hand.thumbsUp(); }
+            if (gamepad2.right_bumper) {
+                Hand.thumbsDown(); }
+            if (gamepad1.right_trigger > 0.1 && gamepad1.left_trigger > 0.1) {
+                Hand.middleSchoolSalute();
+            }
+
+
+
+        }
         public void drive() {
 
         switch (driverStyle) {
