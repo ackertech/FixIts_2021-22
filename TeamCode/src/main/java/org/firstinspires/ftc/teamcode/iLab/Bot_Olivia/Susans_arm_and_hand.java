@@ -7,15 +7,15 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Susans_arm_and_hand {
 
     //Define Hand Variables
-    public Servo nineToes = null;
-    public Servo skagzilla = null;
-    public Servo claptrap = null;
-    public Servo cl4pt = null;
-    public Servo rakk = null;
+    public Servo pinkyF = null;
+    public Servo ringF = null;
+    public Servo middleF = null;
+    public Servo indexF = null;
+    public Servo thumb = null;
 
     //Define Arm Variables
-    public Servo scythid = null;
-    public Servo spiderant = null;
+    public Servo elbow = null;
+    public Servo wrist = null;
 
     //Set positioning for Arm or Hand
     public double elbowMaxPos = 0.5;
@@ -33,135 +33,135 @@ public class Susans_arm_and_hand {
         this.linearOp = linearOp;
     }
     //Hardware Initialization
-    public void initTKBaha(HardwareMap hwMap) {
+    public void initArmHand(HardwareMap hwMap) {
 
         hwBot = hwMap;
 
 
         //Expansion Hub Port 0
-        nineToes = hwBot.get(Servo.class, "nineToes");
-        nineToes.setDirection((Servo.Direction.FORWARD));
+        pinkyF = hwBot.get(Servo.class, "pinkyF");
+        pinkyF.setDirection((Servo.Direction.FORWARD));
 
         //Expansion Hub Port 1
-        skagzilla = hwBot.get(Servo.class, "skagzilla");
-        skagzilla.setDirection((Servo.Direction.FORWARD));
+        ringF = hwBot.get(Servo.class, "ringF");
+        ringF.setDirection((Servo.Direction.FORWARD));
 
         //Expansion Hub Port 2
-        claptrap = hwBot.get(Servo.class, "claptrap");
-        claptrap.setDirection((Servo.Direction.FORWARD));
+        middleF = hwBot.get(Servo.class, "middleF");
+       middleF.setDirection((Servo.Direction.FORWARD));
 
         //Expansion Hub Port 3
-        cl4pt = hwBot.get(Servo.class, "cl4pt");
-        cl4pt.setDirection((Servo.Direction.FORWARD));
+        indexF = hwBot.get(Servo.class, "indexF");
+        indexF.setDirection((Servo.Direction.FORWARD));
 
         //Expansion Hub Port 4
-        rakk = hwBot.get(Servo.class, "rakk");
-        rakk.setDirection((Servo.Direction.REVERSE));
+        thumb = hwBot.get(Servo.class, "thumb");
+        thumb.setDirection((Servo.Direction.REVERSE));
 
         //Expansion Hub Port 5
-        spiderant = hwBot.get(Servo.class, "spiderant");
-        spiderant.setDirection((Servo.Direction.REVERSE));
+        wrist = hwBot.get(Servo.class, "wrist");
+        wrist.setDirection((Servo.Direction.REVERSE));
 
         //Control Hub Port 1
-        scythid = hwBot.get(Servo.class, "scythid");
-        scythid.setDirection((Servo.Direction.REVERSE));
+        elbow = hwBot.get(Servo.class, "elbow");
+        elbow.setDirection((Servo.Direction.REVERSE));
     }
 
     /** *************   WRIST MOVEMENT METHODS ************ **/
 
-    public void bandit() {
-        spiderant.setPosition(1);}
+    public void closeWrist() {
+        wrist.setPosition(1);}
 
     public void openWrist() {
-        spiderant.setPosition(1);}
+        wrist.setPosition(1);}
 
     public void halfWrist() {
-        spiderant.setPosition(5);
+        wrist.setPosition(5);
     }
 
 
     /** ******** WRIST MOVEMENT METHODS ************ **/
 
     public void raiseArm() {
-        scythid.setPosition(elbowMaxPos);
+        elbow.setPosition(elbowMaxPos);
     }
 
     public void lowerArm() {
-        scythid.setPosition(elbowMinPos);
+        elbow.setPosition(elbowMinPos);
     }
 
     /** ********** HAND GESTURES *********** **/
 
     public void point() {
-        rakk.setPosition(0);
-        cl4pt.setPosition(1);
-        claptrap.setPosition(0);
-        skagzilla.setPosition(0);
-        nineToes.setPosition(0);
+        thumb.setPosition(0);
+        indexF.setPosition(1);
+        middleF.setPosition(0);
+        ringF.setPosition(0);
+        pinkyF.setPosition(0);
     }
 
     public void peace() {
-        rakk.setPosition(0);
-        cl4pt.setPosition(1);
-        claptrap.setPosition(1);
-        skagzilla.setPosition(0);
-        nineToes.setPosition(0);
+        thumb.setPosition(0);
+        indexF.setPosition(1);
+        middleF.setPosition(1);
+        ringF.setPosition(0);
+        pinkyF.setPosition(0);
     }
 
     public void love() {
-        rakk.setPosition(1);
-        cl4pt.setPosition(0);
-        claptrap.setPosition(1);
-        skagzilla.setPosition(0);
-        nineToes.setPosition(1);
+       thumb.setPosition(1);
+        indexF.setPosition(0);
+        middleF.setPosition(1);
+        ringF.setPosition(0);
+        pinkyF.setPosition(1);
     }
 
     public void thumbsup() {
-        rakk.setPosition(1);
-        cl4pt.setPosition(0);
-        claptrap.setPosition(0);
-        skagzilla.setPosition(0);
-        nineToes.setPosition(0);
+        thumb.setPosition(1);
+        indexF.setPosition(0);
+        middleF.setPosition(0);
+        ringF.setPosition(0);
+        pinkyF.setPosition(0);
     }
 
     public void rockon() {
-        rakk.setPosition(0);
-        cl4pt.setPosition(0);
-        claptrap.setPosition(1);
-        skagzilla.setPosition(0);
-        nineToes.setPosition(1);
+        thumb.setPosition(0);
+        indexF.setPosition(0);
+        middleF.setPosition(1);
+        ringF.setPosition(0);
+        pinkyF.setPosition(1);
     }
 
     public void close() {
-        rakk.setPosition(0);
-        cl4pt.setPosition(0);
-        claptrap.setPosition(0);
-        skagzilla.setPosition(0);
-        nineToes.setPosition(0);
+        thumb.setPosition(0);
+        indexF.setPosition(0);
+        middleF.setPosition(0);
+        ringF.setPosition(0);
+        pinkyF.setPosition(0);
     }
 
     public void open() {
-        rakk.setPosition(1);
-        cl4pt.setPosition(1);
-        claptrap.setPosition(1);
-        skagzilla.setPosition(1);
-        nineToes.setPosition(1);
+        thumb.setPosition(1);
+        indexF.setPosition(1);
+        middleF.setPosition(1);
+        ringF.setPosition(1);
+        pinkyF.setPosition(1);
     }
 
     public void aloha() {
-        rakk.setPosition(1);
-        cl4pt.setPosition(0);
-        claptrap.setPosition(0);
-        skagzilla.setPosition(0);
-        nineToes.setPosition(1);
+        thumb.setPosition(1);
+        indexF.setPosition(0);
+        middleF.setPosition(0);
+        ringF.setPosition(0);
+        pinkyF.setPosition(1);
     }
 
     public void chinesefinger() {
-        rakk.setPosition(0);
-        cl4pt.setPosition(0);
-        claptrap.setPosition(0);
-        skagzilla.setPosition(0);
-        nineToes.setPosition(1);
+        thumb.setPosition(0);
+        indexF.setPosition(0);
+        middleF.setPosition(0);
+        ringF.setPosition(0);
+        pinkyF.setPosition(1);
     }
 }
 
