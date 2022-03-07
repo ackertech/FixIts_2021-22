@@ -38,7 +38,7 @@ public class TankTeleOpWithArm extends OpMode {
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bruno = new TankBot();
     public ArmHand Handy = new ArmHand();
-    public ASLHand ASL = new ASLHand();
+    //public ASLHand ASL = new ASLHand();
 
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
@@ -61,7 +61,7 @@ public class TankTeleOpWithArm extends OpMode {
         wristControl();
         elbowControl();
         lazySusanControl();
-        signASL();
+        //signASL();
         telemetryOutput();
 
     }
@@ -76,8 +76,8 @@ public class TankTeleOpWithArm extends OpMode {
         telemetry.addData("Elbow Position: ", Handy.elbowCurrPos );
         telemetry.addData("LazySusan Position: ", Bruno.lazySusanCurrPos );
         telemetry.addData("Hand Gesture: ", handGesture);
-        telemetry.addData("Wrist Status: ", wristStatus);
-        telemetry.addData("ASL Sentence: ", ASLWord);
+        //telemetry.addData("Wrist Status: ", wristStatus);
+        //telemetry.addData("ASL Sentence: ", ASLWord);
         telemetry.update();
 
     }
