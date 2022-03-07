@@ -99,7 +99,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                 if (leftStickYVal < -0.1) {
                     Thomas_The_Tank.driveForward(speedMultiply*leftStickYVal);
                 }
-                else if (leftStickYVal > -0.1){
+                else if (leftStickYVal > 0.1){
                     Thomas_The_Tank.driveBackwards(speedMultiply*leftStickYVal);
                 }
                 else {Thomas_The_Tank.stopMotors();}
