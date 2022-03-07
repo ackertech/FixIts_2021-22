@@ -21,6 +21,7 @@ public class TankTeleOp_Olivia extends OpMode {
     // Construct the Physical Bot based on the Robot Class
     //Saying use the blueprint that we just created and physically construct it
     public TankBot_Olivia Kenny_Yamamoto = new TankBot_Olivia();
+    public Susans_arm_and_hand Handy = new Susans_arm_and_hand();
 
 
     //TeleOp Initialize Method. This is the Init Button on the Driver Station Phone
@@ -28,6 +29,7 @@ public class TankTeleOp_Olivia extends OpMode {
     public void init() {
 
         Kenny_Yamamoto.initRobot(hardwareMap);
+        Handy.initTKBaha(hardwareMap);
 
     }
 
@@ -37,6 +39,7 @@ public class TankTeleOp_Olivia extends OpMode {
         ellie();
         drive();
         scooter();
+        handControl();
 
 
 
@@ -78,6 +81,15 @@ public class TankTeleOp_Olivia extends OpMode {
             }
 
         }
+        public void handControl(){
+        if (gamepad2.a) {
+            Handy.openWrist();
+            Handy.point();
+        } else if (gamepad2.b) {
+            Handy.aloha();
+        }
+        // do for rest of actions
+        }
 
         //bob = telemetry output
         public void scooter() {
@@ -88,6 +100,7 @@ public class TankTeleOp_Olivia extends OpMode {
             telemetry.addData("Brick: ", Kenny_Yamamoto.frontRightMotor.getPower());
             telemetry.addData("Roland: ", Kenny_Yamamoto.rearRightMotor.getPower());
             telemetry.update();
+
 
         }
     }
