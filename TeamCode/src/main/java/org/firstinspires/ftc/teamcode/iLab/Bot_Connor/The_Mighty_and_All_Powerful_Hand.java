@@ -126,6 +126,7 @@ public class The_Mighty_and_All_Powerful_Hand {
     }
 
     public void closeHand() {
+        wristRight();
         thumb.setPosition(0);
         indexFinger.setPosition(0);
         middleFinger.setPosition(0);
@@ -153,4 +154,27 @@ public class The_Mighty_and_All_Powerful_Hand {
         pinkyFinger.setPosition(0);
     }
 
+    public void wave() {
+        openHand();
+        raiseArm();
+        lowerArm();
+        raiseArm();
+        lowerArm();
+    }
+
+    public void smack() {
+        raiseArm();
+        openHand();
+    }
+
+    public void resetHand() {
+        closeHand();
+        wristMiddle();
+        lowerArm();
+    }
+
+    public void highFive() {
+        raiseArm();
+        openHand();
+    }
 }

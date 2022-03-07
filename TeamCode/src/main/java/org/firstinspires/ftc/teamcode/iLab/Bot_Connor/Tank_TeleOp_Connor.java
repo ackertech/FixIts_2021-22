@@ -53,13 +53,13 @@ public class Tank_TeleOp_Connor extends OpMode{
 
      public void speedControl () {
         if (gamepad1.dpad_right == true) {
-            speedMultiply = 0.25;}
+            speedMultiply = 0.50;}
             else if (gamepad1.dpad_down == true) {
-                speedMultiply = 0.50;}
+                speedMultiply = 0.60;}
             else if (gamepad1.dpad_left == true) {
                 speedMultiply = 0.75;}
             else if (gamepad1.dpad_up == true){
-                speedMultiply = 0.20;}
+                speedMultiply = 0.25;}
             else if (gamepad1.a == true){
                 speedMultiply = 1.00;}
         }
@@ -70,24 +70,30 @@ public class Tank_TeleOp_Connor extends OpMode{
             if (gamepad2.right_trigger > 0.1) {
                 Hand.lowerArm(); }
             if (gamepad2.dpad_up) {
-                Hand.openHand(); }
+                Hand.thumbsUp(); }
             if (gamepad2.dpad_down) {
-                Hand.closeHand(); }
+                Hand.thumbsDown(); }
             if (gamepad2.dpad_left) {
                 Hand.point(); }
             if (gamepad2.dpad_right) {
                 Hand.peaceSign(); }
             if (gamepad2.left_bumper) {
-                Hand.thumbsUp(); }
+                Hand.openHand(); }
             if (gamepad2.right_bumper) {
-                Hand.thumbsDown(); }
+                Hand.closeHand(); }
             if (gamepad1.right_trigger > 0.1 && gamepad1.left_trigger > 0.1) {
-                Hand.middleSchoolSalute();
-            }
-
-
-
+                Hand.middleSchoolSalute(); }
+                if (gamepad2.right_trigger > 0.1 && gamepad2.left_trigger > 0.1) {
+                Hand.wave(); }
+                if (gamepad2.right_bumper && gamepad2.left_bumper) {
+                    Hand.resetHand(); }
+                if (gamepad2.b) {
+                    Hand.smack();
+                speedMultiply = 1.00;}
+                if (gamepad2.x) {
+                    Hand.highFive(); }
         }
+
         public void drive() {
 
         switch (driverStyle) {
