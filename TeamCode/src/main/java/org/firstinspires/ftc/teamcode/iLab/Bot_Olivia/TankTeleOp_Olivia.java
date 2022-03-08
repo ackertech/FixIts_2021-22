@@ -111,6 +111,9 @@ public class TankTeleOp_Olivia extends OpMode {
             telemetry.addData("Front Right Motor Power: ", Bot.frontRightMotor.getPower());
             telemetry.addData("Rear Right Motor Power: ", Bot.rearRightMotor.getPower());
             telemetry.addData("Elbow Position: ", Handy.elbow.getPosition());
+            telemetry.addData("Elbow Min Position: ", Handy.elbowMinPos);
+            telemetry.addData("Elbow Max Position: ", Handy.elbowMaxPos);
+
             telemetry.update();
 
 
