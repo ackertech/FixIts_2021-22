@@ -89,6 +89,7 @@ public class Susans_arm_and_hand {
     }
 
     public void lowerArm() {
+        close();
         elbow.setPosition(elbowMinPos);
     }
 
