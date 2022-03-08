@@ -99,6 +99,10 @@ public class TankTeleOp_Olivia extends OpMode {
         } else if (gamepad2.b) {
             Handy.aloha();
         }
+        else if (gamepad2.dpad_up) {
+            Handy.open(); }
+        else if (gamepad2.dpad_down){
+            Handy.close(); }
         // do for rest of actions
         }
 
