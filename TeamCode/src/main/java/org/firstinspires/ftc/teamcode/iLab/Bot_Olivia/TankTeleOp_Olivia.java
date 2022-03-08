@@ -40,6 +40,7 @@ public class TankTeleOp_Olivia extends OpMode {
         drive();
         telemetryOutput();
         handControl();
+        armControl();
 
 
 
@@ -81,6 +82,16 @@ public class TankTeleOp_Olivia extends OpMode {
             }
 
         }
+        public void armControl(){
+        if (gamepad2.x) {
+            Handy.raiseArm();}
+            if (gamepad2.y) {
+                Handy.lowerArm();
+        }
+
+
+        }
+
         public void handControl(){
         if (gamepad2.a) {
             Handy.openWrist();
