@@ -81,17 +81,18 @@ public class Tank_TeleOp_Connor extends OpMode{
                 Hand.openHand(); }
             if (gamepad2.right_bumper) {
                 Hand.closeHand(); }
+            if (gamepad2.right_trigger > 0.1 && gamepad2.left_trigger > 0.1) {
+                Hand.wave(); }
+            if (gamepad2.right_bumper && gamepad2.left_bumper) {
+                Hand.resetHand(); }
+            if (gamepad2.b) {
+                Hand.smack();
+                speedMultiply = 1.00;}
+            if (gamepad2.x) {
+                Hand.highFive(); }
             if (gamepad1.right_trigger > 0.1 && gamepad1.left_trigger > 0.1) {
                 Hand.middleSchoolSalute(); }
-                if (gamepad2.right_trigger > 0.1 && gamepad2.left_trigger > 0.1) {
-                Hand.wave(); }
-                if (gamepad2.right_bumper && gamepad2.left_bumper) {
-                    Hand.resetHand(); }
-                if (gamepad2.b) {
-                    Hand.smack();
-                speedMultiply = 1.00;}
-                if (gamepad2.x) {
-                    Hand.highFive(); }
+
         }
 
         public void drive() {
