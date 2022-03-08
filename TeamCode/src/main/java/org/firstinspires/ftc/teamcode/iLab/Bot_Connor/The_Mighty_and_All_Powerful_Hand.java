@@ -90,7 +90,8 @@ public class The_Mighty_and_All_Powerful_Hand {
     }
 
     public void lowerArm() {
-       elbow.setPosition(elbowMinPos);
+       closeHand();
+        elbow.setPosition(elbowMinPos);
     }
 
     /**  ******* HAND GESTURES ************     **/
