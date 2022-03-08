@@ -19,7 +19,7 @@ public class Susans_arm_and_hand {
 
     //Set positioning for Arm or Hand
     public double elbowMaxPos = 0.5;
-    public double elbowMinPos = 0.18;
+    public double elbowMinPos = 0.9;
     public double elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
 
@@ -65,6 +65,8 @@ public class Susans_arm_and_hand {
         //Control Hub Port 1
         elbow = hwBot.get(Servo.class, "elbow");
         elbow.setDirection((Servo.Direction.REVERSE));
+
+        close();
     }
 
     /** *************   WRIST MOVEMENT METHODS ************ **/
