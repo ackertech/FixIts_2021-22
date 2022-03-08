@@ -84,8 +84,6 @@ public class Tank_TeleOp_Connor extends OpMode{
                 Hand.openHand(); }
             if (gamepad2.right_bumper && gamepad2.left_bumper == false) {
                 Hand.closeHand(); }
-            if (gamepad2.right_bumper && gamepad2.left_bumper) {
-                Hand.resetHand(); }
             if (gamepad2.b) {
                 Hand.smack();
                 speedMultiply = 1.00;}
