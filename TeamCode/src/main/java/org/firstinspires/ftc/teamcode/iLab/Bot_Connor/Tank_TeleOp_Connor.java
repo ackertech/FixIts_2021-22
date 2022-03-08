@@ -49,7 +49,8 @@ public class Tank_TeleOp_Connor extends OpMode{
         drivingStyle();
         drive();
         telemetryOutput();
-    handGestures();}
+        handGestures();
+        armMovement();}
 
      public void speedControl () {
         if (gamepad1.dpad_right == true) {
@@ -67,11 +68,6 @@ public class Tank_TeleOp_Connor extends OpMode{
         public void handGestures(){
             if (gamepad2.right_bumper  && gamepad2.left_bumper) {
                 Hand.wave(); }
-
-            if (gamepad2.left_trigger > 0.1) {
-                Hand.raiseArm(); }
-            if (gamepad2.right_trigger > 0.1) {
-                Hand.lowerArm(); }
             if (gamepad2.dpad_up) {
                 Hand.thumbsUp(); }
             if (gamepad2.dpad_down) {
@@ -91,6 +87,14 @@ public class Tank_TeleOp_Connor extends OpMode{
                 Hand.highFive(); }
 
 
+        }
+
+        public void armMovement(){
+
+            if (gamepad2.left_trigger > 0.1) {
+                Hand.raiseArm(); }
+            if (gamepad2.right_trigger > 0.1) {
+                Hand.lowerArm(); }
         }
 
         public void drive() {
