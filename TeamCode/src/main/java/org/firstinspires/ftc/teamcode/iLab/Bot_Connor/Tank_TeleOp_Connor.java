@@ -64,7 +64,10 @@ public class Tank_TeleOp_Connor extends OpMode{
                 speedMultiply = 1.00;}
         }
 
-        public void handGestures () {
+        public void handGestures(){
+            if (gamepad2.right_bumper  && gamepad2.left_bumper) {
+                Hand.wave(); }
+
             if (gamepad2.left_trigger > 0.1) {
                 Hand.raiseArm(); }
             if (gamepad2.right_trigger > 0.1) {
@@ -77,12 +80,10 @@ public class Tank_TeleOp_Connor extends OpMode{
                 Hand.point(); }
             if (gamepad2.dpad_right) {
                 Hand.peaceSign(); }
-            if (gamepad2.left_bumper) {
+            if (gamepad2.left_bumper && gamepad2.right_bumper == false) {
                 Hand.openHand(); }
-            if (gamepad2.right_bumper) {
+            if (gamepad2.right_bumper && gamepad2.left_bumper == false) {
                 Hand.closeHand(); }
-            if (gamepad2.right_trigger > 0.1 && gamepad2.left_trigger > 0.1) {
-                Hand.wave(); }
             if (gamepad2.right_bumper && gamepad2.left_bumper) {
                 Hand.resetHand(); }
             if (gamepad2.b) {
@@ -90,8 +91,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                 speedMultiply = 1.00;}
             if (gamepad2.x) {
                 Hand.highFive(); }
-            if (gamepad1.right_trigger > 0.1 && gamepad1.left_trigger > 0.1) {
-                Hand.middleSchoolSalute(); }
+
 
         }
 
