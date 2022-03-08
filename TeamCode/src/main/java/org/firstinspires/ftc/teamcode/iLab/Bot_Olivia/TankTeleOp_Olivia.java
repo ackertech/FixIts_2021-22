@@ -104,6 +104,7 @@ public class TankTeleOp_Olivia extends OpMode {
 
         //bob = telemetry output
         public void telemetryOutput() {
+            telemetry.addLine("I Still See All -Connor");
             telemetry.addData("Speed: ", speedMultiply);
             telemetry.addData("Front Left Motor Power: ", Bot.frontLeftMotor.getPower());
             telemetry.addData("Rear Left Motor Power: ", Bot.rearLeftMotor.getPower());
