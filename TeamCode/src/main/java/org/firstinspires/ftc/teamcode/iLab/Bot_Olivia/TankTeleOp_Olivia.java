@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.Range;
 public class TankTeleOp_Olivia extends OpMode {
 
     //TeleOp Driving Behavior Variables
-    public double speedSlowerDowner = 0.75;
+    public double speedMultiply = 0.75;
 
     //GamePad Variables
     double leftStickYVal;
@@ -20,7 +20,7 @@ public class TankTeleOp_Olivia extends OpMode {
 
     // Construct the Physical Bot based on the Robot Class
     //Saying use the blueprint that we just created and physically construct it
-    public TankBot_Olivia Kenny_Yamamoto = new TankBot_Olivia();
+    public TankBot_Olivia Bot = new TankBot_Olivia();
     public Susans_arm_and_hand Handy = new Susans_arm_and_hand();
 
 
@@ -28,17 +28,17 @@ public class TankTeleOp_Olivia extends OpMode {
     @Override
     public void init() {
 
-        Kenny_Yamamoto.initRobot(hardwareMap);
-        Handy.initTKBaha(hardwareMap);
+        Bot.initRobot(hardwareMap);
+        Handy.initArmHand(hardwareMap);
 
     }
 
     //TeleOp loop Method/ This starts AFTER clicking the Play Button on the Driver Station Phone
 
     public void loop() {
-        ellie();
+        speedControl();
         drive();
-        scooter();
+        telemetryOutput();
         handControl();
 
 
@@ -50,15 +50,15 @@ public class TankTeleOp_Olivia extends OpMode {
      * ************* DRIVING METHODS USING GAMEPAD1 ********************
      **/
 
-    public void ellie() {
+    public void speedControl() {
         if (gamepad1.dpad_right == true) {
-            speedSlowerDowner = 0.25;
+            speedMultiply = 0.25;
         } else if (gamepad1.dpad_down == true) {
-            speedSlowerDowner = 0.50;
+            speedMultiply = 0.50;
         } else if (gamepad1.dpad_left == true) {
-            speedSlowerDowner = 0.75;
+            speedMultiply = 0.75;
         } else if (gamepad1.dpad_up == true) {
-            speedSlowerDowner = 1.00;
+            speedMultiply = 1.00;
         }
     }
 
@@ -69,15 +69,15 @@ public class TankTeleOp_Olivia extends OpMode {
             leftStickXVal = Range.clip(leftStickXVal, -1, 1);
 
             if (leftStickYVal < -0.1) {
-                Kenny_Yamamoto.driveForward(speedSlowerDowner * leftStickYVal);
+                Bot.driveForward(speedMultiply * leftStickYVal);
             } else if (leftStickYVal > 0.1) {
-                Kenny_Yamamoto.driveBackwards(speedSlowerDowner * leftStickYVal);
+                Bot.driveBackwards(speedMultiply * leftStickYVal);
             } else if (leftStickXVal > 0.1) {
-                Kenny_Yamamoto.turnRight(speedSlowerDowner * leftStickXVal);
+                Bot.turnRight(speedMultiply * leftStickXVal);
             } else if (leftStickXVal < -0.1) {
-                Kenny_Yamamoto.turnLeft(speedSlowerDowner * leftStickXVal);
+                Bot.turnLeft(speedMultiply * leftStickXVal);
             } else {
-                Kenny_Yamamoto.stopMotors();
+                Bot.stopMotors();
             }
 
         }
@@ -92,13 +92,13 @@ public class TankTeleOp_Olivia extends OpMode {
         }
 
         //bob = telemetry output
-        public void scooter() {
+        public void telemetryOutput() {
            telemetry.addLine("I See Everything -Connor");
-            telemetry.addData("Moxxi: ", speedSlowerDowner);
-            telemetry.addData("Mordecai: ", Kenny_Yamamoto.frontLeftMotor.getPower());
-            telemetry.addData("Lilith: ", Kenny_Yamamoto.rearLeftMotor.getPower());
-            telemetry.addData("Brick: ", Kenny_Yamamoto.frontRightMotor.getPower());
-            telemetry.addData("Roland: ", Kenny_Yamamoto.rearRightMotor.getPower());
+            telemetry.addData("Speed: ", speedMultiply);
+            telemetry.addData("Front Left Motor Power: ", Bot.frontLeftMotor.getPower());
+            telemetry.addData("Rear Left Motor Power: ", Bot.rearLeftMotor.getPower());
+            telemetry.addData("Front Right Motor Power: ", Bot.frontRightMotor.getPower());
+            telemetry.addData("Rear Right Motor Power: ", Bot.rearRightMotor.getPower());
             telemetry.update();
 
 
