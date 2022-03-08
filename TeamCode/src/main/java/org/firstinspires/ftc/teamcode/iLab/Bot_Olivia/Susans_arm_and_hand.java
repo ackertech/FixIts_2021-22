@@ -19,7 +19,7 @@ public class Susans_arm_and_hand {
 
     //Set positioning for Arm or Hand
     public double elbowMaxPos = 0.5;
-    public double elbowMinPos = 0.85;
+    public double elbowMinPos = 0.8;
     public double elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
 
