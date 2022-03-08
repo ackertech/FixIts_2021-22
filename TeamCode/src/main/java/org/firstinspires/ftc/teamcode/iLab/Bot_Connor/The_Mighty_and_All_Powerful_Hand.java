@@ -39,19 +39,19 @@ public class The_Mighty_and_All_Powerful_Hand {
         hwBot = hwMap;
 
         //Expantion Hub Port 0
-        pinkyFinger = hwBot.get(Servo.class, "pinky");
+        pinkyFinger = hwBot.get(Servo.class, "pinkyFinger");
         pinkyFinger.setDirection(Servo.Direction.FORWARD);
 
         //Expantion Hub Port 1
-        ringFinger = hwBot.get(Servo.class, "ring");
+        ringFinger = hwBot.get(Servo.class, "ringFinger");
         ringFinger.setDirection(Servo.Direction.FORWARD);
 
         //Expantion Hub Port 2
-        middleFinger = hwBot.get(Servo.class, "pinky");
+        middleFinger = hwBot.get(Servo.class, "middleFinger");
         middleFinger.setDirection(Servo.Direction.FORWARD);
 
         //Expantion Hub Port 3
-        indexFinger = hwBot.get(Servo.class, "index");
+        indexFinger = hwBot.get(Servo.class, "indexFinger");
         indexFinger.setDirection(Servo.Direction.FORWARD);
 
         //Expantion hub Port 4
