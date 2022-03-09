@@ -60,11 +60,11 @@ public class The_Mighty_and_All_Powerful_Hand {
 
         //Expantion hub Port 5
         wrist = hwBot.get(Servo.class, "wrist");
-        wrist.setDirection(Servo.Direction.FORWARD);
+        wrist.setDirection(Servo.Direction.REVERSE);
 
         //Control Hub Port 1
         elbow = hwBot.get(Servo.class, "elbow");
-        elbow.setDirection(Servo.Direction.FORWARD);
+        elbow.setDirection(Servo.Direction.REVERSE);
 
         closeHand();
     }
