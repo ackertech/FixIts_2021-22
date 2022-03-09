@@ -72,17 +72,29 @@ public class ArmHand {
 
     /**  ********  WRIST MOVEMENT METHODS *************      **/
 
-    public void closeWrist() { wrist.setPosition(0); }
+    public void closeWrist() {
+        wrist.setPosition(0);
+    }
 
-    public void openWrist() { wrist.setPosition(1); }
+    public void openWrist() {
+        wrist.setPosition(1);
+    }
 
-    public void halfWrist() { wrist.setPosition(.5); }
+    public void halfWrist() {
+        wrist.setPosition(.5);
+    }
 
     /**  ********  WRIST MOVEMENT METHODS *************      **/
 
-    public void raiseArm() { elbow.setPosition(elbowMaxPos); }
+    public void raiseArm() {
+        elbow.setPosition(elbowMaxPos);
+        elbowCurrPos = elbowMaxPos;
+    }
 
-    public void lowerArm() { elbow.setPosition(elbowMinPOs); }
+    public void lowerArm() {
+        elbow.setPosition(elbowMinPOs);
+        elbowCurrPos = elbowMinPOs;
+    }
 
 
     /**  ********  HAND GESTURES *************      **/
