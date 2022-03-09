@@ -180,4 +180,5 @@ public class The_Mighty_and_All_Powerful_Hand {
         raiseArm();
         openHand();
     }
+//12345
 }
