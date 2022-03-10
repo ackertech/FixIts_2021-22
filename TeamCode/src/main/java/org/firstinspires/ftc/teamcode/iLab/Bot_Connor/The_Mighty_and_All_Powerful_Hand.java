@@ -20,6 +20,7 @@ public class The_Mighty_and_All_Powerful_Hand {
     //Set Positioning for Arm or Hand
     public double elbowMaxPos = 0.5;
     public double elbowMinPos = 0.8;
+    public double elbowHalfPos = 0.7;
     public double elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
 
@@ -89,6 +90,8 @@ public class The_Mighty_and_All_Powerful_Hand {
         elbow.setPosition(elbowMaxPos);
     }
 
+   public void halfArm() {elbow.setPosition(elbowHalfPos);}
+
     public void lowerArm() {
        closeHand();
         elbow.setPosition(elbowMinPos);
@@ -138,7 +141,7 @@ public class The_Mighty_and_All_Powerful_Hand {
     }
 
     public void thumbsUp() {
-        raiseArm();
+        halfArm();
         wristRight();
         thumb.setPosition(1);
         indexFinger.setPosition(0);
@@ -148,7 +151,7 @@ public class The_Mighty_and_All_Powerful_Hand {
     }
 
     public void thumbsDown() {
-        raiseArm();
+        halfArm();
         wristLeft();
         thumb.setPosition(1);
         indexFinger.setPosition(0);
