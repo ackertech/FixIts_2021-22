@@ -87,8 +87,8 @@ public class The_Mighty_and_All_Powerful_Hand {
     /** *******  ARM MOVEMENT METHODS *************      **/
 
     public void raiseArm() {
-        elbow.setPosition(elbowMaxPos);
-    }
+        closeHand();
+        elbow.setPosition(elbowMaxPos); }
 
    public void halfArm() {elbow.setPosition(elbowHalfPos);}
 
