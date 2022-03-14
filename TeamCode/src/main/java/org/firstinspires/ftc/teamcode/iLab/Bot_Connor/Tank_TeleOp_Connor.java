@@ -50,8 +50,10 @@ public class Tank_TeleOp_Connor extends OpMode{
         drive();
         telemetryOutput();
         handGestures();
-        armMovement();}
+        armMovement();
+    }
 
+    @Override
     public void stop() {
         Hand.closeHand();
         Hand.lowerArm();
