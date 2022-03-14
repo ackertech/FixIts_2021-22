@@ -169,7 +169,7 @@ public class The_Mighty_and_All_Powerful_Hand {
     }
 
     public void smack() {
-        raiseArm();
+        halfArm();
         openHand();
     }
 
@@ -179,9 +179,6 @@ public class The_Mighty_and_All_Powerful_Hand {
         lowerArm();
     }
 
-    public void highFive() {
-        raiseArm();
-        openHand();
     }
 //12345
-}
+
