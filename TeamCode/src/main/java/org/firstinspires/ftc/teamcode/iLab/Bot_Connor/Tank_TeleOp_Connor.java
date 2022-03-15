@@ -120,7 +120,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         } else {
             Thomas_The_Tank.lazySusan.setPosition(Thomas_The_Tank.lazySusanCurrPos);
         }
-        if (gamepad2.left_stick_x > 0.1 && Thomas_The_Tank.lazySusanCurrPos < Thomas_The_Tank.lazySusanMinPos) {
+        if (gamepad2.left_stick_x > 0.1 && Thomas_The_Tank.lazySusanCurrPos > Thomas_The_Tank.lazySusanMinPos) {
             Thomas_The_Tank.lazySusanCurrPos -= Thomas_The_Tank.lazySusanIncrements;
             Thomas_The_Tank.lazySusan.setPosition(Thomas_The_Tank.lazySusanCurrPos);
         } else {
