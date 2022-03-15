@@ -13,8 +13,12 @@ public class Tank_TeleOp_Connor extends OpMode{
     public enum Style {
         ONESTICK, TWOSTICK, TANK
     }
+    public enum Gamepad2_Style {
+        HANDGESTURES, CANDYBOX
+    }
 
     public Style driverStyle = Style.ONESTICK;
+    public Gamepad2_Style gamepadTwoStyle = Gamepad2_Style.HANDGESTURES;
 
     public double leftSidePower;
     public double rightSidePower;
@@ -49,7 +53,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         drivingStyle();
         drive();
         telemetryOutput();
-        handGestures();
+        gamepad2();
         armMovement();
         lazySusanControl();
     }
@@ -73,36 +77,54 @@ public class Tank_TeleOp_Connor extends OpMode{
                 speedMultiply = 1.00;}
         }
 
-        public void handGestures() {
-            if (gamepad2.right_bumper && gamepad2.left_bumper) {
-                Hand.wave();
-            }
-            if (gamepad2.dpad_up) {
-                Hand.thumbsUp();
-            }
-            if (gamepad2.dpad_down) {
-                Hand.thumbsDown();
-            }
-            if (gamepad2.dpad_left) {
-                Hand.point();
-            }
-            if (gamepad2.dpad_right) {
-                Hand.peaceSign();
-            }
-            if (gamepad2.left_bumper && gamepad2.right_bumper == false) {
-                Hand.openHand();
-            }
-            if (gamepad2.right_bumper && gamepad2.left_bumper == false) {
-                Hand.closeHand();
-            }
-            if (gamepad2.b) {
-                Hand.smack();
-                speedMultiply = 1.00;
-            }
+        public void gamepad2() {
+        switch (gamepadTwoStyle) {
+            case HANDGESTURES:
+                if (gamepad2.right_bumper && gamepad2.left_bumper) {
+                    Hand.wave();
+                }
+                if (gamepad2.dpad_up) {
+                    Hand.thumbsUp();
+                }
+                if (gamepad2.dpad_down) {
+                    Hand.thumbsDown();
+                }
+                if (gamepad2.dpad_left) {
+                    Hand.point();
+                }
+                if (gamepad2.dpad_right) {
+                    Hand.peaceSign();
+                }
+                if (gamepad2.left_bumper && gamepad2.right_bumper == false) {
+                    Hand.openHand();
+                }
+                if (gamepad2.right_bumper && gamepad2.left_bumper == false) {
+                    Hand.closeHand();
+                }
+                if (gamepad2.b) {
+                    Hand.smack();
+                    speedMultiply = 1.00;
+                }
 
-            if (gamepad2.x){
-                Hand.resetHand();
-            }
+                if (gamepad2.x) {
+                    Hand.resetHand();
+
+                }
+                break;
+
+            case CANDYBOX:
+                if (gamepad2.dpad_up) {
+                    Thomas_The_Tank.upAndDownLinearMotorUp();
+                }
+
+                else if (gamepad2.dpad_down) {
+                    Thomas_The_Tank.upAndDownLinearMotorDown();
+                }
+
+                else if (gamepad2.dpad_left){
+                    Thomas_The_Tank.sidewaysLinearMotorLeft();
+                }
+        }
         }
 
         public void armMovement(){
@@ -198,7 +220,7 @@ public class Tank_TeleOp_Connor extends OpMode{
 
 
 
-        }
+            }
         }
 
 

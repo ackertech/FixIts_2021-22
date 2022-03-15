@@ -14,6 +14,9 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
     public double lazySusanCurrPos = 0.5;
     public double lazySusanIncrements = 0.0005;
 
+    public DcMotor sidewaysLinearMotor;
+    public DcMotor upAndDownLinearMotor;
+
     //Hardware Mapping Variable used by robot controller
     public HardwareMap hwBot = null;
 
@@ -54,12 +57,43 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
         lazySusan = hwBot.get(Servo.class, "lazy_susan");
          lazySusan.setDirection(Servo.Direction.FORWARD);
 
+        /** Linear Actuatiors*********    **/
+
+        sidewaysLinearMotor = hwBot.dcMotor.get("sidewaysLinearMotor"); //Expantion Hub Port 0
+        upAndDownLinearMotor = hwBot.dcMotor.get("upAndDownLinearMotor"); //Expantion Hub Port 1
+
+        sidewaysLinearMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        upAndDownLinearMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        sidewaysLinearMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        upAndDownLinearMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
 
+    }
 
+    public void stopSidewaysLinearMotor(){
+        sidewaysLinearMotor.setPower(0);
+    }
 
+    public void stopUpAndDownLinearMotor(){
+        upAndDownLinearMotor.setPower(0);
+    }
 
+    public void sidewaysLinearMotorLeft(){
+        sidewaysLinearMotor.setPower(-100);
+    }
+
+    public void sidewaysLinearMotorRight() {
+        sidewaysLinearMotor.setPower(100);
+    }
+
+    public void upAndDownLinearMotorUp(){
+        upAndDownLinearMotor.setPower(100);
+    }
+
+    public void upAndDownLinearMotorDown(){
+        upAndDownLinearMotor.setPower(-100);
     }
 
 }
