@@ -107,7 +107,7 @@ public class The_Mighty_and_All_Powerful_Hand {
         pinkyFinger.setPosition(0);
     }
 //In Honor of Olivia
-    public void middleSchoolSalute() {
+    public void aslA() {
         thumb.setPosition(0);
         indexFinger.setPosition(0);
         middleFinger.setPosition(1);
