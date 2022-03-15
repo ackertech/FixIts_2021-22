@@ -100,10 +100,9 @@ public class Tank_TeleOp_Connor extends OpMode{
                 speedMultiply = 1.00;
             }
 
-            if (gamepad2.y && gamepad2.x) {
-                Hand.aslA();
+            if (gamepad2.x){
+                Hand.resetHand();
             }
-
         }
 
         public void armMovement(){

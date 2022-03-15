@@ -106,14 +106,6 @@ public class The_Mighty_and_All_Powerful_Hand {
        ringFinger.setPosition(0);
         pinkyFinger.setPosition(0);
     }
-//In Honor of Olivia
-    public void aslA() {
-        thumb.setPosition(0);
-        indexFinger.setPosition(0);
-        middleFinger.setPosition(1);
-        ringFinger.setPosition(0);
-        pinkyFinger.setPosition(0);
-    }
 
     public void peaceSign() {
         thumb.setPosition(0);
@@ -163,8 +155,9 @@ public class The_Mighty_and_All_Powerful_Hand {
     public void wave() {
         openHand();
         raiseArm();
-        lowerArm();
+        halfArm();
         raiseArm();
+        halfArm();
         lowerArm();
     }
 
