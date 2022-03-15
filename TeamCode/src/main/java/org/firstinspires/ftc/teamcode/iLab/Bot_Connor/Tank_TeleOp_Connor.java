@@ -52,8 +52,9 @@ public class Tank_TeleOp_Connor extends OpMode{
         speedControl();
         drivingStyle();
         drive();
+        gamepadTwoStyle();
+        gamepad2Control();
         telemetryOutput();
-        gamepad2();
         armMovement();
         lazySusanControl();
     }
@@ -77,7 +78,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                 speedMultiply = 1.00;}
         }
 
-        public void gamepad2() {
+        public void gamepad2Control() {
         switch (gamepadTwoStyle) {
             case HANDGESTURES:
                 if (gamepad2.right_bumper && gamepad2.left_bumper) {
@@ -101,7 +102,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                 if (gamepad2.right_bumper && gamepad2.left_bumper == false) {
                     Hand.closeHand();
                 }
-                if (gamepad2.b) {
+                if (gamepad2.y) {
                     Hand.smack();
                     speedMultiply = 1.00;
                 }
@@ -124,7 +125,20 @@ public class Tank_TeleOp_Connor extends OpMode{
                 else if (gamepad2.dpad_left){
                     Thomas_The_Tank.sidewaysLinearMotorLeft();
                 }
-        }
+
+                else if (gamepad2.dpad_right) {
+                    Thomas_The_Tank.sidewaysLinearMotorRight();
+                }
+
+                else if (gamepad2.y) {
+                    Thomas_The_Tank.stopUpAndDownLinearMotor();
+                }
+
+                else if (gamepad2.x) {
+                    Thomas_The_Tank.stopSidewaysLinearMotor();
+                }
+                break;
+            }
         }
 
         public void armMovement(){
@@ -242,6 +256,12 @@ public class Tank_TeleOp_Connor extends OpMode{
         else if (driverStyle == Style.TWOSTICK) {
             telemetry.addLine(" TwoStick Drive");
             }
+        else if (gamepadTwoStyle == Gamepad2_Style.HANDGESTURES) {
+            telemetry.addLine("Hand Gestures Mode");
+        }
+        else if (gamepadTwoStyle == Gamepad2_Style.CANDYBOX) {
+            telemetry.addLine("CandyBox Mode");
+        }
         telemetry.update();
     }
     public void drivingStyle () {
@@ -259,6 +279,13 @@ public class Tank_TeleOp_Connor extends OpMode{
         { driverStyle = Style.TWOSTICK;}
 
 
+    }
+
+    public void gamepadTwoStyle() {
+        if (gamepad2.b) {
+            gamepadTwoStyle = Gamepad2_Style.HANDGESTURES; }
+        if (gamepad2.a) {
+            gamepadTwoStyle = Gamepad2_Style.CANDYBOX; }
     }
 
         }
