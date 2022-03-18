@@ -256,7 +256,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         else if (driverStyle == Style.TWOSTICK) {
             telemetry.addLine(" TwoStick Drive");
             }
-        else if (gamepadTwoStyle == Gamepad2_Style.HANDGESTURES) {
+        if (gamepadTwoStyle == Gamepad2_Style.HANDGESTURES) {
             telemetry.addLine("Hand Gestures Mode");
         }
         else if (gamepadTwoStyle == Gamepad2_Style.CANDYBOX) {
