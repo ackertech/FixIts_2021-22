@@ -25,10 +25,10 @@ public class HammerHead extends AllWheelDrive {
         hwBot = hwMap;
 
         //Define the name of the motors used in the control hub configuration
-        frontLeftMotor =  hwBot.dcMotor.get("front_left_motor");
-        rearLeftMotor =  hwBot.dcMotor.get("rear_left_motor");
-        frontRightMotor = hwBot.dcMotor.get("front_right_motor");
-        rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
+        frontLeftMotor =  hwBot.dcMotor.get("frontLeft"); //
+        rearLeftMotor =  hwBot.dcMotor.get("rearLeft");
+        frontRightMotor = hwBot.dcMotor.get("frontRight");
+        rearRightMotor = hwBot.dcMotor.get("rearRight");
 
         //Sets the direction of the robot's motors based on physical placement
         frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
