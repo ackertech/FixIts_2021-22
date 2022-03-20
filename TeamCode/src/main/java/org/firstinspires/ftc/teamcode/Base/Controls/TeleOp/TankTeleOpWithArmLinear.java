@@ -41,11 +41,13 @@ public class TankTeleOpWithArmLinear extends OpMode {
     public double rotateMax = 3;
     public double rotateMin = 0.25;
     public double linearPower = 0.60;
+    public double rotatePower = 0.40;
+
 
     // Construct the Physical Bot based on the Robot Class
     public TankBot Bruno = new TankBot();
     public ArmHand Handy = new ArmHand();
-    public LinearMobility Box = new LinearMobility();
+    public LinearMobility Liney = new LinearMobility();
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
     @Override
@@ -53,7 +55,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
         Bruno.initRobot(hardwareMap);
         Handy.initArmHand(hardwareMap);
-        Box.initLinearMobility(hardwareMap);
+        Liney.initLinearMobility(hardwareMap);
 
     }
 
@@ -84,9 +86,9 @@ public class TankTeleOpWithArmLinear extends OpMode {
         telemetry.addData("LazySusan Position: ", Bruno.lazySusanCurrPos );
         telemetry.addData("Hand Gesture: ", handGesture);
         telemetry.addData("Wrist Status: ", wristStatus);
-        telemetry.addData("Horizontal Position: ", Box.horizontalMotor.getCurrentPosition() );
-        telemetry.addData("Vertical Position: ", Box.verticalMotor.getCurrentPosition() );
-        telemetry.addData("Rotating Position: ", Box.rotatingMotor.getCurrentPosition() );
+        telemetry.addData("Horizontal Position: ", Liney.horizontalMotor.getCurrentPosition() );
+        telemetry.addData("Vertical Position: ", Liney.verticalMotor.getCurrentPosition() );
+        telemetry.addData("Rotating Position: ", Liney.rotatingMotor.getCurrentPosition() );
         telemetry.update();
 
     }
@@ -190,18 +192,29 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     public void linearControl() {
         if (gamepad1.a) {
-            Box.moveLinearForward(linearPower, horizontalMax);
+            Liney.moveLinearForward(linearPower, horizontalMax);
         }
         else if (gamepad1.b) {
-            Box.moveLinearReverse(linearPower, horizontalMin);
+            Liney.moveLinearReverse(linearPower, horizontalMin);
         }
-        else if (gamepad1.x) {
-            Box.moveLinearUp(linearPower, verticalMax);
+
+        if (gamepad1.x) {
+            Liney.moveLinearUp(linearPower, verticalMax);
         }
         else if (gamepad1.y) {
-            Box.moveLinearDown(linearPower, verticalMin);
+            Liney.moveLinearDown(linearPower, verticalMin);
         }
+
+        if (gamepad1.left_trigger > 0.1) {
+            Liney.rotateForward(rotatePower,rotateMax);
+        }
+        else if (gamepad1.right_trigger > 0.1) {
+            Liney.rotateReverse(rotatePower,rotateMin);
+        }
+
     }
+
+
 
 
     /**  ********  ARM METHODS USING GAMEPAD2 *************      **/

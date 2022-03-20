@@ -97,7 +97,6 @@ public class LinearMobility {
     }
 
 
-
     public void moveLinearUp( double power, double rotations) {
 
         double ticks = rotations * TICKS_PER_ROTATION;
@@ -119,6 +118,29 @@ public class LinearMobility {
         }
         verticalMotor.setPower(0);
     }
+
+    public void rotateForward( double power, double rotations) {
+
+        double ticks = rotations * TICKS_PER_ROTATION;
+        rotatingMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rotatingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (rotatingMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+            rotateForward(power);
+        }
+        rotatingMotor.setPower(0);
+    }
+
+    public void rotateReverse( double power, double rotations) {
+
+        double ticks = rotations * (-1) * TICKS_PER_ROTATION;
+        rotatingMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rotatingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (rotatingMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+            rotateReverse(power);
+        }
+        rotatingMotor.setPower(0);
+    }
+
 
 
 
