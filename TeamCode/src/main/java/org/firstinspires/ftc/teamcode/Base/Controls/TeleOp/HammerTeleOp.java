@@ -43,6 +43,7 @@ public class HammerTeleOp extends OpMode {
         speedControl();
         driveControl();
         drive();
+        telemetryOutput();
 
     }
 
@@ -111,6 +112,17 @@ public class HammerTeleOp extends OpMode {
             } else if (gamepad1.dpad_up) {
                 speedMultiply = 1.00;
             }
+    }
+
+    public void telemetryOutput() {
+        telemetry.addData("Drive Style: ", driveStyle);
+        telemetry.addData("Speed: ", speedMultiply);
+        telemetry.addData("Front Left Motor Power: ", Bot.frontLeftMotor.getPower());
+        telemetry.addData("Rear Left Motor Power: ", Bot.rearLeftMotor.getPower());
+        telemetry.addData("Front Right Motor Power: ", Bot.frontRightMotor.getPower());
+        telemetry.addData("Rear Right Motor Power: ", Bot.rearRightMotor.getPower());
+        telemetry.update();
+
     }
 
 }
