@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.LinearMobility;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot Linear Arm")
+@TeleOp(name = "TankBot Arm+Linear")
 
 public class TankTeleOpWithArmLinear extends OpMode {
 
@@ -44,7 +44,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
     public double rotatePower = 0.40;
 
 
-    // Construct the Physical Bot based on the Robot Class
+    // Construct the Physical Bot and Mechanisms
     public TankBot Bruno = new TankBot();
     public ArmHand Handy = new ArmHand();
     public LinearMobility Liney = new LinearMobility();
@@ -172,7 +172,6 @@ public class TankTeleOpWithArmLinear extends OpMode {
             if (gamepad1.right_stick_button) {
                 driverStyle = Style.TANK;
             }
-            if (gamepad1.right_stick_button) {  }
     }
 
 
