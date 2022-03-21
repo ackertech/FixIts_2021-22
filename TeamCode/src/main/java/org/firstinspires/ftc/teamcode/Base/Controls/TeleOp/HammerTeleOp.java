@@ -8,14 +8,18 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Base.Robot.HammerHead;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
-@Disabled
+//@Disabled
 @TeleOp(name = "Hammer Drive")
 
 public class HammerTeleOp extends OpMode {
 
     //TeleOp Driving Behavior Variables
+
+    public enum Style {
+        ARCADE1, ARCADE2, AWD
+    }
     public double speedMultiply = .50;
-    public String driveStyle = "arcade1Stick";
+    public Style driveStyle = Style.ARCADE1;
 
     public double leftSidePower;
     public double rightSidePower;
@@ -39,6 +43,7 @@ public class HammerTeleOp extends OpMode {
         speedControl();
         driveControl();
         drive();
+        telemetryOutput();
 
     }
 
@@ -48,7 +53,7 @@ public class HammerTeleOp extends OpMode {
 
         switch (driveStyle) {
 
-            case "arcade1Stick":
+            case ARCADE1:
                 telemetry.addData("Drive Mode: ", driveStyle);
                 telemetry.update();
 
@@ -64,7 +69,7 @@ public class HammerTeleOp extends OpMode {
                     Bot.stopMotors();
                 }
 
-            case "arcade2Stick":
+            case ARCADE2:
                 telemetry.addData("Drive Mode: ", driveStyle);
                 telemetry.update();
 
@@ -72,12 +77,11 @@ public class HammerTeleOp extends OpMode {
                     Bot.driveForward(speedMultiply * gamepad1.left_stick_y);
                 } else if (gamepad1.left_stick_y > 0.1) {
                     Bot.driveBackward(speedMultiply * gamepad1.left_stick_y);
-                } else {
-                    Bot.stopMotors();
                 }
-                if (gamepad1.right_stick_x > 0.1) {
+                else if (gamepad1.right_stick_x > 0.1) {
                     Bot.turnRight(speedMultiply * gamepad1.right_stick_x);
-                } else if (gamepad1.right_stick_x < -0.1) {
+                }
+                else if (gamepad1.right_stick_x < -0.1) {
                     Bot.turnLeft(speedMultiply * gamepad1.right_stick_x);
                 } else {
                     Bot.stopMotors();
@@ -91,8 +95,8 @@ public class HammerTeleOp extends OpMode {
 
     public void driveControl () {
 
-            if (gamepad1.left_bumper) { driveStyle = "arcade1Stick"; }
-            if (gamepad1.right_bumper) { driveStyle = "arcade2Stick"; }
+            if (gamepad1.left_bumper) { driveStyle = Style.ARCADE1; }
+            if (gamepad1.right_bumper) { driveStyle = Style.ARCADE2; }
 
     }
 
@@ -108,6 +112,17 @@ public class HammerTeleOp extends OpMode {
             } else if (gamepad1.dpad_up) {
                 speedMultiply = 1.00;
             }
+    }
+
+    public void telemetryOutput() {
+        telemetry.addData("Drive Style: ", driveStyle);
+        telemetry.addData("Speed: ", speedMultiply);
+        telemetry.addData("Front Left Motor Power: ", Bot.frontLeftMotor.getPower());
+        telemetry.addData("Rear Left Motor Power: ", Bot.rearLeftMotor.getPower());
+        telemetry.addData("Front Right Motor Power: ", Bot.frontRightMotor.getPower());
+        telemetry.addData("Rear Right Motor Power: ", Bot.rearRightMotor.getPower());
+        telemetry.update();
+
     }
 
 }

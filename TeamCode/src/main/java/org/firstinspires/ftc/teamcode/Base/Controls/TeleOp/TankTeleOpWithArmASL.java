@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot ASL")
+@TeleOp(name = "TankBot Arm+ASL")
 
 public class TankTeleOpWithArmASL extends TankTeleOpWithArm {
 
