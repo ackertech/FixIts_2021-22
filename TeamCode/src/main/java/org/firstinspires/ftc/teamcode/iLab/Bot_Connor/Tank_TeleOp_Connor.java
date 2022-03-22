@@ -55,8 +55,6 @@ public class Tank_TeleOp_Connor extends OpMode{
         gamepadTwoStyle();
         gamepad2Control();
         telemetryOutput();
-        armMovement();
-        lazySusanControl();
     }
 
     @Override
@@ -111,6 +109,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                     Hand.resetHand();
 
                 }
+                if (gamepad2.left_trigger > 0.1) {
+                    Hand.raiseArm(); }
+
+                if (gamepad2.right_trigger > 0.1) {
+                    Hand.lowerArm(); }
                 break;
 
             case CANDYBOX:
@@ -122,7 +125,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                     Thomas_The_Tank.upAndDownLinearMotorDown();
                 }
 
-                else if (gamepad2.dpad_left){
+                else {
+                    Thomas_The_Tank.stopUpAndDownLinearMotor();
+                }
+
+                if (gamepad2.dpad_left){
                     Thomas_The_Tank.sidewaysLinearMotorLeft();
                 }
 
@@ -130,40 +137,38 @@ public class Tank_TeleOp_Connor extends OpMode{
                     Thomas_The_Tank.sidewaysLinearMotorRight();
                 }
 
-                else if (gamepad2.y) {
+                else {
                     Thomas_The_Tank.stopUpAndDownLinearMotor();
                 }
 
-                else if (gamepad2.x) {
-                    Thomas_The_Tank.stopSidewaysLinearMotor();
+                if (gamepad2.left_trigger > 0.1){
+                    Thomas_The_Tank.lazySusanLeft(.5);
                 }
+
+                else if (gamepad2.right_trigger > 0.1) {
+                    Thomas_The_Tank.lazySusanRight(.5);
+                }
+                else {
+                    Thomas_The_Tank.lazySusanStop();
+                }
+
+                if (gamepad2.left_bumper){
+                    Thomas_The_Tank.lazySusanLeft(.5, 2);
+                }
+
+                else if (gamepad2.right_bumper) {
+                    Thomas_The_Tank.lazySusanRight(.5, 2);
+                }
+
                 break;
             }
         }
 
-        public void armMovement(){
 
-            if (gamepad2.left_trigger > 0.1) {
-                Hand.raiseArm(); }
-            if (gamepad2.right_trigger > 0.1) {
-                Hand.lowerArm(); }
-        }
 
-    public void lazySusanControl() {
-        if (gamepad2.left_stick_x < -0.1 && Thomas_The_Tank.lazySusanCurrPos < Thomas_The_Tank.lazySusanMaxPos) {
-            Thomas_The_Tank.lazySusanCurrPos += Thomas_The_Tank.lazySusanIncrements;
-            Thomas_The_Tank.lazySusan.setPosition(Thomas_The_Tank.lazySusanCurrPos);
-        } else {
-            Thomas_The_Tank.lazySusan.setPosition(Thomas_The_Tank.lazySusanCurrPos);
-        }
-        if (gamepad2.left_stick_x > 0.1 && Thomas_The_Tank.lazySusanCurrPos > Thomas_The_Tank.lazySusanMinPos) {
-            Thomas_The_Tank.lazySusanCurrPos -= Thomas_The_Tank.lazySusanIncrements;
-            Thomas_The_Tank.lazySusan.setPosition(Thomas_The_Tank.lazySusanCurrPos);
-        } else {
-            Thomas_The_Tank.lazySusan.setPosition(Thomas_The_Tank.lazySusanCurrPos);
-        }
 
-    }
+
+
 
         public void drive() {
 

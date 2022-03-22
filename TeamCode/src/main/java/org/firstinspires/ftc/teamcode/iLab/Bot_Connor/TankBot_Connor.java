@@ -7,15 +7,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
     //define Mechinism Varibles
-    public Servo lazySusan;
     //Set Lazy Susan movement values
-    public double lazySusanMaxPos = 0.5;
-    public double lazySusanMinPos = 0.25;
-    public double lazySusanCurrPos = 0.5;
-    public double lazySusanIncrements = 0.0005;
 
     public DcMotor sidewaysLinearMotor;
     public DcMotor upAndDownLinearMotor;
+    public DcMotor lazy_Susan;
+
+    public static final double TICKS_PER_ROTATION_5203 = 751.8;
+    public static final double TICKS_PER_ROTATION_5202 = 384.5;
 
     //Hardware Mapping Variable used by robot controller
     public HardwareMap hwBot = null;
@@ -53,9 +52,15 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
 
         /**  ********  Tankbot_Connor Mechanisms ************     **/
 
-        //Control Hub Port 0
-        lazySusan = hwBot.get(Servo.class, "lazy_susan");
-         lazySusan.setDirection(Servo.Direction.FORWARD);
+        //Expansion Hub Port 2
+        lazy_Susan = hwBot.dcMotor.get("lazySusan");
+         lazy_Susan.setDirection(DcMotor.Direction.FORWARD);
+         lazy_Susan.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+         lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
 
         /** Linear Actuatiors*********    **/
 
@@ -68,8 +73,42 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
         sidewaysLinearMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         upAndDownLinearMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        upAndDownLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
 
+    public void lazySusanLeft (double power) {
+        lazy_Susan.setPower(Math.abs(power));
+    }
 
+    public void lazySusanRight (double power) {
+        lazy_Susan.setPower(-Math.abs(power));
+    }
+
+    public void lazySusanStop(){
+        lazy_Susan.setPower(0);
+    }
+
+    public                  void lazySusanLeft( double                 power, double                 rotations){
+        double ticks = rotations * TICKS_PER_ROTATION_5203;
+        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (lazy_Susan.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+            lazySusanLeft(power); }
+
+        lazySusanStop();
+    }
+
+    public void lazySusanRight(double                  power, double                  rotations) {
+        double ticks = rotations * (-1) * TICKS_PER_ROTATION_5203;
+        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (lazy_Susan.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+            lazySusanRight(power);
+        }
+        lazySusanStop();
     }
 
     public void stopSidewaysLinearMotor(){
