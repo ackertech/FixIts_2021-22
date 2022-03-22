@@ -131,8 +131,8 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
 
     public void upAndDownLinearMotorUp(double power, double rotations) {
         double ticks = rotations * TICKS_PER_ROTATION_5202;
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        upAndDownLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         while (sidewaysLinearMotor.getCurrentPosition() < ticks) {
             stopUpAndDownLinearMotor();
         }
@@ -140,8 +140,8 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
 
     public void upAndDownLinearMotorDown(double power, double rotations){
         double ticks = rotations * (-1) * TICKS_PER_ROTATION_5202;
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        upAndDownLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         while (sidewaysLinearMotor.getCurrentPosition() > ticks) {
             stopUpAndDownLinearMotor();
         }
