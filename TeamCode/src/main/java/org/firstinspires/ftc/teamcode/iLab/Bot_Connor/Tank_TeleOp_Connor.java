@@ -118,11 +118,11 @@ public class Tank_TeleOp_Connor extends OpMode{
 
             case CANDYBOX:
                 if (gamepad2.dpad_up) {
-                    Thomas_The_Tank.upAndDownLinearMotorUp();
+                    Thomas_The_Tank.upAndDownLinearMotorUp(.5,4);
                 }
 
                 else if (gamepad2.dpad_down) {
-                    Thomas_The_Tank.upAndDownLinearMotorDown();
+                    Thomas_The_Tank.upAndDownLinearMotorDown(.5, 4);
                 }
 
                 else {
@@ -130,11 +130,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                 }
 
                 if (gamepad2.dpad_left){
-                    Thomas_The_Tank.sidewaysLinearMotorLeft();
+                    Thomas_The_Tank.sidewaysLinearMotorLeft(.5, 4);
                 }
 
                 else if (gamepad2.dpad_right) {
-                    Thomas_The_Tank.sidewaysLinearMotorRight();
+                    Thomas_The_Tank.sidewaysLinearMotorRight(.5, 4);
                 }
 
                 else {
