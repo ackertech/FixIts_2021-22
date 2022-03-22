@@ -79,7 +79,7 @@ public class LinearMobility {
         double ticks = rotations * TICKS_PER_ROTATION;
         horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         horizontalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (horizontalMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+        while (horizontalMotor.getCurrentPosition() < ticks) {
             moveLinearForward(power);
         }
         horizontalMotor.setPower(0);
@@ -90,7 +90,7 @@ public class LinearMobility {
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         horizontalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (horizontalMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+        while (horizontalMotor.getCurrentPosition() > ticks) {
             moveLinearReverse(power);
         }
         horizontalMotor.setPower(0);
@@ -102,7 +102,7 @@ public class LinearMobility {
         double ticks = rotations * TICKS_PER_ROTATION;
         verticalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         verticalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (verticalMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+        while (verticalMotor.getCurrentPosition() < ticks) {
             moveLinearUp(power);
         }
         verticalMotor.setPower(0);
@@ -113,7 +113,7 @@ public class LinearMobility {
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         verticalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         verticalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (verticalMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+        while (verticalMotor.getCurrentPosition() > ticks ) {
             moveLinearDown(power);
         }
         verticalMotor.setPower(0);
@@ -124,7 +124,7 @@ public class LinearMobility {
         double ticks = rotations * TICKS_PER_ROTATION;
         rotatingMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rotatingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (rotatingMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+        while (rotatingMotor.getCurrentPosition() < ticks ) {
             rotateForward(power);
         }
         rotatingMotor.setPower(0);
@@ -135,7 +135,7 @@ public class LinearMobility {
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         rotatingMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rotatingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (rotatingMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+        while (rotatingMotor.getCurrentPosition() > ticks ) {
             rotateReverse(power);
         }
         rotatingMotor.setPower(0);

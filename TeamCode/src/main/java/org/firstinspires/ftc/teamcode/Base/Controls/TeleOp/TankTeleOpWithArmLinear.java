@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
@@ -10,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.LinearMobility;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot Arm+Linear")
+@TeleOp(name = "TankBot Arm-Linear")
 
 public class TankTeleOpWithArmLinear extends OpMode {
 
@@ -34,12 +35,9 @@ public class TankTeleOpWithArmLinear extends OpMode {
     String wristStatus;
 
     //Linear Actuator Variables
-    public double horizontalMax = 3;
-    public double horizontalMin = 0.25;
-    public double verticalMax = 3;
-    public double verticalMin = 0.25;
-    public double rotateMax = 3;
-    public double rotateMin = 0.25;
+    public double horizontalRotations = 2;
+    public double verticalRotations = 2;
+    public double rotateRotations = 2;
     public double linearPower = 0.60;
     public double rotatePower = 0.40;
 
@@ -48,6 +46,8 @@ public class TankTeleOpWithArmLinear extends OpMode {
     public TankBot Bruno = new TankBot();
     public ArmHand Handy = new ArmHand();
     public LinearMobility Liney = new LinearMobility();
+
+
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
     @Override
@@ -65,12 +65,11 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
         speedControl();
         driveControl();
-        drive();
         handControl();
         wristControl();
         elbowControl();
         lazySusanControl();
-        linearControl();
+        armMovementControl();
         telemetryOutput();
 
     }
@@ -90,13 +89,22 @@ public class TankTeleOpWithArmLinear extends OpMode {
         telemetry.addData("Vertical Position: ", Liney.verticalMotor.getCurrentPosition() );
         telemetry.addData("Rotating Position: ", Liney.rotatingMotor.getCurrentPosition() );
         telemetry.update();
-
     }
 
 
     /**  ********  DRIVING METHODS USING GAMEPAD 1 *************      **/
 
-    public void drive() {
+    public void driveControl() {
+
+        if (gamepad1.left_bumper) {
+            driverStyle = Style.ARCADE1;
+        }
+        if (gamepad1.right_bumper) {
+            driverStyle = Style.ARCADE2;
+        }
+        if (gamepad1.right_stick_button) {
+            driverStyle = Style.TANK;
+        }
 
         switch (driverStyle) {
 
@@ -161,20 +169,6 @@ public class TankTeleOpWithArmLinear extends OpMode {
         }
     }
 
-
-    public void driveControl () {
-            if (gamepad1.left_bumper) {
-                driverStyle = Style.ARCADE1;
-            }
-            if (gamepad1.right_bumper) {
-                driverStyle = Style.ARCADE2;
-            }
-            if (gamepad1.right_stick_button) {
-                driverStyle = Style.TANK;
-            }
-    }
-
-
      public void speedControl () {
             if (gamepad1.dpad_right) {
                 speedMultiply = 0.25;
@@ -189,27 +183,32 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     /**  ********  Linear Actuator  *************      **/
 
-    public void linearControl() {
+    public void lazySusanControl() {
+
+        if (gamepad1.left_trigger > 0.1) {
+            Liney.rotateForward(rotatePower, rotateRotations);
+        }
+        else if (gamepad1.right_trigger > 0.1) {
+            Liney.rotateReverse(rotatePower, rotateRotations);
+        }
+
+    }
+
+    public void armMovementControl() {
         if (gamepad1.a) {
-            Liney.moveLinearForward(linearPower, horizontalMax);
+            Liney.moveLinearForward(linearPower, horizontalRotations);
         }
         else if (gamepad1.b) {
-            Liney.moveLinearReverse(linearPower, horizontalMin);
+            Liney.moveLinearReverse(linearPower, horizontalRotations);
         }
 
         if (gamepad1.x) {
-            Liney.moveLinearUp(linearPower, verticalMax);
+            Liney.moveLinearUp(linearPower, verticalRotations);
         }
         else if (gamepad1.y) {
-            Liney.moveLinearDown(linearPower, verticalMin);
+            Liney.moveLinearDown(linearPower, verticalRotations);
         }
 
-        if (gamepad1.left_trigger > 0.1) {
-            Liney.rotateForward(rotatePower,rotateMax);
-        }
-        else if (gamepad1.right_trigger > 0.1) {
-            Liney.rotateReverse(rotatePower,rotateMin);
-        }
 
     }
 
@@ -235,25 +234,6 @@ public class TankTeleOpWithArmLinear extends OpMode {
         }
         else {
             Handy.elbow.setPosition(Handy.elbowCurrPos);
-        }
-    }
-
-    public void lazySusanControl() {
-
-        if (gamepad2.dpad_left  && Bruno.lazySusanCurrPos < Bruno.lazySusanMaxPos) {
-            Bruno.lazySusanCurrPos += Bruno.lazySusanIncrements;
-            Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
-        }
-        else {
-            Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
-        }
-
-        if (gamepad2.dpad_right  && Bruno.lazySusanCurrPos > Bruno.lazySusanMinPos) {
-            Bruno.lazySusanCurrPos -= Bruno.lazySusanIncrements;
-            Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
-        }
-        else {
-            Bruno.lazySusan.setPosition(Bruno.lazySusanCurrPos);
         }
     }
 

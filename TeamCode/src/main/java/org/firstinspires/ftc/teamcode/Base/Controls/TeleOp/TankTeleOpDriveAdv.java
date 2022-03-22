@@ -31,14 +31,14 @@ public class TankTeleOpDriveAdv extends OpMode {
 
 
     // Construct the Physical Bot based on the Robot Class
-    public TankBot Bot = new TankBot();
+    public TankBot Bruno = new TankBot();
 
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
     @Override
     public void init() {
 
-        Bot.initRobot(hardwareMap);
+        Bruno.initRobot(hardwareMap);
 
     }
 
@@ -48,7 +48,6 @@ public class TankTeleOpDriveAdv extends OpMode {
 
         speedControl();
         driveControl();
-        drive();
         telemetryOutput();
 
     }
@@ -56,17 +55,27 @@ public class TankTeleOpDriveAdv extends OpMode {
     public void telemetryOutput() {
         telemetry.addData("Drive Mode: ", driverStyle);
         telemetry.addData("Speed: ", speedMultiply);
-        telemetry.addData("Front Left Motor Power: ", Bot.frontLeftMotor.getPower());
-        telemetry.addData("Rear Left Motor Power: ", Bot.rearLeftMotor.getPower());
-        telemetry.addData("Front Right Motor Power: ", Bot.frontRightMotor.getPower());
-        telemetry.addData("Rear Right Motor Power: ", Bot.rearRightMotor.getPower());
+        telemetry.addData("Front Left Motor Power: ", Bruno.frontLeftMotor.getPower());
+        telemetry.addData("Rear Left Motor Power: ", Bruno.rearLeftMotor.getPower());
+        telemetry.addData("Front Right Motor Power: ", Bruno.frontRightMotor.getPower());
+        telemetry.addData("Rear Right Motor Power: ", Bruno.rearRightMotor.getPower());
         telemetry.update();
 
     }
 
     /**  ********  DRIVING METHODS USING GAMEPAD 1 *************      **/
 
-    public void drive() {
+    public void driveControl() {
+
+        if (gamepad1.left_bumper) {
+            driverStyle = Style.ARCADE1;
+        }
+        if (gamepad1.right_bumper) {
+            driverStyle = Style.ARCADE2;
+        }
+        if (gamepad1.right_stick_button) {
+            driverStyle = Style.TANK;
+        }
 
         switch (driverStyle) {
 
@@ -78,15 +87,15 @@ public class TankTeleOpDriveAdv extends OpMode {
                 leftStickXVal = Range.clip(leftStickXVal, -1, 1);
 
                 if (leftStickYVal < -0.1) {
-                    Bot.tankDriveForward(speedMultiply*leftStickYVal);
+                    Bruno.tankDriveForward(speedMultiply*leftStickYVal);
                 } else if (leftStickYVal > 0.1) {
-                    Bot.tankDriveBackward(speedMultiply*leftStickYVal);
+                    Bruno.tankDriveBackward(speedMultiply*leftStickYVal);
                 } else if (leftStickXVal > 0.1) {
-                    Bot.tankTurnRight(speedMultiply*leftStickXVal);
+                    Bruno.tankTurnRight(speedMultiply*leftStickXVal);
                 } else if (leftStickXVal < -0.1) {
-                    Bot.tankTurnLeft(speedMultiply*leftStickXVal);
+                    Bruno.tankTurnLeft(speedMultiply*leftStickXVal);
                 } else {
-                    Bot.stopMotors();
+                    Bruno.stopMotors();
                 }
                 break;
 
@@ -102,18 +111,18 @@ public class TankTeleOpDriveAdv extends OpMode {
                 rightStickXVal = Range.clip(rightStickXVal, -1, 1);
 
                 if (leftStickYVal < -0.1) {
-                    Bot.tankDriveForward(speedMultiply*leftStickYVal);
+                    Bruno.tankDriveForward(speedMultiply*leftStickYVal);
                 } else if (leftStickYVal > 0.1) {
-                    Bot.tankDriveBackward(speedMultiply*leftStickYVal);
+                    Bruno.tankDriveBackward(speedMultiply*leftStickYVal);
                 } else {
-                    Bot.stopMotors();
+                    Bruno.stopMotors();
                 }
                 if (rightStickXVal > 0.1) {
-                    Bot.tankTurnRight(speedMultiply*rightStickXVal);
+                    Bruno.tankTurnRight(speedMultiply*rightStickXVal);
                 } else if (rightStickXVal < -0.1) {
-                    Bot.tankTurnLeft(speedMultiply*rightStickXVal);
+                    Bruno.tankTurnLeft(speedMultiply*rightStickXVal);
                 } else {
-                    Bot.stopMotors();
+                    Bruno.stopMotors();
                 }
                 break;
 
@@ -126,20 +135,14 @@ public class TankTeleOpDriveAdv extends OpMode {
 
                 leftSidePower = speedMultiply * leftStickYVal * (-1);
                 rightSidePower = speedMultiply * rightStickYVal * (-1);
-                Bot.tankDrive(leftSidePower,rightSidePower);
+                Bruno.tankDrive(leftSidePower,rightSidePower);
                 break;
         }
     }
 
 
-    public void driveControl () {
-            if (gamepad1.a) { driverStyle = Style.ARCADE1; }
-            if (gamepad1.b) { driverStyle = Style.ARCADE2; }
-            if (gamepad1.x) { driverStyle = Style.TANK; }
-    }
 
-
-     public void speedControl () {
+    public void speedControl () {
             if (gamepad1.dpad_right) {
                 speedMultiply = 0.25;
             } else if (gamepad1.dpad_down) {

@@ -13,7 +13,8 @@ public class TeleOpLabBot_4Motor extends OpMode {
     public boolean arcade2StickDrive = false;
     public boolean arcade1StickDrive = true;
 
-
+    boolean pressedLastIteration_A = false;
+    boolean pressed_A = false;
 
     public LabBot_4Motor Bot = new LabBot_4Motor();
 
@@ -30,6 +31,12 @@ public class TeleOpLabBot_4Motor extends OpMode {
         drive();
         speedControl();
         driveControl();
+        gamepadStates();
+
+    }
+
+    public void gamepadStates() {
+        pressed_A = gamepad1.a;
 
     }
 
