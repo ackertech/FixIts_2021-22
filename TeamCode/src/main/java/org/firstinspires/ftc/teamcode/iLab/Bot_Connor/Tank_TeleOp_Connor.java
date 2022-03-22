@@ -153,11 +153,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                 }
 
                 if (gamepad2.left_bumper){
-                    Thomas_The_Tank.lazySusanLeft(.5, 2);
+                    Thomas_The_Tank.lazySusanLeft(.9, 8);
                 }
 
                 else if (gamepad2.right_bumper) {
-                    Thomas_The_Tank.lazySusanRight(.5, 2);
+                    Thomas_The_Tank.lazySusanRight(.9, 8);
                 }
 
                 break;

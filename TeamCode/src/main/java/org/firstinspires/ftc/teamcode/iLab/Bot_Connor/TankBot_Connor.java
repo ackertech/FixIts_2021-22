@@ -95,7 +95,7 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
         double ticks = rotations * TICKS_PER_ROTATION_5203;
         lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (lazy_Susan.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+        while (lazy_Susan.getCurrentPosition() < ticks) {
             lazySusanLeft(power); }
 
         lazySusanStop();
@@ -105,7 +105,7 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
         double ticks = rotations * (-1) * TICKS_PER_ROTATION_5203;
         lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (lazy_Susan.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+        while (lazy_Susan.getCurrentPosition() > ticks) {
             lazySusanRight(power);
         }
         lazySusanStop();
