@@ -54,7 +54,6 @@ public class TankTeleOpWithArm extends OpMode {
 
         speedControl();
         driveControl();
-        drive();
         handControl();
         wristControl();
         elbowControl();
@@ -81,7 +80,17 @@ public class TankTeleOpWithArm extends OpMode {
 
     /**  ********  DRIVING METHODS USING GAMEPAD 1 *************      **/
 
-    public void drive() {
+    public void driveControl() {
+
+        if (gamepad1.left_bumper) {
+            driverStyle = Style.ARCADE1;
+        }
+        if (gamepad1.right_bumper) {
+            driverStyle = Style.ARCADE2;
+        }
+        if (gamepad1.right_stick_button) {
+            driverStyle = Style.TANK;
+        }
 
         switch (driverStyle) {
 
@@ -144,13 +153,6 @@ public class TankTeleOpWithArm extends OpMode {
                 Bruno.tankDrive(leftSidePower,rightSidePower);
                 break;
         }
-    }
-
-
-    public void driveControl () {
-            if (gamepad1.a) { driverStyle = Style.ARCADE1; }
-            if (gamepad1.b) { driverStyle = Style.ARCADE2; }
-            if (gamepad1.x) { driverStyle = Style.TANK; }
     }
 
 

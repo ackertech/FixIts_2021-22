@@ -19,7 +19,8 @@ public class ArmHand {
 
     //Set Positioning for Arm or Hand
     public double elbowMaxPos = 0.5;
-    public double elbowMinPOs = 0.18;
+    public double elbowMinPOs = 0.8;
+    public double elbowHalfPos = 0.7;
     public double elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
 
@@ -61,12 +62,13 @@ public class ArmHand {
 
         //Expansion Hub Port 5
         wrist = hwBot.get(Servo.class, "wrist");
-        wrist.setDirection(Servo.Direction.FORWARD);
+        wrist.setDirection(Servo.Direction.REVERSE);
 
         //Control Hub Port 1
         elbow = hwBot.get(Servo.class, "elbow");
-        elbow.setDirection(Servo.Direction.FORWARD);
+        elbow.setDirection(Servo.Direction.REVERSE);
 
+        closeHand();
 
     }
 
@@ -87,11 +89,13 @@ public class ArmHand {
     /**  ********  WRIST MOVEMENT METHODS *************      **/
 
     public void raiseArm() {
+        closeHand();
         elbow.setPosition(elbowMaxPos);
         elbowCurrPos = elbowMaxPos;
     }
 
     public void lowerArm() {
+        closeHand();
         elbow.setPosition(elbowMinPOs);
         elbowCurrPos = elbowMinPOs;
     }

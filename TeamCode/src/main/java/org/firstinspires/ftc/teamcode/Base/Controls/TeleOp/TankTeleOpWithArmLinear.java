@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Base.Mechanisms.LinearMobility;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
-@TeleOp(name = "TankBot Arm+Linear")
+@TeleOp(name = "TankBot Arm-Linear")
 
 public class TankTeleOpWithArmLinear extends OpMode {
 
@@ -65,7 +65,6 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
         speedControl();
         driveControl();
-        drive();
         handControl();
         wristControl();
         elbowControl();
@@ -95,7 +94,17 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     /**  ********  DRIVING METHODS USING GAMEPAD 1 *************      **/
 
-    public void drive() {
+    public void driveControl() {
+
+        if (gamepad1.left_bumper) {
+            driverStyle = Style.ARCADE1;
+        }
+        if (gamepad1.right_bumper) {
+            driverStyle = Style.ARCADE2;
+        }
+        if (gamepad1.right_stick_button) {
+            driverStyle = Style.TANK;
+        }
 
         switch (driverStyle) {
 
@@ -159,20 +168,6 @@ public class TankTeleOpWithArmLinear extends OpMode {
                 break;
         }
     }
-
-
-    public void driveControl () {
-            if (gamepad1.left_bumper) {
-                driverStyle = Style.ARCADE1;
-            }
-            if (gamepad1.right_bumper) {
-                driverStyle = Style.ARCADE2;
-            }
-            if (gamepad1.right_stick_button) {
-                driverStyle = Style.TANK;
-            }
-    }
-
 
      public void speedControl () {
             if (gamepad1.dpad_right) {
