@@ -116,7 +116,7 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
         sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         sidewaysLinearMotor.setTargetPosition(ticks);
-        sidewaysLinearMotor.setPower(power);
+        sidewaysLinearMotor.setPower(-power);
     }
 
     public void sidewaysLinearMotorRight(double power, int rotations) {
