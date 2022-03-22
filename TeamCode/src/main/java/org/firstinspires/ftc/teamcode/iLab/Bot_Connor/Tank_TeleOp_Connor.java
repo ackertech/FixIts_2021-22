@@ -130,11 +130,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                 }
 
                 if (gamepad2.dpad_left){
-                    Thomas_The_Tank.sidewaysLinearMotorLeft(.5, 5);
+                    Thomas_The_Tank.sidewaysLinearMotorLeft(.5, 20);
                 }
 
                 else if (gamepad2.dpad_right) {
-                    Thomas_The_Tank.sidewaysLinearMotorRight(.5, 5);
+                    Thomas_The_Tank.sidewaysLinearMotorRight(.5, 20);
                 }
 
                 else {
