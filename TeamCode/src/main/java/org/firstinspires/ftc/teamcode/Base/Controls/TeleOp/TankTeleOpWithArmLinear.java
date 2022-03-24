@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -25,24 +26,23 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     //Arm Behavior Variables
     public enum ArmState {
-        ARM_START,
-        ARM_RAISE,
-        ARM_REST,
-        ARM_RETRACT
+        ARM_START, ARM_RAISE, ARM_REST, ARM_RETRACT
     }
     ArmState armState = ArmState.ARM_START;
 
     //Linear Behavior Variables
     public enum LinearState {
-        LINEAR_START,
-        LINEAR_EXTEND,
-        LINEAR_REST,
-        LINEAR_RETRACT
+        LINEAR_START, LINEAR_EXTEND, LINEAR_REST, LINEAR_RETRACT
 
     }
     LinearState linearState = LinearState.LINEAR_START;
+    public double horizontalTicks = 8 * 738;
+    public double horizontalPower = 0.75;
 
+    //LazySusan
+    public double lazySusanRotations = 8;
 
+    // Timers
     public ElapsedTime armTimer = new ElapsedTime();
     public ElapsedTime linearTimer = new ElapsedTime();
 
@@ -86,10 +86,16 @@ public class TankTeleOpWithArmLinear extends OpMode {
         handControl();
         elbowAutomatedControl();
         elbowManualControl();
-        lazySusanControl();
+        linearActuatorAutoControl();
+        linearActuatorManualControl();
+        lazySusanAutoControl();
         telemetryOutput();
 
     }
+
+    /**************************************
+     *  Telemetry Controls
+     **************************************/
 
     public void telemetryOutput() {
         telemetry.addData("Drive Mode: ", driverStyle);
@@ -109,11 +115,8 @@ public class TankTeleOpWithArmLinear extends OpMode {
     }
 
     /**************************************
-     *
      *  GAMEPAD 1 CONTROLS
-     *
      **************************************/
-
 
     /**  ********  DRIVING METHODS USING GAMEPAD 1 *************      **/
 
@@ -205,22 +208,73 @@ public class TankTeleOpWithArmLinear extends OpMode {
     }
 
     /**************************************
-     *
      *  GAMEPAD 2 CONTROLS
-     *
      **************************************/
 
     /**  ********  Lazy Susan and Linear Actuator  *************      **/
 
-    public void lazySusanControl() {
+    public void lazySusanAutoControl() {
 
         if (gamepad2.left_bumper) {
-            Liney.rotateForward(.90,10);
+            Liney.rotateForward(.90, lazySusanRotations);
 
         }
         else if (gamepad2.right_bumper) {
-            Liney.rotateReverse(.90, 10);
+            Liney.rotateReverse(.90, lazySusanRotations;
         }
+
+    }
+
+    public void linearActuatorManualControl() {
+
+        if (gamepad2.left_stick_x > 0.1) {
+            Liney.moveLinearForward(gamepad2.left_stick_x);
+        }
+        else if (gamepad2.left_stick_x < -0.1) {
+            Liney.moveLinearReverse(gamepad2.left_stick_x);
+        }
+        else {
+            Liney.horizontalMotor.setPower(0);
+        }
+
+
+    }
+
+    public void linearActuatorAutoControl() {
+
+        switch (linearState) {
+            case LINEAR_START:
+                if (gamepad2.left_trigger > 0.1) {
+                    Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    linearState = LinearState.LINEAR_EXTEND;
+                }
+                break;
+
+            case LINEAR_EXTEND:
+                if ( (Liney.horizontalMotor.getCurrentPosition() - horizontalTicks) > 10 ) {
+                    Liney.moveLinearForward(horizontalPower);
+                }
+                linearState = LinearState.LINEAR_REST;
+                break;
+
+            case LINEAR_REST:
+                if (gamepad2.right_trigger > 0.1) {
+                    Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    linearState = LinearState.LINEAR_RETRACT;
+                }
+                break;
+
+            case LINEAR_RETRACT:
+                if ( (Liney.horizontalMotor.getCurrentPosition() - horizontalTicks) > 10 ) {
+                    Liney.moveLinearReverse(horizontalPower);
+                }
+                linearState = LinearState.LINEAR_START;
+                break;
+
+            default:
+                linearState = LinearState.LINEAR_START;
+        }
+
 
     }
 
@@ -237,10 +291,11 @@ public class TankTeleOpWithArmLinear extends OpMode {
                }
                break;
            case ARM_RAISE:
-               if (Handy.elbow.getPosition() - Handy.elbowMaxPos < 0.05) {
-                   Handy.openWrist();
-                   armState = ArmState.ARM_REST;
+               if ( (Handy.elbow.getPosition() - Handy.elbowMaxPos) > 0.05) {
+                   Handy.elbow.setPosition(Handy.elbow.getPosition() - .005);
                }
+               Handy.openWrist();
+               armState = ArmState.ARM_REST;
                break;
            case ARM_REST:
                if (gamepad2.dpad_left) {
@@ -250,10 +305,11 @@ public class TankTeleOpWithArmLinear extends OpMode {
                }
                break;
            case ARM_RETRACT:
-               if (Handy.elbow.getPosition() - Handy.elbowMinPOs < 0.05) {
-                   Handy.closeWrist();
-                   armState = ArmState.ARM_START;
+               if ( (Handy.elbow.getPosition() - Handy.elbowMinPOs) > 0.05) {
+                   Handy.elbow.setPosition(Handy.elbow.getPosition() + .005);
                }
+               Handy.closeWrist();
+               armState = ArmState.ARM_START;
                break;
            default:
                armState = ArmState.ARM_START;
