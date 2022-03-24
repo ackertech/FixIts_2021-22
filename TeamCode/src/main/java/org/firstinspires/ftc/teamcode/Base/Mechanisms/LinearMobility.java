@@ -9,7 +9,7 @@ public class LinearMobility {
 
     public DcMotor horizontalMotor;
     public DcMotor verticalMotor;
-    public DcMotor rotatingMotor;
+    public DcMotor lazySusanMotor;
 
     public HardwareMap hwBot = null;
 
@@ -29,22 +29,22 @@ public class LinearMobility {
 
         horizontalMotor = hwBot.dcMotor.get("horizontalMotor");
         verticalMotor = hwBot.dcMotor.get("verticalMotor");
-        rotatingMotor = hwBot.dcMotor.get("rotatingMotor");
+        lazySusanMotor = hwBot.dcMotor.get("rotatingMotor");
 
         horizontalMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         verticalMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        rotatingMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        lazySusanMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         horizontalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         verticalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         verticalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rotatingMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rotatingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        lazySusanMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazySusanMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         horizontalMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         verticalMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rotatingMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        lazySusanMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 
@@ -65,84 +65,105 @@ public class LinearMobility {
     }
 
     public void rotateForward (double power) {
-        rotatingMotor.setPower(Math.abs(power));
+        lazySusanMotor.setPower(Math.abs(power));
     }
 
     public void rotateReverse (double power) {
-        rotatingMotor.setPower(-Math.abs(power));
+        lazySusanMotor.setPower(-Math.abs(power));
     }
 
-    /**  Overloaded Methods using Encoders  **/
+    /**  Overloaded TeleOP Methods using Encoders  **/
 
-    public void moveLinearForward (double power, double rotations) {
+    public void rotateForward( double power, double rotations) {
+
+        double ticks = rotations * TICKS_PER_ROTATION;
+        lazySusanMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazySusanMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        if (Math.abs(lazySusanMotor.getCurrentPosition()) < ticks ) {
+            rotateForward(power);
+        }
+        lazySusanMotor.setPower(0);
+    }
+
+    public void rotateReverse( double power, double rotations) {
+
+        double ticks = rotations * TICKS_PER_ROTATION;
+        lazySusanMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazySusanMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        if (Math.abs(lazySusanMotor.getCurrentPosition()) < ticks ) {
+            rotateReverse(power);
+        }
+        lazySusanMotor.setPower(0);
+    }
+
+    /**  Overloaded Autonomous Methods using Encoders  **/
+
+    public void autoMoveLinearForward (double power, double rotations) {
 
         double ticks = rotations * TICKS_PER_ROTATION;
         horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         horizontalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (horizontalMotor.getCurrentPosition() < ticks) {
+        while (horizontalMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
             moveLinearForward(power);
         }
         horizontalMotor.setPower(0);
     }
 
-    public void moveLinearReverse( double power, double rotations) {
+    public void autoMoveLinearReverse( double power, double rotations) {
 
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         horizontalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (horizontalMotor.getCurrentPosition() > ticks) {
+        while (horizontalMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
             moveLinearReverse(power);
         }
         horizontalMotor.setPower(0);
     }
 
 
-    public void moveLinearUp( double power, double rotations) {
+    public void autoMoveLinearUp( double power, double rotations) {
 
         double ticks = rotations * TICKS_PER_ROTATION;
         verticalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         verticalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (verticalMotor.getCurrentPosition() < ticks) {
+        while (verticalMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive())  {
             moveLinearUp(power);
         }
         verticalMotor.setPower(0);
     }
 
-    public void moveLinearDown( double power, double rotations) {
+    public void autoMoveLinearDown( double power, double rotations) {
 
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         verticalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         verticalMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (verticalMotor.getCurrentPosition() > ticks ) {
+        while (verticalMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
             moveLinearDown(power);
         }
         verticalMotor.setPower(0);
     }
 
-    public void rotateForward( double power, double rotations) {
+    public void autoRotateForward( double power, double rotations) {
 
         double ticks = rotations * TICKS_PER_ROTATION;
-        rotatingMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rotatingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (rotatingMotor.getCurrentPosition() < ticks ) {
+        lazySusanMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazySusanMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (lazySusanMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive() ) {
             rotateForward(power);
         }
-        rotatingMotor.setPower(0);
+        lazySusanMotor.setPower(0);
     }
 
-    public void rotateReverse( double power, double rotations) {
+    public void autoRotateReverse( double power, double rotations) {
 
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
-        rotatingMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rotatingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (rotatingMotor.getCurrentPosition() > ticks ) {
+        lazySusanMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lazySusanMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        while (lazySusanMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
             rotateReverse(power);
         }
-        rotatingMotor.setPower(0);
+        lazySusanMotor.setPower(0);
     }
-
-
-
 
 
 }

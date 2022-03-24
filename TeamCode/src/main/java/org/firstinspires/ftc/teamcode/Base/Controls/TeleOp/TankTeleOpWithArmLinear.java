@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
@@ -15,16 +16,39 @@ import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 public class TankTeleOpWithArmLinear extends OpMode {
 
-    //TeleOp Driving Behavior Variables
+    //Driving Behavior Variables
     public double speedMultiply = .75;
     public enum Style {
         ARCADE1, ARCADE2, TANK
     }
     public Style driverStyle = Style.ARCADE1;
-    public double leftSidePower;
-    public double rightSidePower;
+
+    //Arm Behavior Variables
+    public enum ArmState {
+        ARM_START,
+        ARM_RAISE,
+        ARM_REST,
+        ARM_RETRACT
+    }
+    ArmState armState = ArmState.ARM_START;
+
+    //Linear Behavior Variables
+    public enum LinearState {
+        LINEAR_START,
+        LINEAR_EXTEND,
+        LINEAR_REST,
+        LINEAR_RETRACT
+
+    }
+    LinearState linearState = LinearState.LINEAR_START;
+
+
+    public ElapsedTime armTimer = new ElapsedTime();
+    public ElapsedTime linearTimer = new ElapsedTime();
 
     // GamePad Variables
+    public double leftSidePower;
+    public double rightSidePower;
     double leftStickYVal;
     double leftStickXVal;
     double rightStickXVal;
@@ -33,13 +57,6 @@ public class TankTeleOpWithArmLinear extends OpMode {
     // Hand Variables
     String handGesture;
     String wristStatus;
-
-    //Linear Actuator Variables
-    public double horizontalRotations = 2;
-    public double verticalRotations = 2;
-    public double rotateRotations = 2;
-    public double linearPower = 0.60;
-    public double rotatePower = 0.40;
 
 
     // Construct the Physical Bot and Mechanisms
@@ -56,7 +73,8 @@ public class TankTeleOpWithArmLinear extends OpMode {
         Bruno.initRobot(hardwareMap);
         Handy.initArmHand(hardwareMap);
         Liney.initLinearMobility(hardwareMap);
-
+        armTimer.reset();
+        linearTimer.reset();
     }
 
     // TeleOp Loop Method.  This start AFTER clicking the Play Button on the Driver Station Phone
@@ -66,10 +84,9 @@ public class TankTeleOpWithArmLinear extends OpMode {
         speedControl();
         driveControl();
         handControl();
-        wristControl();
-        elbowControl();
+        elbowAutomatedControl();
+        elbowManualControl();
         lazySusanControl();
-        armMovementControl();
         telemetryOutput();
 
     }
@@ -87,9 +104,15 @@ public class TankTeleOpWithArmLinear extends OpMode {
         telemetry.addData("Wrist Status: ", wristStatus);
         telemetry.addData("Horizontal Position: ", Liney.horizontalMotor.getCurrentPosition() );
         telemetry.addData("Vertical Position: ", Liney.verticalMotor.getCurrentPosition() );
-        telemetry.addData("Rotating Position: ", Liney.rotatingMotor.getCurrentPosition() );
+        telemetry.addData("Rotating Position: ", Liney.lazySusanMotor.getCurrentPosition() );
         telemetry.update();
     }
+
+    /**************************************
+     *
+     *  GAMEPAD 1 CONTROLS
+     *
+     **************************************/
 
 
     /**  ********  DRIVING METHODS USING GAMEPAD 1 *************      **/
@@ -181,43 +204,64 @@ public class TankTeleOpWithArmLinear extends OpMode {
             }
     }
 
-    /**  ********  Linear Actuator  *************      **/
+    /**************************************
+     *
+     *  GAMEPAD 2 CONTROLS
+     *
+     **************************************/
+
+    /**  ********  Lazy Susan and Linear Actuator  *************      **/
 
     public void lazySusanControl() {
 
-        if (gamepad1.left_trigger > 0.1) {
-            Liney.rotateForward(rotatePower, rotateRotations);
+        if (gamepad2.left_bumper) {
+            Liney.rotateForward(.90,10);
+
         }
-        else if (gamepad1.right_trigger > 0.1) {
-            Liney.rotateReverse(rotatePower, rotateRotations);
+        else if (gamepad2.right_bumper) {
+            Liney.rotateReverse(.90, 10);
         }
 
     }
 
-    public void armMovementControl() {
-        if (gamepad1.a) {
-            Liney.moveLinearForward(linearPower, horizontalRotations);
-        }
-        else if (gamepad1.b) {
-            Liney.moveLinearReverse(linearPower, horizontalRotations);
-        }
+    /**  ********  ARM and ELBOW METHODS USING GAMEPAD2 *************      **/
 
-        if (gamepad1.x) {
-            Liney.moveLinearUp(linearPower, verticalRotations);
-        }
-        else if (gamepad1.y) {
-            Liney.moveLinearDown(linearPower, verticalRotations);
-        }
+   public void elbowAutomatedControl() {
 
+       switch (armState) {
+           case ARM_START:
+               if (gamepad2.dpad_left) {
+                   Handy.closeWrist();
+                   Handy.closeHand();
+                   armState = ArmState.ARM_RAISE;
+               }
+               break;
+           case ARM_RAISE:
+               if (Handy.elbow.getPosition() - Handy.elbowMaxPos < 0.05) {
+                   Handy.openWrist();
+                   armState = ArmState.ARM_REST;
+               }
+               break;
+           case ARM_REST:
+               if (gamepad2.dpad_left) {
+                   Handy.closeWrist();
+                   Handy.closeHand();
+                   armState = ArmState.ARM_RETRACT;
+               }
+               break;
+           case ARM_RETRACT:
+               if (Handy.elbow.getPosition() - Handy.elbowMinPOs < 0.05) {
+                   Handy.closeWrist();
+                   armState = ArmState.ARM_START;
+               }
+               break;
+           default:
+               armState = ArmState.ARM_START;
+       }
 
-    }
+   }
 
-
-
-
-    /**  ********  ARM METHODS USING GAMEPAD2 *************      **/
-
-    public void elbowControl() {
+    public void elbowManualControl() {
 
         if (gamepad2.dpad_up  && Handy.elbowCurrPos < Handy.elbowMaxPos) {
             Handy.elbowCurrPos += Handy.elbowIncrements;
@@ -238,49 +282,31 @@ public class TankTeleOpWithArmLinear extends OpMode {
     }
 
 
-
     /**  ********  HAND METHODS USING GAMEPAD2 *************      **/
 
     public void handControl() {
 
         if (gamepad2.a) {
+            Handy.openWrist();
             Handy.point();
             handGesture = "Pointing";
         } else if (gamepad2.b) {
+            Handy.openWrist();
             Handy.surferWave();
             handGesture = "Surfer Wave";
         } else if (gamepad2.y) {
+            Handy.openWrist();
             Handy.peace();
             handGesture = "Peace Sign";
         } else if (gamepad2.x) {
+            Handy.openWrist();
             Handy.thumbsUp();
             handGesture = "Thumbs Up";
-        } else if (gamepad2.left_bumper) {
-            Handy.openHand();
-            handGesture = "Open Hand";
-        } else if (gamepad2.right_bumper) {
-            Handy.closeHand();
-            handGesture = "Close Hand";
         } else {
+            Handy.closeWrist();
             Handy.closeHand();
             handGesture = "Close Hand";
         }
-    }
-
-    public void wristControl() {
-        if (gamepad2.left_trigger > 0.1) {
-            Handy.openWrist();
-            wristStatus = "Open Wrist";
-        }
-        else if (gamepad2.right_trigger > 0.1) {
-            Handy.halfWrist();
-            wristStatus = "Half Wrist";
-        }
-        else {
-            Handy.closeWrist();
-            wristStatus = "Close Wrist";
-        }
-
     }
 
 

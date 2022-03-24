@@ -21,7 +21,7 @@ public class ArmHand {
     public double elbowMaxPos = 0.5;
     public double elbowMinPOs = 0.8;
     public double elbowHalfPos = 0.7;
-    public double elbowCurrPos = 0.18;
+    public double elbowCurrPos = 0.8;
     public double elbowIncrements = 0.0005;
 
     //Hardware Constructors
