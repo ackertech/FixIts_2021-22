@@ -78,7 +78,7 @@ public class LinearMobility {
 
         double ticks = rotations * TICKS_PER_ROTATION;
         lazySusanMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lazySusanMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        lazySusanMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         if (Math.abs(lazySusanMotor.getCurrentPosition()) < ticks ) {
             rotateForward(power);
         }
@@ -89,7 +89,7 @@ public class LinearMobility {
 
         double ticks = rotations * TICKS_PER_ROTATION;
         lazySusanMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lazySusanMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        lazySusanMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         if (Math.abs(lazySusanMotor.getCurrentPosition()) < ticks ) {
             rotateReverse(power);
         }
