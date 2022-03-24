@@ -220,7 +220,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
         }
         else if (gamepad2.right_bumper) {
-            Liney.rotateReverse(.90, lazySusanRotations;
+            Liney.rotateReverse(.90, lazySusanRotations);
         }
 
     }
@@ -246,29 +246,31 @@ public class TankTeleOpWithArmLinear extends OpMode {
             case LINEAR_START:
                 if (gamepad2.left_trigger > 0.1) {
                     Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    Liney.moveLinearForward(horizontalPower);
                     linearState = LinearState.LINEAR_EXTEND;
                 }
                 break;
 
             case LINEAR_EXTEND:
-                if ( (Liney.horizontalMotor.getCurrentPosition() - horizontalTicks) > 10 ) {
-                    Liney.moveLinearForward(horizontalPower);
+                if ( (Liney.horizontalMotor.getCurrentPosition() - horizontalTicks) < 10 ) {
+                    Liney.horizontalMotor.setPower(0);
+                    linearState = LinearState.LINEAR_RETRACT;
                 }
-                linearState = LinearState.LINEAR_REST;
                 break;
 
             case LINEAR_REST:
                 if (gamepad2.right_trigger > 0.1) {
                     Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    Liney.moveLinearReverse(horizontalPower);
                     linearState = LinearState.LINEAR_RETRACT;
                 }
                 break;
 
             case LINEAR_RETRACT:
-                if ( (Liney.horizontalMotor.getCurrentPosition() - horizontalTicks) > 10 ) {
-                    Liney.moveLinearReverse(horizontalPower);
+                if ( (Liney.horizontalMotor.getCurrentPosition() - horizontalTicks) < 10 ) {
+                    Liney.horizontalMotor.setPower(0);
+                    linearState = LinearState.LINEAR_START;
                 }
-                linearState = LinearState.LINEAR_START;
                 break;
 
             default:
@@ -287,29 +289,31 @@ public class TankTeleOpWithArmLinear extends OpMode {
                if (gamepad2.dpad_left) {
                    Handy.closeWrist();
                    Handy.closeHand();
+                   Handy.elbow.setPosition(Handy.elbowMaxPos);
                    armState = ArmState.ARM_RAISE;
                }
                break;
            case ARM_RAISE:
-               if ( (Handy.elbow.getPosition() - Handy.elbowMaxPos) > 0.05) {
-                   Handy.elbow.setPosition(Handy.elbow.getPosition() - .005);
+               if ( (Handy.elbow.getPosition() - Handy.elbowMaxPos) < 0.05) {
+                   Handy.openWrist();
+                   armState = ArmState.ARM_REST;
                }
-               Handy.openWrist();
-               armState = ArmState.ARM_REST;
+
                break;
            case ARM_REST:
                if (gamepad2.dpad_left) {
                    Handy.closeWrist();
                    Handy.closeHand();
+                   Handy.elbow.setPosition(Handy.elbowMinPOs);
                    armState = ArmState.ARM_RETRACT;
                }
                break;
            case ARM_RETRACT:
-               if ( (Handy.elbow.getPosition() - Handy.elbowMinPOs) > 0.05) {
-                   Handy.elbow.setPosition(Handy.elbow.getPosition() + .005);
+               if ( (Handy.elbow.getPosition() - Handy.elbowMinPOs) < 0.05) {
+                   Handy.closeWrist();
+                   armState = ArmState.ARM_START;
                }
-               Handy.closeWrist();
-               armState = ArmState.ARM_START;
+
                break;
            default:
                armState = ArmState.ARM_START;
