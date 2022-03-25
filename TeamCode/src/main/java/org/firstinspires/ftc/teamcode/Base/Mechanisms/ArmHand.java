@@ -31,7 +31,6 @@ public class ArmHand {
     //Allows us to leverage telemetry and sleep
     public LinearOpMode linearOp = null;
     public void setLinearOp (LinearOpMode linearOpModeOp) {
-
         this.linearOp = linearOp;
     }
 
@@ -75,14 +74,17 @@ public class ArmHand {
     /**  ********  WRIST MOVEMENT METHODS *************      **/
 
     public void closeWrist() {
+
         wrist.setPosition(0);
     }
 
     public void openWrist() {
+
         wrist.setPosition(1);
     }
 
     public void halfWrist() {
+
         wrist.setPosition(.5);
     }
 

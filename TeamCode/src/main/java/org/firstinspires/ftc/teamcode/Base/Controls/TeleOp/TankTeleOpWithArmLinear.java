@@ -18,47 +18,30 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     //Driving Behavior Variables
     public double speedMultiply = .75;
-    public enum Style {
-        ARCADE1, ARCADE2, TANK
-    }
+    public enum Style {ARCADE1, ARCADE2, TANK}
     public Style driverStyle = Style.ARCADE1;
 
-
     //Arm & Elbow Variables
-    public enum ArmState {
-        ARM_START, ARM_RAISE, ARM_REST, ARM_RETRACT
-    }
+    public enum ArmState {ARM_START, ARM_RAISE, ARM_REST, ARM_RETRACT}
     ArmState armState = ArmState.ARM_START;
-
-    public enum ArmControl {
-        AUTO, MANUAL
-    }
+    public enum ArmControl {AUTO, MANUAL}
     public ArmControl armControl = ArmControl.MANUAL;
 
-
     //Linear Behavior Variables
-    public enum LinearState {
-        LINEAR_START, LINEAR_EXTEND, LINEAR_REST, LINEAR_RETRACT
-
-    }
+    public enum LinearState {LINEAR_START, LINEAR_EXTEND, LINEAR_REST, LINEAR_RETRACT}
     LinearState linearState = LinearState.LINEAR_START;
+    public enum LinearControl {AUTO, MANUAL}
+    public LinearControl linearControl = LinearControl.MANUAL;
     public double horizontalTicks = 4000;
     public double horizontalPower = 0.75;
-    public boolean horizontalManual = true;
 
     //LazySusan Variables
-    public double lazySusanTicks = 5000;
-
-    public enum LazySusanManual {
-        AUTO, MANUAL
-    }
-    public LazySusanManual lazySusanManual = LazySusanManual.MANUAL;
-
-    public enum LazySusanEncoder {
-        FORWARD, REVERSE, OFF
-    }
+    public enum LazySusanControl {AUTO, MANUAL}
+    public LazySusanControl lazySusanControl = LazySusanControl.MANUAL;
+    public enum LazySusanEncoder {FORWARD, REVERSE, OFF}
     public LazySusanEncoder lazySusanEncoder = LazySusanEncoder.OFF;
-
+    public double lazySusanTicks = 5000;
+    public double lazySusanPower = 0.90;
 
     // Timers
     public ElapsedTime armTimer = new ElapsedTime();
@@ -76,13 +59,10 @@ public class TankTeleOpWithArmLinear extends OpMode {
     String handGesture;
     String wristStatus;
 
-
     // Construct the Physical Bot and Mechanisms
     public TankBot Bruno = new TankBot();
     public ArmHand Handy = new ArmHand();
     public LinearMobility Liney = new LinearMobility();
-
-
 
     // TeleOp Initialize Method.  This is the Init Button on the Driver Station Phone
     @Override
@@ -114,22 +94,18 @@ public class TankTeleOpWithArmLinear extends OpMode {
      **************************************/
 
     public void telemetryOutput() {
-        telemetry.addData("Drive Mode: ", driverStyle);
-        telemetry.addData("Speed: ", speedMultiply);
-        telemetry.addData("Front Left Motor Power: ", Bruno.frontLeftMotor.getPower());
-        telemetry.addData("Rear Left Motor Power: ", Bruno.rearLeftMotor.getPower());
-        telemetry.addData("Front Right Motor Power: ", Bruno.frontRightMotor.getPower());
-        telemetry.addData("Rear Right Motor Power: ", Bruno.rearRightMotor.getPower());
-        telemetry.addData("Elbow Position: ", Handy.elbowCurrPos );
-        telemetry.addData("LazySusan Position: ", Bruno.lazySusanCurrPos );
-        telemetry.addData("LazySusan Manual Control: ", lazySusanManual );
-        telemetry.addData("Hand Gesture: ", handGesture);
-        telemetry.addData("Wrist Status: ", wristStatus);
+        telemetry.addData("Drive Style: ", driverStyle);
+        telemetry.addData("Drive Speed: ", speedMultiply);
         telemetry.addData("Arm State: ", armState );
+        telemetry.addData("Arm Control: ", armControl );
+        telemetry.addData("Arm Position: ", Handy.elbow.getPosition() );
+        telemetry.addData("LazySusan Position: ", Liney.lazySusanMotor.getCurrentPosition() );
+        telemetry.addData("LazySusan Control: ", lazySusanControl);
+        telemetry.addData("LazySusan Encoders: ", lazySusanEncoder);
+        telemetry.addData("Hand Gesture: ", handGesture);
+        telemetry.addData("Wrist Gesture: ", wristStatus);
         telemetry.addData("Linear State: ", linearState );
         telemetry.addData("Horizontal Position: ", Liney.horizontalMotor.getCurrentPosition() );
-        telemetry.addData("Vertical Position: ", Liney.verticalMotor.getCurrentPosition() );
-        telemetry.addData("Rotating Position: ", Liney.lazySusanMotor.getCurrentPosition() );
         telemetry.update();
     }
 
@@ -236,22 +212,25 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
         if (gamepad2.right_stick_button) {
 
-            if (lazySusanManual == LazySusanManual.MANUAL) { lazySusanManual = LazySusanManual.AUTO; }
-            else { lazySusanManual = LazySusanManual.MANUAL;}
+            if (lazySusanControl == LazySusanControl.MANUAL) {
+
+                lazySusanControl = LazySusanControl.AUTO; }
+            else {
+                lazySusanControl = LazySusanControl.MANUAL;}
         }
 
-        if (lazySusanManual==LazySusanManual.MANUAL) {
+        if (lazySusanControl == LazySusanControl.MANUAL) {
             if (gamepad2.right_stick_x > 0.1) {
-                Liney.rotateForward(.90);
+                Liney.rotateForward(lazySusanPower);
 
             }
             else if (gamepad2.right_stick_x < -0.1) {
-                Liney.rotateReverse(.90);
+                Liney.rotateReverse(lazySusanPower);
             }
             else {Liney.lazySusanMotor.setPower(0);}
 
         }
-        else if (lazySusanManual==LazySusanManual.AUTO) {
+        else if (lazySusanControl == LazySusanControl.AUTO) {
 
              if (gamepad2.left_bumper) {
                  lazySusanEncoder = LazySusanEncoder.FORWARD;
@@ -267,7 +246,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
              if (lazySusanEncoder == LazySusanEncoder.FORWARD) {
 
                 if (Math.abs(Liney.lazySusanMotor.getCurrentPosition()) < lazySusanTicks ) {
-                    Liney.lazySusanMotor.setPower(.90);
+                    Liney.lazySusanMotor.setPower(lazySusanPower);
                 }
                 else{
                     Liney.lazySusanMotor.setPower(0);
@@ -276,7 +255,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
             else if (lazySusanEncoder == LazySusanEncoder.REVERSE) {
 
                 if (Math.abs(Liney.lazySusanMotor.getCurrentPosition()) < lazySusanTicks ) {
-                    Liney.lazySusanMotor.setPower(-.90);
+                    Liney.lazySusanMotor.setPower(-lazySusanPower);
                 }
                 else {
                     Liney.lazySusanMotor.setPower(0);
@@ -291,15 +270,16 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
         if (gamepad2.left_stick_button) {
 
-            if (horizontalManual == true) {
-                horizontalManual = false;
+            if (linearControl == LinearControl.MANUAL) {
+                linearControl = LinearControl.AUTO;
             }
             else {
-                horizontalManual = true;}
+                linearControl = LinearControl.MANUAL;
+            }
 
         }
 
-        if (horizontalManual) {
+        if (linearControl == LinearControl.MANUAL) {
             if (gamepad2.left_stick_x > 0.1) {
                 Liney.moveLinearForward(horizontalPower);
             }
@@ -310,7 +290,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
                 Liney.horizontalMotor.setPower(0);
             }
         }
-        else if (!horizontalManual) {
+        else if (linearControl == LinearControl.AUTO) {
 
             switch (linearState) {
                 case LINEAR_START:
@@ -347,12 +327,9 @@ public class TankTeleOpWithArmLinear extends OpMode {
                     linearState = LinearState.LINEAR_START;
             }
 
-
         }
 
-
     }
-
 
     /**  ********  ARM and ELBOW METHODS USING GAMEPAD2 *************      **/
 

@@ -14,16 +14,6 @@ import java.util.concurrent.TimeUnit;
 
 public class TankBot extends Tank_FourMotorDrive {
 
-    //Define Mechanism Variables
-    public Servo lazySusan;
-
-    //Set Lazy Susan movement values
-    public double lazySusanMaxPos = 0.5;
-    public double lazySusanMinPos = 0.25;
-    public double lazySusanCurrPos = 0.5;
-    public double lazySusanIncrements = 0.0005;
-
-
     // Hardware Mapping Variable used by robot controller
     public HardwareMap hwBot = null;
 
@@ -59,12 +49,6 @@ public class TankBot extends Tank_FourMotorDrive {
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-
-        /**  ********  TankBot Mechanisms *************      **/
-
-        //Control Hub Port 0
-        lazySusan = hwBot.get(Servo.class, "lazy_susan");
-        lazySusan.setDirection(Servo.Direction.FORWARD);
 
     }
 

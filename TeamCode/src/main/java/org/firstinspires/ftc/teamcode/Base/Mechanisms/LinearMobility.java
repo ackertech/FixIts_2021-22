@@ -72,29 +72,6 @@ public class LinearMobility {
         lazySusanMotor.setPower(-Math.abs(power));
     }
 
-    /**  Overloaded TeleOP Methods using Encoders  **/
-
-    public void rotateForward( double power, double rotations) {
-
-        double ticks = rotations * TICKS_PER_ROTATION;
-        lazySusanMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lazySusanMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        if (Math.abs(lazySusanMotor.getCurrentPosition()) < ticks ) {
-            rotateForward(power);
-        }
-        lazySusanMotor.setPower(0);
-    }
-
-    public void rotateReverse( double power, double rotations) {
-
-        double ticks = rotations * TICKS_PER_ROTATION;
-        lazySusanMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lazySusanMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        if (Math.abs(lazySusanMotor.getCurrentPosition()) < ticks ) {
-            rotateReverse(power);
-        }
-        lazySusanMotor.setPower(0);
-    }
 
     /**  Overloaded Autonomous Methods using Encoders  **/
 
@@ -119,7 +96,6 @@ public class LinearMobility {
         }
         horizontalMotor.setPower(0);
     }
-
 
     public void autoMoveLinearUp( double power, double rotations) {
 

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.TeleOp;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
@@ -12,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 //@Disabled
 @TeleOp(name = "TankBot Arm-ASL")
 
-public class TankTeleOpWithArmASL extends TankTeleOpWithArm {
+public class TankTeleOpWithArmASL extends TankTeleOpWithArmLinear {
 
     //TeleOp Driving Behavior Variables
     String ASLWord = "Hello";
@@ -27,29 +28,11 @@ public class TankTeleOpWithArmASL extends TankTeleOpWithArm {
 
         speedControl();
         driveControl();
-        driveControl();
         handControl();
-        wristControl();
         elbowControl();
         lazySusanControl();
         signASL();
         telemetryOutput();
-
-    }
-    @Override
-    public void telemetryOutput() {
-        telemetry.addData("Drive Mode: ", driverStyle);
-        telemetry.addData("Speed: ", speedMultiply);
-        telemetry.addData("Front Left Motor Power: ", Bruno.frontLeftMotor.getPower());
-        telemetry.addData("Rear Left Motor Power: ", Bruno.rearLeftMotor.getPower());
-        telemetry.addData("Front Right Motor Power: ", Bruno.frontRightMotor.getPower());
-        telemetry.addData("Rear Right Motor Power: ", Bruno.rearRightMotor.getPower());
-        telemetry.addData("Elbow Position: ", Handy.elbowCurrPos );
-        telemetry.addData("LazySusan Position: ", Bruno.lazySusanCurrPos );
-        telemetry.addData("Hand Gesture: ", handGesture);
-        telemetry.addData("Wrist Status: ", wristStatus);
-        telemetry.addData("ASL Sentence: ", ASLWord);
-        telemetry.update();
 
     }
 
