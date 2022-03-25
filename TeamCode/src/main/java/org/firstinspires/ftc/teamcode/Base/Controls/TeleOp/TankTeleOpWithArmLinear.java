@@ -296,7 +296,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
                 case LINEAR_START:
                     if (gamepad2.left_trigger > 0.1) {
                         Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                        Liney.moveLinearForward(horizontalPower);
+                        Liney.horizontalMotor.setPower(horizontalPower);
                         linearState = LinearState.LINEAR_EXTEND;
                     }
                     break;
@@ -311,7 +311,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
                 case LINEAR_REST:
                     if (gamepad2.right_trigger > 0.1) {
                         Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                        Liney.moveLinearReverse(horizontalPower);
+                        Liney.horizontalMotor.setPower(-horizontalPower);
                         linearState = LinearState.LINEAR_RETRACT;
                     }
                     break;
