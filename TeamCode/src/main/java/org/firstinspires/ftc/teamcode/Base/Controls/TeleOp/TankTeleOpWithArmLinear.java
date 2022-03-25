@@ -71,8 +71,6 @@ public class TankTeleOpWithArmLinear extends OpMode {
         Bruno.initRobot(hardwareMap);
         Handy.initArmHand(hardwareMap);
         Liney.initLinearMobility(hardwareMap);
-        armTimer.reset();
-        linearTimer.reset();
     }
 
     // TeleOp Loop Method.  This start AFTER clicking the Play Button on the Driver Station Phone
@@ -214,20 +212,25 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
             if (lazySusanControl == LazySusanControl.MANUAL) {
 
-                lazySusanControl = LazySusanControl.AUTO; }
+                lazySusanControl = LazySusanControl.AUTO;
+            }
             else {
-                lazySusanControl = LazySusanControl.MANUAL;}
+                lazySusanControl = LazySusanControl.MANUAL;
+            }
         }
 
         if (lazySusanControl == LazySusanControl.MANUAL) {
             if (gamepad2.right_stick_x > 0.1) {
-                Liney.rotateForward(lazySusanPower);
 
+                Liney.rotateForward(lazySusanPower);
             }
             else if (gamepad2.right_stick_x < -0.1) {
+
                 Liney.rotateReverse(lazySusanPower);
             }
-            else {Liney.lazySusanMotor.setPower(0);}
+            else {
+                Liney.lazySusanMotor.setPower(0);
+            }
 
         }
         else if (lazySusanControl == LazySusanControl.AUTO) {
