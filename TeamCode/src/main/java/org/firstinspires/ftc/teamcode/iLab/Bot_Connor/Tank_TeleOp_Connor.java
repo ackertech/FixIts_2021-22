@@ -65,7 +65,6 @@ public class Tank_TeleOp_Connor extends OpMode{
         drive();
         gamepadTwoStyle();
         gamepad2Control();
-        lazySusanControl();
         telemetryOutput();
 
     }
@@ -130,48 +129,8 @@ public class Tank_TeleOp_Connor extends OpMode{
                 break;
 
             case CANDYBOX:
-                if (gamepad2.dpad_up) {
-                   // Thomas_The_Tank.upAndDownLinearMotorUp(.5,4);
-                }
+                lazySusanControl();
 
-                else if (gamepad2.dpad_down) {
-                    //Thomas_The_Tank.upAndDownLinearMotorDown(.5, 4);
-                }
-
-                else {
-                    Thomas_The_Tank.stopUpAndDownLinearMotor();
-                }
-
-                if (gamepad2.dpad_left){
-
-                }
-
-                else if (gamepad2.dpad_right) {
-
-                }
-
-                else {
-                    Thomas_The_Tank.stopSidewaysLinearMotor();
-                }
-
-                if (gamepad2.left_trigger > 0.1){
-                    Thomas_The_Tank.lazySusanLeft(.5);
-                }
-
-                else if (gamepad2.right_trigger > 0.1) {
-                    Thomas_The_Tank.lazySusanRight(.5);
-                }
-                else {
-                    Thomas_The_Tank.lazySusanStop();
-                }
-
-                if (gamepad2.left_bumper){
-
-                }
-
-                else if (gamepad2.right_bumper) {
-
-                }
 
                 break;
             }
