@@ -208,7 +208,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     public void lazySusanControl() {
 
-        if (gamepad2.right_stick_button) {
+        if (gamepad2.y) {
 
             if (lazySusanControl == LazySusanControl.MANUAL) {
 
