@@ -155,7 +155,7 @@ public void lazySusanControl() {
             }
 
             else if (gamepad2.right_stick_x < -0.1) {
-                Thomas_The_Tank.rotateRight(lazySusanPower);
+                Thomas_The_Tank.lazySusanRight(lazySusanPower);
             }
 
             else{
