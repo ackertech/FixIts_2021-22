@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
 //@Disabled
@@ -16,6 +17,16 @@ public class Tank_TeleOp_Connor extends OpMode{
     public enum Gamepad2_Style {
         HANDGESTURES, CANDYBOX
     }
+
+    public enum ArmControl {AUTO, MANUAL}
+    public ArmControl armControl = ArmControl.MANUAL;
+
+    public enum LazySusanControl {AUTO, MANUAL}
+    public LazySusanControl lazySusanControl = LazySusanControl.MANUAL;
+    public enum LazySusanEncoder {FORWARD, REVERSE, OFF}
+    public LazySusanEncoder lazySusanEncoder = LazySusanEncoder.OFF;
+    public double lazySusanTicks = 5000;
+    public double lazySusanPower = 0.90;
 
     public Style driverStyle = Style.ONESTICK;
     public Gamepad2_Style gamepadTwoStyle = Gamepad2_Style.HANDGESTURES;
@@ -55,6 +66,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         gamepadTwoStyle();
         gamepad2Control();
         telemetryOutput();
+        lazySusanControl();
     }
 
     @Override
@@ -130,11 +142,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                 }
 
                 if (gamepad2.dpad_left){
-                    Thomas_The_Tank.sidewaysLinearMotorLeft(.5, 20);
+
                 }
 
                 else if (gamepad2.dpad_right) {
-                    Thomas_The_Tank.sidewaysLinearMotorRight(.5, 20);
+
                 }
 
                 else {
@@ -153,11 +165,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                 }
 
                 if (gamepad2.left_bumper){
-                    Thomas_The_Tank.lazySusanLeft(.9, 8);
+
                 }
 
                 else if (gamepad2.right_bumper) {
-                    Thomas_The_Tank.lazySusanRight(.9, 8);
+
                 }
 
                 break;
@@ -166,7 +178,64 @@ public class Tank_TeleOp_Connor extends OpMode{
 
 
 
+public void lazySusanControl() {
+        if (gamepad2.right_stick_button) {
+            if (lazySusanControl == lazySusanControl.MANUAL) {
+                lazySusanControl = lazySusanControl.AUTO;
+            }
 
+            else  {
+                lazySusanControl = lazySusanControl.MANUAL;
+            }
+        }
+
+        if (lazySusanControl == lazySusanControl.MANUAL) {
+            if (gamepad2.right_stick_x > 0.1) {
+                Thomas_The_Tank.lazySusanLeft(lazySusanPower);
+            }
+
+            else if (gamepad2.right_stick_x < -0.1) {
+                Thomas_The_Tank.rotateRight(lazySusanPower);
+            }
+
+            else{
+                Thomas_The_Tank.lazySusanStop();
+            }
+        }
+
+        else if (lazySusanControl == lazySusanControl.AUTO) {
+            if (gamepad2.left_bumper) {
+                lazySusanEncoder = lazySusanEncoder.FORWARD;
+                Thomas_The_Tank.lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                Thomas_The_Tank.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            }
+
+            if (gamepad2.right_bumper) {
+                lazySusanEncoder = lazySusanEncoder.REVERSE;
+                Thomas_The_Tank.lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                Thomas_The_Tank.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            }
+
+            if (lazySusanEncoder == lazySusanEncoder.FORWARD) {
+                if (Math.abs(Thomas_The_Tank.lazy_Susan.getCurrentPosition()) < lazySusanTicks ){
+                 Thomas_The_Tank.lazy_Susan.setPower(lazySusanPower);
+                }
+                else {
+                    Thomas_The_Tank.lazy_Susan.setPower(0);
+                }
+            }
+
+            else if (lazySusanEncoder == lazySusanEncoder.REVERSE) {
+                if (Math.abs(Thomas_The_Tank.lazy_Susan.getCurrentPosition()) < lazySusanTicks ) {
+                    Thomas_The_Tank.lazy_Susan.setPower(-lazySusanPower);
+                }
+                else {
+                    Thomas_The_Tank.lazy_Susan.setPower(0);
+                }
+            }
+
+        }
+}
 
 
 

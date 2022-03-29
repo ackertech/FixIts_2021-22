@@ -91,59 +91,6 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
         lazy_Susan.setPower(0);
     }
 
-    public                  void lazySusanLeft( double                 power, double                 rotations){
-        double ticks = rotations * TICKS_PER_ROTATION_5203;
-        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (lazy_Susan.getCurrentPosition() < ticks) {
-            lazySusanLeft(power); }
-
-        lazySusanStop();
-    }
-
-    public void lazySusanRight(double                  power, double                  rotations) {
-        double ticks = rotations * (-1) * TICKS_PER_ROTATION_5203;
-        lazy_Susan.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (lazy_Susan.getCurrentPosition() > ticks) {
-            lazySusanRight(power);
-        }
-        lazySusanStop();
-    }
-
-    public void sidewaysLinearMotorLeft(double power, int rotations) {
-        int ticks = rotations * (-1) * 738;
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        sidewaysLinearMotor.setTargetPosition(ticks);
-        sidewaysLinearMotor.setPower(-power);
-    }
-
-    public void sidewaysLinearMotorRight(double power, int rotations) {
-        int ticks = rotations  * 738;
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sidewaysLinearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        sidewaysLinearMotor.setTargetPosition(ticks);
-        sidewaysLinearMotor.setPower(power);
-    }
-
-    public void upAndDownLinearMotorUp(double power, double rotations) {
-        double ticks = rotations * TICKS_PER_ROTATION_5202;
-        upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        upAndDownLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (sidewaysLinearMotor.getCurrentPosition() < ticks) {
-            stopUpAndDownLinearMotor();
-        }
-    }
-
-    public void upAndDownLinearMotorDown(double power, double rotations){
-        double ticks = rotations * (-1) * TICKS_PER_ROTATION_5202;
-        upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        upAndDownLinearMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (sidewaysLinearMotor.getCurrentPosition() > ticks) {
-            stopUpAndDownLinearMotor();
-        }
-    }
 
     public void stopSidewaysLinearMotor(){
         sidewaysLinearMotor.setPower(0);
