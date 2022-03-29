@@ -65,8 +65,9 @@ public class Tank_TeleOp_Connor extends OpMode{
         drive();
         gamepadTwoStyle();
         gamepad2Control();
-        telemetryOutput();
         lazySusanControl();
+        telemetryOutput();
+
     }
 
     @Override
@@ -335,6 +336,22 @@ public void lazySusanControl() {
         }
         else if (gamepadTwoStyle == Gamepad2_Style.CANDYBOX) {
             telemetry.addLine("CandyBox Mode");
+        }
+
+        if (lazySusanEncoder == lazySusanEncoder.FORWARD) {
+            telemetry.addLine("Lazy Susan Encoder is FORWARD");
+        }
+
+        else if (lazySusanEncoder == lazySusanEncoder.REVERSE) {
+            telemetry.addLine("Lazy Susan Encoder is REVERSE");
+        }
+
+        if (lazySusanControl == lazySusanControl.MANUAL) {
+            telemetry.addLine("Lazy Susan Control MANUAL");
+        }
+
+        else if (lazySusanControl == lazySusanControl.AUTO) {
+            telemetry.addLine("Lazy Susan Control AUTOMATIC");
         }
         telemetry.update();
     }
