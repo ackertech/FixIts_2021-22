@@ -117,10 +117,6 @@ public class Tank_TeleOp_Connor extends OpMode{
                     speedMultiply = 1.00;
                 }
 
-                if (gamepad2.x) {
-                    Hand.resetHand();
-
-                }
                 if (gamepad2.left_trigger > 0.1) {
                     Hand.raiseArm(); }
 
@@ -139,7 +135,7 @@ public class Tank_TeleOp_Connor extends OpMode{
 
 
 public void lazySusanControl() {
-        if (gamepad2.right_stick_button) {
+        if (gamepad2.x) {
             if (lazySusanControl == lazySusanControl.MANUAL) {
                 lazySusanControl = lazySusanControl.AUTO;
             }
