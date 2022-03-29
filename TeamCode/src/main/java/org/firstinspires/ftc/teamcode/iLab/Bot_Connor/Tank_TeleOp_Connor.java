@@ -15,7 +15,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         ONESTICK, TWOSTICK, TANK
     }
     public enum Gamepad2_Style {
-        HANDGESTURES, CANDYBOX
+        HANDGESTURES, CANDYBOX, COUNTINGWITHELMO
     }
 
     public enum ArmControl {AUTO, MANUAL}
@@ -89,56 +89,101 @@ public class Tank_TeleOp_Connor extends OpMode{
         }
 
         public void gamepad2Control() {
-        switch (gamepadTwoStyle) {
-            case HANDGESTURES:
-                if (gamepad2.right_bumper && gamepad2.left_bumper) {
-                    Hand.wave();
-                }
-                if (gamepad2.dpad_up) {
-                    Hand.thumbsUp();
-                }
-                if (gamepad2.dpad_down) {
-                    Hand.thumbsDown();
-                }
-                if (gamepad2.dpad_left) {
-                    Hand.point();
-                }
-                if (gamepad2.dpad_right) {
-                    Hand.peaceSign();
-                }
-                if (gamepad2.left_bumper && gamepad2.right_bumper == false) {
-                    Hand.openHand();
-                }
-                if (gamepad2.right_bumper && gamepad2.left_bumper == false) {
-                    Hand.closeHand();
-                }
-                if (gamepad2.y) {
-                    Hand.smack();
-                    speedMultiply = 1.00;
-                }
-
-                if (gamepad2.left_trigger > 0.1) {
-                    Hand.raiseArm(); }
-
-                if (gamepad2.right_trigger > 0.1) {
-                    Hand.lowerArm(); }
-
-                if (gamepad2.x) {
-                    if (lazySusanControl == lazySusanControl.MANUAL) {
-                        lazySusanControl = lazySusanControl.AUTO;
+            switch (gamepadTwoStyle) {
+                case HANDGESTURES:
+                    if (gamepad2.right_bumper && gamepad2.left_bumper) {
+                        Hand.wave();
+                    }
+                    if (gamepad2.dpad_up) {
+                        Hand.thumbsUp();
+                    }
+                    if (gamepad2.dpad_down) {
+                        Hand.thumbsDown();
+                    }
+                    if (gamepad2.dpad_left) {
+                        Hand.point();
+                    }
+                    if (gamepad2.dpad_right) {
+                        Hand.peaceSign();
+                    }
+                    if (gamepad2.left_bumper && gamepad2.right_bumper == false) {
+                        Hand.openHand();
+                    }
+                    if (gamepad2.right_bumper && gamepad2.left_bumper == false) {
+                        Hand.closeHand();
+                    }
+                    if (gamepad2.y) {
+                        Hand.smack();
+                        speedMultiply = 1.00;
                     }
 
-                    else  {
-                        lazySusanControl = lazySusanControl.MANUAL;
+                    if (gamepad2.left_trigger > 0.1) {
+                        Hand.raiseArm();
                     }
-                }
-                break;
 
-            case CANDYBOX:
-                lazySusanControl();
+                    if (gamepad2.right_trigger > 0.1) {
+                        Hand.lowerArm();
+                    }
+
+                    if (gamepad2.x) {
+                        if (lazySusanControl == lazySusanControl.MANUAL) {
+                            lazySusanControl = lazySusanControl.AUTO;
+                        } else {
+                            lazySusanControl = lazySusanControl.MANUAL;
+                        }
+                    }
+                    break;
+
+                case CANDYBOX:
+                    lazySusanControl();
 
 
-                break;
+                    break;
+
+
+                case COUNTINGWITHELMO:
+                    if (gamepad2.y) {
+                        Hand.thumb.setPosition(0);
+                        Hand.indexFinger.setPosition(1);
+                        Hand.middleFinger.setPosition(0);
+                        Hand.ringFinger.setPosition(0);
+                        Hand.pinkyFinger.setPosition(0);
+                    }
+
+                    else if (gamepad2.b) {
+                        Hand.thumb.setPosition(0);
+                        Hand.indexFinger.setPosition(1);
+                        Hand.middleFinger.setPosition(1);
+                        Hand.ringFinger.setPosition(0);
+                        Hand.pinkyFinger.setPosition(0);
+                    }
+
+                    else if (gamepad2.a) {
+                        Hand.thumb.setPosition(0);
+                        Hand.indexFinger.setPosition(1);
+                        Hand.middleFinger.setPosition(1);
+                        Hand.ringFinger.setPosition(1);
+                        Hand.pinkyFinger.setPosition(0);
+                    }
+
+                    else if (gamepad2.x) {
+                        Hand.thumb.setPosition(0);
+                        Hand.indexFinger.setPosition(1);
+                        Hand.middleFinger.setPosition(1);
+                        Hand.ringFinger.setPosition(1);
+                        Hand.pinkyFinger.setPosition(1);
+                    }
+
+                    else if (gamepad2.dpad_up) {
+                        Hand.openHand();
+                    }
+
+                    else if (gamepad2.dpad_down) {
+                        Hand.closeHand();
+                    }
+
+                    break;
+
             }
         }
 
@@ -342,6 +387,9 @@ public void lazySusanControl() {
             gamepadTwoStyle = Gamepad2_Style.HANDGESTURES; }
         if (gamepad2.a) {
             gamepadTwoStyle = Gamepad2_Style.CANDYBOX; }
+        if (gamepad2.left_stick_button) {
+            gamepadTwoStyle = Gamepad2_Style.COUNTINGWITHELMO;
+        }
     }
 
         }
