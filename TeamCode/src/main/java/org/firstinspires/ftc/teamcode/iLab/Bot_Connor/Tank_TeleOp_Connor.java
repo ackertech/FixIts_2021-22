@@ -122,6 +122,16 @@ public class Tank_TeleOp_Connor extends OpMode{
 
                 if (gamepad2.right_trigger > 0.1) {
                     Hand.lowerArm(); }
+
+                if (gamepad2.x) {
+                    if (lazySusanControl == lazySusanControl.MANUAL) {
+                        lazySusanControl = lazySusanControl.AUTO;
+                    }
+
+                    else  {
+                        lazySusanControl = lazySusanControl.MANUAL;
+                    }
+                }
                 break;
 
             case CANDYBOX:
