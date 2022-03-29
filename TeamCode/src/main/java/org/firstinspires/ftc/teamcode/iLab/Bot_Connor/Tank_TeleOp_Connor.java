@@ -363,6 +363,10 @@ public void lazySusanControl() {
         else if (lazySusanControl == lazySusanControl.AUTO) {
             telemetry.addLine("Lazy Susan Control AUTOMATIC");
         }
+
+        if (gamepadTwoStyle == Gamepad2_Style.COUNTINGWITHELMO) {
+            telemetry.addLine("You Are Now Counting With Elmo");
+        }
         telemetry.update();
     }
     public void drivingStyle () {
