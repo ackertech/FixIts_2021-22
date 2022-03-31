@@ -91,6 +91,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         public void gamepad2Control() {
             switch (gamepadTwoStyle) {
                 case HANDGESTURES:
+                    lazySusanControl();
                     if (gamepad2.right_bumper && gamepad2.left_bumper) {
                         Hand.wave();
                     }
@@ -142,6 +143,7 @@ public class Tank_TeleOp_Connor extends OpMode{
 
 
                 case COUNTINGWITHELMO:
+                    lazySusanControl();
                     if (gamepad2.y) {
                         Hand.thumb.setPosition(0);
                         Hand.indexFinger.setPosition(1);
@@ -180,6 +182,18 @@ public class Tank_TeleOp_Connor extends OpMode{
 
                     else if (gamepad2.dpad_down) {
                         Hand.closeHand();
+                    }
+
+                    if (gamepad2.left_bumper) {
+                        Hand.wristLeft();
+                    }
+
+                    else if (gamepad2.right_bumper) {
+                        Hand.wristRight();
+                    }
+
+                    else if (gamepad2.dpad_down) {
+                        Hand.wristMiddle();
                     }
 
                     break;
