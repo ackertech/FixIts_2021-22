@@ -196,6 +196,16 @@ public class Tank_TeleOp_Connor extends OpMode{
                         Hand.wristMiddle();
                     }
 
+                    if (gamepad2.left_trigger > 0.1) {
+                        Hand.raiseArm();
+                    }
+
+                   else  if (gamepad2.right_trigger > 0.1) {
+                        Hand.lowerArm();
+                    }
+
+
+
                     break;
 
             }
