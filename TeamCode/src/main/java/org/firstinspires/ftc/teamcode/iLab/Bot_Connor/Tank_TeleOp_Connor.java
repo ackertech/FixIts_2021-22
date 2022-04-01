@@ -144,6 +144,7 @@ public class Tank_TeleOp_Connor extends OpMode{
 
                 case COUNTINGWITHELMO:
                     lazySusanControl();
+
                     if (gamepad2.dpad_left) {
                         Hand.thumb.setPosition(0);
                         Hand.indexFinger.setPosition(1);
@@ -184,15 +185,15 @@ public class Tank_TeleOp_Connor extends OpMode{
                         Hand.closeHand();
                     }
 
-                    if (gamepad2.left_trigger > 0.1) {
+                    if (gamepad2.start) {
                         Hand.wristLeft();
                     }
 
-                    else if (gamepad2.right_trigger > 0.1) {
+                    else if (gamepad2.back) {
                         Hand.wristRight();
                     }
 
-                    else if (gamepad2.start) {
+                    else if (gamepad2.right_stick_button) {
                         Hand.wristMiddle();
                     }
 
