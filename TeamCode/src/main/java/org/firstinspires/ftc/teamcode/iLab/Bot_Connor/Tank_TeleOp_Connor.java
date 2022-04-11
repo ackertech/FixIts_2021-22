@@ -3,19 +3,21 @@ package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 //@Disabled
 @TeleOp(name = "Thomas_The_TankBot_Drive_Basic_Connor_Beethoven's_Wig")
 public class Tank_TeleOp_Connor extends OpMode{
 
+    ElapsedTime timer = new ElapsedTime();
     //TeleOp Driving Behavior Variables
     public double speedMultiply = 0.50;
     public enum Style {
         ONESTICK, TWOSTICK, TANK
     }
     public enum Gamepad2_Style {
-        HANDGESTURES, CANDYBOX, COUNTINGWITHELMO
+        HANDGESTURES, CANDYBOX, COUNTINGWITHELMOMANNUAL, COUNTINGWITHELMOAUTO
     }
 
     public enum ArmControl {AUTO, MANUAL}
@@ -142,7 +144,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                     break;
 
 
-                case COUNTINGWITHELMO:
+                case COUNTINGWITHELMOMANNUAL:
                     lazySusanControl();
 
                     if (gamepad2.dpad_up) {
@@ -209,7 +211,51 @@ public class Tank_TeleOp_Connor extends OpMode{
 
                     break;
 
+                case COUNTINGWITHELMOAUTO:
+                    Hand.closeHand();
+                    timer.reset();
+                    if (timer.time() < 1.5) {
+                        Hand.thumb.setPosition(0);
+                        Hand.indexFinger.setPosition(1);
+                        Hand.middleFinger.setPosition(0);
+                        Hand.ringFinger.setPosition(0);
+                        Hand.pinkyFinger.setPosition(0);
+                    }
+                    else if (timer.time() < 3) {
+                        Hand.thumb.setPosition(0);
+                        Hand.indexFinger.setPosition(1);
+                        Hand.middleFinger.setPosition(1);
+                        Hand.ringFinger.setPosition(0);
+                        Hand.pinkyFinger.setPosition(0);
+                    }
+
+                    else if (timer.time() < 4.5) {
+                        Hand.thumb.setPosition(0);
+                        Hand.indexFinger.setPosition(1);
+                        Hand.middleFinger.setPosition(1);
+                        Hand.ringFinger.setPosition(1);
+                        Hand.pinkyFinger.setPosition(0);
+                    }
+
+                    else if (timer.time() < 6) {
+                        Hand.thumb.setPosition(0);
+                        Hand.indexFinger.setPosition(1);
+                        Hand.middleFinger.setPosition(1);
+                        Hand.ringFinger.setPosition(1);
+                        Hand.pinkyFinger.setPosition(1);
+                    }
+
+                    else if (timer.time() < 7.5) {
+                        Hand.openHand();
+                    }
+
+                    else {
+                        Hand.closeHand();
+                    }
+                        break;
+
             }
+
         }
 
 
@@ -389,8 +435,11 @@ public void lazySusanControl() {
             telemetry.addLine("Lazy Susan Control AUTOMATIC");
         }
 
-        if (gamepadTwoStyle == Gamepad2_Style.COUNTINGWITHELMO) {
-            telemetry.addLine("You Are Now Counting With Elmo");
+        if (gamepadTwoStyle == Gamepad2_Style.COUNTINGWITHELMOMANNUAL) {
+            telemetry.addLine("You Are Now Counting With Elmo Manually");
+        }
+        else if (gamepadTwoStyle == Gamepad2_Style.COUNTINGWITHELMOAUTO) {
+            telemetry.addLine("You Are Now Counting With Elmo Automaticly");
         }
         telemetry.update();
     }
@@ -417,7 +466,10 @@ public void lazySusanControl() {
         if (gamepad2.a) {
             gamepadTwoStyle = Gamepad2_Style.CANDYBOX; }
         if (gamepad2.left_stick_button) {
-            gamepadTwoStyle = Gamepad2_Style.COUNTINGWITHELMO;
+            gamepadTwoStyle = Gamepad2_Style.COUNTINGWITHELMOMANNUAL;
+        }
+        if (gamepad2.right_stick_button) {
+            gamepadTwoStyle = Gamepad2_Style.COUNTINGWITHELMOAUTO;
         }
     }
 
