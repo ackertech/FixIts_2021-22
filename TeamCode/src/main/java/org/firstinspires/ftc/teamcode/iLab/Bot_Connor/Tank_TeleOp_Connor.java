@@ -145,7 +145,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                 case COUNTINGWITHELMO:
                     lazySusanControl();
 
-                    if (gamepad2.dpad_left) {
+                    if (gamepad2.dpad_up) {
                         Hand.thumb.setPosition(0);
                         Hand.indexFinger.setPosition(1);
                         Hand.middleFinger.setPosition(0);
@@ -161,7 +161,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                         Hand.pinkyFinger.setPosition(0);
                     }
 
-                    else if (gamepad2.y) {
+                    else if (gamepad2.dpad_down) {
                         Hand.thumb.setPosition(0);
                         Hand.indexFinger.setPosition(1);
                         Hand.middleFinger.setPosition(1);
@@ -169,7 +169,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                         Hand.pinkyFinger.setPosition(0);
                     }
 
-                    else if (gamepad2.x) {
+                    else if (gamepad2.dpad_left) {
                         Hand.thumb.setPosition(0);
                         Hand.indexFinger.setPosition(1);
                         Hand.middleFinger.setPosition(1);
@@ -177,11 +177,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                         Hand.pinkyFinger.setPosition(1);
                     }
 
-                    else if (gamepad2.dpad_up) {
+                    else if (gamepad2.left_bumper) {
                         Hand.openHand();
                     }
 
-                    else if (gamepad2.dpad_down) {
+                    else if (gamepad2.right_bumper) {
                         Hand.closeHand();
                     }
 
@@ -193,7 +193,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                         Hand.wristRight();
                     }
 
-                    else if (gamepad2.right_stick_button) {
+                    else if (gamepad2.y) {
                         Hand.wristMiddle();
                     }
 
@@ -423,5 +423,5 @@ public void lazySusanControl() {
 
         }
 
-
+//hi
 
