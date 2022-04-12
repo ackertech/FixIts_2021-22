@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import java.util.concurrent.TimeUnit;
+
 //@Disabled
 @TeleOp(name = "Thomas_The_TankBot_Drive_Basic_Connor_Beethoven's_Wig")
 public class Tank_TeleOp_Connor extends OpMode{
@@ -33,6 +35,9 @@ public class Tank_TeleOp_Connor extends OpMode{
     public Style driverStyle = Style.ONESTICK;
     public Gamepad2_Style gamepadTwoStyle = Gamepad2_Style.HANDGESTURES;
 
+    public enum CountState {ONE, TWO, THREE, FOUR, FIVE, NAPTIME}
+    public CountState countingState = CountState.ONE;
+
     public double leftSidePower;
     public double rightSidePower;
 
@@ -42,6 +47,8 @@ public class Tank_TeleOp_Connor extends OpMode{
     double leftStickXVal;
     double rightStickYVal;
     double rightStickXVal;
+    double currentTime;
+    double delayTime = 1.0;
 
 
     // Construct the Physical Bot based on the Robot Class
@@ -54,7 +61,7 @@ public class Tank_TeleOp_Connor extends OpMode{
 
         Thomas_The_Tank.initRobot(hardwareMap);
         Hand.initThe_Mighty_and_All_Powerful_Hand(hardwareMap);
-
+        timer.reset();
 
     }
 
@@ -212,45 +219,72 @@ public class Tank_TeleOp_Connor extends OpMode{
                     break;
 
                 case COUNTINGWITHELMOAUTO:
-                    Hand.closeHand();
-                    timer.reset();
-                    if (timer.time() < 1.5) {
-                        Hand.thumb.setPosition(0);
-                        Hand.indexFinger.setPosition(1);
-                        Hand.middleFinger.setPosition(0);
-                        Hand.ringFinger.setPosition(0);
-                        Hand.pinkyFinger.setPosition(0);
-                    }
-                    else if (timer.time() < 3) {
-                        Hand.thumb.setPosition(0);
-                        Hand.indexFinger.setPosition(1);
-                        Hand.middleFinger.setPosition(1);
-                        Hand.ringFinger.setPosition(0);
-                        Hand.pinkyFinger.setPosition(0);
-                    }
+                    switch (countingState) {
+                        case ONE:
+                            Hand.thumb.setPosition(0);
+                            Hand.indexFinger.setPosition(1);
+                            Hand.middleFinger.setPosition(0);
+                            Hand.ringFinger.setPosition(0);
+                            Hand.pinkyFinger.setPosition(0);
+                            Hand.closeHand();
+                            timer.reset();
+                            countingState = CountState.TWO;
+                            break;
 
-                    else if (timer.time() < 4.5) {
-                        Hand.thumb.setPosition(0);
-                        Hand.indexFinger.setPosition(1);
-                        Hand.middleFinger.setPosition(1);
-                        Hand.ringFinger.setPosition(1);
-                        Hand.pinkyFinger.setPosition(0);
-                    }
+                        case TWO:
+                            if (timer.seconds() > 2.5) {
+                                Hand.thumb.setPosition(0);
+                                Hand.indexFinger.setPosition(1);
+                                Hand.middleFinger.setPosition(1);
+                                Hand.ringFinger.setPosition(0);
+                                Hand.pinkyFinger.setPosition(0);
+                                Hand.closeHand();
+                                timer.reset();
+                                countingState = CountState.THREE;
+                            }
+                            break;
 
-                    else if (timer.time() < 6) {
-                        Hand.thumb.setPosition(0);
-                        Hand.indexFinger.setPosition(1);
-                        Hand.middleFinger.setPosition(1);
-                        Hand.ringFinger.setPosition(1);
-                        Hand.pinkyFinger.setPosition(1);
-                    }
+                        case THREE:
+                            if (timer.seconds() > 2.5) {
+                                Hand.thumb.setPosition(0);
+                                Hand.indexFinger.setPosition(1);
+                                Hand.middleFinger.setPosition(1);
+                                Hand.ringFinger.setPosition(1);
+                                Hand.pinkyFinger.setPosition(0);
+                                Hand.closeHand();
+                                timer.reset();
+                                countingState = CountState.FOUR;
+                            }
+                            break;
 
-                    else if (timer.time() < 7.5) {
-                        Hand.openHand();
-                    }
+                        case FOUR:
+                            if (timer.seconds() > 2.5) {
+                                Hand.thumb.setPosition(0);
+                                Hand.indexFinger.setPosition(1);
+                                Hand.middleFinger.setPosition(1);
+                                Hand.ringFinger.setPosition(1);
+                                Hand.pinkyFinger.setPosition(1);
+                                Hand.closeHand();
+                                timer.reset();
+                                countingState = CountState.FIVE;
+                            }
+                                break;
 
-                    else {
-                        Hand.closeHand();
+                        case FIVE:
+                            if (timer.seconds() > 2.5) {
+                                Hand.thumb.setPosition(1);
+                                Hand.indexFinger.setPosition(1);
+                                Hand.middleFinger.setPosition(1);
+                                Hand.ringFinger.setPosition(1);
+                                Hand.pinkyFinger.setPosition(1);
+                                Hand.closeHand();
+                                timer.reset();
+                                countingState = CountState.NAPTIME;
+                            }
+                            break;
+
+
+
                     }
 
                     if (gamepad2.left_trigger > 0.1) {
@@ -260,6 +294,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                     else if (gamepad2.right_trigger > 0.1) {
                         Hand.lowerArm();
                     }
+
                         break;
 
             }
@@ -477,6 +512,7 @@ public void lazySusanControl() {
             gamepadTwoStyle = Gamepad2_Style.COUNTINGWITHELMOMANNUAL;
         }
         if (gamepad2.right_stick_button) {
+            countingState = CountState.ONE;
             gamepadTwoStyle = Gamepad2_Style.COUNTINGWITHELMOAUTO;
         }
     }
