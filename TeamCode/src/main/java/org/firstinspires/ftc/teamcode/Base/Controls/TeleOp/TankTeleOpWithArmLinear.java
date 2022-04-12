@@ -47,6 +47,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
     public enum CountState {NAPTIME, ONE, TWO, THREE, FOUR, FIVE, DONE}
     public CountState countingState = CountState.NAPTIME;
     public ElapsedTime elmoTimer = new ElapsedTime();
+    public boolean autoElmo = false;
 
     // Timers
 
@@ -89,6 +90,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
         elbowControl();
         linearActuatorControl();
         lazySusanControl();
+        countWithElmo();
         telemetryOutput();
 
     }
@@ -110,6 +112,8 @@ public class TankTeleOpWithArmLinear extends OpMode {
         telemetry.addData("Wrist Gesture: ", wristStatus);
         telemetry.addData("Linear State: ", linearState );
         telemetry.addData("Horizontal Position: ", Liney.horizontalMotor.getCurrentPosition() );
+        telemetry.addData("Elmer Timer: ", elmoTimer.seconds());
+        telemetry.addData("Counting State: ", countingState);
         telemetry.update();
     }
 
@@ -414,55 +418,55 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     public void countWithElmo() {
 
-        switch (countingState) {
+        if (autoElmo) {
 
-            case ONE:
-                Handy.countOne();
-                elmoTimer.reset();
-                countingState = CountState.TWO;
-                break;
+            switch (countingState) {
 
-            case TWO:
-
-                if (elmoTimer.seconds() > 2.5) {
-                    Handy.closeHand();
-                    Handy.countTwo();
+                case ONE:
+                    Handy.countOne();
                     elmoTimer.reset();
-                    countingState = CountState.THREE;
-                }
-                break;
+                    countingState = CountState.TWO;
+                    break;
 
-            case THREE:
-                if (elmoTimer.seconds() > 2.5) {
-                    Handy.closeHand();
-                    Handy.countThree();
-                    elmoTimer.reset();
-                    countingState = CountState.FOUR;
-                }
-                break;
+                case TWO:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.countTwo();
+                        elmoTimer.reset();
+                        countingState = CountState.THREE;
+                    }
+                    break;
 
-            case FOUR:
-                if (elmoTimer.seconds() > 2.5) {
-                    Handy.closeHand();
-                    Handy.countFour();
-                    elmoTimer.reset();
-                    countingState = CountState.FIVE;
-                }
-                break;
-            case FIVE:
-                if (elmoTimer.seconds() > 2.5) {
-                    Handy.closeHand();
-                    Handy.countFive();
-                    countingState = CountState.DONE;
-                }
-                break;
+                case THREE:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.countThree();
+                        elmoTimer.reset();
+                        countingState = CountState.FOUR;
+                    }
+                    break;
 
-            case DONE:
-                if (elmoTimer.seconds() > 2.5) {
-                    Handy.closeHand();
-                    countingState = CountState.NAPTIME;
-                }
-                break;
+                case FOUR:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.countFour();
+                        elmoTimer.reset();
+                        countingState = CountState.FIVE;
+                    }
+                    break;
+                case FIVE:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.countFive();
+                        elmoTimer.reset();
+                        countingState = CountState.DONE;
+                    }
+                    break;
+
+                case DONE:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.closeHand();
+                        autoElmo = false;
+                        countingState = CountState.NAPTIME;
+                    }
+                    break;
+            }
         }
 
     }
@@ -471,7 +475,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
         if (gamepad2.a) {
             countingState = CountState.ONE;
-            countWithElmo();
+            autoElmo = true;
             handGesture = "Counting with Elmo";
         } else if (gamepad2.b) {
             Handy.openWrist();
