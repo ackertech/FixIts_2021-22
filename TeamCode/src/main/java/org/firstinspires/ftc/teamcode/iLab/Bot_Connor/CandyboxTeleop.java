@@ -112,7 +112,7 @@ public class CandyboxTeleop extends OpMode {
         telemetry.addLine("When you press the left dpad button, the wrist turns to the left");
         telemetry.addLine("When you press the right dpad button, the wrist turns to the right");
         telemetry.addLine("When you press the up dpad button, the wrist turns to the middle");
-        telemetry.addLine("When you press the A button, nothing happens, so just DO NOT PRESS IT!!! ");
+        telemetry.addLine("When you press and hold the A button, nothing happens, so just DO NOT PRESS IT!!! ");
         telemetry.addLine("We hope you have fun! -Audrey Hunt, Olivia Tindall, Connor Reddington, and Titan the honeybee");
         if (gamepad2.a) {
             telemetry.addLine("See, we told you nothing would happen. Well, this message popped up on your screen, but other than that nothing happened.");
