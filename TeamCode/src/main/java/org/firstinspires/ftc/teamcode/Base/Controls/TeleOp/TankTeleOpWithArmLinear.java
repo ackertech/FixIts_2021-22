@@ -43,7 +43,13 @@ public class TankTeleOpWithArmLinear extends OpMode {
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
 
+    //Counting Variables
+    public enum CountState {NAPTIME, ONE, TWO, THREE, FOUR, FIVE, DONE}
+    public CountState countingState = CountState.NAPTIME;
+    public ElapsedTime elmoTimer = new ElapsedTime();
+
     // Timers
+
     public ElapsedTime armTimer = new ElapsedTime();
     public ElapsedTime linearTimer = new ElapsedTime();
 
@@ -406,12 +412,67 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     /**  ********  HAND METHODS USING GAMEPAD2 *************      **/
 
+    public void countWithElmo() {
+
+        switch (countingState) {
+
+            case ONE:
+                Handy.countOne();
+                elmoTimer.reset();
+                countingState = CountState.TWO;
+                break;
+
+            case TWO:
+
+                if (elmoTimer.seconds() > 2.5) {
+                    Handy.closeHand();
+                    Handy.countTwo();
+                    elmoTimer.reset();
+                    countingState = CountState.THREE;
+                }
+                break;
+
+            case THREE:
+                if (elmoTimer.seconds() > 2.5) {
+                    Handy.closeHand();
+                    Handy.countThree();
+                    elmoTimer.reset();
+                    countingState = CountState.FOUR;
+                }
+                break;
+
+            case FOUR:
+                if (elmoTimer.seconds() > 2.5) {
+                    Handy.closeHand();
+                    Handy.countFour();
+                    elmoTimer.reset();
+                    countingState = CountState.FIVE;
+                }
+                break;
+            case FIVE:
+                if (elmoTimer.seconds() > 2.5) {
+                    Handy.closeHand();
+                    Handy.countFive();
+                    countingState = CountState.DONE;
+                }
+                break;
+
+            case DONE:
+                if (elmoTimer.seconds() > 2.5) {
+                    Handy.closeHand();
+                    countingState = CountState.NAPTIME;
+                }
+                break;
+        }
+
+    }
+
     public void handControl() {
 
         if (gamepad2.a) {
-            Handy.openWrist();
-            Handy.point();
-            handGesture = "Pointing";
+            countingState = CountState.ONE;
+            countWithElmo();
+            handGesture = "Counting with Elmo";
         } else if (gamepad2.b) {
             Handy.openWrist();
             Handy.surferWave();
