@@ -43,7 +43,14 @@ public class TankTeleOpWithArmLinear extends OpMode {
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
 
+    //Counting Variables
+    public enum CountState {NAPTIME, ONE, TWO, THREE, FOUR, FIVE, DONE}
+    public CountState countingState = CountState.NAPTIME;
+    public ElapsedTime elmoTimer = new ElapsedTime();
+    public boolean autoElmo = false;
+
     // Timers
+
     public ElapsedTime armTimer = new ElapsedTime();
     public ElapsedTime linearTimer = new ElapsedTime();
 
@@ -83,6 +90,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
         elbowControl();
         linearActuatorControl();
         lazySusanControl();
+        countWithElmo();
         telemetryOutput();
 
     }
@@ -104,6 +112,8 @@ public class TankTeleOpWithArmLinear extends OpMode {
         telemetry.addData("Wrist Gesture: ", wristStatus);
         telemetry.addData("Linear State: ", linearState );
         telemetry.addData("Horizontal Position: ", Liney.horizontalMotor.getCurrentPosition() );
+        telemetry.addData("Elmer Timer: ", elmoTimer.seconds());
+        telemetry.addData("Counting State: ", countingState);
         telemetry.update();
     }
 
@@ -350,13 +360,11 @@ public class TankTeleOpWithArmLinear extends OpMode {
            switch (armState) {
                case ARM_START:
                    if (gamepad2.dpad_up) {
-                       Handy.openHand();
                        Handy.elbow.setPosition(Handy.elbowMaxPos);
                        armState = ArmState.ARM_RAISE;
                    }
                    break;
                case ARM_RAISE:
-                   Handy.openHand();
                    Handy.openWrist();
                    armState = ArmState.ARM_REST;
 
@@ -364,13 +372,12 @@ public class TankTeleOpWithArmLinear extends OpMode {
                case ARM_REST:
                    if (gamepad2.dpad_down) {
                        Handy.closeWrist();
-                       Handy.closeHand();
                        Handy.elbow.setPosition(Handy.elbowMinPOs);
                        armState = ArmState.ARM_RETRACT;
                    }
                    break;
                case ARM_RETRACT:
-                   Handy.openWrist();
+                   Handy.closeHand();
                    armState = ArmState.ARM_START;
 
                    break;
@@ -406,12 +413,67 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     /**  ********  HAND METHODS USING GAMEPAD2 *************      **/
 
+    public void countWithElmo() {
+
+        if (autoElmo) {
+
+            switch (countingState) {
+
+                case ONE:
+                    Handy.countOne();
+                    elmoTimer.reset();
+                    countingState = CountState.TWO;
+                    break;
+
+                case TWO:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.countTwo();
+                        elmoTimer.reset();
+                        countingState = CountState.THREE;
+                    }
+                    break;
+
+                case THREE:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.countThree();
+                        elmoTimer.reset();
+                        countingState = CountState.FOUR;
+                    }
+                    break;
+
+                case FOUR:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.countFour();
+                        elmoTimer.reset();
+                        countingState = CountState.FIVE;
+                    }
+                    break;
+                case FIVE:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.countFive();
+                        elmoTimer.reset();
+                        countingState = CountState.DONE;
+                    }
+                    break;
+
+                case DONE:
+                    if (elmoTimer.seconds() > 2) {
+                        Handy.closeHand();
+                        autoElmo = false;
+                        countingState = CountState.NAPTIME;
+                    }
+                    break;
+            }
+        }
+
+    }
+
     public void handControl() {
 
         if (gamepad2.a) {
-            Handy.openWrist();
-            Handy.point();
-            handGesture = "Pointing";
+            countingState = CountState.ONE;
+            autoElmo = true;
+            handGesture = "Counting with Elmo";
         } else if (gamepad2.b) {
             Handy.openWrist();
             Handy.surferWave();

@@ -161,5 +161,39 @@ public class ArmHand {
         pinkyF.setPosition(1);
     }
 
-
+    public void countOne() {
+        thumbF.setPosition(0);
+        indexF.setPosition(1);
+        middleF.setPosition(0);
+        ringF.setPosition(0);
+        pinkyF.setPosition(0);
+    }
+    public void countTwo() {
+        thumbF.setPosition(0);
+        indexF.setPosition(1);
+        middleF.setPosition(1);
+        ringF.setPosition(0);
+        pinkyF.setPosition(0);
+    }
+    public void countThree() {
+        thumbF.setPosition(0);
+        indexF.setPosition(1);
+        middleF.setPosition(1);
+        ringF.setPosition(1);
+        pinkyF.setPosition(0);
+    }
+    public void countFour() {
+        thumbF.setPosition(0);
+        indexF.setPosition(1);
+        middleF.setPosition(1);
+        ringF.setPosition(1);
+        pinkyF.setPosition(1);
+    }
+    public void countFive() {
+        thumbF.setPosition(1);
+        indexF.setPosition(1);
+        middleF.setPosition(1);
+        ringF.setPosition(1);
+        pinkyF.setPosition(1);
+    }
 }
