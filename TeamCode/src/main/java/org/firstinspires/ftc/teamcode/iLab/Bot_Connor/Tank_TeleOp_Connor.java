@@ -278,6 +278,12 @@ public class Tank_TeleOp_Connor extends OpMode{
                             }
                             break;
 
+                        case ELMOGOESNIGHTNIGHT:
+                            if (timer.seconds() > 2) {
+                                Hand.closeHand();
+                            }
+                            break;
+
 
 
                     }
