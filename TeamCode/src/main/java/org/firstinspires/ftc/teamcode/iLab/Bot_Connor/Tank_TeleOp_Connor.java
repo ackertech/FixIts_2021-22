@@ -35,7 +35,7 @@ public class Tank_TeleOp_Connor extends OpMode{
     public Style driverStyle = Style.ONESTICK;
     public Gamepad2_Style gamepadTwoStyle = Gamepad2_Style.HANDGESTURES;
 
-    public enum CountState {ONE, TWO, THREE, FOUR, FIVE, NAPTIME}
+    public enum CountState {ONE, TWO, THREE, FOUR, FIVE, ELMOGOESNIGHTNIGHT}
     public CountState countingState = CountState.ONE;
 
     public double leftSidePower;
@@ -226,60 +226,55 @@ public class Tank_TeleOp_Connor extends OpMode{
                             Hand.middleFinger.setPosition(0);
                             Hand.ringFinger.setPosition(0);
                             Hand.pinkyFinger.setPosition(0);
-                            Hand.closeHand();
                             timer.reset();
                             countingState = CountState.TWO;
                             break;
 
                         case TWO:
-                            if (timer.seconds() > 2.5) {
+                            if (timer.seconds() > 2) {
                                 Hand.thumb.setPosition(0);
                                 Hand.indexFinger.setPosition(1);
                                 Hand.middleFinger.setPosition(1);
                                 Hand.ringFinger.setPosition(0);
                                 Hand.pinkyFinger.setPosition(0);
-                                Hand.closeHand();
                                 timer.reset();
                                 countingState = CountState.THREE;
                             }
                             break;
 
                         case THREE:
-                            if (timer.seconds() > 2.5) {
+                            if (timer.seconds() > 2) {
                                 Hand.thumb.setPosition(0);
                                 Hand.indexFinger.setPosition(1);
                                 Hand.middleFinger.setPosition(1);
                                 Hand.ringFinger.setPosition(1);
                                 Hand.pinkyFinger.setPosition(0);
-                                Hand.closeHand();
                                 timer.reset();
                                 countingState = CountState.FOUR;
                             }
                             break;
 
                         case FOUR:
-                            if (timer.seconds() > 2.5) {
+                            if (timer.seconds() > 2) {
                                 Hand.thumb.setPosition(0);
                                 Hand.indexFinger.setPosition(1);
                                 Hand.middleFinger.setPosition(1);
                                 Hand.ringFinger.setPosition(1);
                                 Hand.pinkyFinger.setPosition(1);
-                                Hand.closeHand();
                                 timer.reset();
                                 countingState = CountState.FIVE;
                             }
                                 break;
 
                         case FIVE:
-                            if (timer.seconds() > 2.5) {
+                            if (timer.seconds() > 2) {
                                 Hand.thumb.setPosition(1);
                                 Hand.indexFinger.setPosition(1);
                                 Hand.middleFinger.setPosition(1);
                                 Hand.ringFinger.setPosition(1);
                                 Hand.pinkyFinger.setPosition(1);
-                                Hand.closeHand();
                                 timer.reset();
-                                countingState = CountState.NAPTIME;
+                                countingState = CountState.ELMOGOESNIGHTNIGHT;
                             }
                             break;
 
