@@ -19,7 +19,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         ONESTICK, TWOSTICK, TANK
     }
     public enum Gamepad2_Style {
-        HANDGESTURES, CANDYBOX, COUNTINGWITHELMOMANNUAL, COUNTINGWITHELMOAUTO
+        HANDGESTURES, CANDYBOX, COUNTINGWITHELMOMANNUAL, COUNTINGWITHELMOAUTO, CLAW
     }
 
     public enum ArmControl {AUTO, MANUAL}
@@ -297,6 +297,16 @@ public class Tank_TeleOp_Connor extends OpMode{
                     }
 
                         break;
+
+                case CLAW:
+                    lazySusanControl();
+                    if (gamepad2.left_bumper) {
+                        Hand.clawOpen();
+                    }
+
+                    if (gamepad2.right_bumper) {
+                        Hand.clawClose();
+                    }
 
             }
 

@@ -12,6 +12,7 @@ public class The_Mighty_and_All_Powerful_Hand {
     public Servo middleFinger = null;
     public Servo indexFinger = null;
     public Servo thumb = null;
+    public Servo claw = null;
 
     //Define Arm Variables
     public Servo elbow = null;
@@ -66,6 +67,10 @@ public class The_Mighty_and_All_Powerful_Hand {
         //Control Hub Port 1
         elbow = hwBot.get(Servo.class, "elbow");
         elbow.setDirection(Servo.Direction.REVERSE);
+
+        //Control Hub Port 2
+        claw = hwBot.get(Servo.class,"claw");
+        claw.setDirection(Servo.Direction.FORWARD);
 
         closeHand();
     }
@@ -172,7 +177,13 @@ public class The_Mighty_and_All_Powerful_Hand {
         lowerArm();
     }
 
+public void clawOpen() {
+        claw.setPosition(1);
+}
 
+public void clawClose() {
+        claw.setPosition(0);
+}
 
     }
 //12345
