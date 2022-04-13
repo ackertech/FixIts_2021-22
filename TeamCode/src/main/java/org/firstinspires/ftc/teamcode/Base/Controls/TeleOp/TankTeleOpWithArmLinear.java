@@ -360,13 +360,11 @@ public class TankTeleOpWithArmLinear extends OpMode {
            switch (armState) {
                case ARM_START:
                    if (gamepad2.dpad_up) {
-                       Handy.openHand();
                        Handy.elbow.setPosition(Handy.elbowMaxPos);
                        armState = ArmState.ARM_RAISE;
                    }
                    break;
                case ARM_RAISE:
-                   Handy.openHand();
                    Handy.openWrist();
                    armState = ArmState.ARM_REST;
 
@@ -374,7 +372,6 @@ public class TankTeleOpWithArmLinear extends OpMode {
                case ARM_REST:
                    if (gamepad2.dpad_down) {
                        Handy.closeWrist();
-                       Handy.closeHand();
                        Handy.elbow.setPosition(Handy.elbowMinPOs);
                        armState = ArmState.ARM_RETRACT;
                    }
