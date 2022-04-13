@@ -378,6 +378,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
                    break;
                case ARM_RETRACT:
                    Handy.openWrist();
+                   Handy.closeHand();
                    armState = ArmState.ARM_START;
 
                    break;
