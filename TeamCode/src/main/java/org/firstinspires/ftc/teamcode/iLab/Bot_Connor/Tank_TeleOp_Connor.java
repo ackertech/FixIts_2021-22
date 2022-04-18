@@ -32,6 +32,8 @@ public class Tank_TeleOp_Connor extends OpMode{
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
 
+    public double UpAndDOwnLinearMotorTicks = 1000; //will need to change later
+
     public Style driverStyle = Style.ONESTICK;
     public Gamepad2_Style gamepadTwoStyle = Gamepad2_Style.HANDGESTURES;
 
@@ -74,6 +76,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         drive();
         gamepadTwoStyle();
         gamepad2Control();
+        UpAndDownLinearMotorControl();
         telemetryOutput();
 
     }
@@ -316,6 +319,8 @@ public class Tank_TeleOp_Connor extends OpMode{
                         break;
 
                 case CLAW:
+                    UpAndDownLinearMotorControl();
+
                     if (gamepad2.left_bumper) {
                         Hand.clawOpen();
                     }
@@ -323,34 +328,27 @@ public class Tank_TeleOp_Connor extends OpMode{
                     else if (gamepad2.right_bumper) {
                         Hand.clawClose();
                     }
-
-                    if (gamepad2.dpad_up) {
-                        Thomas_The_Tank.upAndDownLinearMotorUp();
-                    }
-
-                    else if (gamepad2.dpad_down) {
-                        Thomas_The_Tank.upAndDownLinearMotorDown();
-                    }
-
-                    if (gamepad2.dpad_left) {
-                        Thomas_The_Tank.stopUpAndDownLinearMotor();
-                    }
-
-                    if (gamepad2.dpad_right) {
-                        Thomas_The_Tank.stopUpAndDownLinearMotor();
-                    }
-
-                    if (gamepad2.left_trigger > 0.1) {
-                        Thomas_The_Tank.stopUpAndDownLinearMotor();
-                    }
-
-                    if (gamepad2.right_trigger > 0.1) {
-                        Thomas_The_Tank.stopUpAndDownLinearMotor();
-                    }
-
             }
 
         }
+
+    public void UpAndDownLinearMotorControl() {
+        if (gamepad2.left_bumper) {
+            if ( Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition() < UpAndDOwnLinearMotorTicks ) {
+                Thomas_The_Tank.upAndDownLinearMotor.setPower(0.4);
+            }
+
+            else {Thomas_The_Tank.upAndDownLinearMotor.setPower(0);}
+        }
+
+        if (gamepad2.right_bumper) {
+            if (Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition() > 0) {
+                Thomas_The_Tank.upAndDownLinearMotor.setPower(-0.4);
+            }
+
+            else {Thomas_The_Tank.upAndDownLinearMotor.setPower(0);}
+        }
+    }
 
 
 
