@@ -296,6 +296,20 @@ public class Tank_TeleOp_Connor extends OpMode{
                         Hand.lowerArm();
                     }
 
+                    if (gamepad2.back) {
+                        Hand.wristLeft();
+                    }
+
+                    else if (gamepad2.start) {
+                        Hand.wristRight();
+                    }
+
+                    else if (gamepad2.y) {
+                        Hand.wristMiddle();
+                    }
+
+
+
                         break;
 
                 case CLAW:
@@ -525,6 +539,9 @@ public void lazySusanControl() {
         if (gamepad2.right_stick_button) {
             countingState = CountState.ONE;
             gamepadTwoStyle = Gamepad2_Style.COUNTINGWITHELMOAUTO;
+        }
+        if (gamepad1.back) {
+            gamepadTwoStyle = Gamepad2_Style.CLAW;
         }
     }
 
