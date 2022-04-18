@@ -35,7 +35,7 @@ public class Tank_TeleOp_Connor extends OpMode{
     public Style driverStyle = Style.ONESTICK;
     public Gamepad2_Style gamepadTwoStyle = Gamepad2_Style.HANDGESTURES;
 
-    public enum CountState {ONE, TWO, THREE, FOUR, FIVE, ELMOGOESNIGHTNIGHT}
+    public enum CountState {ONE, TWO, THREE, FOUR, FIVE, ELMOISDONEFORNOW, ELMOGOESNIGHTNIGHT}
     public CountState countingState = CountState.ONE;
 
     public double leftSidePower;
@@ -278,11 +278,14 @@ public class Tank_TeleOp_Connor extends OpMode{
                             }
                             break;
 
-                        case ELMOGOESNIGHTNIGHT:
+                        case ELMOISDONEFORNOW:
                             if (timer.seconds() > 2) {
                                 Hand.closeHand();
+                                countingState = CountState.ELMOGOESNIGHTNIGHT;
                             }
                             break;
+
+
 
 
 
@@ -297,11 +300,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                     }
 
                     if (gamepad2.back) {
-                        Hand.wristLeft();
+                        Hand.wristRight();
                     }
 
                     else if (gamepad2.start) {
-                        Hand.wristRight();
+                        Hand.wristLeft();
                     }
 
                     else if (gamepad2.y) {
