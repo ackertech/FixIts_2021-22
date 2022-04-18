@@ -316,13 +316,36 @@ public class Tank_TeleOp_Connor extends OpMode{
                         break;
 
                 case CLAW:
-                    lazySusanControl();
                     if (gamepad2.left_bumper) {
                         Hand.clawOpen();
                     }
 
-                    if (gamepad2.right_bumper) {
+                    else if (gamepad2.right_bumper) {
                         Hand.clawClose();
+                    }
+
+                    if (gamepad2.dpad_up) {
+                        Thomas_The_Tank.upAndDownLinearMotorUp();
+                    }
+
+                    else if (gamepad2.dpad_down) {
+                        Thomas_The_Tank.upAndDownLinearMotorDown();
+                    }
+
+                    if (gamepad2.dpad_left) {
+                        Thomas_The_Tank.stopUpAndDownLinearMotor();
+                    }
+
+                    if (gamepad2.dpad_right) {
+                        Thomas_The_Tank.stopUpAndDownLinearMotor();
+                    }
+
+                    if (gamepad2.left_trigger > 0.1) {
+                        Thomas_The_Tank.stopUpAndDownLinearMotor();
+                    }
+
+                    if (gamepad2.right_trigger > 0.1) {
+                        Thomas_The_Tank.stopUpAndDownLinearMotor();
                     }
 
             }
