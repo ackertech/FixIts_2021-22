@@ -28,6 +28,7 @@ public class ArmHand {
     //ASL Gestures
     public String letter = "Hello";
     public ElapsedTime ASLtimer = new ElapsedTime();
+    public double ASLpause = 2;
 
 
     //Hardware Constructors
@@ -394,15 +395,13 @@ public class ArmHand {
 
     public void signSentence(String word) {
 
-
         for (int i=0; i < word.length(); i++) {
-
             letter = word.valueOf(i);
             ASLtimer.reset();
-            createWords(letter);
+            while (ASLtimer.seconds() < ASLpause) {
+                createWords(letter);
+            }
             closeHand();
-
-
         }
 
     }

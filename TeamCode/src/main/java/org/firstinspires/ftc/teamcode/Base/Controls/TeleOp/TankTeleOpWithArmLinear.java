@@ -463,9 +463,6 @@ public class TankTeleOpWithArmLinear extends OpMode {
                 ASLWord = "MBCA";
                 Handy.openWrist();
                 Handy.letterM();
-                Handy.letterB();
-                Handy.letterC();
-                Handy.letterA();
                 Handy.closeWrist();
             } else if (gamepad2.b) {
                 Handy.openWrist();
