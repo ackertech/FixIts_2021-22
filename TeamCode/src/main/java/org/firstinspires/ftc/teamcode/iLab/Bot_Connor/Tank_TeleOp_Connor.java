@@ -274,7 +274,7 @@ public class Tank_TeleOp_Connor extends OpMode{
                                 Hand.ringFinger.setPosition(1);
                                 Hand.pinkyFinger.setPosition(1);
                                 timer.reset();
-                                countingState = CountState.ELMOGOESNIGHTNIGHT;
+                                countingState = CountState.ELMOISDONEFORNOW;
                             }
                             break;
 
