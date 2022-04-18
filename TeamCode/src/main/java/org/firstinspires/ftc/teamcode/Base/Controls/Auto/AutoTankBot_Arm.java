@@ -1,12 +1,9 @@
 package org.firstinspires.ftc.teamcode.Base.Controls.Auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Base.Mechanisms.ASLHand;
 import org.firstinspires.ftc.teamcode.Base.Mechanisms.ArmHand;
-import org.firstinspires.ftc.teamcode.Base.Robot.LabBot_4Motor;
 import org.firstinspires.ftc.teamcode.Base.Robot.TankBot;
 
 //@Disabled
@@ -16,7 +13,6 @@ public class AutoTankBot_Arm extends LinearOpMode {
 
     TankBot Bruno = new TankBot();
     ArmHand Handy = new ArmHand();
-    ASLHand ASL = new ASLHand();
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -26,7 +22,6 @@ public class AutoTankBot_Arm extends LinearOpMode {
 
         Bruno.setLinearOp(this);
         Handy.setLinearOp(this);
-        ASL.setLinearOp(this);
 
         telemetry.addLine("Awaiting Start");
         telemetry.update();
@@ -41,7 +36,7 @@ public class AutoTankBot_Arm extends LinearOpMode {
             Handy.raiseArm();
             sleep(1500);
             Handy.openWrist();
-            ASL.signSentence("Hello");
+            Handy.signSentence("Hello");
             Handy.closeWrist();
             sleep(1500);
             Handy.lowerArm();
@@ -51,7 +46,7 @@ public class AutoTankBot_Arm extends LinearOpMode {
             Handy.raiseArm();
             sleep(1500);
             Handy.openWrist();
-            ASL.signSentence("I love robots");
+            Handy.signSentence("I love robots");
             Handy.closeWrist();
             sleep(1500);
             Handy.lowerArm();
@@ -61,7 +56,7 @@ public class AutoTankBot_Arm extends LinearOpMode {
             Handy.raiseArm();
             sleep(1500);
             Handy.openWrist();
-            ASL.signSentence("Goodbye");
+            Handy.signSentence("Goodbye");
             Handy.closeWrist();
             sleep(1500);
             Handy.lowerArm();

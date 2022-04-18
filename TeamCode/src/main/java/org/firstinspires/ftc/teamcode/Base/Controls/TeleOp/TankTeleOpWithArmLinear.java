@@ -49,10 +49,11 @@ public class TankTeleOpWithArmLinear extends OpMode {
     public ElapsedTime elmoTimer = new ElapsedTime();
     public boolean autoElmo = false;
 
-    // Timers
+    // ASL
+    public enum HandStyle {GESTURES,COUNTING,ASL}
+    public HandStyle handStyle = HandStyle.ASL;
+    public String ASLWord;
 
-    public ElapsedTime armTimer = new ElapsedTime();
-    public ElapsedTime linearTimer = new ElapsedTime();
 
     // GamePad Variables
     public double leftSidePower;
@@ -88,7 +89,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
         driveControl();
         handControl();
         elbowControl();
-        linearActuatorControl();
+     //   linearActuatorControl();
         lazySusanControl();
         countWithElmo();
         telemetryOutput();
@@ -108,10 +109,10 @@ public class TankTeleOpWithArmLinear extends OpMode {
         telemetry.addData("LazySusan Position: ", Liney.lazySusanMotor.getCurrentPosition() );
         telemetry.addData("LazySusan Control: ", lazySusanControl);
         telemetry.addData("LazySusan Encoders: ", lazySusanEncoder);
+        telemetry.addData("Hand Style: ", handStyle);
         telemetry.addData("Hand Gesture: ", handGesture);
-        telemetry.addData("Wrist Gesture: ", wristStatus);
-        telemetry.addData("Linear State: ", linearState );
-        telemetry.addData("Horizontal Position: ", Liney.horizontalMotor.getCurrentPosition() );
+        telemetry.addData("ASL Word: ", ASLWord);
+        telemetry.addData("ASL Word: ", Handy.ASLtimer);
         telemetry.addData("Elmer Timer: ", elmoTimer.seconds());
         telemetry.addData("Counting State: ", countingState);
         telemetry.update();
@@ -134,6 +135,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
         if (gamepad1.right_stick_button) {
             driverStyle = Style.TANK;
         }
+
 
         switch (driverStyle) {
 
@@ -195,6 +197,9 @@ public class TankTeleOpWithArmLinear extends OpMode {
                 rightSidePower = speedMultiply * rightStickYVal * (-1);
                 Bruno.tankDrive(leftSidePower,rightSidePower);
                 break;
+
+
+
         }
     }
 
@@ -210,15 +215,14 @@ public class TankTeleOpWithArmLinear extends OpMode {
             }
     }
 
-    /**************************************
-     *  GAMEPAD 2 CONTROLS
-     **************************************/
+
+
 
     /**  ********  Lazy Susan and Linear Actuator  *************      **/
 
     public void lazySusanControl() {
 
-        if (gamepad2.y) {
+        if (gamepad1.y) {
 
             if (lazySusanControl == LazySusanControl.MANUAL) {
 
@@ -230,11 +234,11 @@ public class TankTeleOpWithArmLinear extends OpMode {
         }
 
         if (lazySusanControl == LazySusanControl.MANUAL) {
-            if (gamepad2.right_stick_x > 0.1) {
+            if (gamepad1.left_trigger > 0.1) {
 
                 Liney.rotateForward(lazySusanPower);
             }
-            else if (gamepad2.right_stick_x < -0.1) {
+            else if (gamepad1.right_trigger > 0.1) {
 
                 Liney.rotateReverse(lazySusanPower);
             }
@@ -279,70 +283,13 @@ public class TankTeleOpWithArmLinear extends OpMode {
     }
 
 
-    public void linearActuatorControl() {
+    /**************************************
+     *  GAMEPAD 2 CONTROLS
+     **************************************/
 
-        if (gamepad2.left_stick_button) {
+    // Hand Control Styles
 
-            if (linearControl == LinearControl.MANUAL) {
-                linearControl = LinearControl.AUTO;
-            }
-            else {
-                linearControl = LinearControl.MANUAL;
-            }
 
-        }
-
-        if (linearControl == LinearControl.MANUAL) {
-            if (gamepad2.left_stick_x > 0.1) {
-                Liney.moveLinearForward(horizontalPower);
-            }
-            else if (gamepad2.left_stick_x < -0.1) {
-                Liney.moveLinearReverse(horizontalPower);
-            }
-            else {
-                Liney.horizontalMotor.setPower(0);
-            }
-        }
-        else if (linearControl == LinearControl.AUTO) {
-
-            switch (linearState) {
-                case LINEAR_START:
-                    if (gamepad2.left_trigger > 0.1) {
-                        Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                        Liney.horizontalMotor.setPower(horizontalPower);
-                        linearState = LinearState.LINEAR_EXTEND;
-                    }
-                    break;
-
-                case LINEAR_EXTEND:
-                    if ( Liney.horizontalMotor.getCurrentPosition() > horizontalTicks ) {
-                        Liney.horizontalMotor.setPower(0);
-                        linearState = LinearState.LINEAR_RETRACT;
-                    }
-                    break;
-
-                case LINEAR_REST:
-                    if (gamepad2.right_trigger > 0.1) {
-                        Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                        Liney.horizontalMotor.setPower(-horizontalPower);
-                        linearState = LinearState.LINEAR_RETRACT;
-                    }
-                    break;
-
-                case LINEAR_RETRACT:
-                    if ( (Liney.horizontalMotor.getCurrentPosition() > horizontalTicks) ) {
-                        Liney.horizontalMotor.setPower(0);
-                        linearState = LinearState.LINEAR_START;
-                    }
-                    break;
-
-                default:
-                    linearState = LinearState.LINEAR_START;
-            }
-
-        }
-
-    }
 
     /**  ********  ARM and ELBOW METHODS USING GAMEPAD2 *************      **/
 
@@ -468,30 +415,149 @@ public class TankTeleOpWithArmLinear extends OpMode {
 
     }
 
+
     public void handControl() {
 
-        if (gamepad2.a) {
-            countingState = CountState.ONE;
-            autoElmo = true;
-            handGesture = "Counting with Elmo";
-        } else if (gamepad2.b) {
-            Handy.openWrist();
-            Handy.surferWave();
-            handGesture = "Surfer Wave";
-        } else if (gamepad2.y) {
-            Handy.openWrist();
-            Handy.peace();
-            handGesture = "Peace Sign";
-        } else if (gamepad2.x) {
-            Handy.openWrist();
-            Handy.thumbsUp();
-            handGesture = "Thumbs Up";
-        } else {
-          //  Handy.closeWrist();
-          //  Handy.closeHand();
-            handGesture = "Close Hand";
+       if (handStyle == handStyle.COUNTING) {
+           if (gamepad2.a) {
+               countingState = CountState.ONE;
+               autoElmo = true;
+               handGesture = "Counting with Elmo";
+           } else if (gamepad2.b) {
+               Handy.countOne();
+               handGesture = "Count One";
+           } else if (gamepad2.y) {
+               Handy.countTwo();
+               handGesture = "Count Two";
+           } else if (gamepad2.x) {
+               Handy.countThree();
+               handGesture = "Count Three";
+           }
+
+       }
+
+        if (handStyle == handStyle.GESTURES) {
+
+            if (gamepad2.a) {
+                handGesture = "Pointing";
+                Handy.openWrist();
+                Handy.point();
+            } else if (gamepad2.b) {
+                handGesture = "Surfer Wave";
+                Handy.openWrist();
+                Handy.surferWave();
+            } else if (gamepad2.y) {
+                handGesture = "Peace Sign";
+                Handy.openWrist();
+                Handy.peace();
+            } else if (gamepad2.x) {
+                handGesture = "Thumbs Up";
+                Handy.openWrist();
+                Handy.thumbsUp();
+            }
         }
+
+        if (handStyle == HandStyle.ASL) {
+            if (gamepad2.a) {
+                handGesture = "ASL";
+                ASLWord = "MBCA";
+                Handy.openWrist();
+                Handy.letterM();
+                Handy.letterB();
+                Handy.letterC();
+                Handy.letterA();
+                Handy.closeWrist();
+            } else if (gamepad2.b) {
+                Handy.openWrist();
+                handGesture = "ASL";
+                ASLWord = "Robots";
+                Handy.signSentence(ASLWord);
+                Handy.closeWrist();
+            } else if (gamepad2.y) {
+                Handy.openWrist();
+                handGesture = "ASL";
+                ASLWord = "MBCA";
+                Handy.signSentence(ASLWord);
+                Handy.closeWrist();
+            } else if (gamepad2.x) {
+                Handy.openWrist();
+                handGesture = "ASL";
+                ASLWord = "Goodbye";
+                Handy.signSentence(ASLWord);
+                Handy.closeWrist();
+            }
+        }
+
     }
+
+    /**  ************  Linear Actuator Control Mechanism   ***************     */
+
+
+    public void linearActuatorControl() {
+
+        if (gamepad2.left_stick_button) {
+
+            if (linearControl == LinearControl.MANUAL) {
+                linearControl = LinearControl.AUTO;
+            }
+            else {
+                linearControl = LinearControl.MANUAL;
+            }
+
+        }
+
+        if (linearControl == LinearControl.MANUAL) {
+            if (gamepad2.left_stick_x > 0.1) {
+                Liney.moveLinearForward(horizontalPower);
+            }
+            else if (gamepad2.left_stick_x < -0.1) {
+                Liney.moveLinearReverse(horizontalPower);
+            }
+            else {
+                Liney.horizontalMotor.setPower(0);
+            }
+        }
+        else if (linearControl == LinearControl.AUTO) {
+
+            switch (linearState) {
+                case LINEAR_START:
+                    if (gamepad2.left_trigger > 0.1) {
+                        Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        Liney.horizontalMotor.setPower(horizontalPower);
+                        linearState = LinearState.LINEAR_EXTEND;
+                    }
+                    break;
+
+                case LINEAR_EXTEND:
+                    if ( Liney.horizontalMotor.getCurrentPosition() > horizontalTicks ) {
+                        Liney.horizontalMotor.setPower(0);
+                        linearState = LinearState.LINEAR_RETRACT;
+                    }
+                    break;
+
+                case LINEAR_REST:
+                    if (gamepad2.right_trigger > 0.1) {
+                        Liney.horizontalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        Liney.horizontalMotor.setPower(-horizontalPower);
+                        linearState = LinearState.LINEAR_RETRACT;
+                    }
+                    break;
+
+                case LINEAR_RETRACT:
+                    if ( (Liney.horizontalMotor.getCurrentPosition() > horizontalTicks) ) {
+                        Liney.horizontalMotor.setPower(0);
+                        linearState = LinearState.LINEAR_START;
+                    }
+                    break;
+
+                default:
+                    linearState = LinearState.LINEAR_START;
+            }
+
+        }
+
+    }
+
 
 
 }
