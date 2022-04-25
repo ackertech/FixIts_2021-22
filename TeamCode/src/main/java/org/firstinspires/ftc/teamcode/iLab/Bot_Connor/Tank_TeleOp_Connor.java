@@ -32,7 +32,9 @@ public class Tank_TeleOp_Connor extends OpMode{
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
 
-    public double UpAndDOwnLinearMotorTicks = 1000; //will need to change later
+    public double UpAndDownLinearMotorTicks = 990; //will need to change later
+    public enum ControlOfUpAndDownLinearMotor {FORWARD, REVERSE}
+    public ControlOfUpAndDownLinearMotor controlOfUpAndDownLinearMotor = ControlOfUpAndDownLinearMotor.FORWARD;
 
     public Style driverStyle = Style.ONESTICK;
     public Gamepad2_Style gamepadTwoStyle = Gamepad2_Style.HANDGESTURES;
@@ -76,7 +78,6 @@ public class Tank_TeleOp_Connor extends OpMode{
         drive();
         gamepadTwoStyle();
         gamepad2Control();
-        UpAndDownLinearMotorControl();
         telemetryOutput();
 
     }
@@ -333,16 +334,26 @@ public class Tank_TeleOp_Connor extends OpMode{
         }
 
     public void UpAndDownLinearMotorControl() {
-        if (gamepad2.left_bumper) {
-            if ( Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition() < UpAndDOwnLinearMotorTicks ) {
+
+       if (gamepad2.left_bumper) {
+           if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.FORWARD) {
+               controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.REVERSE;
+           }
+
+           else {
+               controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.FORWARD;
+           }
+       }
+        if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.FORWARD) {
+            if ( Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition() < UpAndDownLinearMotorTicks) {
                 Thomas_The_Tank.upAndDownLinearMotor.setPower(0.4);
             }
 
             else {Thomas_The_Tank.upAndDownLinearMotor.setPower(0);}
         }
 
-        if (gamepad2.right_bumper) {
-            if (Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition() > 0) {
+        if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.REVERSE) {
+            if (Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition() > UpAndDownLinearMotorTicks) {
                 Thomas_The_Tank.upAndDownLinearMotor.setPower(-0.4);
             }
 
