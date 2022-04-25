@@ -336,16 +336,21 @@ public class Tank_TeleOp_Connor extends OpMode{
     public void UpAndDownLinearMotorControl() {
 
        if (gamepad2.left_bumper) {
-           if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.FORWARD) {
-               controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.REVERSE;
-           }
 
-           else {
-               controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.FORWARD;
-           }
+           controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.REVERSE;
+           Thomas_The_Tank.upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
        }
+
+       else if (gamepad2.right_bumper){
+
+           controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.FORWARD;
+           Thomas_The_Tank.upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+       }
+
         if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.FORWARD) {
-            if ( Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition() < UpAndDownLinearMotorTicks) {
+            if ( Math.abs(Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition()) < 1500) {
                 Thomas_The_Tank.upAndDownLinearMotor.setPower(0.4);
             }
 
@@ -353,7 +358,7 @@ public class Tank_TeleOp_Connor extends OpMode{
         }
 
         if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.REVERSE) {
-            if (Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition() > UpAndDownLinearMotorTicks) {
+            if (Math.abs(Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition()) < 1500) {
                 Thomas_The_Tank.upAndDownLinearMotor.setPower(-0.4);
             }
 
