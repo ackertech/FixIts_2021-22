@@ -32,7 +32,7 @@ public class Tank_TeleOp_Connor extends OpMode{
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
 
-    public double UpAndDownLinearMotorTicks = 990; //will need to change later
+    public double UpAndDownLinearMotorTicks = 900; //will need to change later
     public enum ControlOfUpAndDownLinearMotor {FORWARD, REVERSE}
     public ControlOfUpAndDownLinearMotor controlOfUpAndDownLinearMotor = ControlOfUpAndDownLinearMotor.FORWARD;
 
@@ -506,6 +506,7 @@ public void lazySusanControl() {
         telemetry.addData("Rear Left Motor Power: ", Thomas_The_Tank.rearLeftMotor.getPower());
         telemetry.addData("Front Right Motor The Power of The Dark Side: ", Thomas_The_Tank.frontRightMotor.getPower());
         telemetry.addData("Rear Right Motor Power Of Pop Tarts: ", Thomas_The_Tank.frontRightMotor.getPower());
+        telemetry.addData("UpAndDownLinearMotorTicksMeasurement", Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition());
         if (driverStyle == Style.ONESTICK) {
             telemetry.addLine("OneStick Drive");
         }
