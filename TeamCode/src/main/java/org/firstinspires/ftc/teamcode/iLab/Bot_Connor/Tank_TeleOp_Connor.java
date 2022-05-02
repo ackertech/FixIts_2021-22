@@ -304,11 +304,11 @@ public class Tank_TeleOp_Connor extends OpMode{
                     }
 
                     if (gamepad2.back) {
-                        Hand.wristRight();
+                        Hand.wristLeft();
                     }
 
                     else if (gamepad2.start) {
-                        Hand.wristLeft();
+                        Hand.wristRight();
                     }
 
                     else if (gamepad2.y) {
