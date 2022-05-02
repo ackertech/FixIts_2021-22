@@ -336,14 +336,14 @@ public class Tank_TeleOp_Connor extends OpMode{
     public void UpAndDownLinearMotorControl() {
 
        if (gamepad2.left_bumper) {
-
+           Thomas_The_Tank.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
            Thomas_The_Tank.upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
            controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.REVERSE;
 
        }
 
        else if (gamepad2.right_bumper){
-
+           Thomas_The_Tank.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
            Thomas_The_Tank.upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
            controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.FORWARD;
 
