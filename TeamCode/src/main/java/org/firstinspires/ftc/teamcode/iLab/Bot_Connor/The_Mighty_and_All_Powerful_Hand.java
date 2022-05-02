@@ -79,11 +79,11 @@ public class The_Mighty_and_All_Powerful_Hand {
     /**  ********  WRIST MOVEMENT METHODS ************     **/
 
     public void wristLeft() {
-        wrist.setPosition(0);
+        wrist.setPosition(1);
     }
 
     public void wristRight() {
-        wrist.setPosition(1);
+        wrist.setPosition(0);
     }
 
     public void wristMiddle() {
