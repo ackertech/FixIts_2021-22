@@ -21,7 +21,7 @@ public class The_Mighty_and_All_Powerful_Hand {
 
     //Set Positioning for Arm or Hand
     public double elbowMaxPos = 0.5;
-    public double elbowMinPos = 0.82;
+    public double elbowMinPos = 0.84;
     public double elbowHalfPos = 0.7;
     public double elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
@@ -74,6 +74,7 @@ public class The_Mighty_and_All_Powerful_Hand {
         claw.setDirection(Servo.Direction.REVERSE);
 
         closeHand();
+        wristMiddle();
     }
 
     /**  ********  WRIST MOVEMENT METHODS ************     **/
