@@ -336,14 +336,14 @@ public class Tank_TeleOp_Connor extends OpMode{
     public void UpAndDownLinearMotorControl() {
 
        if (gamepad2.left_bumper) {
-
+           Thomas_The_Tank.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
            Thomas_The_Tank.upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
            controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.REVERSE;
 
        }
 
        else if (gamepad2.right_bumper){
-
+           Thomas_The_Tank.lazy_Susan.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
            Thomas_The_Tank.upAndDownLinearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
            controlOfUpAndDownLinearMotor = controlOfUpAndDownLinearMotor.FORWARD;
 
@@ -358,7 +358,7 @@ public class Tank_TeleOp_Connor extends OpMode{
             else {Thomas_The_Tank.upAndDownLinearMotor.setPower(0);}
         }
 
-        if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.REVERSE) {
+        else if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.REVERSE) {
             if (Math.abs(Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition()) < 1500) {
                 Thomas_The_Tank.upAndDownLinearMotor.setPower(-0.4);
             }
@@ -512,6 +512,7 @@ public void lazySusanControl() {
         telemetry.addData("Rear Left Motor Power: ", Thomas_The_Tank.rearLeftMotor.getPower());
         telemetry.addData("Front Right Motor The Power of The Dark Side: ", Thomas_The_Tank.frontRightMotor.getPower());
         telemetry.addData("Rear Right Motor Power Of Pop Tarts: ", Thomas_The_Tank.frontRightMotor.getPower());
+        telemetry.addData("UpAndDownLinearMotor Direction: ", controlOfUpAndDownLinearMotor);
         telemetry.addData("UpAndDownLinearMotorTicksMeasurement", Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition());
         if (driverStyle == Style.ONESTICK) {
             telemetry.addLine("OneStick Drive");

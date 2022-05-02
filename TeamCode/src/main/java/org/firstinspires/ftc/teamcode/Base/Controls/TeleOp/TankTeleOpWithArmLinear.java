@@ -460,6 +460,7 @@ public class TankTeleOpWithArmLinear extends OpMode {
         }
 
         if (handStyle == HandStyle.ASL) {
+            
             if (gamepad2.a) {
                 handGesture = "ASL";
                 ASLWord = "MBCA";
