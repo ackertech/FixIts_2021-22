@@ -512,6 +512,7 @@ public void lazySusanControl() {
         telemetry.addData("Rear Left Motor Power: ", Thomas_The_Tank.rearLeftMotor.getPower());
         telemetry.addData("Front Right Motor The Power of The Dark Side: ", Thomas_The_Tank.frontRightMotor.getPower());
         telemetry.addData("Rear Right Motor Power Of Pop Tarts: ", Thomas_The_Tank.frontRightMotor.getPower());
+        telemetry.addData("UpAndDownLinearMotor Direction: ", controlOfUpAndDownLinearMotor);
         telemetry.addData("UpAndDownLinearMotorTicksMeasurement", Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition());
         if (driverStyle == Style.ONESTICK) {
             telemetry.addLine("OneStick Drive");
