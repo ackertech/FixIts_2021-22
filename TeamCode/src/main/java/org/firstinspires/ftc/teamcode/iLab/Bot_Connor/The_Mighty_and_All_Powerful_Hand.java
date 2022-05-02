@@ -21,8 +21,9 @@ public class The_Mighty_and_All_Powerful_Hand {
 
     //Set Positioning for Arm or Hand
     public double elbowMaxPos = 0.5;
-    public double elbowMinPos = 0.84;
+    public double elbowMinPos = 0.83;
     public double elbowHalfPos = 0.7;
+    public double elbowCandyGrabPos = 0.79;
     public double elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
 
@@ -97,11 +98,17 @@ public class The_Mighty_and_All_Powerful_Hand {
         closeHand();
         elbow.setPosition(elbowMaxPos); }
 
-   public void halfArm() {elbow.setPosition(elbowHalfPos);}
+   public void halfArm() {
+        elbow.setPosition(elbowHalfPos);}
 
     public void lowerArm() {
        closeHand();
         elbow.setPosition(elbowMinPos);
+    }
+
+    public void candyGrabPosition(){
+        closeHand();
+        elbow.setPosition(elbowCandyGrabPos);
     }
 
     /**  ******* HAND GESTURES ************     **/

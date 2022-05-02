@@ -33,6 +33,10 @@ public class CandyboxTeleop extends OpMode {
     public TankBot_Connor Thomas_The_Tank = new TankBot_Connor();
     public The_Mighty_and_All_Powerful_Hand Hand = new The_Mighty_and_All_Powerful_Hand();
 
+    public enum Style{
+        DRIVE, ELSE
+    }
+
     @Override
     public void init() {
         Thomas_The_Tank.initRobot(hardwareMap);
@@ -44,6 +48,8 @@ public class CandyboxTeleop extends OpMode {
         CandyBoxControls();
         telemetryOutput();
     }
+
+
 
     public void lazySusanControl() {
         if (gamepad2.x) {
@@ -73,12 +79,20 @@ public class CandyboxTeleop extends OpMode {
     public void CandyBoxControls() {
         lazySusanControl();
 
-        if (gamepad2.left_trigger > 0.1) {
+        if (gamepad2.left_trigger > 0.1 && gamepad2.right_trigger > 0.1 == false) {
+            Hand.halfArm();
+        }
+
+        else if (gamepad2.right_trigger > 0.1 && gamepad2.left_trigger > 0.1 == false) {
+            Hand.lowerArm();
+        }
+
+        else if (gamepad2.right_trigger > 0.1 && gamepad2.left_trigger > 0.1) {
             Hand.raiseArm();
         }
 
-        else if (gamepad2.right_trigger > 0.1) {
-            Hand.lowerArm();
+        else if (gamepad2.dpad_down) {
+            Hand.candyGrabPosition();
         }
 
         else if (gamepad2.left_bumper) {
@@ -114,7 +128,7 @@ public class CandyboxTeleop extends OpMode {
         telemetry.addLine("When you press the up dpad button, the wrist turns to the middle");
         telemetry.addLine("WHen you move the right stick left and right, the base of the arm moves.");
         telemetry.addLine("When you press and hold the A button, nothing happens, so just DO NOT PRESS IT!!! ");
-        telemetry.addLine("We hope you have fun! -Audrey Hunt, Olivia Tindall, Connor Reddington, and Titan the honeybee");
+        telemetry.addLine("We hope you have fun! -Audrey Hunt, Olivia Tindall, Connor Reddington, and Titan the bumblebee");
         if (gamepad2.a) {
             telemetry.addLine("See, we told you nothing would happen. Well, this message popped up on your screen, but other than that nothing happened.");
         }
