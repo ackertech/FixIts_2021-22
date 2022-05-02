@@ -358,7 +358,7 @@ public class Tank_TeleOp_Connor extends OpMode{
             else {Thomas_The_Tank.upAndDownLinearMotor.setPower(0);}
         }
 
-        if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.REVERSE) {
+        else if (controlOfUpAndDownLinearMotor == controlOfUpAndDownLinearMotor.REVERSE) {
             if (Math.abs(Thomas_The_Tank.upAndDownLinearMotor.getCurrentPosition()) < 1500) {
                 Thomas_The_Tank.upAndDownLinearMotor.setPower(-0.4);
             }
