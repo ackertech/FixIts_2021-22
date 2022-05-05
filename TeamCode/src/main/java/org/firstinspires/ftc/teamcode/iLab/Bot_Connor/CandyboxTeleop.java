@@ -28,6 +28,7 @@ public class CandyboxTeleop extends OpMode {
     public Tank_TeleOp_Connor.LazySusanEncoder lazySusanEncoder = Tank_TeleOp_Connor.LazySusanEncoder.OFF;
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
+    public double wristPower = 0.30;
 
 
     public TankBot_Connor Thomas_The_Tank = new TankBot_Connor();
@@ -45,6 +46,7 @@ public class CandyboxTeleop extends OpMode {
 
     public void loop() {
         lazySusanControl();
+        wristControl();
         CandyBoxControls();
         telemetryOutput();
     }
@@ -134,5 +136,28 @@ public class CandyboxTeleop extends OpMode {
         }
         telemetry.update();
     }
+    public void wristLeft (double power) {
+        if (gamepad2.left_stick_x > 0.1) {
+        wristLeft(wristPower);
+        }
+    }
+
+    public void wristRight(double power) {
+        if (gamepad2.left_stick_x < -0.1) {
+            wristRight(wristPower);
+        }
+    }
+
+    public void wristControl() {
+        if (gamepad2.left_stick_x > 0.1) {
+            wristLeft(wristPower);
+        }
+
+        else if (gamepad2.left_stick_x < -0.1) {
+            wristRight(wristPower);
+        }
+    }
+
+
 
 }

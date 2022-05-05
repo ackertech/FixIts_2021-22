@@ -91,6 +91,10 @@ public class TankBot_Connor extends Tank_FourMotorDrive_Connor{
         lazy_Susan.setPower(0);
     }
 
+    public void wristLeft (double power) {
+
+    }
+
 
     public void stopSidewaysLinearMotor(){
         sidewaysLinearMotor.setPower(0);

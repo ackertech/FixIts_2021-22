@@ -92,6 +92,7 @@ public class The_Mighty_and_All_Powerful_Hand {
         wrist.setPosition(0.5);
     }
 
+
     /** *******  ARM MOVEMENT METHODS *************      **/
 
     public void raiseArm() {
