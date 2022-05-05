@@ -136,14 +136,6 @@ public class CandyboxTeleop extends OpMode {
         }
         telemetry.update();
     }
-    public void wristLeft (double power) {
-    }
-
-    public void wristRight(double power) {
-        if (gamepad2.left_stick_x < -0.1) {
-            wristRight(wristPower);
-        }
-    }
 
     public void wristControl() {
         if (gamepad2.left_stick_x > 0.1 && Hand.wristCurrPos < Hand.wristMaxPos) {
