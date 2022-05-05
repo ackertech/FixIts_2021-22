@@ -27,6 +27,12 @@ public class The_Mighty_and_All_Powerful_Hand {
     public double elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
 
+    public double wristMaxPos = 0.5;
+    public double wristMinPos = 0.83;
+    public double wristHalfPos = 0.7;
+    public double wristCurrPos = 0.18;
+    public double wristIncrements = 0.0005;
+
     //Hardware Constructors
     public HardwareMap hwBot = null;
     public The_Mighty_and_All_Powerful_Hand() {}
