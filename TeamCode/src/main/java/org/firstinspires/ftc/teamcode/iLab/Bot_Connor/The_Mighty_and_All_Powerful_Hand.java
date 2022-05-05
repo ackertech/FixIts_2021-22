@@ -74,8 +74,7 @@ public class The_Mighty_and_All_Powerful_Hand {
         claw = hwBot.get(Servo.class,"claw");
         claw.setDirection(Servo.Direction.REVERSE);
 
-        closeHand();
-        wristMiddle();
+
     }
 
     /**  ********  WRIST MOVEMENT METHODS ************     **/
