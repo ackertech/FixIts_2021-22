@@ -103,17 +103,6 @@ public class CandyboxTeleop extends OpMode {
             Hand.closeHand();
         }
 
-        else if (gamepad2.dpad_left) {
-            Hand.wristLeft();
-        }
-
-        else if (gamepad2.dpad_right) {
-            Hand.wristRight();
-        }
-
-        else if (gamepad2.dpad_up) {
-            Hand.wristMiddle();
-        }
 
     }
 
