@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.iLab.Bot_Connor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.Range;
 
 //@Disabled
 @TeleOp(name = "CandyBoxTeleOpConnor")
@@ -14,7 +15,7 @@ public class CandyboxTeleop extends OpMode {
     double leftStickXVal;
     double rightStickYVal;
     double rightStickXVal;
-
+    public double speedMultiply = 0.50;
     public enum ArmControl {AUTO, MANUAL}
 
     public Tank_TeleOp_Connor.ArmControl armControl = Tank_TeleOp_Connor.ArmControl.MANUAL;
@@ -29,10 +30,13 @@ public class CandyboxTeleop extends OpMode {
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
     public double wristPower = 0.30;
-
+public enum stuff {DRIVE, NOT}
+    public stuff STUFF = stuff.NOT;
 
     public TankBot_Connor Thomas_The_Tank = new TankBot_Connor();
     public The_Mighty_and_All_Powerful_Hand Hand = new The_Mighty_and_All_Powerful_Hand();
+
+
 
 
 
@@ -49,6 +53,27 @@ public class CandyboxTeleop extends OpMode {
         telemetryOutput();
     }
 
+
+
+    public void heHEHEHaw() {
+        leftStickYVal = gamepad1.left_stick_y;
+        leftStickYVal = Range.clip(leftStickYVal, -1, 1);
+
+        leftStickXVal = gamepad1.left_stick_x;
+        leftStickXVal = Range.clip(leftStickXVal, -1, 1);
+
+        if (leftStickYVal < -0.1) {
+            Thomas_The_Tank.driveForward(speedMultiply * leftStickYVal);
+        } else if (leftStickYVal > 0.1) {
+            Thomas_The_Tank.driveBackwards(speedMultiply * leftStickYVal);
+        } else if (leftStickXVal > 0.1) {
+            Thomas_The_Tank.rotateRight(speedMultiply * leftStickXVal);
+        } else if (leftStickXVal < -0.1) {
+            Thomas_The_Tank.rotateLeft(speedMultiply * leftStickXVal);
+        } else {
+            Thomas_The_Tank.stopMotors();
+        }
+    }
 
 
     public void lazySusanControl() {
@@ -142,6 +167,10 @@ public class CandyboxTeleop extends OpMode {
         else {
             Hand.wrist.setPosition(Hand.wristCurrPos);
         }
+    }
+
+    public void secretCOntrol() {
+
     }
 
 

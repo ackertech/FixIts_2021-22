@@ -23,7 +23,7 @@ public class The_Mighty_and_All_Powerful_Hand {
     public double elbowMaxPos = 0.5;
     public double elbowMinPos = 0.83;
     public double elbowHalfPos = 0.7;
-    public double elbowCandyGrabPos = 0.79;
+    public double elbowCandyGrabPos = 0.8;
     public double elbowCurrPos = 0.18;
     public double elbowIncrements = 0.0005;
 
