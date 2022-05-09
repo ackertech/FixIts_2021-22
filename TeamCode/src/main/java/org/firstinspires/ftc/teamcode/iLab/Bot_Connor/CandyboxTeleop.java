@@ -31,7 +31,7 @@ public class CandyboxTeleop extends OpMode {
     public double lazySusanPower = 0.90;
     public double wristPower = 0.30;
 public enum stuff {DRIVE, NOT}
-    public stuff STUFF = stuff.NOT;
+    public stuff myStuff = stuff.NOT;
 
     public TankBot_Connor Thomas_The_Tank = new TankBot_Connor();
     public The_Mighty_and_All_Powerful_Hand Hand = new The_Mighty_and_All_Powerful_Hand();
@@ -51,6 +51,7 @@ public enum stuff {DRIVE, NOT}
         wristControl();
         CandyBoxControls();
         telemetryOutput();
+        secretControl();
     }
 
 
@@ -62,16 +63,18 @@ public enum stuff {DRIVE, NOT}
         leftStickXVal = gamepad1.left_stick_x;
         leftStickXVal = Range.clip(leftStickXVal, -1, 1);
 
-        if (leftStickYVal < -0.1) {
-            Thomas_The_Tank.driveForward(speedMultiply * leftStickYVal);
-        } else if (leftStickYVal > 0.1) {
-            Thomas_The_Tank.driveBackwards(speedMultiply * leftStickYVal);
-        } else if (leftStickXVal > 0.1) {
-            Thomas_The_Tank.rotateRight(speedMultiply * leftStickXVal);
-        } else if (leftStickXVal < -0.1) {
-            Thomas_The_Tank.rotateLeft(speedMultiply * leftStickXVal);
-        } else {
-            Thomas_The_Tank.stopMotors();
+        if (myStuff == stuff.DRIVE) {
+            if (leftStickYVal < -0.1) {
+                Thomas_The_Tank.driveForward(speedMultiply * leftStickYVal);
+            } else if (leftStickYVal > 0.1) {
+                Thomas_The_Tank.driveBackwards(speedMultiply * leftStickYVal);
+            } else if (leftStickXVal > 0.1) {
+                Thomas_The_Tank.rotateRight(speedMultiply * leftStickXVal);
+            } else if (leftStickXVal < -0.1) {
+                Thomas_The_Tank.rotateLeft(speedMultiply * leftStickXVal);
+            } else {
+                Thomas_The_Tank.stopMotors();
+            }
         }
     }
 
@@ -150,29 +153,34 @@ public enum stuff {DRIVE, NOT}
     }
 
     public void wristControl() {
-        if (gamepad2.left_stick_x < -0.1 && Hand.wristCurrPos < Hand.wristMaxPos) {
-        Hand.wristCurrPos += Hand.wristIncrements;
-        Hand.wrist.setPosition(Hand.wristCurrPos);
-        }
+        if (myStuff == stuff.NOT) {
 
-        else {
-            Hand.wrist.setPosition(Hand.wristCurrPos);
-        }
+            if (gamepad2.left_stick_x < -0.1 && Hand.wristCurrPos < Hand.wristMaxPos) {
+                Hand.wristCurrPos += Hand.wristIncrements;
+                Hand.wrist.setPosition(Hand.wristCurrPos);
+            } else {
+                Hand.wrist.setPosition(Hand.wristCurrPos);
+            }
 
-        if (gamepad2.left_stick_x > 0.1 && Hand.wristCurrPos > Hand.wristMinPos) {
-            Hand.wristCurrPos -= Hand.wristIncrements;
-            Hand.wrist.setPosition(Hand.wristCurrPos);
-        }
-
-        else {
-            Hand.wrist.setPosition(Hand.wristCurrPos);
+            if (gamepad2.left_stick_x > 0.1 && Hand.wristCurrPos > Hand.wristMinPos) {
+                Hand.wristCurrPos -= Hand.wristIncrements;
+                Hand.wrist.setPosition(Hand.wristCurrPos);
+            } else {
+                Hand.wrist.setPosition(Hand.wristCurrPos);
+            }
         }
     }
 
-    public void secretCOntrol() {
-
-    }
-
-
-
+    public void secretControl() {
+if (gamepad2.a && gamepad2.b && gamepad2.dpad_down) {
+    myStuff = stuff.DRIVE;
 }
+else {
+    myStuff = stuff.NOT;
+}
+}
+    }
+
+
+
+
