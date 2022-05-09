@@ -52,6 +52,7 @@ public enum stuff {DRIVE, NOT}
         CandyBoxControls();
         telemetryOutput();
         secretControl();
+        heHEHEHaw();
     }
 
 
@@ -150,6 +151,14 @@ public enum stuff {DRIVE, NOT}
             telemetry.addLine("See, we told you nothing would happen. Well, this message popped up on your screen, but other than that nothing happened.");
         }
         telemetry.update();
+
+        if (myStuff == stuff.DRIVE) {
+            telemetry.addLine("Welcome TO Secret COntrols");
+        }
+
+        if (myStuff == stuff.NOT) {
+            telemetry.addLine("NOT");
+        }
     }
 
     public void wristControl() {
@@ -175,7 +184,7 @@ public enum stuff {DRIVE, NOT}
 if (gamepad2.a && gamepad2.b && gamepad2.dpad_down) {
     myStuff = stuff.DRIVE;
 }
-else {
+if (gamepad2.b){
     myStuff = stuff.NOT;
 }
 }
