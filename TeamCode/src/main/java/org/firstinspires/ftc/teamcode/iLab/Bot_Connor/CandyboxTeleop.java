@@ -30,7 +30,7 @@ public class CandyboxTeleop extends OpMode {
     public double lazySusanTicks = 5000;
     public double lazySusanPower = 0.90;
     public double wristPower = 0.30;
-public enum stuff {DRIVE, NOT}
+    public enum stuff {DRIVE, NOT}
     public stuff myStuff = stuff.NOT;
 
     public TankBot_Connor Thomas_The_Tank = new TankBot_Connor();
@@ -47,21 +47,21 @@ public enum stuff {DRIVE, NOT}
     }
 
     public void loop() {
+        controlOfIronMansClaw();
+        telemetryOutput();
+        initilazationMethods();
         lazySusanControl();
         wristControl();
         CandyBoxControls();
-        telemetryOutput();
-        secretControl();
-        heHEHEHaw();
     }
 
 
 
-    public void heHEHEHaw() {
-        leftStickYVal = gamepad1.left_stick_y;
+    public void initilazationMethods() {
+        leftStickYVal = gamepad2.left_stick_y;
         leftStickYVal = Range.clip(leftStickYVal, -1, 1);
 
-        leftStickXVal = gamepad1.left_stick_x;
+        leftStickXVal = gamepad2.left_stick_x;
         leftStickXVal = Range.clip(leftStickXVal, -1, 1);
 
         if (myStuff == stuff.DRIVE) {
@@ -153,7 +153,7 @@ public enum stuff {DRIVE, NOT}
         telemetry.update();
 
         if (myStuff == stuff.DRIVE) {
-            telemetry.addLine("Welcome TO Secret COntrols");
+            telemetry.addLine("Welcome To Secret Controls");
         }
 
         if (myStuff == stuff.NOT) {
@@ -180,8 +180,8 @@ public enum stuff {DRIVE, NOT}
         }
     }
 
-    public void secretControl() {
-if (gamepad2.a && gamepad2.b && gamepad2.dpad_down) {
+    public void controlOfIronMansClaw() {
+if (gamepad2.dpad_left && gamepad2.x && gamepad2.y) {
     myStuff = stuff.DRIVE;
 }
 if (gamepad2.b){
