@@ -136,22 +136,22 @@ public class CandyboxTeleop extends OpMode {
     }
 
     public void wristControl() {
-        if (gamepad2.left_stick_x > 0.1 && Hand.wristCurrPos < Hand.wristMaxPos) {
+        if (gamepad2.left_stick_x < -0.1 && Hand.wristCurrPos < Hand.wristMaxPos) {
         Hand.wristCurrPos += Hand.wristIncrements;
         Hand.wrist.setPosition(Hand.wristCurrPos);
         }
 
         else {
-            Hand.elbow.setPosition(Hand.wristCurrPos);
+            Hand.wrist.setPosition(Hand.wristCurrPos);
         }
 
-        if (gamepad2.left_stick_x < -0.1 && Hand.wristCurrPos > Hand.wristMinPos) {
+        if (gamepad2.left_stick_x > 0.1 && Hand.wristCurrPos > Hand.wristMinPos) {
             Hand.wristCurrPos -= Hand.wristIncrements;
-            Hand.elbow.setPosition(Hand.wristCurrPos);
+            Hand.wrist.setPosition(Hand.wristCurrPos);
         }
 
         else {
-            Hand.elbow.setPosition(Hand.wristCurrPos);
+            Hand.wrist.setPosition(Hand.wristCurrPos);
         }
     }
 
